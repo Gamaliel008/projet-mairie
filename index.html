@@ -4,35 +4,52 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mairie de Kolwezi - Portail Officiel Moderne</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <style>
-        /* ====== Variables CSS & Reset (Légèrement Ajusté) ====== */
+        /* ======================================
+        CSS MODERNE & RESPONSIVE - MAIRIE KOLWEZI
+        ======================================
+        */
+
+        /* ====== 1. Variables CSS & Reset ====== */
         :root {
-            --primary-blue: #0A3D62; /* GARDER LE BLEU FONCE INITIAL */
-            --header-bg: #032145; /* Bleu très foncé pour l'en-tête */
-            --secondary-blue: #0F52BA; /* Bleu vibrant d'accentuation */
-            --highlight-color: #26a69a; /* Couleur d'accentuation (Vert/Cyan) */
-            --text-dark: #1f2937; /* Plus dark que le précédent pour un meilleur contraste */
-            --text-light: #6b7280; /* Gris doux */
-            --background-light: #f9fafb; /* Arrière-plan très clair/doux */
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Ombre légère pour effet de profondeur */
+            /* Couleurs */
+            --primary-blue: #0A3D62; /* Bleu très foncé (Mairie) */
+            --secondary-blue: #0F52BA; /* Bleu vibrant (Boutons, Liens) */
+            --header-bg: #032145; /* Bleu de navigation profond */
+            --highlight-color: #26a69a; /* Vert/Cyan (Accentuation moderne) */
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --background-light: #f9fafb;
+            --white: #ffffff;
+            --border-color: #e5e7eb;
+
+            /* Typographie & Dimensions */
             --max-width: 1280px;
             --transition-time: 0.3s;
+            --font-stack: 'Inter', sans-serif;
+
+            /* Ombres & Effets */
+            --shadow-elevation-1: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-elevation-2: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
         }
 
-        * {
+        /* Reset étendu */
+        *, *::before, *::after {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
+            font-family: var(--font-stack);
             background-color: var(--background-light);
             color: var(--text-dark);
             line-height: 1.6;
+            min-height: 100vh;
+            scroll-behavior: smooth;
         }
 
         a {
@@ -40,577 +57,776 @@
             color: var(--secondary-blue);
             transition: color var(--transition-time), background-color var(--transition-time);
         }
-        
-        /* ====== UTILS & Composants Modernes ====== */
+        a:hover {
+            color: var(--highlight-color);
+        }
+
+        /* ====== 2. UTILS & Composants Modernes ====== */
         .container {
             max-width: var(--max-width);
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         .section-title {
             text-align: center;
-            font-size: 36px; /* Augmenté */
+            font-size: 36px;
             font-weight: 800;
             color: var(--primary-blue);
-            margin-bottom: 50px; /* Augmenté */
+            margin-bottom: 50px;
+            padding-top: 50px;
             position: relative;
         }
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -15px; /* Positionnement plus bas */
+            bottom: 35px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px; /* Plus compact */
-            height: 5px; /* Plus épais */
+            width: 80px;
+            height: 5px;
             background-color: var(--highlight-color);
             border-radius: 3px;
         }
 
-        /* Utilisation d'une classe pour les icônes de sous-menus */
-        .menu-arrow {
-            margin-left: 8px;
-            font-size: 0.7em;
-            transition: transform var(--transition-time) ease;
+        /* Boutons de Héros */
+        .hero-button {
+            display: inline-block;
+            background-color: var(--secondary-blue);
+            color: var(--white);
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1em;
+            box-shadow: 0 10px 25px rgba(15, 82, 186, 0.5);
+            transition: all var(--transition-time) ease-out;
+        }
+        .hero-button:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(10, 61, 98, 0.6);
         }
 
-        /* ====== HEADER & NAVIGATION (Optimisé) ====== */
+        /* ====== 3. HEADER & NAVIGATION (Optimisé pour la réactivité) ====== */
         header {
             background: var(--header-bg);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
             position: sticky;
             top: 0;
             z-index: 1000;
+            transition: box-shadow var(--transition-time);
         }
-        
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            min-height: 80px; /* Hauteur réduite pour un look plus élégant */
+            min-height: 80px;
         }
-        
+
         .logo {
-            display: flex;
-            align-items: center;
-            color: white;
-            font-size: 22px; 
+            color: var(--white);
+            font-size: 22px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
         }
-        
+        .logo:hover {
+            color: var(--white);
+        }
         .logo .logo-img {
-            height: 55px; /* Taille ajustée */
-            margin-right: 15px; 
-            transition: transform var(--transition-time) ease;
+            height: 55px;
+            margin-right: 15px;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+        }
+
+        /* Bouton Hamburger (Mobile) */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
         }
 
         /* Styles de la Barre de Navigation (Desktop) */
         nav ul {
             list-style: none;
+            display: flex;
             padding: 0;
             margin: 0;
-            display: flex;
         }
         nav ul li {
             position: relative;
-            margin-left: 20px;
+            margin-left: 25px;
         }
         nav ul li a {
-            color: white; 
-            padding: 28px 0; /* Plus de padding pour centrer le texte verticalement */
+            color: var(--white);
+            padding: 28px 0;
             display: flex;
             align-items: center;
             font-weight: 600;
             border-bottom: 3px solid transparent;
             transition: color var(--transition-time), border-bottom var(--transition-time);
         }
-        nav ul li a i.me-2 {
-            margin-right: 8px;
-            font-size: 1.1em;
-        }
         nav ul li a:hover, nav ul li.active > a {
-            color: var(--highlight-color); 
+            color: var(--highlight-color);
             border-bottom-color: var(--highlight-color);
         }
 
-        /* Sous-menus (Dropdown) - Amélioration des transitions et de l'esthétique */
+        /* Sous-menus (Dropdown) */
         nav ul .submenu {
             display: none;
             position: absolute;
             top: 100%;
-            left: 50%; /* Centré sous le lien principal */
-            transform: translateX(-50%) translateY(10px); /* Décalage initial */
-            min-width: 280px; /* Plus large */
-            background: #0f3e6a; 
-            box-shadow: var(--card-shadow);
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            min-width: 280px;
+            background: #0f3e6a;
+            box-shadow: var(--shadow-elevation-2);
             z-index: 1001;
             padding: 10px 0;
             border-radius: 6px;
-            overflow: hidden;
             border-top: 5px solid var(--highlight-color);
             opacity: 0;
-            pointer-events: none; /* Désactivé par défaut */
+            pointer-events: none;
             transition: transform var(--transition-time) ease-out, opacity var(--transition-time) ease-out;
         }
         nav ul li:hover .submenu {
             display: block;
-            transform: translateX(-50%) translateY(0); /* Position finale */
+            transform: translateX(-50%) translateY(0);
             opacity: 1;
-            pointer-events: auto; /* Activé au survol */
+            pointer-events: auto;
         }
         nav ul .submenu li {
             margin: 0;
+            border-bottom: none; /* Annule l'effet du mobile */
         }
         nav ul .submenu li a {
-            color: rgba(255, 255, 255, 0.9); 
+            color: rgba(255, 255, 255, 0.9);
             padding: 12px 20px;
             font-weight: 500;
-            white-space: nowrap;
             width: 100%;
             border-bottom: none;
-            justify-content: flex-start; /* Aligné à gauche */
+            justify-content: flex-start;
         }
         nav ul .submenu li a:hover {
-            background-color: var(--primary-blue); 
+            background-color: var(--primary-blue);
             color: var(--highlight-color);
-            transform: none;
         }
         .has-submenu:hover > a .menu-arrow {
             transform: rotate(180deg);
         }
 
-        /* ====== MAIN CONTENT & HERO (Amélioré) ====== */
+        /* ====== 4. MAIN CONTENT & SECTIONS ====== */
+
+        /* Section Hero */
         .hero-section {
-            background: linear-gradient(135deg, white 0%, var(--background-light) 100%);
-            padding: 100px 20px; /* Plus de padding */
-            border-radius: 0 0 20px 20px; /* Coins inférieurs arrondis */
+            background: linear-gradient(135deg, var(--white) 0%, var(--background-light) 100%);
+            padding: 100px 20px;
+            border-radius: 0 0 20px 20px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             text-align: center;
-            margin: 0 auto;
+            margin-bottom: 50px;
         }
         .hero-section h1 {
-            font-size: 52px; /* Plus grand */
+            font-size: 52px;
             margin-bottom: 20px;
+            color: var(--primary-blue);
+            font-weight: 900;
         }
         .hero-section p {
             font-size: 1.4em;
             max-width: 800px;
             margin: 0 auto 35px;
-        }
-        .hero-button {
-            padding: 18px 40px; /* Plus grand */
-            box-shadow: 0 10px 25px rgba(15, 82, 186, 0.5);
+            color: var(--text-light);
         }
 
-        /* ====== FEATURE GRID (Services) - Amélioré pour l'effet 3D ====== */
+        /* Grille de Services (Feature Grid) - CSS Grid */
         .feature-grid {
-            margin: 60px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
         }
         .feature-card {
-            border-bottom: 5px solid var(--secondary-blue); /* Couleur accentuation changée pour le bleu secondaire */
+            display: block;
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-bottom: 5px solid var(--secondary-blue);
             border-radius: 12px;
             padding: 40px 30px;
+            box-shadow: var(--shadow-elevation-1);
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-bottom-color: var(--highlight-color);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
         .feature-card i {
-            font-size: 56px; /* Plus grand */
-            color: var(--secondary-blue); /* L'icône est maintenant bleu secondaire par défaut */
+            font-size: 56px;
+            color: var(--secondary-blue);
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
         }
         .feature-card:hover i {
-            color: var(--highlight-color); /* Vert/Cyan au survol */
+            color: var(--highlight-color);
+        }
+        .feature-card h4 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95em;
         }
 
-        /* ====== ANNOUNCEMENTS SECTION (News Grid - Améliorée) ====== */
-        .section-announcements {
-            margin-top: 60px;
+        /* Grille d'Actualités (News Grid) - CSS Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding-bottom: 60px;
         }
         .news-card {
-            border: 1px solid #e5e7eb;
-            transition: all 0.3s ease;
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-elevation-1);
+            transition: transform 0.3s ease;
+        }
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-elevation-2);
         }
         .news-header {
-            border-bottom-color: var(--highlight-color); /* Bordure en couleur accentuation */
-            background-color: white;
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 3px solid var(--highlight-color);
+            background-color: var(--white);
         }
         .news-icon-wrapper {
-            color: var(--highlight-color); /* Icône en couleur accentuation */
+            font-size: 24px;
+            color: var(--highlight-color);
+            margin-right: 15px;
+        }
+        .news-header h5 {
+            margin: 0;
+            font-size: 1.15em;
+            color: var(--primary-blue);
+        }
+        .news-body {
+            padding: 20px;
+        }
+        .news-body small {
+            display: block;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        .news-body p {
+            margin-bottom: 15px;
+            font-size: 0.95em;
         }
         .news-link {
-            color: var(--highlight-color); /* Lien en couleur accentuation */
-        }
-        .news-link:hover {
-            color: var(--secondary-blue);
+            font-weight: 600;
+            color: var(--highlight-color);
         }
 
-        /* ====== FOOTER - Légèrement ajusté pour un look plus moderne ====== */
+        /* ====== 5. FOOTER ====== */
         footer {
+            background-color: var(--header-bg);
+            color: rgba(255, 255, 255, 0.85);
             padding: 60px 20px 30px;
             margin-top: 80px;
         }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
         .footer-column h3 {
-            color: var(--highlight-color); /* Titres en couleur accentuation */
+            color: var(--highlight-color);
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
             border-bottom: 2px solid rgba(255, 255, 255, 0.2);
         }
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-column ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            font-size: 0.95em;
+        }
         .footer-column ul li i {
-            color: white; /* Icônes en blanc sur fond sombre */
+            color: var(--highlight-color);
+            margin-right: 10px;
+            padding-top: 3px;
+            font-size: 0.9em;
+        }
+        .footer-column ul li a {
+            color: inherit;
         }
         .footer-column ul li a:hover {
             color: var(--highlight-color);
+            text-decoration: underline;
+        }
+        .footer-social-icons {
+            margin-top: 15px;
+        }
+        .footer-social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 18px;
+            margin-right: 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
         .footer-social-icons a:hover {
-            color: var(--highlight-color);
+            background-color: var(--highlight-color);
+            color: var(--header-bg);
+            transform: translateY(-2px);
         }
         .footer-bottom {
+            text-align: center;
             margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85em;
+            color: rgba(255, 255, 255, 0.6);
         }
 
 
-        /* ====== MEDIA QUERIES (Responsive Mobile) - AJOUT DU TOOGLE SUBMENU MOBILE ====== */
+        /* ====== 6. MEDIA QUERIES (Responsive Mobile) ====== */
         @media (max-width: 992px) {
             .header-content {
-                min-height: 65px; 
+                min-height: 65px;
             }
-            .logo .logo-img { 
-                height: 50px; 
+            .menu-toggle {
+                display: block;
+            }
+            .logo .logo-img {
+                height: 50px;
+            }
+
+            /* Menu Principal Mobile (Basé sur JS et max-height pour animation) */
+            nav ul {
+                display: block;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                background: var(--header-bg);
+                box-shadow: var(--shadow-elevation-2);
+                padding: 0; /* Pas de padding initial */
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            }
+
+            nav ul.open {
+                max-height: 500vh; /* Permet l'ouverture fluide */
+                padding: 10px 0 20px 0;
+            }
+
+            nav ul li {
+                margin: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            nav ul li:last-child {
+                border-bottom: none;
             }
             
-            nav ul {
-                top: 65px; /* Position ajustée en fonction du min-height */
-            }
             nav ul li a {
                 padding: 15px 20px;
-                display: flex; /* Assure le flex pour space-between */
+                border-bottom: none;
+                justify-content: space-between; /* Pousse la flèche à droite */
             }
-            
-            /* Sous-menus mobile */
-            .has-submenu > a {
-                cursor: pointer; /* Indique qu'il est cliquable */
+            nav ul li a:hover, nav ul li.active > a {
+                border-bottom: none;
+                background-color: var(--primary-blue);
+                color: var(--highlight-color);
             }
+
+            /* Sous-menus mobile (utilisés avec JS) */
             nav ul .submenu {
-                transform: none; 
-                opacity: 1; 
-                display: none; /* Cache par défaut, ouvert via JS */
-                position: relative; /* Position statique pour le flux mobile */
+                position: relative;
+                transform: none;
+                opacity: 1;
                 width: 100%;
-                border-top: none; 
+                min-width: 100%;
+                background: #0f3e6a;
+                border-top: none;
+                border-radius: 0;
+                box-shadow: none;
+                margin-top: 0;
                 padding: 0;
             }
             nav ul .submenu li a {
-                padding-left: 45px; /* Indentation */
+                padding-left: 40px; /* Indentation */
+                font-size: 0.9em;
+                color: rgba(255, 255, 255, 0.8);
+            }
+            nav ul .submenu li a:hover {
+                background-color: var(--header-bg);
             }
             
-            /* Rotation de l'icône de sous-menu pour le mobile */
+            /* Animation de l'icône de sous-menu */
             .has-submenu.open > a .menu-arrow {
                 transform: rotate(180deg);
             }
-        }
-        
-        @media (max-width: 600px) {
+
+            /* Contenu principal et grilles */
+            .hero-section {
+                padding: 80px 20px;
+                border-radius: 0;
+            }
             .hero-section h1 {
                 font-size: 40px;
             }
             .hero-section p {
                 font-size: 1.2em;
             }
+            .feature-grid, .news-grid {
+                gap: 20px;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-column ul {
+                text-align: left;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            .footer-social-icons {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .logo {
+                font-size: 18px;
+            }
+            .logo .logo-img {
+                height: 45px;
+            }
             .section-title {
                 font-size: 28px;
-            }
-            .hero-section {
-                padding: 80px 20px;
+                margin-bottom: 40px;
             }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="container header-content">
-        <a href="index.html" class="logo">
-            <img src="klz.jpeg" alt="Logo Mairie de Kolwezi" class="logo-img">
-            MAIRIE DE KOLWEZI
-        </a>
-        
-        <nav role="navigation" aria-label="Menu principal">
-            <button class="menu-toggle" aria-controls="main-menu" aria-expanded="false" title="Menu">
-                <i class="fa-solid fa-bars" id="menu-icon"></i>
-            </button>
-            <ul id="main-menu">
-                <li class="active"><a href="index.html"><i class="fa-solid fa-house me-2"></i>Accueil</a></li>
-                
-                <li class="has-submenu">
-                    <a href="mairie.html"><i class="fa-solid fa-landmark me-2"></i>Mairie <i class="fa-solid fa-caret-down menu-arrow"></i></a>
-                    <ul class="submenu">
-                        <li><a href="histoire.html"><i class="fa-solid fa-book-open"></i> Histoire & Géographie</a></li>
-                        <li><a href="organigramme.html"><i class="fa-solid fa-sitemap"></i> Organigramme</a></li>
-                        <li><a href="services_municipaux.html"><i class="fa-solid fa-briefcase"></i> Services municipaux</a></li>
-                    </ul>
-                </li>
-                
-                <li class="has-submenu">
-                    <a href="services.html"><i class="fa-solid fa-handshake me-2"></i>Services <i class="fa-solid fa-caret-down menu-arrow"></i></a>
-                    <ul class="submenu">
-                        <li><a href="etat_civil.html"><i class="fa-solid fa-passport"></i> État civil</a></li>
-                        <li><a href="taxes_impots_locaux.html"><i class="fa-solid fa-money-bill-transfer"></i> Taxes & Impôts locaux</a></li>
-                        <li><a href="urbanisme_permis.html"><i class="fa-solid fa-hammer"></i> Urbanisme & Permis</a></li>
-                        <li><a href="transport_voirie.html"><i class="fa-solid fa-bus"></i> Transports & Voirie</a></li>
-                    </ul>
-                </li>
-                
-                <li class="has-submenu">
-                    <a href="actualites.html"><i class="fa-solid fa-newspaper me-2"></i>Actualités <i class="fa-solid fa-caret-down menu-arrow"></i></a>
-                    <ul class="submenu">
-                        <li><a href="communiques.html"><i class="fa-solid fa-bullhorn"></i> Communiqués officiels</a></li>
-                        <li><a href="evenements.html"><i class="fa-solid fa-calendar-check"></i> Événements</a></li>
-                        <li><a href="alertes.html"><i class="fa-solid fa-triangle-exclamation"></i> Alertes et annonces</a></li>
-                    </ul>
-                </li>
-                
-                <li class="has-submenu">
-                    <a href="demarches.html"><i class="fa-solid fa-file-signature me-2"></i>Démarches <i class="fa-solid fa-caret-down menu-arrow"></i></a>
-                    <ul class="submenu">
-                        <li><a href="formulaires.html"><i class="fa-solid fa-file-lines"></i> Formulaires</a></li>
-                        <li><a href="rendezvous.html"><i class="fa-solid fa-clock"></i> Prise de rendez-vous</a></li>
-                        <li><a href="paiement.html"><i class="fa-solid fa-credit-card"></i> Paiement en ligne</a></li>
-                    </ul>
-                </li>
-                
-                <li class="has-submenu">
-                    <a href="projets.html"><i class="fa-solid fa-city me-2"></i>Projets <i class="fa-solid fa-caret-down menu-arrow"></i></a>
-                    <ul class="submenu">
-                        <li><a href="infrastructures.html">Infrastructures & Équipements publics</a></li>
-                        <li><a href="urbanisme.html">Urbanisme & Aménagement</a></li>
-                        <li><a href="projets_futurs.html">Projets futurs & Plans stratégiques</a></li>
-                        <li><a href="partenariats.html">Partenariats & Coopération</a></li>
-                    </ul>
-                </li>
-                
-                <li class="has-submenu">
-                    <a href="galerie.html"><i class="fa-solid fa-camera me-2"></i>Galerie <i class="fa-solid fa-caret-down menu-arrow"></i></a>
-                    <ul class="submenu">
-                        <li><a href="galerie_photos.html"><i class="fa-solid fa-image"></i> Photos</a></li>
-                        <li><a href="galerie_videos.html"><i class="fa-solid fa-video"></i> Vidéos</a></li>
-                        <li><a href="galerie_ceremonies.html"><i class="fa-solid fa-ribbon"></i> Cérémonies officielles</a></li>
-                    </ul>
-                </li>
-                
-                <li class="has-submenu">
-                    <a href="contact.html"><i class="fa-solid fa-phone-volume me-2"></i>Contact <i class="fa-solid fa-caret-down menu-arrow"></i></a>
-                    <ul class="submenu">
-                        <li><a href="formulaire_contact.html"><i class="fa-solid fa-envelope"></i> Formulaire de contact</a></li>
-                        <li><a href="adresses_utiles.html"><i class="fa-solid fa-map-pin"></i> Adresses & Numéros utiles</a></li>
-                        <li><a href="faq.html"><i class="fa-solid fa-circle-question"></i> Questions fréquentes (FAQ)</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-<main>
-    <div class="container">
-        <section class="hero-section animated fade-in-up">
-            <h1>Ensemble, Bâtissons la Ville de Kolwezi</h1>
-            <p>Bienvenue sur le portail officiel de la Mairie de Kolwezi. Retrouvez ici toutes les informations, démarches et actualités pour mieux vivre votre ville.</p>
-            <a href="demarches.html" class="hero-button">Faire une démarche en ligne <i class="fa-solid fa-arrow-right-long"></i></a>
+    <header>
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="klz.jpeg" alt="Logo Mairie de Kolwezi" class="logo-img">
+                MAIRIE DE KOLWEZI
+            </a>
             
-        </section>
-
-        <section class="section-services">
-            <h2 class="section-title animated fade-in-up delay-1">Vos Services en Vedette</h2>
-            <div class="feature-grid">
-                <a href="etat_civil.html" class="feature-card animated fade-in-up delay-1">
-                    <i class="fa-solid fa-users-viewfinder"></i> <h4>État Civil</h4>
-                    <p>Déclaration de naissance, mariage, décès, et obtention d'actes en quelques clics.</p>
-                </a>
-                <a href="taxes_impots_locaux.html" class="feature-card animated fade-in-up delay-1">
-                    <i class="fa-solid fa-receipt"></i> <h4>Taxes et Impôts</h4>
-                    <p>Consultez, déclarez et payez vos taxes et impôts locaux en toute simplicité en ligne.</p>
-                </a>
-                <a href="urbanisme_permis.html" class="feature-card animated fade-in-up delay-2">
-                    <i class="fa-solid fa-map-marked-alt"></i> <h4>Urbanisme & Logement</h4>
-                    <p>Déposez vos demandes de permis de construire, rénovation ou consultation des plans.</p>
-                </a>
-                <a href="contact.html" class="feature-card animated fade-in-up delay-2">
-                    <i class="fa-solid fa-life-ring"></i> <h4>Support & Contact</h4>
-                    <p>Trouvez rapidement les réponses à vos questions et les coordonnées des services municipaux.</p>
-                </a>
-            </div>
-        </section>
-
-        <section class="section-announcements">
-            <h2 class="section-title animated fade-in-up delay-2">Dernières Actualités & Alertes</h2>
-            <div class="news-grid animated fade-in-up delay-2">
-                
-                <div class="news-card">
-                    <div class="news-header">
-                        <div class="news-icon-wrapper"><i class="fa-solid fa-leaf"></i></div>
-                        <h5>Lancement du Projet "Kolwezi Propre 2025"</h5>
-                    </div>
-                    <div class="news-body">
-                        <small>15 Octobre 2025 | Environnement</small>
-                        <p>La Mairie lance une grande campagne d'assainissement et de sensibilisation à l'environnement dans tous les quartiers pour un Kolwezi plus vert.</p>
-                        <a href="#" class="news-link">Lire l'article complet <i class="fa-solid fa-chevron-right"></i></a>
-                    </div>
-                </div>
-
-                <div class="news-card">
-                    <div class="news-header">
-                        <div class="news-icon-wrapper"><i class="fa-solid fa-users-line"></i></div>
-                        <h5>Prochain Conseil Municipal Extraordinaire</h5>
-                    </div>
-                    <div class="news-body">
-                        <small>28 Octobre 2025 | Événement Politique</small>
-                        <p>Le Conseil se réunira pour discuter de la révision urgente du plan de circulation urbain et des nouveaux investissements routiers.</p>
-                        <a href="#" class="news-link">Consulter l'ordre du jour <i class="fa-solid fa-chevron-right"></i></a>
-                    </div>
-                </div>
-                
-                <div class="news-card">
-                    <div class="news-header">
-                        <div class="news-icon-wrapper" style="color: #c0392b;"><i class="fa-solid fa-faucet-drip"></i></div>
-                        <h5>Alerte : Coupures d'eau prévues Zone Ouest</h5>
-                    </div>
-                    <div class="news-body">
-                        <small>24 Octobre 2025 | Alerte & Travaux</small>
-                        <p>Intervention urgente et nécessaire sur la canalisation principale du réseau. Les résidents sont priés de prendre des précautions. Durée estimée: 48 heures.</p>
-                        <a href="#" class="news-link">Voir les zones concernées <i class="fa-solid fa-chevron-right"></i></a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-    </div>
-</main>
-
-<footer class="animated fade-in-up delay-2">
-    <div class="container footer-content">
-        <div class="footer-column">
-            <h3>Mairie de Kolwezi</h3>
-            <ul>
-                <li><i class="fa-solid fa-location-dot"></i> 100, Avenue Lumumba, Kolwezi</li>
-                <li><i class="fa-solid fa-phone"></i> +243 999 000 111 (Standard)</li>
-                <li><i class="fa-solid fa-envelope"></i> contact@mairiedekolwezi.cd</li>
-            </ul>
+            <nav role="navigation" aria-label="Menu principal">
+                <button class="menu-toggle" aria-controls="main-menu" aria-expanded="false" title="Menu">
+                    <i class="fa-solid fa-bars" id="menu-icon"></i>
+                </button>
+                <ul id="main-menu">
+                    <li class="active"><a href="index.html"><i class="fa-solid fa-house me-2"></i>Accueil</a></li>
+                    
+                    <li class="has-submenu">
+                        <a href="mairie.html"><i class="fa-solid fa-landmark me-2"></i>Mairie <i class="fa-solid fa-caret-down menu-arrow"></i></a>
+                        <ul class="submenu">
+                            <li><a href="histoire.html"><i class="fa-solid fa-book-open"></i> Histoire & Géographie</a></li>
+                            <li><a href="organigramme.html"><i class="fa-solid fa-sitemap"></i> Organigramme</a></li>
+                            <li><a href="services_municipaux.html"><i class="fa-solid fa-briefcase"></i> Services municipaux</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="has-submenu">
+                        <a href="services.html"><i class="fa-solid fa-handshake me-2"></i>Services <i class="fa-solid fa-caret-down menu-arrow"></i></a>
+                        <ul class="submenu">
+                            <li><a href="etat_civil.html"><i class="fa-solid fa-passport"></i> État civil</a></li>
+                            <li><a href="taxes_impots_locaux.html"><i class="fa-solid fa-money-bill-transfer"></i> Taxes & Impôts locaux</a></li>
+                            <li><a href="urbanisme_permis.html"><i class="fa-solid fa-hammer"></i> Urbanisme & Permis</a></li>
+                            <li><a href="transport_voirie.html"><i class="fa-solid fa-bus"></i> Transports & Voirie</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="has-submenu">
+                        <a href="actualites.html"><i class="fa-solid fa-newspaper me-2"></i>Actualités <i class="fa-solid fa-caret-down menu-arrow"></i></a>
+                        <ul class="submenu">
+                            <li><a href="communiques.html"><i class="fa-solid fa-bullhorn"></i> Communiqués officiels</a></li>
+                            <li><a href="evenements.html"><i class="fa-solid fa-calendar-check"></i> Événements</a></li>
+                            <li><a href="alertes.html"><i class="fa-solid fa-triangle-exclamation"></i> Alertes et annonces</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="has-submenu">
+                        <a href="demarches.html"><i class="fa-solid fa-file-signature me-2"></i>Démarches <i class="fa-solid fa-caret-down menu-arrow"></i></a>
+                        <ul class="submenu">
+                            <li><a href="formulaires.html"><i class="fa-solid fa-file-lines"></i> Formulaires</a></li>
+                            <li><a href="rendezvous.html"><i class="fa-solid fa-clock"></i> Prise de rendez-vous</a></li>
+                            <li><a href="paiement.html"><i class="fa-solid fa-credit-card"></i> Paiement en ligne</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="has-submenu">
+                        <a href="projets.html"><i class="fa-solid fa-city me-2"></i>Projets <i class="fa-solid fa-caret-down menu-arrow"></i></a>
+                        <ul class="submenu">
+                            <li><a href="infrastructures.html">Infrastructures & Équipements publics</a></li>
+                            <li><a href="urbanisme.html">Urbanisme & Aménagement</a></li>
+                            <li><a href="projets_futurs.html">Projets futurs & Plans stratégiques</a></li>
+                            <li><a href="partenariats.html">Partenariats & Coopération</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="has-submenu">
+                        <a href="galerie.html"><i class="fa-solid fa-camera me-2"></i>Galerie <i class="fa-solid fa-caret-down menu-arrow"></i></a>
+                        <ul class="submenu">
+                            <li><a href="galerie_photos.html"><i class="fa-solid fa-image"></i> Photos</a></li>
+                            <li><a href="galerie_videos.html"><i class="fa-solid fa-video"></i> Vidéos</a></li>
+                            <li><a href="galerie_ceremonies.html"><i class="fa-solid fa-ribbon"></i> Cérémonies officielles</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="has-submenu">
+                        <a href="contact.html"><i class="fa-solid fa-phone-volume me-2"></i>Contact <i class="fa-solid fa-caret-down menu-arrow"></i></a>
+                        <ul class="submenu">
+                            <li><a href="formulaire_contact.html"><i class="fa-solid fa-envelope"></i> Formulaire de contact</a></li>
+                            <li><a href="adresses_utiles.html"><i class="fa-solid fa-map-pin"></i> Adresses & Numéros utiles</a></li>
+                            <li><a href="faq.html"><i class="fa-solid fa-circle-question"></i> Questions fréquentes (FAQ)</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
         </div>
-        <div class="footer-column">
-            <h3>Liens rapides</h3>
-            <ul>
-                <li><i class="fa-solid fa-chevron-right"></i> <a href="etat_civil.html">État civil</a></li>
-                <li><i class="fa-solid fa-chevron-right"></i> <a href="rendezvous.html">Prise de rendez-vous</a></li>
-                <li><i class="fa-solid fa-chevron-right"></i> <a href="projets.html">Projets en cours</a></li>
-                <li><i class="fa-solid fa-chevron-right"></i> <a href="formulaire_contact.html">Formulaire de contact</a></li>
-            </ul>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="hero-section">
+                <h1>Ensemble, Bâtissons la Ville de Kolwezi</h1>
+                <p>Bienvenue sur le portail officiel de la Mairie de Kolwezi. Retrouvez ici toutes les informations, démarches et actualités pour mieux vivre votre ville.</p>
+                <a href="demarches.html" class="hero-button">Faire une démarche en ligne <i class="fa-solid fa-arrow-right-long"></i></a>
+            </section>
+
+            <section class="section-services">
+                <h2 class="section-title">Vos Services en Vedette</h2>
+                <div class="feature-grid">
+                    <a href="etat_civil.html" class="feature-card">
+                        <i class="fa-solid fa-users-viewfinder"></i> <h4>État Civil</h4>
+                        <p>Déclaration de naissance, mariage, décès, et obtention d'actes en quelques clics.</p>
+                    </a>
+                    <a href="taxes_impots_locaux.html" class="feature-card">
+                        <i class="fa-solid fa-receipt"></i> <h4>Taxes et Impôts</h4>
+                        <p>Consultez, déclarez et payez vos taxes et impôts locaux en toute simplicité en ligne.</p>
+                    </a>
+                    <a href="urbanisme_permis.html" class="feature-card">
+                        <i class="fa-solid fa-map-marked-alt"></i> <h4>Urbanisme & Logement</h4>
+                        <p>Déposez vos demandes de permis de construire, rénovation ou consultation des plans.</p>
+                    </a>
+                    <a href="contact.html" class="feature-card">
+                        <i class="fa-solid fa-life-ring"></i> <h4>Support & Contact</h4>
+                        <p>Trouvez rapidement les réponses à vos questions et les coordonnées des services municipaux.</p>
+                    </a>
+                </div>
+            </section>
+
+            <section class="section-announcements">
+                <h2 class="section-title">Dernières Actualités & Alertes</h2>
+                <div class="news-grid">
+                    
+                    <div class="news-card">
+                        <div class="news-header">
+                            <div class="news-icon-wrapper"><i class="fa-solid fa-leaf"></i></div>
+                            <h5>Lancement du Projet "Kolwezi Propre 2025"</h5>
+                        </div>
+                        <div class="news-body">
+                            <small>15 Octobre 2025 | Environnement</small>
+                            <p>La Mairie lance une grande campagne d'assainissement et de sensibilisation à l'environnement dans tous les quartiers pour un Kolwezi plus vert.</p>
+                            <a href="#" class="news-link">Lire l'article complet <i class="fa-solid fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <div class="news-header">
+                            <div class="news-icon-wrapper"><i class="fa-solid fa-users-line"></i></div>
+                            <h5>Prochain Conseil Municipal Extraordinaire</h5>
+                        </div>
+                        <div class="news-body">
+                            <small>28 Octobre 2025 | Événement Politique</small>
+                            <p>Le Conseil se réunira pour discuter de la révision urgente du plan de circulation urbain et des nouveaux investissements routiers.</p>
+                            <a href="#" class="news-link">Consulter l'ordre du jour <i class="fa-solid fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="news-card">
+                        <div class="news-header">
+                            <div class="news-icon-wrapper" style="color: #c0392b;"><i class="fa-solid fa-faucet-drip"></i></div>
+                            <h5>Alerte : Coupures d'eau prévues Zone Ouest</h5>
+                        </div>
+                        <div class="news-body">
+                            <small>24 Octobre 2025 | Alerte & Travaux</small>
+                            <p>Intervention urgente et nécessaire sur la canalisation principale du réseau. Les résidents sont priés de prendre des précautions. Durée estimée: 48 heures.</p>
+                            <a href="#" class="news-link">Voir les zones concernées <i class="fa-solid fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
         </div>
-        <div class="footer-column">
-            <h3>Suivez-nous</h3>
-            <p>Restez connecté(e) pour toutes les annonces officielles.</p>
-            <div class="footer-social-icons">
-                <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a> <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-column">
+                <h3>Mairie de Kolwezi</h3>
+                <ul>
+                    <li><i class="fa-solid fa-location-dot"></i> 100, Avenue Lumumba, Kolwezi</li>
+                    <li><i class="fa-solid fa-phone"></i> +243 999 000 111 (Standard)</li>
+                    <li><i class="fa-solid fa-envelope"></i> contact@mairiedekolwezi.cd</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><i class="fa-solid fa-chevron-right"></i> <a href="etat_civil.html">État civil</a></li>
+                    <li><i class="fa-solid fa-chevron-right"></i> <a href="rendezvous.html">Prise de rendez-vous</a></li>
+                    <li><i class="fa-solid fa-chevron-right"></i> <a href="projets.html">Projets en cours</a></li>
+                    <li><i class="fa-solid fa-chevron-right"></i> <a href="formulaire_contact.html">Formulaire de contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Suivez-nous</h3>
+                <p>Restez connecté(e) pour toutes les annonces officielles.</p>
+                <div class="footer-social-icons">
+                    <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container footer-bottom">
-        &copy; 2025 Mairie de Kolwezi - Tous droits réservés. Propulsé par la République Démocratique du Congo.
-    </div>
-</footer>
+        <div class="container footer-bottom">
+            &copy; 2025 Mairie de Kolwezi - Tous droits réservés. Propulsé par la République Démocratique du Congo.
+        </div>
+    </footer>
 
-<script>
-    // Le code Firebase est supprimé pour se concentrer sur le JS du menu
-    // et éviter les erreurs d'initialisation des variables non définies.
-    
-    document.addEventListener('DOMContentLoaded', () => {
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mainMenu = document.getElementById('main-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const hasSubmenus = document.querySelectorAll('.has-submenu'); // Sélectionne les LI
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mainMenu = document.getElementById('main-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const hasSubmenus = document.querySelectorAll('.has-submenu');
 
-        // 1. Gestion de l'ouverture/fermeture du menu principal (Hamburger)
-        menuToggle.addEventListener('click', () => {
-            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-            menuToggle.setAttribute('aria-expanded', !isExpanded);
-            mainMenu.classList.toggle('open');
-            
-            // Changement de l'icône du bouton
-            if (!isExpanded) {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-xmark'); // Icône X
-            } else {
-                menuIcon.classList.remove('fa-xmark');
-                menuIcon.classList.add('fa-bars'); // Icône Hamburger
+            // Fonction pour gérer l'état du menu principal
+            function toggleMainMenu() {
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', !isExpanded);
+                mainMenu.classList.toggle('open');
                 
-                // Fermer tous les sous-menus lorsqu'on ferme le menu principal
+                // Changer l'icône
+                if (!isExpanded) {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-xmark');
+                } else {
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                    
+                    // Fermer tous les sous-menus à la fermeture du menu principal
+                    closeAllSubmenus();
+                }
+            }
+
+            // Fonction pour fermer tous les sous-menus mobiles
+            function closeAllSubmenus() {
                 hasSubmenus.forEach(li => {
                     li.classList.remove('open');
                     const submenu = li.querySelector('.submenu');
-                    if(submenu) submenu.style.display = 'none';
-                });
-            }
-        });
-
-        // 2. Gestion de l'ouverture/fermeture des sous-menus au Clic (Mobile)
-        hasSubmenus.forEach(li => {
-            const link = li.querySelector('a');
-            const submenu = li.querySelector('.submenu');
-            
-            if (submenu) {
-                // Pour le mobile, on ne veut pas que le lien principal navigue,
-                // mais qu'il ouvre/ferme le sous-menu.
-                link.addEventListener('click', (e) => {
-                    // Vérifie si le menu est en mode mobile (menu ouvert)
-                    if (window.innerWidth <= 992) {
-                        e.preventDefault(); 
-                        
-                        const isCurrentlyOpen = li.classList.contains('open');
-
-                        // Fermer les autres sous-menus
-                        hasSubmenus.forEach(otherLi => {
-                            if (otherLi !== li) {
-                                otherLi.classList.remove('open');
-                                const otherSubmenu = otherLi.querySelector('.submenu');
-                                if (otherSubmenu) otherSubmenu.style.display = 'none';
-                            }
-                        });
-
-                        // Ouvrir/fermer le sous-menu cliqué
-                        li.classList.toggle('open');
-                        submenu.style.display = isCurrentlyOpen ? 'none' : 'block';
+                    // Utiliser style.display pour la logique mobile
+                    if (submenu && window.innerWidth <= 992) {
+                        submenu.style.display = 'none';
                     }
                 });
             }
-        });
-        
-        // 3. Gestion de la fermeture des sous-menus au redimensionnement (passage mobile/desktop)
-        window.addEventListener('resize', () => {
-             if (window.innerWidth > 992) {
-                // En mode desktop, s'assurer que le menu principal est visible
-                mainMenu.classList.remove('open');
-                menuToggle.setAttribute('aria-expanded', 'false');
-                menuIcon.classList.remove('fa-xmark');
-                menuIcon.classList.add('fa-bars');
 
-                // Réinitialiser les sous-menus mobiles pour qu'ils fonctionnent en hover
-                hasSubmenus.forEach(li => {
-                    li.classList.remove('open');
-                    const submenu = li.querySelector('.submenu');
-                    if(submenu) submenu.style.display = ''; // Retire le style inline pour que le CSS prenne le relais
-                });
-            }
+            // 1. Gestion de l'ouverture/fermeture du menu principal (Hamburger)
+            menuToggle.addEventListener('click', toggleMainMenu);
+
+            // 2. Gestion de l'ouverture/fermeture des sous-menus au Clic (Mobile)
+            hasSubmenus.forEach(li => {
+                const link = li.querySelector('a');
+                const submenu = li.querySelector('.submenu');
+                
+                if (submenu) {
+                    link.addEventListener('click', (e) => {
+                        // N'activer la logique de bascule mobile que si le menu est ouvert ou en petite résolution
+                        if (window.innerWidth <= 992 || mainMenu.classList.contains('open')) {
+                            e.preventDefault();
+                            
+                            const isCurrentlyOpen = li.classList.contains('open');
+
+                            // Fermer les autres sous-menus pour n'en avoir qu'un ouvert à la fois
+                            closeAllSubmenus();
+
+                            // Ouvrir/fermer le sous-menu cliqué
+                            if (!isCurrentlyOpen) {
+                                li.classList.add('open');
+                                submenu.style.display = 'block';
+                            }
+                        }
+                    });
+                }
+            });
+            
+            // 3. Gestion de l'état du menu au redimensionnement (passage mobile/desktop)
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 992) {
+                    // En mode desktop, réinitialiser l'état du menu mobile
+                    mainMenu.classList.remove('open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+
+                    // Réinitialiser les sous-menus pour le mode hover (retirer le style inline)
+                    hasSubmenus.forEach(li => {
+                        li.classList.remove('open');
+                        const submenu = li.querySelector('.submenu');
+                        if(submenu) submenu.style.display = ''; 
+                    });
+                }
+            });
+            
+            // 4. Ajout d'une ombre au header lors du défilement
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    header.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.4)';
+                } else {
+                    header.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.25)';
+                }
+            });
         });
-        
-        // 4. Ajout d'une ombre au header lors du défilement
-        const header = document.querySelector('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 0) {
-                header.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.4)';
-            } else {
-                header.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.25)';
-            }
-        });
-    });
-</script>
+    </script>
 </body>
 </html>
