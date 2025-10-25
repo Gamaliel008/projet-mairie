@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projets et Développement - Mairie</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- ======== HEADER ======== -->
+  <header>
+    <h1>Projets & Développement</h1>
+    <p>Construire aujourd’hui la ville de demain — ensemble, pour un avenir durable et harmonieux.</p>
+  </header>
+
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar">
+    <a href="index.html">Accueil</a>
+    <a href="mairie.html">La Mairie</a>
+    <a href="actualites.html">Actualités</a>
+    <a href="services.html">Services</a>
+    <a href="demarches.html">Démarches en ligne</a>
+    <a href="projets.html" class="active">Projets</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- ======== SECTION PROJETS ======== -->
+  <section class="projects-container">
+
+    <!-- Projets en cours -->
+    <div class="project-card">
+      <h2>🏗️ Projets en cours</h2>
+      <p>Les initiatives déjà lancées par la mairie pour améliorer le quotidien des citoyens et moderniser la ville.</p>
+      <button onclick="toggleDetails('projets-cours')">Voir plus</button>
+      <div class="details" id="projets-cours">
+        <ul>
+          <li>🚧 <strong>Réhabilitation des routes principales</strong> — amélioration de la voirie et du drainage urbain.</li>
+          <li>🏥 <strong>Construction d’un centre de santé communal</strong> — un accès facilité aux soins pour tous.</li>
+          <li>🏫 <strong>Extension des écoles primaires publiques</strong> — favoriser l’éducation pour tous les enfants.</li>
+          <li>🌳 <strong>Projet “Ville Verte”</strong> — reboisement urbain et entretien des espaces verts.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Projets futurs -->
+    <div class="project-card">
+      <h2>🚀 Projets futurs & plans stratégiques</h2>
+      <p>Les grandes orientations du développement local pour les prochaines années.</p>
+      <button onclick="toggleDetails('projets-futurs')">Voir plus</button>
+      <div class="details" id="projets-futurs">
+        <ul>
+          <li>🏢 <strong>Création d’un parc administratif moderne</strong> — regroupement des services publics en un même lieu.</li>
+          <li>💡 <strong>Programme “Ville Intelligente”</strong> — installation d’éclairage public solaire et Wi-Fi urbain.</li>
+          <li>🚌 <strong>Modernisation des transports urbains</strong> — lignes de bus écologiques et gestion numérique du trafic.</li>
+          <li>♻️ <strong>Usine de recyclage municipale</strong> — valorisation des déchets et création d’emplois locaux.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Partenariats -->
+    <div class="project-card">
+      <h2>🤝 Partenariats et Coopérations</h2>
+      <p>Des collaborations actives avec des ONG, entreprises et institutions pour renforcer le développement durable.</p>
+      <button onclick="toggleDetails('partenariats')">Voir plus</button>
+      <div class="details" id="partenariats">
+        <ul>
+          <li>🌍 Coopération avec <strong>ONU-Habitat</strong> pour la planification urbaine durable.</li>
+          <li>🏦 Partenariat avec la <strong>Banque Mondiale</strong> pour les infrastructures publiques.</li>
+          <li>🏡 Collaboration avec des entreprises locales pour la construction de logements sociaux.</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer>
+    <p>© 2025 Mairie de Kolwezi — Tous droits réservés | Contact : info@mairie-kolwezi.cd</p>
+  </footer>
+
+</body>
+</html>
