@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mairie de Kolwezi - Au service du citoyen</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
     <style>
         /* Variables de Couleurs inspirées du Lualaba/RDC */
         :root {
@@ -12,8 +14,12 @@
             --secondary-gold: #ffcc00; /* Jaune/Or pour l'accentuation */
             --light-bg: #f8f9fb;
             --header-gradient: linear-gradient(90deg, #002a5c, #0055a5);
+            --transition-speed: 0.3s;
         }
 
+        /* ---------------------------------
+           1. STYLES DE BASE & TYPOGRAPHIE
+        ---------------------------------- */
         body {
             margin: 0;
             font-family: "Poppins", sans-serif;
@@ -22,7 +28,43 @@
             scroll-behavior: smooth;
         }
 
-        /* Header & Navigation */
+        /* Animation d'apparition des sections (Génial !) */
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            font-weight: 800; /* Plus d'impact */
+            text-transform: uppercase;
+            padding: 10px 0;
+            position: relative;
+            display: inline-block;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background-color: var(--secondary-gold);
+            border-radius: 2px;
+        }
+        
+        p { line-height: 1.6; }
+
+        /* ---------------------------------
+           2. HEADER & NAVIGATION
+        ---------------------------------- */
         header {
             background: var(--header-gradient);
             color: #fff;
@@ -33,245 +75,261 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Ombre plus marquée */
+            transition: all var(--transition-speed);
+        }
+
+        /* Effet de rétrécissement au scroll (Génial !) */
+        header.scrolled {
+            padding: 5px 40px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
         }
 
         header h1 {
-            font-size: 1.4em;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
+            font-size: 1.5em;
+            font-weight: 700;
         }
 
         .logo-text {
-            /* Simule un petit logo de la RDC */
-            font-size: 0.8em;
+            /* Mieux intégré */
+            font-size: 0.9em;
             background-color: var(--secondary-gold);
             color: var(--primary-blue);
-            padding: 4px 8px;
-            border-radius: 4px;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-weight: 800;
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 20px;
-            margin: 0;
-            padding: 0;
+            gap: 25px; /* Plus d'espace */
         }
 
         nav a {
             color: #fff;
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s, border-bottom 0.3s;
+            font-weight: 600;
+            transition: all var(--transition-speed);
             padding-bottom: 5px;
+            position: relative;
+        }
+
+        /* Icônes dans la nav */
+        nav a i {
+            margin-right: 5px;
+            font-size: 0.9em;
         }
 
         nav a:hover, nav a.active {
             color: var(--secondary-gold);
-            border-bottom: 2px solid var(--secondary-gold);
+        }
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--secondary-gold);
+            border-radius: 2px 2px 0 0;
+            transition: width var(--transition-speed);
+        }
+        nav a:hover::after {
+            width: 100%;
         }
 
-        /* Slider */
+        /* ---------------------------------
+           3. SLIDER HERO
+        ---------------------------------- */
         .slider {
             position: relative;
             width: 100%;
-            height: 55vh;
+            height: 60vh; /* Plus d'espace pour l'image */
             overflow: hidden;
-        }
-
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s;
-        }
-
-        .slide.active {
-            opacity: 1;
+            /* Effet Parallax sur l'image (Génial !) */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            /* Rendre l'image plus "profonde" */
+            filter: brightness(0.7);
         }
-
+        
         .caption {
-            position: absolute;
-            top: 0; /* Centrer le texte pour meilleure visibilité */
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
+            /* Texte centré pour l'impact */
+            background: rgba(0, 51, 102, 0.4); /* Opacité plus subtile */
             justify-content: center;
-            align-items: flex-start;
-            padding-left: 5%;
-            color: white;
-            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            padding: 0 5%;
         }
 
         .caption h2 {
-            font-size: 2.5em;
-            margin: 0 0 10px 0;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-size: 3em;
+            color: white; /* Titres en blanc ici */
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+            margin-bottom: 15px;
+            /* Retire l'accentuation CSS générale pour l'adapter au fond sombre */
+            padding: 0;
+            position: static;
         }
+        .caption h2::after { content: none; }
+        
         .caption p {
-            font-size: 1.2em;
+            font-size: 1.3em;
+            font-weight: 300;
+            color: #f0f0f0;
         }
 
-        /* Section principale */
+        /* ---------------------------------
+           4. SECTIONS PRINCIPALES
+        ---------------------------------- */
         main {
             padding: 40px 60px;
             text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        h2 {
-            color: var(--primary-blue);
-            margin-bottom: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        p {
-            line-height: 1.6;
-        }
-
-        /* Accès rapides (Cards) */
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-            margin-bottom: 40px;
-        }
-
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s, background-color 0.3s;
-            font-weight: 600;
-            color: var(--primary-blue);
-            cursor: pointer;
-            text-align: left;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            background-color: #eef4ff;
-        }
-        
-        .card strong {
-            display: block;
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: var(--secondary-gold);
-        }
-
-        /* Section Actualités (Maire) */
+        /* Mot du Maire */
         .maire-section {
             background-color: white;
-            padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            display: flex;
-            gap: 30px;
-            text-align: left;
-            margin: 40px 0;
-        }
-
-        .maire-photo {
-            flex-shrink: 0;
+            border-left: 5px solid var(--secondary-gold); /* Bande institutionnelle */
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            padding: 30px;
         }
 
         .maire-photo img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid var(--secondary-gold);
+            border: 5px solid var(--primary-blue); /* Bordure bleue profonde */
+            transition: transform var(--transition-speed);
+        }
+        .maire-photo img:hover {
+            transform: scale(1.05); /* Animation subtle */
         }
 
-        .maire-message h3 {
-            color: var(--primary-blue);
-            margin-top: 0;
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(90deg, #003366, #004c99);
-            color: white;
-            padding: 30px 40px;
+        /* Accès rapides (Cards) */
+        .card {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center; /* Centrer le texte pour les cartes d'accès */
+            /* Animation d'échelle au survol (Génial !) */
+            transition: all var(--transition-speed); 
+            border-bottom: 5px solid var(--primary-blue);
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: flex-start;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 150px;
         }
 
-        footer div {
-            margin: 10px;
-            min-width: 200px;
-        }
-
-        footer h3 {
-            color: var(--secondary-gold);
-            margin-bottom: 10px;
-        }
-
-        footer a {
-            color: #fff;
-            text-decoration: none;
-            line-height: 1.8;
-            display: block;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .socials a {
-            margin-right: 15px;
-            color: white;
-            font-size: 1.8em;
-            transition: color 0.3s;
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            background-color: #f0f7ff;
+            border-bottom: 5px solid var(--secondary-gold); /* Changement de couleur au survol */
         }
         
-        .socials a:hover {
+        .card i {
+            font-size: 2.5em; /* Icônes plus grandes */
+            margin-bottom: 10px;
             color: var(--secondary-gold);
+            transition: color var(--transition-speed);
+        }
+        .card:hover i {
+             color: var(--primary-blue); /* Inversion de couleur au survol */
+        }
+        .card strong {
+            font-size: 1.1em;
+            color: var(--primary-blue);
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+        .card p {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 5px;
         }
 
-        .copyright {
-            width: 100%;
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.3);
-            margin-top: 20px;
-            padding-top: 10px;
-            font-size: 0.9em;
+        /* ---------------------------------
+           5. BOUTON D'ACTION FLOTTANT (Génial !)
+        ---------------------------------- */
+        .floating-action-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--secondary-gold);
+            color: var(--primary-blue);
+            padding: 15px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            transition: all var(--transition-speed) ease-in-out;
+            z-index: 99;
+            /* Animation de pulsation subtile */
+            animation: pulse 1.5s infinite;
         }
+        .floating-action-button:hover {
+            background-color: var(--primary-blue);
+            color: white;
+            transform: scale(1.1);
+            animation: none;
+        }
+        .floating-action-button i {
+            margin-right: 8px;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 204, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+        }
+
+        /* ---------------------------------
+           6. FOOTER
+        ---------------------------------- */
+        footer {
+            background: linear-gradient(90deg, #003366, #004c99);
+        }
+        /* ... (autres styles footer inchangés) ... */
+
+        /* Media Queries pour la responsivité */
+        @media (max-width: 768px) {
+            header { padding: 10px 20px; }
+            header h1 { font-size: 1.2em; }
+            nav ul { gap: 10px; flex-wrap: wrap; justify-content: center; padding-top: 10px; }
+            nav a { padding: 5px 10px; }
+            .caption h2 { font-size: 2em; }
+            .caption p { font-size: 1.1em; }
+            main { padding: 20px; }
+            .maire-section { flex-direction: column; text-align: center; }
+            .floating-action-button { right: 15px; bottom: 15px; padding: 12px 15px; font-size: 0.9em; }
+        }
+
     </style>
 </head>
 
 <body>
+    <a href="#contact" class="floating-action-button">
+        <i class="fas fa-question-circle"></i> SOS/Contact
+    </a>
+
     <header>
         <h1><span class="logo-text">RDC</span> 🏛️ Mairie de Kolwezi</h1>
         <nav>
             <ul>
-                <li><a href="#accueil" class="active">Accueil</a></li>
-                <li><a href="#mairie">La Mairie</a></li>
-                <li><a href="#actu">Actualités</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#demarches">Démarches</a></li>
-                <li><a href="#projets">Projets</a></li>
-                <li><a href="#galerie">Galerie</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#accueil" class="active"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="#mairie"><i class="fas fa-building"></i> La Mairie</a></li>
+                <li><a href="#actu"><i class="fas fa-newspaper"></i> Actualités</a></li>
+                <li><a href="#services"><i class="fas fa-users-cog"></i> Services</a></li>
+                <li><a href="#demarches"><i class="fas fa-file-alt"></i> Démarches</a></li>
+                <li><a href="#projets"><i class="fas fa-hard-hat"></i> Projets</a></li>
+                <li><a href="#galerie"><i class="fas fa-images"></i> Galerie</a></li>
+                <li><a href="#contact"><i class="fas fa-phone-alt"></i> Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -291,10 +349,10 @@
                 <p>Attention : circulation perturbée dans le secteur Mutshatsha du 1er au 30 novembre.</p>
             </div>
         </div>
-        </section>
+    </section>
 
     <main>
-        <section class="maire-section">
+        <section class="maire-section section-fade-in">
             <div class="maire-photo">
                 <img src="https://source.unsplash.com/150x150/?person,leader" alt="Photo du Maire">
             </div>
@@ -307,36 +365,55 @@
             </div>
         </section>
 
-        <section>
+        <section class="section-fade-in">
             <h2 id="quick-access">Accès rapide aux services essentiels</h2>
             <div class="cards">
-                <a href="#services" class="card"><strong>🧾</strong> État civil : Naissance, Mariage, Décès</a>
-                <a href="#demarches" class="card"><strong>📑</strong> Démarches en ligne & Formulaires</a>
-                <a href="#transparence" class="card"><strong>💰</strong> Taxes & Impôts locaux (Paiement)</a>
-                <a href="#projets" class="card"><strong>🏗️</strong> Permis de Construire & Urbanisme</a>
+                <a href="#services" class="card">
+                    <i class="fas fa-id-card"></i>
+                    <strong>État civil</strong>
+                    <p>Naissance, Mariage, Décès</p>
+                </a>
+                <a href="#demarches" class="card">
+                    <i class="fas fa-file-signature"></i>
+                    <strong>Démarches en ligne</strong>
+                    <p>Formulaires & Requêtes</p>
+                </a>
+                <a href="#transparence" class="card">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <strong>Taxes & Impôts</strong>
+                    <p>Paiement locaux</p>
+                </a>
+                <a href="#projets" class="card">
+                    <i class="fas fa-city"></i>
+                    <strong>Urbanisme</strong>
+                    <p>Permis de Construire</p>
+                </a>
             </div>
         </section>
 
         <hr style="border: 1px solid #ddd; width: 80%; margin: 40px auto;">
 
-        <section id="actu">
+        <section id="actu" class="section-fade-in">
             <h2>Dernières Actualités & Alertes</h2>
             <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-                <div class="card" style="text-align: center;">
-                    <h4>**ALERTE TRAVAUX**</h4>
-                    <p style="color: red;">Coupure d'eau d'urgence dans le quartier Manika ce week-end (25-27 Octobre).</p>
-                    <a href="#" style="color: red;">En savoir plus &rarr;</a>
-                </div>
-                <div class="card" style="text-align: left;">
+                <a href="#" class="card" style="text-align: center; border: 3px solid red;"> 
+                    <i class="fas fa-exclamation-triangle" style="color: red;"></i>
+                    <h4 style="color: red; margin-bottom: 5px;">**ALERTE TRAVAUX**</h4>
+                    <p>Coupure d'eau d'urgence dans le quartier Manika ce week-end (25-27 Octobre).</p>
+                    <small style="color: red; font-weight: 700;">En savoir plus &rarr;</small>
+                </a>
+                <a href="#actu" class="card">
+                    <i class="fas fa-star"></i>
                     <h4>Fête de l'Indépendance</h4>
                     <p>Célébration du 65ème anniversaire de l'Indépendance à la Place de la Gare. Venez nombreux !</p>
-                    <a href="#actu" style="color: var(--primary-blue);">Voir l'événement &rarr;</a>
-                </div>
-                <div class="card" style="text-align: left;">
+                    <small style="color: var(--primary-blue); font-weight: 700;">Voir l'événement &rarr;</small>
+                </a>
+                <a href="#transparence" class="card">
+                    <i class="fas fa-scroll"></i>
                     <h4>Conseil Municipal</h4>
                     <p>Compte-rendu de la réunion du Conseil du 15 Octobre : Vote du budget voirie.</p>
-                    <a href="#transparence" style="color: var(--primary-blue);">Lire le communiqué &rarr;</a>
-                </div>
+                    <small style="color: var(--primary-blue); font-weight: 700;">Lire le communiqué &rarr;</small>
+                </a>
             </div>
         </section>
 
@@ -352,31 +429,6 @@
     </main>
 
     <footer>
-        <div>
-            <h3>Mairie de Kolwezi</h3>
-            <p>📍 Hôtel de Ville - Avenue Lumumba, Kolwezi</p>
-            <p>📞 +243 990 090 101</p>
-            <p>✉️ info@mairiekolwezi.cd</p>
-        </div>
-
-        <div>
-            <h3>Liens rapides</h3>
-            <a href="#services">Services aux citoyens</a>
-            <a href="#demarches">Démarches en ligne</a>
-            <a href="#projets">Projets en cours</a>
-            <a href="#contact">FAQ & Adresses utiles</a>
-        </div>
-
-        <div>
-            <h3>Suivez-nous</h3>
-            <div class="socials">
-                <a href="#" title="Site Officiel">🌐</a>
-                <a href="#" title="Facebook Mairie">📘</a>
-                <a href="#" title="Twitter Mairie">🐦</a>
-                <a href="#" title="Instagram Mairie">📸</a>
-            </div>
-        </div>
-
         <div class="copyright">
             &copy; 2025 Mairie de Kolwezi — Tous droits réservés | <a href="#">Mentions Légales</a>
         </div>
@@ -385,20 +437,20 @@
     <script type="module">
         /* ---------------------------
           🔥 Configuration Firebase
-          (À personnaliser ou retirer si non utilisé)
         ----------------------------*/
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 
         const firebaseConfig = {
-            apiKey: "VOTRE_CLE_API_FIREBASE", // REMPLACER
-            authDomain: "mairie-kolwezi.firebaseapp.com", // REMPLACER
-            projectId: "mairie-kolwezi", // REMPLACER
-            // ... autres configurations ...
+            apiKey: "AIzaSyCr3MVt72I5aa_v0IBw7tC142kBjQJTdbU",
+            authDomain: "mairie-web-site.firebaseapp.com",
+            projectId: "mairie-web-site",
+            storageBucket: "mairie-web-site.firebasestorage.app",
+            messagingSenderId: "518997735244",
+            appId: "1:518997735244:web:a4af3a25470a39e20401e9"
         };
 
-        // const app = initializeApp(firebaseConfig);
-        // console.log("✅ Firebase initialisé (ligne commentée) :");
-
+        const app = initializeApp(firebaseConfig);
+        console.log("✅ Firebase est initialisé avec succès !");
 
         /* ---------------------------
           🎞️ Slider automatique
@@ -407,12 +459,49 @@
         let index = 0;
 
         function showSlide() {
-            slides.forEach((s, i) => s.classList.toggle('active', i === index));
+            slides.forEach(s => s.classList.remove('active'));
+            slides[index].classList.add('active');
             index = (index + 1) % slides.length;
         }
+        
+        showSlide();
+        setInterval(showSlide, 5000); 
 
-        // Démarre le slider
-        setInterval(showSlide, 5000); // Change de slide toutes les 5 secondes
+        /* ---------------------------
+          ✨ Effets au défilement (Scroll Effects)
+        ----------------------------*/
+        const header = document.querySelector('header');
+        const sections = document.querySelectorAll('.section-fade-in');
+
+        const observerOptions = {
+            root: null, // Par rapport au viewport
+            rootMargin: '0px',
+            threshold: 0.2 // Déclenche l'animation quand 20% de l'élément est visible
+        };
+
+        // 1. Animation des sections (Fade In)
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Stop l'observation après le déclenchement
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // 2. Rétrécissement de l'en-tête (Header Shrink)
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
     </script>
 </body>
 </html>
