@@ -1,222 +1,341 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mairie de Kolwezi</title>
-  <style>
-    /* ====== CSS de base ====== */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      color: #333;
-    }
-    header {
-      background-color: #003366;
-      color: white;
-      padding: 10px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 24px;
-    }
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-    }
-    nav li {
-      margin-right: 20px;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mairie de Kolwezi - Site Officiel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ====== CSS de base & Variables ====== */
+        :root {
+            --primary-color: #003366; /* Bleu institutionnel */
+            --secondary-color: #f7b731; /* Accent Jaune/Orange */
+            --background-light: #f5f5f5;
+            --text-dark: #333;
+            --padding-base: 20px;
+            --max-width: 1200px;
+        }
 
-    /* Slider */
-    .slider {
-      position: relative;
-      max-width: 100%;
-      height: 400px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-    .slides {
-      display: flex;
-      width: 300%;
-      height: 100%;
-      animation: slide 12s infinite;
-    }
-    .slide {
-      width: 100%;
-      flex-shrink: 0;
-      background-size: cover;
-      background-position: center;
-    }
-    @keyframes slide {
-      0% { transform: translateX(0); }
-      33% { transform: translateX(-100%); }
-      66% { transform: translateX(-200%); }
-      100% { transform: translateX(0); }
-    }
+        /* Amélioration de la police et du fond */
+        body {
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth; /* Activation du scroll doux */
+        }
 
-    /* Sections */
-    section {
-      padding: 40px 20px;
-      max-width: 1200px;
-      margin: auto;
-      background: white;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    h2 {
-      color: #003366;
-      margin-top: 0;
-    }
-    footer {
-      background-color: #003366;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
+        /* ====== HEADER & NAVIGATION ====== */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px var(--padding-base);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-title {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-      }
-      nav li {
-        margin-bottom: 10px;
-      }
-      .slider {
-        height: 250px;
-      }
-    }
-  </style>
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        nav li {
+            margin-left: 20px; /* Utilisation de margin-left plutôt que right pour une meilleure gestion du flex */
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: var(--secondary-color); /* Changement de couleur au survol */
+            text-decoration: underline;
+        }
+
+        /* ====== SLIDER AMÉLIORÉ (Conservé) ====== */
+        .slider {
+            position: relative;
+            max-width: 100%;
+            height: 400px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .slides {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            animation: slide 12s infinite;
+        }
+        .slide {
+            width: 100%;
+            flex-shrink: 0;
+            background-size: cover;
+            background-position: center;
+        }
+        /* La keyframe reste la même pour un effet de base */
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            33% { transform: translateX(-100%); }
+            66% { transform: translateX(-200%); }
+            100% { transform: translateX(0); }
+        }
+
+        /* ====== SECTIONS & FOOTER ====== */
+        section {
+            padding: 40px var(--padding-base);
+            max-width: var(--max-width);
+            margin: auto;
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color); /* Ligne de séparation élégante */
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 0;
+        }
+
+        /* ====== FORMULAIRE AMÉLIORÉ ====== */
+        #contactForm label {
+            display: block; /* Chaque label prend toute la largeur */
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        #contactForm input[type="text"],
+        #contactForm input[type="email"],
+        #contactForm textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* S'assure que le padding n'augmente pas la largeur totale */
+            font-size: 16px;
+        }
+        #contactForm textarea {
+            resize: vertical; /* Permet uniquement le redimensionnement vertical */
+            min-height: 100px;
+        }
+        #contactForm button {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        #contactForm button:hover {
+            background-color: #d1a12a; /* Assombrissement au survol */
+        }
+        #formStatus {
+            margin-top: 15px;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        /* ====== Responsive ====== */
+        @media (max-width: 900px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav ul {
+                margin-top: 10px;
+            }
+            nav li {
+                margin-left: 0;
+                margin-right: 15px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+            }
+            nav li {
+                margin-bottom: 8px;
+            }
+            .slider {
+                height: 250px;
+            }
+            section {
+                padding: 20px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- ====== HEADER ====== -->
-  <header>
-    <h1>Mairie de Kolwezi</h1>
-    <nav>
-      <ul>
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#">Présentation</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Projets</a></li>
-        <li><a href="#">Démarches</a></li>
-        <li><a href="#">Galerie</a></li>
-        <li><a href="#">Événements</a></li>
-        <li><a href="#">Publications</a></li>
-        <li><a href="#">Partenaires</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <div class="logo-title">MAIRIE DE KOLWEZI 🏛️</div>
+        <nav>
+            <ul>
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#presentation">Présentation</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- ====== SLIDER ====== -->
-  <div class="slider">
-    <div class="slides">
-      <div class="slide" style="background-image: url('https://source.unsplash.com/1600x400/?city,government');"></div>
-      <div class="slide" style="background-image: url('https://source.unsplash.com/1600x400/?infrastructure');"></div>
-      <div class="slide" style="background-image: url('https://source.unsplash.com/1600x400/?people');"></div>
+    <div class="slider">
+        <div class="slides">
+            <div class="slide" style="background-image: url('https://source.unsplash.com/1600x400/?city,government');" aria-label="Vue de la ville de Kolwezi"></div>
+            <div class="slide" style="background-image: url('https://source.unsplash.com/1600x400/?infrastructure,development');" aria-label="Projet d'infrastructure en cours"></div>
+            <div class="slide" style="background-image: url('https://source.unsplash.com/1600x400/?community,people');" aria-label="Citoyens de Kolwezi"></div>
+        </div>
     </div>
-  </div>
 
-  <!-- ====== SECTIONS ====== -->
-  <section id="accueil">
-    <h2>Bienvenue à Kolwezi</h2>
-    <p>Message du maire : La ville de Kolwezi est en pleine transformation, avec des projets pour améliorer la vie de tous les citoyens et soutenir le développement économique.</p>
-  </section>
+    <section id="accueil">
+        <h2>Bienvenue à Kolwezi</h2>
+        <p><strong>Message du maire :</strong> La ville de Kolwezi est en pleine transformation, avec des projets pour améliorer la vie de tous les citoyens et soutenir le développement économique. Ensemble, construisons l'avenir de notre ville !</p>
+        <a href="#projets" style="background-color: var(--secondary-color); color: var(--primary-color); padding: 10px 15px; text-decoration: none; border-radius: 4px; display: inline-block; margin-top: 15px; font-weight: bold;">Découvrir nos Projets Majours &rarr;</a>
+    </section>
 
-  <section id="presentation">
-    <h2>Présentation de Kolwezi</h2>
-    <p>Kolwezi est la capitale de la province du Lualaba. C’est un centre minier stratégique pour le cuivre et le cobalt. La ville accueille une population diverse et dynamique.</p>
-  </section>
+    <section id="presentation">
+        <h2>Présentation de Kolwezi</h2>
+        <p>Kolwezi est la capitale de la province du **Lualaba**. C’est un centre **minier stratégique** pour le cuivre et le cobalt, un moteur essentiel de l'économie nationale. La ville accueille une population diverse et dynamique, engagée dans son développement.</p>
+    </section>
 
-  <section id="services">
-    <h2>Services aux citoyens</h2>
-    <ul>
-      <li>État civil : naissance, mariage, décès</li>
-      <li>Taxes et impôts locaux</li>
-      <li>Services sociaux et éducation</li>
-      <li>Urbanisme et transport</li>
-    </ul>
-  </section>
+    <section id="services">
+        <h2>Services aux citoyens</h2>
+        <p>Retrouvez ici les informations pratiques et les démarches essentielles auprès des services municipaux :</p>
+        <ul>
+            <li>**État civil :** Déclaration de naissance, mariage, décès.</li>
+            <li>**Finances :** Paiement des taxes, impôts locaux et redevances.</li>
+            <li>**Social & Éducation :** Programmes d'aide sociale, inscriptions scolaires.</li>
+            <li>**Urbanisme & Transport :** Permis de construire, plans de circulation, transport public.</li>
+        </ul>
+    </section>
 
-  <section id="projets">
-    <h2>Projets & Développement</h2>
-    <p>Suivi des projets municipaux, infrastructures et initiatives économiques en cours.</p>
-  </section>
+    <section id="projets">
+        <h2>Projets & Développement</h2>
+        <p>Suivi des projets municipaux majeurs, des nouvelles infrastructures et des initiatives économiques visant à moderniser et embellir Kolwezi.</p>
+        </section>
 
-  <section id="contact">
-    <h2>Contactez-nous</h2>
-    <form id="contactForm">
-      <label for="name">Nom :</label><br>
-      <input type="text" id="name" required><br>
-      <label for="email">Email :</label><br>
-      <input type="email" id="email" required><br>
-      <label for="message">Message :</label><br>
-      <textarea id="message" required></textarea><br>
-      <button type="submit">Envoyer</button>
-    </form>
-    <p id="formStatus"></p>
-  </section>
+    <section id="contact">
+        <h2>Contactez-nous</h2>
+        <p>Utilisez le formulaire ci-dessous pour toute question, suggestion ou signalement. Nous vous répondrons dans les meilleurs délais.</p>
+        <form id="contactForm">
+            <label for="name">Nom et Prénom :</label>
+            <input type="text" id="name" name="name" required placeholder="Votre nom complet">
+            
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required placeholder="votre.email@exemple.com">
+            
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" required placeholder="Votre message..."></textarea>
+            
+            <button type="submit">Envoyer le Message ✉️</button>
+        </form>
+        <p id="formStatus" aria-live="polite"></p> </section>
 
-  <footer>
-    <p>&copy; 2025 Mairie de Kolwezi. Tous droits réservés.</p>
-  </footer>
+    <footer>
+        <p>&copy; 2025 Mairie de Kolwezi. Tous droits réservés. | Adresse : [Votre Adresse] | Téléphone : [Votre Téléphone]</p>
+    </footer>
 
-  <!-- ====== JAVASCRIPT ====== -->
-  <script type="module">
-    // ====== Firebase configuration ======
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+    <script type="module">
+        // Import des modules Firebase depuis les CDN pour un fichier unique.
+        // C'est une méthode simple, mais dans un projet plus grand, on utiliserait npm et un bundler.
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyCr3MVt72I5aa_v0IBw7tC142kBjQJTdbU",
-      authDomain: "mairie-web-site.firebaseapp.com",
-      projectId: "mairie-web-site",
-      storageBucket: "mairie-web-site.firebasestorage.app",
-      messagingSenderId: "518997735244",
-      appId: "1:518997735244:web:a4af3a25470a39e20401e9"
-    };
+        // Votre configuration Firebase (ajoutée comme demandé)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCr3MVt72I5aa_v0IBw7tC142kBjQJTdbU",
+            authDomain: "mairie-web-site.firebaseapp.com",
+            projectId: "mairie-web-site",
+            storageBucket: "mairie-web-site.firebasestorage.app",
+            messagingSenderId: "518997735244",
+            appId: "1:518997735244:web:a4af3a25470a39e20401e9"
+        };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+        // Initialisation de Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-    // ====== Formulaire Contact ======
-    const form = document.getElementById('contactForm');
-    const formStatus = document.getElementById('formStatus');
+        // ====== Formulaire Contact Logic ======
+        const form = document.getElementById('contactForm');
+        const formStatus = document.getElementById('formStatus');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Afficher un statut d'attente
+            formStatus.textContent = "Envoi en cours...";
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
 
-      try {
-        await addDoc(collection(db, "contacts"), { name, email, message, date: new Date() });
-        formStatus.textContent = "Message envoyé avec succès !";
-        form.reset();
-      } catch (error) {
-        console.error(error);
-        formStatus.textContent = "Erreur lors de l'envoi. Veuillez réessayer.";
-      }
-    });
-  </script>
+            try {
+                // Tentative d'ajouter le document à la collection 'contacts'
+                await addDoc(collection(db, "contacts"), { 
+                    name, 
+                    email, 
+                    message, 
+                    date: new Date().toISOString() // Format ISO pour une meilleure gestion des dates
+                }); 
+                
+                formStatus.style.color = 'green';
+                formStatus.textContent = "✅ Message envoyé avec succès ! Nous vous recontacterons bientôt.";
+                form.reset();
+            } catch (error) {
+                console.error("Erreur d'envoi à Firestore: ", error);
+                formStatus.style.color = 'red';
+                formStatus.textContent = "❌ Erreur lors de l'envoi. Veuillez réessayer ou nous contacter par téléphone.";
+            }
+        });
+        
+        // ====== Navigation avec Scroll Doux (Amélioration UX) ======
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
