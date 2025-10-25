@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mairie de Kolwezi - Portail Officiel</title>
-    <!-- Utilisation de la police Inter, moderne et lisible -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome pour les icônes modernes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <style>
@@ -576,18 +574,17 @@
 
 <header>
     <div class="container header-content">
-        <!-- Logo et Titre -->
         <a href="index.html" class="logo">
             <i class="fa-solid fa-gavel"></i> MAIRIE DE KOLWEZI
         </a>
         
-        <!-- Navigation -->
         <nav role="navigation" aria-label="Menu principal">
             <button class="menu-toggle" aria-controls="main-menu" aria-expanded="false" title="Menu">
                 <i class="fa-solid fa-bars" id="menu-icon"></i>
             </button>
             <ul id="main-menu">
                 <li class="active"><a href="index.html"><i class="fa-solid fa-house me-2"></i>Accueil</a></li>
+                
                 <li class="has-submenu">
                     <a href="mairie.html"><i class="fa-solid fa-landmark me-2"></i>Mairie <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
@@ -596,6 +593,7 @@
                         <li><a href="services_municipaux.html"><i class="fa-solid fa-briefcase"></i> Services municipaux</a></li>
                     </ul>
                 </li>
+                
                 <li class="has-submenu">
                     <a href="services.html"><i class="fa-solid fa-handshake me-2"></i>Services <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
@@ -605,6 +603,7 @@
                         <li><a href="transport_voirie.html"><i class="fa-solid fa-bus"></i> Transports & Voirie</a></li>
                     </ul>
                 </li>
+                
                 <li class="has-submenu">
                     <a href="actualites.html"><i class="fa-solid fa-newspaper me-2"></i>Actualités <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
@@ -614,74 +613,70 @@
                     </ul>
                 </li>
                 
-                 <li class="has-submenu">
+                <li class="has-submenu">
                     <a href="demarches.html"><i class="fa-solid fa-file-signature me-2"></i>Démarches <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
                         <li><a href="formulaires.html"><i class="fa-solid fa-file-lines"></i> Formulaires</a></li>
                         <li><a href="rendezvous.html"><i class="fa-solid fa-clock"></i> Prise de rendez-vous</a></li>
                         <li><a href="paiement.html"><i class="fa-solid fa-credit-card"></i> Paiement en ligne</a></li>
                     </ul>
-                     <li class="has-submenu">
-    <a href="projets.html">Projets <i class="fa-solid fa-caret-down"></i></a>
-    <ul class="submenu">
-        <li><a href="infrastructures.html">Infrastructures & Équipements publics</a></li>
-        <li><a href="urbanisme.html">Urbanisme & Aménagement</a></li>
-        <li><a href="projets_futurs.html">Projets futurs & Plans stratégiques</a></li>
-        <li><a href="partenariats.html">Partenariats & Coopération</a></li>
-    </ul>
-</li>
                 </li>
+                
+                <li class="has-submenu">
+                    <a href="projets.html"><i class="fa-solid fa-city me-2"></i>Projets <i class="fa-solid fa-caret-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="infrastructures.html">Infrastructures & Équipements publics</a></li>
+                        <li><a href="urbanisme.html">Urbanisme & Aménagement</a></li>
+                        <li><a href="projets_futurs.html">Projets futurs & Plans stratégiques</a></li>
+                        <li><a href="partenariats.html">Partenariats & Coopération</a></li>
+                    </ul>
+                </li>
+                
                 <li><a href="galerie.html"><i class="fa-solid fa-camera me-2"></i>Galerie</a></li>   
+                
+                <li class="has-submenu">
+                    <a href="contact.html"><i class="fa-solid fa-phone-volume me-2"></i>Contact / FAQ <i class="fa-solid fa-caret-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="formulaire_contact.html">Formulaire de contact</a></li>
+                        <li><a href="adresses_utiles.html">Adresses & Numéros utiles</a></li>
+                        <li><a href="faq.html">Questions fréquentes (FAQ)</a></li>
+                    </ul>
+                </li>
             </ul>
-            <li class="has-submenu">
-    <a href="contact.html">Contact / FAQ <i class="fa-solid fa-caret-down"></i></a>
-    <ul class="submenu">
-        <li><a href="formulaire_contact.html">Formulaire de contact</a></li>
-        <li><a href="adresses_utiles.html">Adresses & Numéros utiles</a></li>
-        <li><a href="faq.html">Questions fréquentes (FAQ)</a></li>
-    </ul>
-</li>
         </nav>
     </div>
 </header>
 
 <main>
     <div class="container">
-        <!-- Section Hero (Accueil) -->
         <section class="hero-section animated fade-in-up">
             <h1>Ensemble, Bâtissons la Ville de Kolwezi</h1>
             <p>Bienvenue sur le portail officiel de la Mairie de Kolwezi. Retrouvez ici toutes les informations, démarches et actualités pour mieux vivre votre ville.</p>
             <a href="demarches.html" class="hero-button">Faire une démarche en ligne <i class="fa-solid fa-arrow-right-long"></i></a>
         </section>
 
-        <!-- Section Services en Vedette -->
         <section class="section-services">
             <h2 class="section-title animated fade-in-up delay-1">Vos Services en Vedette</h2>
             <div class="feature-grid">
                 <a href="etat_civil.html" class="feature-card animated fade-in-up delay-1">
-                    <i class="fa-solid fa-users-viewfinder"></i> <!-- Icône mise à jour pour l'identification/registre -->
-                    <h4>État Civil</h4>
+                    <i class="fa-solid fa-users-viewfinder"></i> <h4>État Civil</h4>
                     <p>Déclaration de naissance, mariage, décès, et obtention d'actes en quelques clics.</p>
                 </a>
                 <a href="taxes_impots_locaux.html" class="feature-card animated fade-in-up delay-1">
-                    <i class="fa-solid fa-receipt"></i> <!-- Icône mise à jour pour facture/paiement -->
-                    <h4>Taxes et Impôts</h4>
+                    <i class="fa-solid fa-receipt"></i> <h4>Taxes et Impôts</h4>
                     <p>Consultez, déclarez et payez vos taxes et impôts locaux en toute simplicité en ligne.</p>
                 </a>
                 <a href="urbanisme_permis.html" class="feature-card animated fade-in-up delay-2">
-                    <i class="fa-solid fa-map-marked-alt"></i> <!-- Icône mise à jour pour urbanisme/planification -->
-                    <h4>Urbanisme & Logement</h4>
+                    <i class="fa-solid fa-map-marked-alt"></i> <h4>Urbanisme & Logement</h4>
                     <p>Déposez vos demandes de permis de construire, rénovation ou consultation des plans.</p>
                 </a>
                 <a href="contact.html" class="feature-card animated fade-in-up delay-2">
-                    <i class="fa-solid fa-life-ring"></i> <!-- Icône pour Support/Aide -->
-                    <h4>Support & Contact</h4>
+                    <i class="fa-solid fa-life-ring"></i> <h4>Support & Contact</h4>
                     <p>Trouvez rapidement les réponses à vos questions et les coordonnées des services municipaux.</p>
                 </a>
             </div>
         </section>
 
-        <!-- Section Actualités (Nouvelle version par cartes) -->
         <section class="section-announcements">
             <h2 class="section-title animated fade-in-up delay-2">Dernières Actualités & Alertes</h2>
             <div class="news-grid animated fade-in-up delay-2">
@@ -751,8 +746,7 @@
             <p>Restez connecté(e) pour toutes les annonces officielles.</p>
             <div class="footer-social-icons">
                 <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a> <!-- Twitter devient X -->
-                <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a> <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                 <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
             </div>
         </div>
@@ -849,36 +843,13 @@
         const submenuLinks = link.parentNode.querySelectorAll('.submenu a');
         submenuLinks.forEach(subLink => {
             subLink.addEventListener('click', () => {
-                if (window.innerWidth <= 992 && mainMenu.classList.contains('open')) {
-                    toggleMenu();
+                if (window.innerWidth <= 992) {
+                    toggleMenu(); // Fermer le menu après la navigation
                 }
             });
         });
     });
-    
-    // Fermer le menu si la taille de l'écran change (de mobile à desktop)
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 992) {
-            mainMenu.classList.remove('open');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            menuIcon.classList.add('fa-bars');
-            menuIcon.classList.remove('fa-times');
-            // S'assurer que les sous-menus sont masqués pour le desktop si la classe 'active' persiste
-            document.querySelectorAll('.has-submenu').forEach(item => {
-                 item.classList.remove('active');
-            });
-        }
-    });
 
-    // Fonctionnalité pour les animations au chargement
-    window.onload = function() {
-        // Déclenche l'animation pour les éléments ayant la classe 'animated' au chargement de la page
-        document.querySelectorAll('.animated').forEach(el => {
-            el.style.opacity = 1; 
-        });
-    };
-    
 </script>
-
 </body>
 </html>
