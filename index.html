@@ -3,220 +3,173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mairie de Kolwezi</title>
+<title>Accueil - Mairie de Kolwezi</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-    /* ----------------- Reset & Base ----------------- */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    body { line-height: 1.6; color: #333; background: #f4f7f6; }
+/* Reset */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Roboto', Arial, sans-serif; background:#f4f7f6; color:#333; }
 
-    /* ----------------- HEADER / NAVBAR ----------------- */
-    header { background: #005B4F; color: #fff; padding: 15px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
-    .logo h1 { font-size: 1.8em; color: #fff; }
-    nav a { color: #fff; text-decoration: none; margin: 0 15px; font-weight: 600; transition: 0.3s; }
-    nav a:hover { color: #FFC107; }
-    .menu-item { position: relative; }
-    .submenu { display: none; position: absolute; top: 35px; left: 0; background: #00796B; padding: 10px; border-radius: 5px; }
-    .submenu a { display: block; margin: 5px 0; }
-    .menu-item:hover .submenu { display: block; }
+/* Header & Navigation */
+header { background:#004d40; color:#fff; padding:15px 20px; position:sticky; top:0; z-index:1000; display:flex; justify-content:space-between; align-items:center; }
+header h1 { font-size:1.6rem; font-weight:bold; }
+nav { position:relative; }
+nav ul { display:flex; list-style:none; gap:15px; }
+nav ul li { position:relative; }
+nav ul li a { color:#fff; padding:8px 5px; display:block; font-weight:500; transition:0.3s; }
+nav ul li a:hover { color:#ffc107; }
 
-    /* ----------------- SLIDER ----------------- */
-    .slider { position: relative; overflow: hidden; max-height: 450px; margin-bottom: 40px; }
-    .slides { display: flex; transition: transform 0.5s ease-in-out; }
-    .slide { min-width: 100%; position: relative; }
-    .slide img { width: 100%; height: 450px; object-fit: cover; filter: brightness(80%); }
-    .slide-caption { position: absolute; bottom: 30px; left: 30px; background: rgba(0,0,0,0.5); color: #fff; padding: 15px 25px; border-radius: 5px; font-size: 1.2em; }
+/* Dropdown */
+nav ul li ul { display:none; position:absolute; top:100%; left:0; background:#00695c; min-width:200px; border-radius:5px; box-shadow:0 4px 8px rgba(0,0,0,0.2); }
+nav ul li:hover ul { display:block; }
+nav ul li ul li a { margin:0; padding:10px; color:#fff; font-weight:400; }
+nav ul li ul li a:hover { background:#004d40; color:#ffc107; }
 
-    /* ----------------- Sections ----------------- */
-    section { padding: 60px 20px; max-width: 1200px; margin: auto; }
-    h2 { color: #005B4F; margin-bottom: 25px; border-bottom: 3px solid #005B4F; display: inline-block; padding-bottom: 5px; }
-    h3 { margin-bottom: 15px; color: #00796B; }
-    p, li { margin-bottom: 10px; }
-    ul { list-style: disc; margin-left: 25px; }
+/* Hamburger for mobile */
+.menu-toggle { display:none; cursor:pointer; font-size:1.5rem; color:#fff; }
 
-    /* ----------------- Cards ----------------- */
-    .cards { display: flex; flex-wrap: wrap; gap: 20px; }
-    .card { background: #fff; padding: 20px; flex: 1 1 300px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s; }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
+/* Slider */
+.slider { position:relative; max-height:500px; overflow:hidden; margin-bottom:40px; }
+.slides { display:flex; transition:0.6s ease; }
+.slide { min-width:100%; position:relative; }
+.slide img { width:100%; height:500px; object-fit:cover; filter:brightness(75%); }
+.slide-caption { position:absolute; bottom:40px; left:40px; color:#fff; background:rgba(0,0,0,0.5); padding:15px 25px; border-radius:6px; font-size:1.3rem; }
 
-    /* ----------------- Buttons ----------------- */
-    button { background: #00796B; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-    button:hover { background: #004D40; }
+/* Slider arrows */
+.prev, .next { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.4); color:#fff; padding:12px; border-radius:50%; cursor:pointer; font-size:1.5rem; }
+.prev { left:20px; }
+.next { right:20px; }
+.prev:hover, .next:hover { background:rgba(0,0,0,0.7); }
 
-    /* ----------------- Footer ----------------- */
-    footer { background: #005B4F; color: #fff; text-align: center; padding: 25px 20px; margin-top: 50px; }
-    footer a { color: #FFC107; text-decoration: none; }
+/* Sections */
+section { padding:60px 20px; max-width:1200px; margin:auto; background:#fff; border-radius:8px; box-shadow:0 2px 4px rgba(0,0,0,0.1); margin-bottom:30px; }
+section h2 { color:#004d40; margin-bottom:20px; }
+section p, section ul { font-size:1.1rem; line-height:1.6; }
+section ul { list-style:disc; margin-left:20px; }
+.service-cards { display:flex; flex-wrap:wrap; gap:20px; }
+.card { background:#fefefe; border-radius:8px; box-shadow:0 4px 6px rgba(0,0,0,0.1); flex:1; min-width:250px; padding:20px; transition:0.3s; }
+.card:hover { box-shadow:0 8px 12px rgba(0,0,0,0.2); }
 
-    /* ----------------- Responsive ----------------- */
-    @media(max-width:768px){
-        nav { flex-direction: column; gap: 10px; }
-        .cards { flex-direction: column; }
-        .slide-caption { font-size: 1em; bottom: 15px; left: 15px; padding: 10px 15px; }
-    }
+/* Footer */
+footer { background:#004d40; color:#fff; text-align:center; padding:30px 20px; }
+
+/* Responsive */
+@media(max-width:768px){
+    header h1 { font-size:1.3rem; }
+    nav ul { flex-direction:column; display:none; background:#004d40; position:absolute; top:60px; left:0; width:100%; }
+    nav ul.show { display:flex; }
+    nav ul li ul { position:static; box-shadow:none; border-radius:0; }
+    .menu-toggle { display:block; }
+    .slide-caption { font-size:1rem; padding:10px 15px; }
+    .service-cards { flex-direction:column; }
+}
 </style>
 </head>
 <body>
 
-<!-- ----------------- HEADER / NAVBAR ----------------- -->
 <header>
+    <h1>Mairie de Kolwezi</h1>
+    <div class="menu-toggle">&#9776;</div>
     <nav>
-        <div class="logo"><h1>Mairie de Kolwezi</h1></div>
-        <div class="menu">
-            <a href="#accueil">Accueil</a>
-            <div class="menu-item">
-                <a href="#mairie">La Mairie</a>
-                <div class="submenu">
-                    <a href="#presentation">Présentation</a>
-                    <a href="#organigramme">Organigramme</a>
-                    <a href="#services">Services</a>
-                    <a href="#contact">Contact & horaires</a>
-                </div>
-            </div>
-            <a href="#actualites">Actualités & Événements</a>
-            <a href="#services-citoyens">Services aux citoyens</a>
-            <a href="#demarches">Démarches en ligne</a>
-            <a href="#projets">Projets & Développement</a>
-            <a href="#galerie">Galerie</a>
-            <a href="#faq">Contact / FAQ</a>
-        </div>
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#actualites">Actualités</a></li>
+            <li>
+                <a href="#">Services &#9662;</a>
+                <ul>
+                    <li><a href="#etatcivil">État civil</a></li>
+                    <li><a href="#taxes">Taxes et impôts</a></li>
+                    <li><a href="#demarches">Démarches administratives</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Démarches &#9662;</a>
+                <ul>
+                    <li><a href="#formulaires">Formulaires en ligne</a></li>
+                    <li><a href="#rendezvous">Prise de rendez-vous</a></li>
+                    <li><a href="#paiement">Paiement en ligne</a></li>
+                </ul>
+            </li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </nav>
 </header>
 
-<!-- ----------------- SLIDER ----------------- -->
-<section class="slider" id="accueil">
+<!-- Slider -->
+<section class="slider">
     <div class="slides">
         <div class="slide">
-            <img src="https://via.placeholder.com/1200x450?text=Bienvenue+à+la+Mairie+de+Kolwezi" alt="Slider 1">
+            <img src="https://via.placeholder.com/1200x500?text=Bienvenue+à+la+Mairie+de+Kolwezi" alt="Slider 1">
             <div class="slide-caption">Message du Maire et actualités importantes</div>
         </div>
         <div class="slide">
-            <img src="https://via.placeholder.com/1200x450?text=Services+essentiels" alt="Slider 2">
+            <img src="https://via.placeholder.com/1200x500?text=Services+essentiels" alt="Slider 2">
             <div class="slide-caption">Accès rapide aux services : état civil, taxes, démarches...</div>
         </div>
     </div>
+    <div class="prev">&#10094;</div>
+    <div class="next">&#10095;</div>
 </section>
 
-<!-- ----------------- LA MAIRIE ----------------- -->
-<section id="mairie">
-    <h2>La Mairie / Institution</h2>
-    <div id="presentation">
-        <h3>Présentation</h3>
-        <p>Histoire, missions, vision et valeurs de la mairie de Kolwezi.</p>
-    </div>
-    <div id="organigramme">
-        <h3>Organigramme</h3>
-        <p>Maire, adjoints et services municipaux.</p>
-    </div>
-    <div id="services">
-        <h3>Services municipaux</h3>
-        <ul>
-            <li>Urbanisme</li>
-            <li>Voirie</li>
-            <li>Environnement</li>
-            <li>Sécurité</li>
-        </ul>
-    </div>
-    <div id="contact">
-        <h3>Contact & horaires</h3>
-        <p>Adresse : Avenue Principale, Kolwezi</p>
-        <p>Téléphone : +243 XXX XXX XXX</p>
-        <p>Email : contact@mairie.kolwezi.cd</p>
+<!-- Présentation -->
+<section id="accueil">
+    <h2>Présentation brève de la mairie</h2>
+    <p>Bienvenue à la Mairie de Kolwezi. Nous servons nos citoyens avec transparence et efficacité, tout en valorisant le développement local et la culture de notre ville.</p>
+</section>
+
+<!-- Services -->
+<section id="services">
+    <h2>Services essentiels</h2>
+    <div class="service-cards">
+        <div class="card"><h3>État civil</h3><p>Naissances, mariages, décès et certificats divers.</p></div>
+        <div class="card"><h3>Taxes et impôts</h3><p>Payement, informations et formulaires en ligne.</p></div>
+        <div class="card"><h3>Démarches administratives</h3><p>Formulaires, rendez-vous et licences accessibles facilement.</p></div>
     </div>
 </section>
 
-<!-- ----------------- ACTUALITÉS ----------------- -->
-<section id="actualites">
-    <h2>Actualités & Événements</h2>
-    <ul>
-        <li>Communiqués officiels</li>
-        <li>Événements municipaux et culturels</li>
-        <li>Alertes importantes : travaux, coupures d’eau, annonces urgentes</li>
-    </ul>
+<!-- Contact -->
+<section id="contact">
+    <h2>Contact</h2>
+    <p>Pour toute information, contactez-nous à <a href="mailto:contact@mairie-kolwezi.cd">contact@mairie-kolwezi.cd</a></p>
 </section>
 
-<!-- ----------------- SERVICES AUX CITOYENS ----------------- -->
-<section id="services-citoyens">
-    <h2>Services aux citoyens</h2>
-    <div class="cards">
-        <div class="card">
-            <h3>État civil</h3>
-            <p>Naissance, mariage, décès, certificat de résidence.</p>
-        </div>
-        <div class="card">
-            <h3>Taxes et impôts</h3>
-            <p>Paiement, formulaires et guides.</p>
-        </div>
-        <div class="card">
-            <h3>Urbanisme & permis</h3>
-            <p>Demande de construction, rénovation, autorisations.</p>
-        </div>
-        <div class="card">
-            <h3>Transports & voirie</h3>
-            <p>Permis, stationnements, routes.</p>
-        </div>
-        <div class="card">
-            <h3>Services sociaux</h3>
-            <p>Santé, éducation, aide aux familles.</p>
-        </div>
-    </div>
-</section>
-
-<!-- ----------------- DÉMARCHES EN LIGNE ----------------- -->
-<section id="demarches">
-    <h2>Démarches en ligne</h2>
-    <ul>
-        <li>Formulaires téléchargeables ou remplissables en ligne</li>
-        <li>Prise de rendez-vous</li>
-        <li>Paiement en ligne pour certains services</li>
-    </ul>
-</section>
-
-<!-- ----------------- PROJETS ----------------- -->
-<section id="projets">
-    <h2>Projets et Développement</h2>
-    <ul>
-        <li>Projets en cours : infrastructures, équipements publics</li>
-        <li>Projets futurs et plans stratégiques</li>
-        <li>Partenariats et coopération avec ONG, entreprises ou gouvernements</li>
-    </ul>
-</section>
-
-<!-- ----------------- GALERIE ----------------- -->
-<section id="galerie">
-    <h2>Galerie</h2>
-    <div class="cards">
-        <div class="card"><img src="https://via.placeholder.com/300x200?text=Événement+1" alt="Événement 1" style="width:100%; border-radius:5px;"></div>
-        <div class="card"><img src="https://via.placeholder.com/300x200?text=Projet+2" alt="Projet 2" style="width:100%; border-radius:5px;"></div>
-        <div class="card"><img src="https://via.placeholder.com/300x200?text=Cérémonie+3" alt="Cérémonie 3" style="width:100%; border-radius:5px;"></div>
-    </div>
-</section>
-
-<!-- ----------------- CONTACT / FAQ ----------------- -->
-<section id="faq">
-    <h2>Contact / FAQ</h2>
-    <form>
-        <label>Nom :</label><br>
-        <input type="text" placeholder="Votre nom" required><br><br>
-        <label>Email :</label><br>
-        <input type="email" placeholder="Votre email" required><br><br>
-        <label>Message :</label><br>
-        <textarea placeholder="Votre message" required></textarea><br><br>
-        <button type="submit">Envoyer</button>
-    </form>
-</section>
-
-<!-- ----------------- FOOTER ----------------- -->
 <footer>
-    <p>&copy; 2025 Mairie de Kolwezi | <a href="#accueil">Accueil</a></p>
+    <p>&copy; 2025 Mairie de Kolwezi | Tous droits réservés</p>
 </footer>
 
-<!-- ----------------- JS SLIDER ----------------- -->
-<script>
-    let index = 0;
-    const slides = document.querySelectorAll('.slide');
-    function showSlide(i){ slides.forEach((s, idx)=> s.style.transform = `translateX(${-100*i}%)`);}
-    function nextSlide(){ index = (index + 1) % slides.length; showSlide(index);}
-    setInterval(nextSlide, 4000);
+<script type="module">
+/* Slider JS */
+let index = 0;
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+function showSlide(i){ slides.forEach((s, idx)=> s.style.transform = `translateX(${-100*i}%)`); }
+function nextSlide(){ index = (index + 1) % total; showSlide(index); }
+function prevSlide(){ index = (index - 1 + total) % total; showSlide(index); }
+document.querySelector('.next').addEventListener('click', nextSlide);
+document.querySelector('.prev').addEventListener('click', prevSlide);
+setInterval(nextSlide, 5000);
+
+/* Hamburger toggle */
+const menuToggle = document.querySelector('.menu-toggle');
+const navUl = document.querySelector('nav ul');
+menuToggle.addEventListener('click', ()=>{ navUl.classList.toggle('show'); });
+
+/* Firebase */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyCr3MVt72I5aa_v0IBw7tC142kBjQJTdbU",
+  authDomain: "mairie-web-site.firebaseapp.com",
+  projectId: "mairie-web-site",
+  storageBucket: "mairie-web-site.firebasestorage.app",
+  messagingSenderId: "518997735244",
+  appId: "1:518997735244:web:a4af3a25470a39e20401e9"
+};
+const app = initializeApp(firebaseConfig);
 </script>
 
 </body>
