@@ -1,76 +1,222 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Accueil - Mairie de Kolwezi</title>
-<style>
-    body { font-family: Arial, sans-serif; background:#f4f7f6; margin:0; }
-    header { background:#005B4F; color:#fff; padding:15px 20px; position:sticky; top:0; }
-    nav a { color:#fff; margin:0 10px; text-decoration:none; font-weight:bold; }
-    nav a:hover { color:#FFC107; }
-    .slider { max-height:400px; overflow:hidden; margin:20px 0; }
-    .slides { display:flex; transition:0.5s; }
-    .slide { min-width:100%; }
-    .slide img { width:100%; height:400px; object-fit:cover; filter:brightness(80%); }
-    .slide-caption { position:absolute; bottom:30px; left:30px; color:#fff; background:rgba(0,0,0,0.5); padding:10px 20px; border-radius:5px; }
-    section { padding:40px 20px; max-width:1000px; margin:auto; }
-    footer { background:#005B4F; color:#fff; text-align:center; padding:20px; margin-top:40px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mairie de Kolwezi</title>
+  <style>
+    /* ====== CSS de base ====== */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    nav li {
+      margin-right: 20px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Slider */
+    .slider {
+      position: relative;
+      max-width: 100%;
+      height: 400px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .slides {
+      display: flex;
+      width: 300%;
+      height: 100%;
+      animation: slide 12s infinite;
+    }
+    .slide {
+      width: 100%;
+      flex-shrink: 0;
+      background-size: cover;
+      background-position: center;
+    }
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      33% { transform: translateX(-100%); }
+      66% { transform: translateX(-200%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* Sections */
+    section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+      background: white;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #003366;
+      margin-top: 0;
+    }
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+      }
+      nav li {
+        margin-bottom: 10px;
+      }
+      .slider {
+        height: 250px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header>
+  <!-- ====== HEADER ====== -->
+  <header>
+    <h1>Mairie de Kolwezi</h1>
     <nav>
-        <a href="index.html">Accueil</a>
-        <a href="mairie.html">La Mairie</a>
-        <a href="actualites.html">Actualités</a>
-        <a href="services.html">Services</a>
-        <a href="demarches.html">Démarches</a>
-        <a href="projets.html">Projets</a>
-        <a href="galerie.html">Galerie</a>
-        <a href="faq.html">Contact</a>
+      <ul>
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">Présentation</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Projets</a></li>
+        <li><a href="#">Démarches</a></li>
+        <li><a href="#">Galerie</a></li>
+        <li><a href="#">Événements</a></li>
+        <li><a href="#">Publications</a></li>
+        <li><a href="#">Partenaires</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
     </nav>
-</header>
+  </header>
 
-<section class="slider">
+  <!-- ====== SLIDER ====== -->
+  <div class="slider">
     <div class="slides">
-        <div class="slide">
-            <img src="https://via.placeholder.com/1200x400?text=Bienvenue+à+la+Mairie+de+Kolwezi" alt="Slider 1">
-            <div class="slide-caption">Message du Maire et actualités importantes</div>
-        </div>
-        <div class="slide">
-            <img src="https://via.placeholder.com/1200x400?text=Services+essentiels" alt="Slider 2">
-            <div class="slide-caption">Accès rapide aux services : état civil, taxes, démarches...</div>
-        </div>
+      <div class="slide" style="background-image: url('https://source.unsplash.com/1600x400/?city,government');"></div>
+      <div class="slide" style="background-image: url('https://source.unsplash.com/1600x400/?infrastructure');"></div>
+      <div class="slide" style="background-image: url('https://source.unsplash.com/1600x400/?people');"></div>
     </div>
-</section>
+  </div>
 
-<section>
-    <h2>Présentation brève de la mairie</h2>
-    <p>Bienvenue à la Mairie de Kolwezi. Nous nous engageons à servir les citoyens avec efficacité et transparence.</p>
-</section>
+  <!-- ====== SECTIONS ====== -->
+  <section id="accueil">
+    <h2>Bienvenue à Kolwezi</h2>
+    <p>Message du maire : La ville de Kolwezi est en pleine transformation, avec des projets pour améliorer la vie de tous les citoyens et soutenir le développement économique.</p>
+  </section>
 
-<section>
-    <h2>Accès rapide aux services essentiels</h2>
+  <section id="presentation">
+    <h2>Présentation de Kolwezi</h2>
+    <p>Kolwezi est la capitale de la province du Lualaba. C’est un centre minier stratégique pour le cuivre et le cobalt. La ville accueille une population diverse et dynamique.</p>
+  </section>
+
+  <section id="services">
+    <h2>Services aux citoyens</h2>
     <ul>
-        <li>État civil</li>
-        <li>Taxes et impôts</li>
-        <li>Démarches administratives</li>
+      <li>État civil : naissance, mariage, décès</li>
+      <li>Taxes et impôts locaux</li>
+      <li>Services sociaux et éducation</li>
+      <li>Urbanisme et transport</li>
     </ul>
-</section>
+  </section>
 
-<footer>
-    <p>&copy; 2025 Mairie de Kolwezi | <a href="index.html">Accueil</a></p>
-</footer>
+  <section id="projets">
+    <h2>Projets & Développement</h2>
+    <p>Suivi des projets municipaux, infrastructures et initiatives économiques en cours.</p>
+  </section>
 
-<script>
-let index = 0;
-const slides = document.querySelectorAll('.slide');
-function showSlide(i){ slides.forEach((s, idx)=> s.style.transform = `translateX(${-100*i}%)`);}
-function nextSlide(){ index = (index + 1) % slides.length; showSlide(index);}
-setInterval(nextSlide, 4000);
-</script>
+  <section id="contact">
+    <h2>Contactez-nous</h2>
+    <form id="contactForm">
+      <label for="name">Nom :</label><br>
+      <input type="text" id="name" required><br>
+      <label for="email">Email :</label><br>
+      <input type="email" id="email" required><br>
+      <label for="message">Message :</label><br>
+      <textarea id="message" required></textarea><br>
+      <button type="submit">Envoyer</button>
+    </form>
+    <p id="formStatus"></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Mairie de Kolwezi. Tous droits réservés.</p>
+  </footer>
+
+  <!-- ====== JAVASCRIPT ====== -->
+  <script type="module">
+    // ====== Firebase configuration ======
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCr3MVt72I5aa_v0IBw7tC142kBjQJTdbU",
+      authDomain: "mairie-web-site.firebaseapp.com",
+      projectId: "mairie-web-site",
+      storageBucket: "mairie-web-site.firebasestorage.app",
+      messagingSenderId: "518997735244",
+      appId: "1:518997735244:web:a4af3a25470a39e20401e9"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // ====== Formulaire Contact ======
+    const form = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      try {
+        await addDoc(collection(db, "contacts"), { name, email, message, date: new Date() });
+        formStatus.textContent = "Message envoyé avec succès !";
+        form.reset();
+      } catch (error) {
+        console.error(error);
+        formStatus.textContent = "Erreur lors de l'envoi. Veuillez réessayer.";
+      }
+    });
+  </script>
 
 </body>
 </html>
