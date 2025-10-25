@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mairie de Kolwezi - Portail Officiel</title>
-    <!-- Utilisation de la police Inter, moderne et lisible -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome pour les icônes modernes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <style>
@@ -108,6 +106,7 @@
             min-height: 80px;
         }
         
+        /* CORRECTION : Style pour l'image/logo réel, car il remplace l'icône fa-city */
         .logo {
             display: flex;
             align-items: center;
@@ -116,15 +115,16 @@
             font-weight: 800;
             text-transform: uppercase;
         }
-        .logo i {
+
+        .logo img {
+            height: 50px; /* Ajuster la taille du logo */
+            width: auto;
             margin-right: 12px;
-            color: var(--highlight-color); /* Icône de la Mairie en vert/cyan */
-            font-size: 34px;
-            transform: rotate(-10deg);
+            /* Si vous aviez un i.logo, il aurait eu ce style, mais j'utilise l'image */
             transition: transform 0.5s ease;
         }
-        .logo:hover i {
-             transform: rotate(0deg);
+        .logo:hover img {
+            transform: scale(1.05); /* Effet au survol du logo */
         }
 
         /* Styles de la Barre de Navigation (Desktop) */
@@ -528,16 +528,20 @@
                 padding: 0;
                 border-top: none;
                 transform: translateY(0);
-                opacity: 1; /* Rendu visible par JS sur 'active' */
-                display: none; 
+                opacity: 1; 
+                /* display: none; sera géré par la classe .active dans JS */
             }
             nav ul .submenu li a {
                 background-color: #ebf0f4;
                 padding-left: 40px;
                 color: var(--text-light);
             }
-            nav ul li.active .submenu {
-                display: block;
+            /* L'état "actif" sur mobile (clic) */
+            nav ul li.active-mobile .submenu {
+                 display: block; 
+            }
+            nav ul li.active-mobile > a i.fa-caret-down {
+                transform: rotate(180deg);
             }
             
             /* Footer Responsive */
@@ -547,6 +551,9 @@
             }
             .footer-column {
                 min-width: auto;
+            }
+            .footer-column h3 {
+                text-align: center; /* Centrer les titres de colonnes */
             }
             .footer-column ul li {
                 justify-content: center;
@@ -576,11 +583,11 @@
 
 <header>
     <div class="container header-content">
-        <!-- Logo et Titre -->
-       <a href="index.html" class="logo">
-    <img src="klz.jpeg" />
-</a>  
-        <!-- Navigation -->
+        <a href="index.html" class="logo">
+            <img src="klz.jpeg" alt="Logo de la Mairie de Kolwezi" />
+            MAIRIE DE KOLWEZI
+        </a>  
+        
         <nav role="navigation" aria-label="Menu principal">
             <button class="menu-toggle" aria-controls="main-menu" aria-expanded="false" title="Menu">
                 <i class="fa-solid fa-bars" id="menu-icon"></i>
@@ -612,7 +619,7 @@
                         <li><a href="alertes.html"><i class="fa-solid fa-triangle-exclamation"></i> Alertes et annonces</a></li>
                     </ul>
                 </li>
-                 <li class="has-submenu">
+                <li class="has-submenu">
                     <a href="demarches.html"><i class="fa-solid fa-file-signature me-2"></i>Démarches <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
                         <li><a href="formulaires.html"><i class="fa-solid fa-file-lines"></i> Formulaires</a></li>
@@ -623,23 +630,26 @@
                 <li class="has-submenu">
                     <a href="projets.html"><i class="fa-solid fa-chart-line me-2"></i>Projets <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
-                         <li><a href="projet_cours.html"><i class="fa-solid fa-file-lines"></i> Projet en cours</a></li>
+                        <li><a href="projet_cours.html"><i class="fa-solid fa-file-lines"></i> Projet en cours</a></li>
                         <li><a href="projet_futur.html"><i class="fa-solid fa-clock"></i> Projet futur</a></li>
                         <li><a href="part_coop.html"><i class="fa-solid fa-credit-card"></i>Partenariats et coopération </a></li>
+                    </ul>
                 </li>
                 <li class="has-submenu">
                     <a href="galerie.html"><i class="fa-solid fa-camera me-2"></i>Galerie <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
-                         <li><a href="photo.html"><i class="fa-solid fa-file-lines"></i>Photo</a></li>
+                        <li><a href="photo.html"><i class="fa-solid fa-file-lines"></i>Photo</a></li>
                         <li><a href="video.html"><i class="fa-solid fa-clock"></i>Video</a></li>
-                        <li><a href="cerenomie_officielle.html"><i class="fa-solid fa-credit-card"></i> Cerenomie officielle</a></li>
+                        <li><a href="cerenomie_officielle.html"><i class="fa-solid fa-credit-card"></i> Ceremonie officielle</a></li>
+                    </ul>
                 </li>
                 <li class="has-submenu">
                     <a href="contact.html"><i class="fa-solid fa-headset me-2"></i>Contact <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
-                         <li><a href="formulaire_contact.html"><i class="fa-solid fa-file-lines"></i> Formulaire de contact</a></li>
+                        <li><a href="formulaire_contact.html"><i class="fa-solid fa-file-lines"></i> Formulaire de contact</a></li>
                         <li><a href="adresse_numero.html"><i class="fa-solid fa-clock"></i> Adresses et numéros utiles.</a></li>
                         <li><a href="question_freq.html"><i class="fa-solid fa-credit-card"></i>Questions fréquentes sur les démarches et services.</a></li>
+                    </ul>
                 </li>
             </ul>
         </nav>
@@ -648,41 +658,34 @@
 
 <main>
     <div class="container">
-        <!-- Section Hero (Accueil) -->
         <section class="hero-section animated fade-in-up">
             <h1>Ensemble, Bâtissons la Ville de Kolwezi</h1>
             <p>Bienvenue sur le portail officiel de la Mairie de Kolwezi. Retrouvez ici toutes les informations, démarches et actualités pour mieux vivre votre ville.</p>
             <a href="demarches.html" class="hero-button">Faire une démarche en ligne <i class="fa-solid fa-arrow-right-long"></i></a>
         </section>
 
-        <!-- Section Services en Vedette -->
         <section class="section-services">
             <h2 class="section-title animated fade-in-up delay-1">Vos Services en Vedette</h2>
             <div class="feature-grid">
                 <a href="etat_civil.html" class="feature-card animated fade-in-up delay-1">
-                    <i class="fa-solid fa-users-viewfinder"></i> <!-- Icône mise à jour pour l'identification/registre -->
-                    <h4>État Civil</h4>
+                    <i class="fa-solid fa-users-viewfinder"></i> <h4>État Civil</h4>
                     <p>Déclaration de naissance, mariage, décès, et obtention d'actes en quelques clics.</p>
                 </a>
                 <a href="taxes_impots_locaux.html" class="feature-card animated fade-in-up delay-1">
-                    <i class="fa-solid fa-receipt"></i> <!-- Icône mise à jour pour facture/paiement -->
-                    <h4>Taxes et Impôts</h4>
+                    <i class="fa-solid fa-receipt"></i> <h4>Taxes et Impôts</h4>
                     <p>Consultez, déclarez et payez vos taxes et impôts locaux en toute simplicité en ligne.</p>
                 </a>
                 <a href="urbanisme_permis.html" class="feature-card animated fade-in-up delay-2">
-                    <i class="fa-solid fa-map-marked-alt"></i> <!-- Icône mise à jour pour urbanisme/planification -->
-                    <h4>Urbanisme & Logement</h4>
+                    <i class="fa-solid fa-map-marked-alt"></i> <h4>Urbanisme & Logement</h4>
                     <p>Déposez vos demandes de permis de construire, rénovation ou consultation des plans.</p>
                 </a>
                 <a href="contact.html" class="feature-card animated fade-in-up delay-2">
-                    <i class="fa-solid fa-life-ring"></i> <!-- Icône pour Support/Aide -->
-                    <h4>Support & Contact</h4>
+                    <i class="fa-solid fa-life-ring"></i> <h4>Support & Contact</h4>
                     <p>Trouvez rapidement les réponses à vos questions et les coordonnées des services municipaux.</p>
                 </a>
             </div>
         </section>
 
-        <!-- Section Actualités (Nouvelle version par cartes) -->
         <section class="section-announcements">
             <h2 class="section-title animated fade-in-up delay-2">Dernières Actualités & Alertes</h2>
             <div class="news-grid animated fade-in-up delay-2">
@@ -752,8 +755,7 @@
             <p>Restez connecté(e) pour toutes les annonces officielles.</p>
             <div class="footer-social-icons">
                 <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a> <!-- Twitter devient X -->
-                <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a> <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                 <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
             </div>
         </div>
@@ -769,7 +771,7 @@
     import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
     import { getFirestore, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
     
-    // Récupération des variables globales de l'environnement
+    // Récupération des variables globales de l'environnement (simulées)
     const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
     const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
     const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
@@ -810,6 +812,7 @@
     const mainMenu = document.getElementById('main-menu');
     const menuIcon = document.getElementById('menu-icon');
     const hasSubmenus = document.querySelectorAll('.has-submenu > a');
+    const mediaQuery = window.matchMedia('(max-width: 992px)');
 
     // 1. Gestion de l'ouverture/fermeture du menu principal
     const toggleMenu = () => {
@@ -819,7 +822,7 @@
         
         // Changer l'icône : Hamburger <-> X
         menuIcon.classList.toggle('fa-bars');
-        menuIcon.classList.toggle('fa-times');
+        menuIcon.classList.toggle('fa-xmark'); // L'icône 'fa-times' est obsolète, on utilise 'fa-xmark'
     };
 
     menuToggle.addEventListener('click', toggleMenu);
@@ -827,58 +830,26 @@
     // 2. Gestion de l'ouverture/fermeture des sous-menus au clic sur mobile (992px)
     hasSubmenus.forEach(link => {
         link.addEventListener('click', (e) => {
-            // Seulement si la fenêtre est considérée comme mobile
-            if (window.innerWidth <= 992) {
+            // Seulement si la fenêtre est considérée comme mobile (max-width: 992px)
+            if (mediaQuery.matches) {
+                // Empêcher la navigation par défaut
                 e.preventDefault(); 
                 
-                const parentLi = link.closest('li');
-                const isOpen = parentLi.classList.contains('active');
-
-                // Fermer tous les autres sous-menus ouverts
+                const parentLi = link.closest('.has-submenu');
+                
+                // Fermer les autres sous-menus ouverts
                 document.querySelectorAll('.has-submenu').forEach(item => {
-                    if (item !== parentLi) {
-                        item.classList.remove('active');
+                    if (item !== parentLi && item.classList.contains('active-mobile')) {
+                        item.classList.remove('active-mobile');
                     }
                 });
-                
-                // Basculer l'état du sous-menu cliqué
-                parentLi.classList.toggle('active');
-            }
-        });
-        
-        // Clic sur les liens des sous-menus pour fermer le menu principal (UX mobile)
-        const submenuLinks = link.parentNode.querySelectorAll('.submenu a');
-        submenuLinks.forEach(subLink => {
-            subLink.addEventListener('click', () => {
-                if (window.innerWidth <= 992 && mainMenu.classList.contains('open')) {
-                    toggleMenu();
-                }
-            });
-        });
-    });
-    
-    // Fermer le menu si la taille de l'écran change (de mobile à desktop)
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 992) {
-            mainMenu.classList.remove('open');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            menuIcon.classList.add('fa-bars');
-            menuIcon.classList.remove('fa-times');
-            // S'assurer que les sous-menus sont masqués pour le desktop si la classe 'active' persiste
-            document.querySelectorAll('.has-submenu').forEach(item => {
-                 item.classList.remove('active');
-            });
-        }
-    });
 
-    // Fonctionnalité pour les animations au chargement
-    window.onload = function() {
-        // Déclenche l'animation pour les éléments ayant la classe 'animated' au chargement de la page
-        document.querySelectorAll('.animated').forEach(el => {
-            el.style.opacity = 1; 
+                // Basculer l'état "actif" du sous-menu actuel
+                parentLi.classList.toggle('active-mobile');
+            }
+            // Si c'est sur Desktop, la navigation se fait normalement et le survol gère le menu.
         });
-    };
-    
+    });
 </script>
 
 </body>
