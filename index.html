@@ -4,21 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mairie de Kolwezi - Portail Officiel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Utilisation de la police Inter, moderne et lisible -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome pour les icônes modernes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <style>
-        /* ====== Variables CSS & Reset (Améliorées) ====== */
+        /* ====== Variables CSS & Reset ====== */
         :root {
             --primary-blue: #0A3D62; /* Bleu foncé Mairie */
-            --secondary-blue: #1E90FF; /* Bleu Royal dynamique d'accentuation */
-            --highlight-color: #FFC300; /* Jaune/Or pour la mise en lumière (couleur minérale) */
-            --text-dark: #1f2937; /* Gris foncé moderne */
-            --text-light: #6b7280; /* Gris doux */
-            --background-light: #f9fafb; /* Arrière-plan très clair */
-            --card-bg: white;
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --max-width: 1300px;
+            --secondary-blue: #0F52BA; /* Bleu vibrant d'accentuation */
+            --highlight-color: #26a69a; /* Couleur d'accentuation supplémentaire (Vert/Cyan) */
+            --text-dark: #2c3e50; /* Presque noir */
+            --text-light: #607d8b; /* Gris doux */
+            --background-light: #f4f7f9; /* Arrière-plan plus doux */
+            --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            --max-width: 1280px;
         }
 
         * {
@@ -26,22 +27,21 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--background-light);
             color: var(--text-dark);
             line-height: 1.6;
-            transition: background-color 0.3s;
         }
 
         a {
             text-decoration: none;
             color: var(--secondary-blue);
-            transition: color 0.3s, opacity 0.3s;
+            transition: color 0.3s, background-color 0.3s;
         }
         
-        /* ====== UTILS (Modifications Légères) ====== */
+        /* ====== UTILS ====== */
         .container {
             max-width: var(--max-width);
             margin: 0 auto;
@@ -50,13 +50,12 @@
         
         .section-title {
             text-align: center;
-            font-size: 38px;
-            font-weight: 700;
+            font-size: 32px;
+            font-weight: 800;
             color: var(--primary-blue);
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             position: relative;
-            padding-bottom: 20px;
-            text-transform: uppercase;
+            padding-bottom: 15px;
         }
         .section-title::after {
             content: '';
@@ -64,83 +63,71 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 5px;
+            width: 100px;
+            height: 4px;
             background-color: var(--highlight-color);
-            border-radius: 3px;
+            border-radius: 2px;
         }
 
-        /* ====== ANIMATIONS KEYFRAMES (Plus Fluides) ====== */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translate3d(0, 50px, 0); }
-            to { opacity: 1; transform: translate3d(0, 0, 0); }
+        /* ====== ANIMATIONS KEYFRAMES ====== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
         }
 
-        .animated-item {
+        .animated {
             animation-duration: 1s;
             animation-fill-mode: both;
         }
-        .slide-in-up {
-            animation-name: slideInUp;
+        .fade-in-up {
+            animation-name: fadeInUp;
         }
-        .delay-1 { animation-delay: 0.3s; }
-        .delay-2 { animation-delay: 0.5s; }
-        .delay-3 { animation-delay: 0.7s; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
 
-        /* ====== HEADER & NAVIGATION (Amélioré avec Logo) ====== */
+
+        /* ====== HEADER & NAVIGATION ====== */
         header {
-            background: var(--card-bg);
-            box-shadow: 0 5px 20px rgba(10, 61, 98, 0.1); /* Ombre plus bleutée */
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
             position: sticky;
             top: 0;
             z-index: 1000;
-            transition: all 0.3s ease;
         }
         
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            min-height: 90px;
+            min-height: 80px;
         }
         
-        .logo-container {
+        .logo {
             display: flex;
             align-items: center;
             color: var(--primary-blue);
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 26px;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
-        
-        /* Style du Logo Image */
-        .logo-img {
-            height: 60px; /* Taille ajustée pour le logo */
-            width: auto;
-            margin-right: 15px;
-            transition: transform 0.4s ease;
+        .logo i {
+            margin-right: 12px;
+            color: var(--highlight-color); /* Icône de la Mairie en vert/cyan */
+            font-size: 34px;
+            transform: rotate(-10deg);
+            transition: transform 0.5s ease;
         }
-        .logo-container:hover .logo-img {
-            transform: scale(1.05) rotate(-2deg);
+        .logo:hover i {
+             transform: rotate(0deg);
         }
 
-        .logo-text span {
-            display: block;
-            line-height: 1.2;
-        }
-        .logo-text small {
-            font-size: 0.55em;
-            font-weight: 400;
-            color: var(--text-light);
-            text-transform: none;
-        }
-
-        /* Styles de la Barre de Navigation */
+        /* Styles de la Barre de Navigation (Desktop) */
         nav ul {
             list-style: none;
             padding: 0;
@@ -149,7 +136,7 @@
         }
         nav ul li {
             position: relative;
-            margin-left: 30px;
+            margin-left: 25px;
         }
         nav ul li a {
             color: var(--text-dark);
@@ -157,227 +144,427 @@
             display: flex;
             align-items: center;
             font-weight: 600;
-            transition: color 0.3s, border-color 0.3s, transform 0.2s;
-            position: relative;
+            border-bottom: 3px solid transparent;
+            transition: color 0.3s, border-bottom 0.3s, transform 0.2s;
         }
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background-color: var(--secondary-blue);
-            transition: width 0.3s ease-out;
-        }
-
         nav ul li a:hover, nav ul li.active > a {
             color: var(--secondary-blue);
-        }
-        nav ul li a:hover::after, nav ul li.active > a::after {
-            width: 100%;
+            border-bottom-color: var(--secondary-blue);
+            transform: translateY(-2px);
         }
 
         /* Sous-menus (Dropdown) */
         nav ul .submenu {
-            /* ... Vos styles existants pour le submenu desktop ... */
-            border-top: 4px solid var(--highlight-color); /* Changement de couleur */
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 260px;
+            background: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            z-index: 1001;
+            padding: 10px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border-top: 4px solid var(--secondary-blue);
+            transform: translateY(10px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        nav ul li:hover .submenu {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+        nav ul .submenu li {
+            margin: 0;
+        }
+        nav ul .submenu li a {
+            color: var(--text-dark);
+            padding: 12px 20px;
+            font-weight: 500;
+            white-space: nowrap;
+            width: 100%;
+            border-bottom: none;
+            display: flex;
+            align-items: center;
+        }
+        nav ul .submenu li a i {
+            margin-right: 10px;
+            font-size: 0.9em;
         }
         nav ul .submenu li a:hover {
             background-color: var(--background-light);
             color: var(--primary-blue);
-            transform: translateX(5px); /* Petite animation de glissement */
+            transform: none;
         }
 
-        /* Bouton Hamburger (Amélioré) */
+        /* Indicateur de sous-menu */
+        .has-submenu > a i.fa-caret-down {
+            margin-left: 5px;
+            font-size: 0.7em;
+            transition: transform 0.3s ease;
+        }
+        nav ul li:hover > a i.fa-caret-down {
+            transform: rotate(180deg);
+        }
+
+        /* Bouton Hamburger (Mobile) */
         .menu-toggle {
-            /* ... Vos styles existants ... */
-            font-size: 30px;
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary-blue);
+            font-size: 34px;
+            cursor: pointer;
+            padding: 5px;
+            transition: transform 0.3s;
         }
-        .fa-times {
-            color: var(--highlight-color);
+        .menu-toggle:hover {
+            transform: scale(1.1);
         }
 
+        /* ====== MAIN CONTENT & HERO ====== */
+        main {
+            padding: 0 0 50px 0;
+        }
 
-        /* ====== MAIN CONTENT & HERO (Plus d'impact) ====== */
         .hero-section {
-            background: linear-gradient(120deg, var(--card-bg) 0%, #eef5ff 100%);
-            padding: 100px 20px;
-            border-radius: 18px;
-            box-shadow: 0 15px 40px rgba(15, 82, 186, 0.1);
+            background: linear-gradient(135deg, white 0%, var(--background-light) 100%);
+            padding: 80px 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
-            margin: 50px auto;
-            overflow: hidden;
+            margin: 40px auto;
         }
         .hero-section h1 {
             color: var(--primary-blue);
-            font-size: 56px;
+            font-size: 48px;
             margin-top: 0;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             line-height: 1.1;
             font-weight: 800;
         }
         .hero-section p {
-            font-size: 1.4em;
+            font-size: 1.3em;
             color: var(--text-light);
-            max-width: 950px;
-            margin: 0 auto 50px;
-            font-weight: 400;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            font-weight: 500;
         }
         .hero-button {
-            /* ... Vos styles existants ... */
-            background-color: var(--highlight-color);
-            color: var(--primary-blue);
-            box-shadow: 0 8px 20px rgba(255, 195, 0, 0.4);
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--secondary-blue);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 8px 20px rgba(15, 82, 186, 0.5);
+            text-transform: uppercase;
         }
-        .hero-button:hover {
-            background-color: #ffb700;
-            box-shadow: 0 12px 25px rgba(255, 195, 0, 0.6);
-        }
-
-        /* ====== FEATURE GRID (Services) (Amélioré) ====== */
-        .feature-card {
-            /* ... Vos styles existants ... */
-            border-bottom: 5px solid var(--secondary-blue); /* Couleur plus cohérente */
-        }
-        .feature-card i {
-            font-size: 52px;
-            color: var(--secondary-blue); /* Icône en bleu dynamique */
-        }
-        .feature-card:hover i {
-            color: var(--highlight-color); /* Highlight au survol */
-        }
-        .feature-card:hover {
-            transform: translateY(-10px); /* Animation de survol plus prononcée */
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-
-        /* ====== ANNOUNCEMENTS SECTION (News Grid) (Amélioré) ====== */
-        .news-grid {
-            /* ... Vos styles existants ... */
-        }
-
-        .news-card {
-            background: var(--card-bg);
-            border: none;
-            border-radius: 12px;
-            box-shadow: var(--card-shadow);
-        }
-        .news-header {
-            border-bottom: 3px solid var(--highlight-color); /* Bordure d'en-tête en couleur highlight */
-            background-color: #fcfcfc;
-            border-radius: 12px 12px 0 0;
-        }
-        .news-icon-wrapper {
-            color: var(--primary-blue); /* Icône plus foncée */
-        }
-        .news-body small {
-            color: var(--highlight-color);
-        }
-        .news-link {
-            color: var(--primary-blue);
-        }
-        .news-link i {
+        .hero-button i {
+            margin-left: 10px;
             transition: transform 0.3s;
         }
-        .news-card:hover .news-link i {
+        .hero-button:hover {
+            background-color: #0b4594;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(15, 82, 186, 0.6);
+        }
+        .hero-button:hover i {
             transform: translateX(5px);
         }
 
-
-        /* ====== FOOTER (Refait) ====== */
-        footer {
-            background: linear-gradient(to right, var(--primary-blue), #082d49); /* Gradient subtil */
-            color: rgba(255, 255, 255, 0.9);
-            padding: 60px 20px 30px;
-            margin-top: 80px;
+        /* ====== FEATURE GRID (Services) ====== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            text-align: center;
+            border-bottom: 5px solid var(--highlight-color);
             position: relative;
             overflow: hidden;
+            display: block; /* S'assurer que le lien occupe toute la carte */
         }
-        footer::before {
+        .feature-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23FFFFFF" opacity="0.05"/></svg>');
-            background-repeat: repeat;
-            z-index: 0;
-        }
-        .footer-content, .footer-bottom {
-            position: relative;
+            background: linear-gradient(to bottom, transparent 0%, rgba(10, 61, 98, 0.03) 100%);
             z-index: 1;
         }
-        .footer-column h3 {
-            font-size: 24px;
-            margin-bottom: 25px;
-            color: var(--highlight-color); /* Couleur d'or pour les titres */
-            border-bottom: 3px solid var(--secondary-blue);
-            padding-bottom: 8px;
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
-        .footer-column p {
+        .feature-card i {
+            font-size: 48px;
+            color: var(--highlight-color);
+            margin-bottom: 15px;
+            transition: color 0.3s;
+        }
+        .feature-card:hover i {
+            color: var(--secondary-blue);
+        }
+        .feature-card h4 {
+            font-size: 1.3em;
+            color: var(--primary-blue);
+            margin-top: 0;
+        }
+        .feature-card p {
             font-size: 0.95em;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-light);
         }
-        .footer-column ul li i {
+
+        /* ====== ANNOUNCEMENTS SECTION (News Grid - Améliorée) ====== */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e0e0e0;
+        }
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-header {
+            padding: 20px;
+            border-bottom: 3px solid var(--secondary-blue);
+            background-color: #fcfcfc;
+        }
+
+        .news-icon-wrapper {
+            float: left;
+            margin-right: 15px;
+            color: var(--secondary-blue);
+            font-size: 28px;
+            line-height: 1;
+        }
+
+        .news-header h5 {
+            margin: 0;
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--primary-blue);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .news-body {
+            padding: 20px;
+            flex-grow: 1;
+        }
+        .news-body small {
+            display: block;
+            margin-bottom: 10px;
             color: var(--highlight-color);
-            transition: transform 0.3s;
+            font-weight: 600;
+            font-size: 0.85em;
         }
-        .footer-column ul li:hover i {
-            transform: translateX(3px);
+        .news-body p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 0.95em;
         }
-        .footer-column ul li a:hover {
-            color: var(--highlight-color);
+        .news-link {
+            display: block;
+            text-align: right;
+            margin-top: 15px;
+            color: var(--secondary-blue);
+            font-weight: 600;
+        }
+        .news-link:hover {
             text-decoration: underline;
         }
 
-        /* Icones Sociales */
-        .footer-social-icons {
-            margin-top: 15px;
-        }
-        .footer-social-icons a {
-            background-color: rgba(255, 255, 255, 0.15);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 15px;
+
+        /* ====== FOOTER ====== */
+        footer {
+            background: var(--primary-blue);
             color: white;
+            padding: 40px 20px 20px;
         }
-        .footer-social-icons a:hover {
-            background-color: var(--highlight-color);
-            color: var(--primary-blue);
-            transform: scale(1.1) rotate(5deg);
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
         }
-        
-        /* Bottom */
-        .footer-bottom {
-            margin-top: 50px;
-            padding-top: 25px;
-            border-top: 1px dashed rgba(255, 255, 255, 0.3);
+        .footer-column {
+            flex: 1;
+            min-width: 280px;
+        }
+        .footer-column h3 {
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #90CAF9; /* Bleu clair pour le contraste */
+            border-bottom: 2px solid var(--highlight-color);
+            padding-bottom: 5px;
+            font-weight: 700;
+        }
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-column ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            font-size: 0.95em;
+        }
+        .footer-column ul li i {
+            margin-right: 10px;
+            color: var(--highlight-color);
+            font-size: 16px;
+            padding-top: 3px;
+        }
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.9);
+            transition: color 0.3s;
+        }
+        .footer-column ul li a:hover {
+            color: var(--highlight-color);
         }
 
-        /* ====== MEDIA QUERIES (Responsive Mobile) (Ajustements) ====== */
+        .footer-social-icons a {
+            color: white;
+            font-size: 26px;
+            margin-right: 18px;
+            transition: transform 0.3s, color 0.3s;
+            display: inline-block;
+        }
+        .footer-social-icons a:hover {
+            color: var(--highlight-color);
+            transform: scale(1.15) translateY(-2px);
+        }
+        .footer-bottom {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.85em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ====== MEDIA QUERIES (Responsive Mobile) ====== */
         @media (max-width: 992px) {
             .header-content {
-                min-height: 75px;
+                min-height: 65px;
             }
-            .logo-img {
-                height: 50px;
+            .logo {
+                font-size: 22px;
             }
-            .logo-container {
-                font-size: 20px;
+            
+            /* Menu Mobile */
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 65px; 
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+                padding: 10px 0;
             }
-            /* ... Vos autres styles mobile restent pertinents ... */
+            nav ul.open {
+                display: flex;
+            }
+            nav ul li {
+                margin: 0;
+            }
+            nav ul li a {
+                padding: 15px 20px;
+                border-bottom: none;
+                width: 100%;
+                justify-content: space-between;
+            }
+            nav ul li a:hover, nav ul li.active > a {
+                background-color: var(--background-light);
+                color: var(--primary-blue);
+                border-bottom: none;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+
+            /* Sous-menus mobile */
+            nav ul .submenu {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                border-radius: 0;
+                border: none;
+                padding: 0;
+                border-top: none;
+                transform: translateY(0);
+                opacity: 1; /* Rendu visible par JS sur 'active' */
+                display: none; 
+            }
+            nav ul .submenu li a {
+                background-color: #ebf0f4;
+                padding-left: 40px;
+                color: var(--text-light);
+            }
+            nav ul li.active .submenu {
+                display: block;
+            }
+            
+            /* Footer Responsive */
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-column {
+                min-width: auto;
+            }
+            .footer-column ul li {
+                justify-content: center;
+            }
+            .footer-column ul li i {
+                padding-top: 0; 
+            }
         }
         
         @media (max-width: 600px) {
             .hero-section h1 {
-                font-size: 38px;
+                font-size: 34px;
+            }
+            .hero-section p {
+                font-size: 1.1em;
+            }
+            .section-title {
+                font-size: 26px;
             }
             .hero-section {
                 padding: 60px 20px;
@@ -389,22 +576,19 @@
 
 <header>
     <div class="container header-content">
-        <a href="index.html" class="logo-container">
-            <img src="klz.jpeg.jpeg" alt="Logo de la Mairie de Kolwezi" class="logo-img">
-            <div class="logo-text">
-                <span>Kolwezi</span>
-                <small>Portail Officiel</small>
-            </div>
+        <!-- Logo et Titre -->
+        <a href="index.html" class="klz.jpeg">
+        <i class="fa-solid fa-gavel"></i>MAIRIE KOLWEZI
         </a>
         
+        <!-- Navigation -->
         <nav role="navigation" aria-label="Menu principal">
             <button class="menu-toggle" aria-controls="main-menu" aria-expanded="false" title="Menu">
                 <i class="fa-solid fa-bars" id="menu-icon"></i>
             </button>
             <ul id="main-menu">
-                <li class="active animated-item slide-in-up delay-1"><a href="index.html"><i class="fa-solid fa-house me-2"></i>Accueil</a></li>
-                
-                <li class="has-submenu animated-item slide-in-up delay-1">
+                <li class="active"><a href="index.html"><i class="fa-solid fa-house me-2"></i>Accueil</a></li>
+                <li class="has-submenu">
                     <a href="mairie.html"><i class="fa-solid fa-landmark me-2"></i>Mairie <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
                         <li><a href="histoire.html"><i class="fa-solid fa-book-open"></i> Histoire & Géographie</a></li>
@@ -412,8 +596,7 @@
                         <li><a href="services_municipaux.html"><i class="fa-solid fa-briefcase"></i> Services municipaux</a></li>
                     </ul>
                 </li>
-                
-                <li class="has-submenu animated-item slide-in-up delay-2">
+                <li class="has-submenu">
                     <a href="services.html"><i class="fa-solid fa-handshake me-2"></i>Services <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
                         <li><a href="etat_civil.html"><i class="fa-solid fa-passport"></i> État civil</a></li>
@@ -422,8 +605,7 @@
                         <li><a href="transport_voirie.html"><i class="fa-solid fa-bus"></i> Transports & Voirie</a></li>
                     </ul>
                 </li>
-                
-                <li class="has-submenu animated-item slide-in-up delay-2">
+                <li class="has-submenu">
                     <a href="actualites.html"><i class="fa-solid fa-newspaper me-2"></i>Actualités <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
                         <li><a href="communiques.html"><i class="fa-solid fa-bullhorn"></i> Communiqués officiels</a></li>
@@ -431,8 +613,7 @@
                         <li><a href="alertes.html"><i class="fa-solid fa-triangle-exclamation"></i> Alertes et annonces</a></li>
                     </ul>
                 </li>
-                
-                <li class="has-submenu animated-item slide-in-up delay-3">
+                 <li class="has-submenu">
                     <a href="demarches.html"><i class="fa-solid fa-file-signature me-2"></i>Démarches <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
                         <li><a href="formulaires.html"><i class="fa-solid fa-file-lines"></i> Formulaires</a></li>
@@ -440,15 +621,9 @@
                         <li><a href="paiement.html"><i class="fa-solid fa-credit-card"></i> Paiement en ligne</a></li>
                     </ul>
                 </li>
-                
-                <li class="has-submenu animated-item slide-in-up delay-3">
-                    <a href="contact.html"><i class="fa-solid fa-phone-volume me-2"></i>Contact <i class="fa-solid fa-caret-down"></i></a>
-                    <ul class="submenu">
-                        <li><a href="formulaire_contact.html">Formulaire de contact</a></li>
-                        <li><a href="adresses_utiles.html">Adresses & Numéros utiles</a></li>
-                        <li><a href="faq.html">Questions fréquentes (FAQ)</a></li>
-                    </ul>
-                </li>
+                <li><a href="projets.html"><i class="fa-solid fa-chart-line me-2"></i>Projets</a></li>
+                <li><a href="galerie.html"><i class="fa-solid fa-camera me-2"></i>Galerie</a></li>
+                <li><a href="contact.html"><i class="fa-solid fa-headset me-2"></i>Contact / FAQ</a></li>
             </ul>
         </nav>
     </div>
@@ -456,37 +631,44 @@
 
 <main>
     <div class="container">
-        <section class="hero-section animated-item slide-in-up">
+        <!-- Section Hero (Accueil) -->
+        <section class="hero-section animated fade-in-up">
             <h1>Ensemble, Bâtissons la Ville de Kolwezi</h1>
             <p>Bienvenue sur le portail officiel de la Mairie de Kolwezi. Retrouvez ici toutes les informations, démarches et actualités pour mieux vivre votre ville.</p>
             <a href="demarches.html" class="hero-button">Faire une démarche en ligne <i class="fa-solid fa-arrow-right-long"></i></a>
         </section>
 
+        <!-- Section Services en Vedette -->
         <section class="section-services">
-            <h2 class="section-title animated-item slide-in-up delay-1">Vos Services en Vedette</h2>
+            <h2 class="section-title animated fade-in-up delay-1">Vos Services en Vedette</h2>
             <div class="feature-grid">
-                <a href="etat_civil.html" class="feature-card animated-item slide-in-up delay-1">
-                    <i class="fa-solid fa-users-viewfinder"></i> <h4>État Civil</h4>
+                <a href="etat_civil.html" class="feature-card animated fade-in-up delay-1">
+                    <i class="fa-solid fa-users-viewfinder"></i> <!-- Icône mise à jour pour l'identification/registre -->
+                    <h4>État Civil</h4>
                     <p>Déclaration de naissance, mariage, décès, et obtention d'actes en quelques clics.</p>
                 </a>
-                <a href="taxes_impots_locaux.html" class="feature-card animated-item slide-in-up delay-2">
-                    <i class="fa-solid fa-receipt"></i> <h4>Taxes et Impôts</h4>
+                <a href="taxes_impots_locaux.html" class="feature-card animated fade-in-up delay-1">
+                    <i class="fa-solid fa-receipt"></i> <!-- Icône mise à jour pour facture/paiement -->
+                    <h4>Taxes et Impôts</h4>
                     <p>Consultez, déclarez et payez vos taxes et impôts locaux en toute simplicité en ligne.</p>
                 </a>
-                <a href="urbanisme_permis.html" class="feature-card animated-item slide-in-up delay-3">
-                    <i class="fa-solid fa-map-marked-alt"></i> <h4>Urbanisme & Logement</h4>
+                <a href="urbanisme_permis.html" class="feature-card animated fade-in-up delay-2">
+                    <i class="fa-solid fa-map-marked-alt"></i> <!-- Icône mise à jour pour urbanisme/planification -->
+                    <h4>Urbanisme & Logement</h4>
                     <p>Déposez vos demandes de permis de construire, rénovation ou consultation des plans.</p>
                 </a>
-                <a href="contact.html" class="feature-card animated-item slide-in-up delay-4">
-                    <i class="fa-solid fa-life-ring"></i> <h4>Support & Contact</h4>
+                <a href="contact.html" class="feature-card animated fade-in-up delay-2">
+                    <i class="fa-solid fa-life-ring"></i> <!-- Icône pour Support/Aide -->
+                    <h4>Support & Contact</h4>
                     <p>Trouvez rapidement les réponses à vos questions et les coordonnées des services municipaux.</p>
                 </a>
             </div>
         </section>
 
+        <!-- Section Actualités (Nouvelle version par cartes) -->
         <section class="section-announcements">
-            <h2 class="section-title animated-item slide-in-up delay-1">Dernières Actualités & Alertes</h2>
-            <div class="news-grid animated-item slide-in-up delay-2">
+            <h2 class="section-title animated fade-in-up delay-2">Dernières Actualités & Alertes</h2>
+            <div class="news-grid animated fade-in-up delay-2">
                 
                 <div class="news-card">
                     <div class="news-header">
@@ -529,11 +711,10 @@
     </div>
 </main>
 
-<footer class="animated-item fadeIn delay-3">
+<footer class="animated fade-in-up delay-2">
     <div class="container footer-content">
         <div class="footer-column">
             <h3>Mairie de Kolwezi</h3>
-            <p>Notre engagement : Servir les citoyens pour bâtir ensemble une ville dynamique et prospère.</p>
             <ul>
                 <li><i class="fa-solid fa-location-dot"></i> 100, Avenue Lumumba, Kolwezi</li>
                 <li><i class="fa-solid fa-phone"></i> +243 999 000 111 (Standard)</li>
@@ -541,39 +722,32 @@
             </ul>
         </div>
         <div class="footer-column">
-            <h3>Explorer</h3>
+            <h3>Liens rapides</h3>
             <ul>
-                <li><i class="fa-solid fa-chevron-right"></i> <a href="mairie.html">Présentation de la Mairie</a></li>
-                <li><i class="fa-solid fa-chevron-right"></i> <a href="actualites.html">Toutes les Actualités</a></li>
-                <li><i class="fa-solid fa-chevron-right"></i> <a href="urbanisme_permis.html">Infos Urbanisme</a></li>
-                <li><i class="fa-solid fa-chevron-right"></i> <a href="galerie.html">Galerie Photos & Vidéos</a></li>
-                <li><i class="fa-solid fa-chevron-right"></i> <a href="faq.html">FAQ</a></li>
+                <li><i class="fa-solid fa-chevron-right"></i> <a href="etat_civil.html">État civil</a></li>
+                <li><i class="fa-solid fa-chevron-right"></i> <a href="rendezvous.html">Prise de rendez-vous</a></li>
+                <li><i class="fa-solid fa-chevron-right"></i> <a href="projets.html">Projets en cours</a></li>
+                <li><i class="fa-solid fa-chevron-right"></i> <a href="formulaire_contact.html">Formulaire de contact</a></li>
             </ul>
         </div>
         <div class="footer-column">
-            <h3>Connectez-vous</h3>
-            <p>Restez informé(e) des décisions et des événements en nous suivant sur les réseaux sociaux.</p>
+            <h3>Suivez-nous</h3>
+            <p>Restez connecté(e) pour toutes les annonces officielles.</p>
             <div class="footer-social-icons">
                 <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a> 
+                <a href="#" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a> <!-- Twitter devient X -->
                 <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                 <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            </div>
-            <div style="margin-top: 20px;">
-                <a href="contact.html" class="hero-button" style="padding: 10px 20px; font-size: 0.9em; background-color: var(--secondary-blue); color: white; box-shadow: none; border-radius: 6px;">
-                    Écrire au Maire <i class="fa-solid fa-paper-plane"></i>
-                </a>
             </div>
         </div>
     </div>
     <div class="container footer-bottom">
-        <p>Gouvernance & Transparence | &copy; 2025 Mairie de Kolwezi - Tous droits réservés.</p>
+        &copy; 2025 Mairie de Kolwezi - Tous droits réservés. Propulsé par la République Démocratique du Congo.
     </div>
 </footer>
 
 <script type="module">
-    // L'initialisation Firebase est conservée telle quelle, assurant la compatibilité avec l'environnement
-    // si les variables globales sont définies.
+    // Import des modules Firebase v11.6.1
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
     import { getFirestore, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
@@ -650,59 +824,45 @@
                     }
                 });
                 
-                // Toggle l'état du sous-menu actuel
+                // Basculer l'état du sous-menu cliqué
                 parentLi.classList.toggle('active');
-
-                // Mettre à jour l'icône du menu (facultatif, car déjà géré par CSS, mais bonne pratique)
-                const caret = link.querySelector('.fa-caret-down');
-                if(caret) {
-                    caret.style.transform = parentLi.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+            }
+        });
+        
+        // Clic sur les liens des sous-menus pour fermer le menu principal (UX mobile)
+        const submenuLinks = link.parentNode.querySelectorAll('.submenu a');
+        submenuLinks.forEach(subLink => {
+            subLink.addEventListener('click', () => {
+                if (window.innerWidth <= 992 && mainMenu.classList.contains('open')) {
+                    toggleMenu();
                 }
-            }
+            });
         });
     });
-
-    // 3. Animation des éléments au Scroll (ScrollReveal simple)
-    const observeElements = document.querySelectorAll('.animated-item');
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible'); // On pourrait ajouter une classe 'visible' pour déclencher l'animation
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        rootMargin: '0px 0px -10% 0px', // Déclenche un peu avant d'atteindre le bas de l'écran
-        threshold: 0.1 // Déclenche lorsque 10% de l'élément est visible
-    });
-
-    observeElements.forEach(item => {
-        observer.observe(item);
-    });
-
-    // 4. Ajout de la classe 'visible' qui déclenche l'animation slideInUp.
-    // Il faut adapter les styles CSS existants pour que l'animation se déclenche uniquement sur 'visible'
-    // Je retire l'animation par défaut sur `.animated-item` et l'ajoute sur `.animated-item.visible`
     
-    const styleElement = document.createElement('style');
-    styleElement.textContent = `
-        .animated-item {
-            opacity: 0;
-            /* Retire l'animation par défaut pour qu'elle se déclenche au scroll */
-            animation-name: none !important;
+    // Fermer le menu si la taille de l'écran change (de mobile à desktop)
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 992) {
+            mainMenu.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuIcon.classList.add('fa-bars');
+            menuIcon.classList.remove('fa-times');
+            // S'assurer que les sous-menus sont masqués pour le desktop si la classe 'active' persiste
+            document.querySelectorAll('.has-submenu').forEach(item => {
+                 item.classList.remove('active');
+            });
         }
-        .animated-item.visible.slide-in-up {
-            animation-name: slideInUp !important;
-            opacity: 1;
-        }
-        .animated-item.visible.fadeIn {
-            animation-name: fadeIn !important;
-            opacity: 1;
-        }
-    `;
-    document.head.appendChild(styleElement);
+    });
 
+    // Fonctionnalité pour les animations au chargement
+    window.onload = function() {
+        // Déclenche l'animation pour les éléments ayant la classe 'animated' au chargement de la page
+        document.querySelectorAll('.animated').forEach(el => {
+            el.style.opacity = 1; 
+        });
+    };
+    
 </script>
+
 </body>
 </html>
