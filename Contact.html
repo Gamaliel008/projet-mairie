@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact / FAQ - Mairie</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f7faff;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0077b6, #00b4d8);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    nav {
+      background-color: white;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #0077b6;
+      padding: 0.8rem 1.2rem;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav a:hover, nav a.active {
+      background-color: #00b4d8;
+      color: white;
+      border-radius: 8px;
+    }
+
+    .contact-container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+        .contact-container {
+            grid-template-columns: 2fr 1fr; /* 2 colonnes pour les grands écrans */
+        }
+    }
+
+
+    h2 {
+      color: #0077b6;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      grid-column: 1 / -1; /* Les titres prennent toute la largeur */
+    }
+
+    .contact-form, .info-section, .faq-section {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    
+    /* Styles spécifiques au formulaire */
+    .contact-form {
+        grid-column: 1 / -1; /* Le formulaire prend toute la largeur sur mobile et 2/3 sur desktop */
+    }
+    
+    @media (min-width: 768px) {
+        .contact-form {
+            grid-column: 1 / 2;
+        }
+    }
+
+    .contact-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #0077b6;
+    }
+
+    .contact-form input, .contact-form textarea {
+        width: 100%;
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box; /* Assure que le padding n'augmente pas la largeur */
+        transition: border-color 0.3s;
+    }
+
+    .contact-form input:focus, .contact-form textarea:focus {
+        border-color: #00b4d8;
+        outline: none;
+    }
+
+    .contact-form button {
+        background-color: #00b4d8;
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+    }
+
+    .contact-form button:hover {
+        background-color: #0077b6;
+    }
+
+    /* Styles des infos utiles */
+    .info-section {
+        grid-column: 1 / -1; /* Prend toute la largeur sur mobile */
+    }
+
+    @media (min-width: 768px) {
+        .info-section {
+            grid-column: 2 / 3; /* Prend la colonne de droite sur desktop */
+            /* Pour s'assurer que cette section est toujours en bas à droite */
+            align-self: start; 
+        }
+    }
+
+    .info-section ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .info-section li {
+        margin-bottom: 1rem;
+        border-bottom: 1px dashed #eee;
+        padding-bottom: 0.5rem;
+    }
+    
+    .info-section li:last-child {
+        border-bottom: none;
+    }
+    
+    .info-section strong {
+        color: #00b4d8;
+        display: block;
+        margin-bottom: 0.2rem;
+    }
+
+    /* Styles de la FAQ */
+    .faq-section {
+        grid-column: 1 / -1;
+    }
+    
+    .faq-item {
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    .faq-question {
+        background-color: #e6f3ff;
+        padding: 0.8rem 1.2rem;
+        cursor: pointer;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #0077b6;
+        transition: background-color 0.3s;
+    }
+    
+    .faq-question:hover {
+        background-color: #d1e8ff;
+    }
+
+    .faq-answer {
+        padding: 0 1.2rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        background-color: white;
+    }
+    
+    .faq-answer p {
+        padding-top: 0;
+        margin-top: 0;
+        padding-bottom: 1rem;
+    }
+    
+    .faq-answer.open {
+        max-height: 200px; /* Taille approximative pour l'animation */
+        padding: 0.8rem 1.2rem;
+    }
+    
+    .faq-question span {
+        font-size: 1.2rem;
+        transition: transform 0.3s;
+    }
+    
+    .faq-question.active span {
+        transform: rotate(45deg);
+    }
+
+
+    footer {
+      background-color: #0077b6;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Contact & FAQ</h1>
+    <p>Besoin d'aide ? Contactez-nous ou trouvez rapidement la réponse à vos questions.</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="mairie.html">La Mairie</a>
+    <a href="actualites.html">Actualités</a>
+    <a href="services.html">Services</a>
+    <a href="demarches.html">Démarches</a>
+    <a href="projets.html">Projets</a>
+    <a href="galerie.html">Galerie</a>
+    <a href="contact.html" class="active">Contact</a> </nav>
+
+  <div class="contact-container">
+    
+    <h2>Écrivez-nous</h2>
+    
+    <div class="contact-form">
+      <form action="#" method="POST">
+        <div>
+          <label for="name">Votre Nom et Prénom :</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+          <label for="email">Votre Adresse e-mail :</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+          <label for="subject">Objet de votre message :</label>
+          <input type="text" id="subject" name="subject" required>
+        </div>
+        <div>
+          <label for="message">Votre Message :</label>
+          <textarea id="message" name="message" rows="6" required></textarea>
+        </div>
+        <button type="submit">Envoyer le message</button>
+      </form>
+    </div>
+    
+    <div class="info-section">
+      <h3>🏛️ Adresses et Numéros Utiles</h3>
+      <ul>
+        <li>
+          <strong>Hôtel de Ville (Mairie)</strong>
+          <p>Avenue Principale, Quartier Administratif<br>Kolwezi, RDC</p>
+        </li>
+        <li>
+          <strong>Standard Téléphonique</strong>
+          <p>+243 81 123 4567 (Disponible de 8h à 16h)</p>
+        </li>
+        <li>
+          <strong>Service État Civil</strong>
+          <p>+243 99 234 5678 | etatcivil@mairie-kolwezi.cd</p>
+        </li>
+        <li>
+          <strong>Police Municipale (Urgence)</strong>
+          <p>101 ou +243 85 345 6789</p>
+        </li>
+      </ul>
+    </div>
+    
+    <h2 style="margin-top: 0.5rem;">💡 Questions Fréquemment Posées (FAQ)</h2>
+    <div class="faq-section">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>+</span>
+          Comment obtenir un acte de naissance ? 
+        </div>
+        <div class="faq-answer">
+          <p>Vous devez vous présenter au service de l'État Civil de la Mairie avec une copie de votre carte d'identité ou passeport et fournir le livret de famille ou le certificat de naissance de l'hôpital.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>+</span>
+          Quelles sont les heures d'ouverture de la Mairie ?
+        </div>
+        <div class="faq-answer">
+          <p>La Mairie est ouverte du lundi au vendredi de 8h00 à 16h00. Certains services peuvent avoir des horaires spécifiques (voir la section "Services").</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>+</span>
+          Comment signaler un problème sur la voirie (nid de poule, éclairage défectueux) ?
+        </div>
+        <div class="faq-answer">
+          <p>Veuillez utiliser le formulaire de contact ci-dessus en choisissant "Voirie et Infrastructures" comme objet, ou contacter directement le Service Technique au +243 81 987 6543.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Mairie de Kolwezi — Tous droits réservés | Contact : info@mairie-kolwezi.cd</p>
+  </footer>
+
+  <script>
+    function toggleFAQ(questionElement) {
+      const answerElement = questionElement.nextElementSibling;
+      const plusSign = questionElement.querySelector('span');
+
+      // Fermer tous les autres FAQ
+      document.querySelectorAll('.faq-question').forEach(q => {
+        if (q !== questionElement && q.classList.contains('active')) {
+          q.classList.remove('active');
+          q.nextElementSibling.classList.remove('open');
+          q.querySelector('span').style.transform = 'rotate(0deg)';
+          q.nextElementSibling.style.maxHeight = '0';
+          q.nextElementSibling.style.padding = '0 1.2rem';
+        }
+      });
+      
+      // Ouvrir/Fermer l'élément actuel
+      questionElement.classList.toggle('active');
+
+      if (answerElement.classList.contains('open')) {
+        answerElement.classList.remove('open');
+        plusSign.style.transform = 'rotate(0deg)';
+        answerElement.style.maxHeight = '0';
+        answerElement.style.padding = '0 1.2rem'; // Réinitialiser le padding vertical
+      } else {
+        answerElement.classList.add('open');
+        plusSign.style.transform = 'rotate(45deg)';
+        // Mettre une hauteur suffisante pour l'animation et l'ouvrir
+        answerElement.style.maxHeight = answerElement.scrollHeight + "px"; 
+        answerElement.style.padding = '0.8rem 1.2rem'; // Appliquer le padding d'ouverture
+      }
+    }
+    
+    // Pour que la FAQ soit correctement affichée au chargement si elle était déjà 'open'
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.faq-answer').forEach(answer => {
+            answer.style.maxHeight = '0'; // Assurez-vous qu'elles sont fermées au départ
+        });
+    });
+  </script>
+
+</body>
+</html>
