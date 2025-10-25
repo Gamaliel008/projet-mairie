@@ -1,1 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mairie de Kolwezi</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background-color: #f8f9fb;
+      color: #222;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(90deg, #002a5c, #0055a5);
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      font-size: 1.3em;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffcc00;
+    }
+
+    /* Slider */
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 55vh;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 10%;
+      left: 5%;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    /* Section principale */
+    main {
+      padding: 40px 60px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #003366;
+      margin-bottom: 10px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    /* Accès rapides */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      font-weight: 600;
+      color: #003366;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background-color: #eef4ff;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(90deg, #003366, #004c99);
+      color: white;
+      padding: 30px 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    footer div {
+      margin: 10px;
+      min-width: 200px;
+    }
+
+    footer h3 {
+      color: #ffcc00;
+      margin-bottom: 10px;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .socials a {
+      margin-right: 8px;
+      color: white;
+      font-size: 1.2em;
+    }
+
+    .copyright {
+      width: 100%;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.3);
+      margin-top: 20px;
+      padding-top: 10px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <h1>🏛️ Mairie de Kolwezi</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">La Mairie</a></li>
+        <li><a href="#">Actualités</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Démarches</a></li>
+        <li><a href="#">Projets</a></li>
+        <li><a href="#">Transparence</a></li>
+        <li><a href="#">Participation</a></li>
+        <li><a href="#">Galerie</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- SLIDER -->
+  <section class="slider">
+    <div class="slide active">
+      <img src="https://source.unsplash.com/1600x900/?city,government" alt="Vue de la mairie">
+      <div class="caption">
+        <h2>Bienvenue sur le site de la Mairie de Kolwezi</h2>
+        <p>Proche de vous, au service de tous les citoyens.</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="https://source.unsplash.com/1600x900/?urban,kolwezi" alt="Kolwezi ville">
+      <div class="caption">
+        <h2>Des services modernes pour tous</h2>
+        <p>Découvrez nos démarches en ligne et services numériques.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main>
+    <section>
+      <h2>Mot du Maire</h2>
+      <p>
+        Chers habitants de Kolwezi, notre engagement est clair : construire une ville durable, 
+        propre et prospère, où chaque citoyen participe activement à la gestion locale.
+      </p>
+    </section>
+
+    <section>
+      <h2>Accès rapide</h2>
+      <div class="cards">
+        <div class="card">🧾 État civil</div>
+        <div class="card">💰 Taxes & impôts</div>
+        <div class="card">📑 Démarches en ligne</div>
+        <div class="card">🏗️ Projets & développement</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <h3>Mairie de Kolwezi</h3>
+      <p>📍 Avenue Lumumba, Kolwezi</p>
+      <p>📞 +243 990 090 101</p>
+      <p>✉️ contact@mairiekolwezi.cd</p>
+    </div>
+
+    <div>
+      <h3>Liens rapides</h3>
+      <p><a href="#">Accueil</a></p>
+      <p><a href="#">Services</a></p>
+      <p><a href="#">Projets</a></p>
+      <p><a href="#">Actualités</a></p>
+    </div>
+
+    <div>
+      <h3>Suivez-nous</h3>
+      <div class="socials">
+        <a href="#">🌐</a>
+        <a href="#">📘</a>
+        <a href="#">🐦</a>
+        <a href="#">📸</a>
+      </div>
+    </div>
+
+    <div class="copyright">
+      &copy; 2025 Mairie de Kolwezi — Tous droits réservés
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script type="module">
+    /* ---------------------------
+       🔥 Configuration Firebase
+    ----------------------------*/
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCr3MVt72I5aa_v0IBw7tC142kBjQJTdbU",
+      authDomain: "mairie-web-site.firebaseapp.com",
+      projectId: "mairie-web-site",
+      storageBucket: "mairie-web-site.firebasestorage.app",
+      messagingSenderId: "518997735244",
+      appId: "1:518997735244:web:a4af3a25470a39e20401e9"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    console.log("✅ Firebase initialisé :", app);
+
+    /* ---------------------------
+       🎞️ Slider automatique
+    ----------------------------*/
+    const slides = document.querySelectorAll('.slide');
+    let index = 0;
+
+    function showSlide() {
+      slides.forEach((s, i) => s.classList.toggle('active', i === index));
+      index = (index + 1) % slides.length;
+    }
+
+    setInterval(showSlide, 5000);
+  </script>
+</body>
+</html>
 
