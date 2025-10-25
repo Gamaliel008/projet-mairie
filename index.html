@@ -1,713 +1,223 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mairie de Kolwezi - Accueil</title>
-    <!-- Chargement de Tailwind CSS pour un design moderne et responsive --><script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chargement de Lucide Icons pour des icônes modernes --><script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Police Google Fonts inspirée par le site du Lualaba (Open Sans ou équivalent) --><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Configuration générale de Tailwind */
-        :root {
-            /* Couleurs inspirées de https://www.provincelualaba.cd/ */
-            --color-primary-lualaba: #0A3D62; /* Bleu foncé principal, similaire au header */
-            --color-secondary-lualaba: #3498db; /* Bleu moyen pour les accents */
-            --color-accent-lualaba: #FFC312; /* Jaune pour l'accentuation des liens/boutons */
-            --color-background-lualaba: #F0F2F5; /* Gris clair pour les fonds de section */
-            --color-text-lualaba: #333333; /* Texte plus foncé */
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mairie de Kolwezi</title>
+<style>
+    /* ----------------- Reset & Base ----------------- */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { line-height: 1.6; color: #333; background: #f4f7f6; }
 
-        /* Utilisation de la police Open Sans */
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: var(--color-background-lualaba);
-            color: var(--color-text-lualaba);
-            scroll-behavior: smooth;
-        }
+    /* ----------------- HEADER / NAVBAR ----------------- */
+    header { background: #005B4F; color: #fff; padding: 15px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
+    .logo h1 { font-size: 1.8em; color: #fff; }
+    nav a { color: #fff; text-decoration: none; margin: 0 15px; font-weight: 600; transition: 0.3s; }
+    nav a:hover { color: #FFC107; }
+    .menu-item { position: relative; }
+    .submenu { display: none; position: absolute; top: 35px; left: 0; background: #00796B; padding: 10px; border-radius: 5px; }
+    .submenu a { display: block; margin: 5px 0; }
+    .menu-item:hover .submenu { display: block; }
 
-        /* Styles des boutons principaux inspirés du site */
-        .btn-primary {
-            background-color: var(--color-primary-lualaba);
-            color: white;
-            transition: all 0.3s ease;
-            border-radius: 0.5rem; /* Coins légèrement arrondis */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
+    /* ----------------- SLIDER ----------------- */
+    .slider { position: relative; overflow: hidden; max-height: 450px; margin-bottom: 40px; }
+    .slides { display: flex; transition: transform 0.5s ease-in-out; }
+    .slide { min-width: 100%; position: relative; }
+    .slide img { width: 100%; height: 450px; object-fit: cover; filter: brightness(80%); }
+    .slide-caption { position: absolute; bottom: 30px; left: 30px; background: rgba(0,0,0,0.5); color: #fff; padding: 15px 25px; border-radius: 5px; font-size: 1.2em; }
 
-        .btn-primary:hover {
-            background-color: var(--color-secondary-lualaba);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-            transform: translateY(-2px);
-        }
+    /* ----------------- Sections ----------------- */
+    section { padding: 60px 20px; max-width: 1200px; margin: auto; }
+    h2 { color: #005B4F; margin-bottom: 25px; border-bottom: 3px solid #005B4F; display: inline-block; padding-bottom: 5px; }
+    h3 { margin-bottom: 15px; color: #00796B; }
+    p, li { margin-bottom: 10px; }
+    ul { list-style: disc; margin-left: 25px; }
 
-        /* Styles des liens d'accentuation */
-        .link-accent {
-            color: var(--color-accent-lualaba);
-            transition: color 0.3s ease;
-        }
+    /* ----------------- Cards ----------------- */
+    .cards { display: flex; flex-wrap: wrap; gap: 20px; }
+    .card { background: #fff; padding: 20px; flex: 1 1 300px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
 
-        .link-accent:hover {
-            color: #E6B000; /* Une teinte plus foncée au survol */
-        }
+    /* ----------------- Buttons ----------------- */
+    button { background: #00796B; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+    button:hover { background: #004D40; }
 
-        /* Styles de la barre de navigation fixe */
-        #navbar {
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Ombre plus prononcée */
-            background-image: linear-gradient(to right, var(--color-primary-lualaba), var(--color-secondary-lualaba)); /* Dégradé inspiré */
-            color: white;
-        }
+    /* ----------------- Footer ----------------- */
+    footer { background: #005B4F; color: #fff; text-align: center; padding: 25px 20px; margin-top: 50px; }
+    footer a { color: #FFC107; text-decoration: none; }
 
-        #navbar a {
-            color: white;
-            transition: color 0.3s ease;
-        }
-
-        #navbar a:hover {
-            color: var(--color-accent-lualaba);
-        }
-
-        /* Styles spécifiques pour l'animation du slider */
-        .slider-item {
-            display: none;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .slider-item.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        /* Animation au survol des cartes */
-        .card-service {
-            transition: all 0.3s ease;
-            border-radius: 0.75rem; /* Plus arrondi */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Ombre par défaut */
-        }
-
-        .card-service:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(10, 61, 98, 0.15); /* Ombre plus intense au survol */
-        }
-
-        /* Styles des titres de section */
-        h2 {
-            color: var(--color-primary-lualaba);
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--color-accent-lualaba);
-            border-radius: 2px;
-        }
-
-        /* Styles des titres de sous-section */
-        h3 {
-            color: var(--color-primary-lualaba);
-        }
-
-        /* Boutons de navigation du slider */
-        .dot.active {
-            background-color: var(--color-accent-lualaba); /* Dot actif en couleur d'accent */
-        }
-        .dot:not(.active) {
-            background-color: white; /* Dot inactif en blanc */
-        }
-    </style>
+    /* ----------------- Responsive ----------------- */
+    @media(max-width:768px){
+        nav { flex-direction: column; gap: 10px; }
+        .cards { flex-direction: column; }
+        .slide-caption { font-size: 1em; bottom: 15px; left: 15px; padding: 10px 15px; }
+    }
+</style>
 </head>
+<body>
 
-<body class="text-gray-800">
-
-    <!-- BARRE DE NAVIGATION FIXE --><header id="navbar" class="fixed top-0 left-0 w-full z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <!-- Logo/Titre --><a href="#accueil" class="flex items-center space-x-2">
-                <span class="text-2xl font-extrabold text-white">KOLWEZI</span>
-                <span class="text-xl font-medium" style="color: var(--color-accent-lualaba);">MAIRIE</span>
-            </a>
-
-            <!-- Menu Desktop --><nav class="hidden md:flex space-x-8 text-sm font-semibold">
-                <a href="#accueil" class="hover:text-gray-200 transition duration-150">Accueil</a>
-                <a href="#institution" class="hover:text-gray-200 transition duration-150">La Mairie</a>
-                <a href="#actualites" class="hover:text-gray-200 transition duration-150">Actualités</a>
-                <a href="#services" class="hover:text-gray-200 transition duration-150">Services Citoyens</a>
-                <a href="#demarches" class="hover:text-gray-200 transition duration-150">Démarches en ligne</a>
-                <a href="#projets" class="hover:text-gray-200 transition duration-150">Projets</a>
-                <a href="#galerie" class="hover:text-gray-200 transition duration-150">Galerie</a>
-                <a href="#contact" class="hover:text-gray-200 transition duration-150">Contact</a>
-            </nav>
-
-            <!-- Bouton Menu Mobile --><button id="mobile-menu-button" class="md:hidden p-2 rounded-lg focus:outline-none bg-white bg-opacity-20 text-white">
-                <i data-lucide="menu"></i>
-            </button>
+<!-- ----------------- HEADER / NAVBAR ----------------- -->
+<header>
+    <nav>
+        <div class="logo"><h1>Mairie de Kolwezi</h1></div>
+        <div class="menu">
+            <a href="#accueil">Accueil</a>
+            <div class="menu-item">
+                <a href="#mairie">La Mairie</a>
+                <div class="submenu">
+                    <a href="#presentation">Présentation</a>
+                    <a href="#organigramme">Organigramme</a>
+                    <a href="#services">Services</a>
+                    <a href="#contact">Contact & horaires</a>
+                </div>
+            </div>
+            <a href="#actualites">Actualités & Événements</a>
+            <a href="#services-citoyens">Services aux citoyens</a>
+            <a href="#demarches">Démarches en ligne</a>
+            <a href="#projets">Projets & Développement</a>
+            <a href="#galerie">Galerie</a>
+            <a href="#faq">Contact / FAQ</a>
         </div>
+    </nav>
+</header>
 
-        <!-- Menu Mobile (Initialement caché) --><div id="mobile-menu" class="hidden md:hidden">
-            <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col font-medium bg-gradient-to-br from-blue-900 to-blue-700 border-t border-blue-600 text-white">
-                <a href="#accueil" class="block px-3 py-2 rounded-md hover:bg-blue-800">Accueil</a>
-                <a href="#institution" class="block px-3 py-2 rounded-md hover:bg-blue-800">La Mairie</a>
-                <a href="#actualites" class="block px-3 py-2 rounded-md hover:bg-blue-800">Actualités</a>
-                <a href="#services" class="block px-3 py-2 rounded-md hover:bg-blue-800">Services Citoyens</a>
-                <a href="#demarches" class="block px-3 py-2 rounded-md hover:bg-blue-800">Démarches en ligne</a>
-                <a href="#projets" class="block px-3 py-2 rounded-md hover:bg-blue-800">Projets</a>
-                <a href="#galerie" class="block px-3 py-2 rounded-md hover:bg-blue-800">Galerie</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md hover:bg-blue-800">Contact</a>
-            </nav>
+<!-- ----------------- SLIDER ----------------- -->
+<section class="slider" id="accueil">
+    <div class="slides">
+        <div class="slide">
+            <img src="https://via.placeholder.com/1200x450?text=Bienvenue+à+la+Mairie+de+Kolwezi" alt="Slider 1">
+            <div class="slide-caption">Message du Maire et actualités importantes</div>
         </div>
-    </header>
-
-    <main class="pt-20">
-        
-        <!-- 1. ACCUEIL (HOME) --><section id="accueil" class="relative overflow-hidden">
-            <!-- Slider/Bannière --><div id="hero-slider" class="h-[500px] md:h-[600px] w-full relative">
-                
-                <!-- Slide 1 --><div class="slider-item active bg-cover bg-center h-full items-center justify-center p-8" style="background-image: url('https://placehold.co/1200x600/0A3D62/FFFFFF?text=Bienvenue+%C3%A0+Kolwezi');">
-                    <div class="max-w-4xl text-white text-center bg-black bg-opacity-40 p-6 rounded-xl shadow-2xl">
-                        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">Kolwezi, Ensemble pour le Développement</h1>
-                        <p class="text-lg md:text-xl font-light">Le Maire vous salue et vous souhaite la bienvenue sur le portail officiel de la ville.</p>
-                        <a href="#institution" class="mt-6 inline-block btn-primary px-6 py-3 rounded-xl font-bold">Découvrir l'Institution</a>
-                    </div>
-                </div>
-                
-                <!-- Slide 2 --><div class="slider-item bg-cover bg-center h-full items-center justify-center p-8" style="background-image: url('https://placehold.co/1200x600/3498db/FFFFFF?text=Actualit%C3%A9+Majeure');">
-                    <div class="max-w-4xl text-white text-center bg-black bg-opacity-40 p-6 rounded-xl shadow-2xl">
-                        <h2 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight" style="color: var(--color-accent-lualaba);">Alerte Travaux : Réhabilitation de la Voirie Principale</h2>
-                        <p class="text-lg md:text-xl font-light">Des perturbations sont à prévoir dans le centre-ville du 15 au 30 mars. Consultez les déviations en section Actualités.</p>
-                        <a href="#actualites" class="mt-6 inline-block btn-primary px-6 py-3 rounded-xl font-bold">Lire l'Actualité</a>
-                    </div>
-                </div>
-                
-                <!-- Indicateurs de slide --><div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                    <button class="dot w-3 h-3 rounded-full opacity-70 hover:opacity-100 transition duration-300" onclick="currentSlide(1)"></button>
-                    <button class="dot w-3 h-3 rounded-full opacity-70 hover:opacity-100 transition duration-300" onclick="currentSlide(2)"></button>
-                </div>
-            </div>
-
-            <!-- Accès Rapide aux Services --><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-10">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                    <!-- Carte 1 --><a href="#services" class="card-service bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
-                        <i data-lucide="file-text" class="h-8 w-8 mb-3" style="color: var(--color-secondary-lualaba);"></i>
-                        <span class="text-sm font-semibold">État Civil</span>
-                    </a>
-                    <!-- Carte 2 --><a href="#demarches" class="card-service bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
-                        <i data-lucide="receipt" class="h-8 w-8 mb-3" style="color: var(--color-secondary-lualaba);"></i>
-                        <span class="text-sm font-semibold">Taxes & Impôts</span>
-                    </a>
-                    <!-- Carte 3 --><a href="#services" class="card-service bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
-                        <i data-lucide="hard-hat" class="h-8 w-8 mb-3" style="color: var(--color-secondary-lualaba);"></i>
-                        <span class="text-sm font-semibold">Permis Urbanisme</span>
-                    </a>
-                    <!-- Carte 4 --><a href="#contact" class="card-service bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
-                        <i data-lucide="calendar-check" class="h-8 w-8 mb-3" style="color: var(--color-secondary-lualaba);"></i>
-                        <span class="text-sm font-semibold">Prendre RDV</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. LA MAIRIE / INSTITUTION --><section id="institution" class="py-16 md:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12">L'Institution Municipale</h2>
-                
-                <!-- Missions & Vision --><div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                    <div class="p-6 rounded-xl shadow-xl border-t-4" style="border-color: var(--color-accent-lualaba);">
-                        <i data-lucide="history" class="h-8 w-8 mb-3 text-gray-500"></i>
-                        <h3 class="text-xl font-bold mb-2">Histoire</h3>
-                        <p class="text-gray-600 text-sm">Kolwezi, ville minière et capitale du Lualaba, a une histoire riche, marquée par la croissance industrielle et une administration dévouée au bien-être de ses citoyens.</p>
-                    </div>
-                    <div class="p-6 rounded-xl shadow-xl border-t-4" style="border-color: var(--color-accent-lualaba);">
-                        <i data-lucide="target" class="h-8 w-8 mb-3 text-gray-500"></i>
-                        <h3 class="text-xl font-bold mb-2">Missions & Vision</h3>
-                        <p class="text-gray-600 text-sm">Assurer le service public local, promouvoir le développement durable, et garantir un cadre de vie sain et sécurisé pour tous les Kolweziens.</p>
-                    </div>
-                    <div class="p-6 rounded-xl shadow-xl border-t-4" style="border-color: var(--color-accent-lualaba);">
-                        <i data-lucide="heart-handshake" class="h-8 w-8 mb-3 text-gray-500"></i>
-                        <h3 class="text-xl font-bold mb-2">Valeurs</h3>
-                        <p class="text-gray-600 text-sm">Transparence, intégrité, proximité, et engagement sont les piliers de notre administration municipale.</p>
-                    </div>
-                </div>
-                
-                <!-- Organigramme (Simplifié) --><h3 class="text-2xl font-bold mb-6 border-b pb-2" style="border-color: var(--color-secondary-lualaba);">Organigramme Simplifié</h3>
-                <div class="bg-gray-50 p-6 rounded-xl shadow-inner">
-                    <div class="flex flex-col items-center">
-                        <div class="text-center p-4 rounded-xl bg-blue-50 border-2" style="border-color: var(--color-primary-lualaba);">
-                            <i data-lucide="crown" class="h-6 w-6 inline-block mr-2" style="color: var(--color-primary-lualaba);"></i>
-                            <p class="font-bold">Maire de la Ville de Kolwezi</p>
-                        </div>
-                        <i data-lucide="chevrons-down" class="h-6 w-6 my-2 text-gray-400"></i>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-                            <div class="text-center p-3 bg-blue-100 rounded-lg shadow-md" style="color: var(--color-primary-lualaba);">Adjoint 1 (Services Publics)</div>
-                            <div class="text-center p-3 bg-blue-100 rounded-lg shadow-md" style="color: var(--color-primary-lualaba);">Adjoint 2 (Finances)</div>
-                            <div class="text-center p-3 bg-blue-100 rounded-lg shadow-md" style="color: var(--color-primary-lualaba);">Chef de Cabinet</div>
-                            <div class="text-center p-3 bg-blue-100 rounded-lg shadow-md" style="color: var(--color-primary-lualaba);">Secrétariat Général</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact & Horaires --><div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4">Coordonnées</h3>
-                        <p class="flex items-center mb-2 text-gray-700"><i data-lucide="map-pin" class="h-5 w-5 mr-3 text-red-500"></i> Place de l'Indépendance, Kolwezi, Lualaba, RDC</p>
-                        <p class="flex items-center mb-2 text-gray-700"><i data-lucide="phone" class="h-5 w-5 mr-3 text-green-500"></i> Tél. Principal : +243 999 000 001</p>
-                        <p class="flex items-center mb-2 text-gray-700"><i data-lucide="mail" class="h-5 w-5 mr-3 text-blue-500"></i> Email : contact@mairie-kolwezi.cd</p>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4">Horaires d'Ouverture</h3>
-                        <ul class="space-y-1 text-gray-700">
-                            <li>Lundi - Vendredi : 08h00 - 16h00</li>
-                            <li>Samedi : Fermé</li>
-                            <li>Dimanche : Fermé</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. ACTUALITÉS & ÉVÉNEMENTS --><section id="actualites" class="py-16 md:py-24" style="background-color: var(--color-background-lualaba);">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12">Actualités & Événements</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Article 1 : Communiqué --><div class="bg-white rounded-xl shadow-lg overflow-hidden card-service">
-                        <img src="https://placehold.co/400x250/0A3D62/FFC312?text=COMMUNIQU%C3%89" alt="Image d'actualité" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <span class="text-xs font-semibold uppercase tracking-wider mb-2 inline-block" style="color: var(--color-accent-lualaba);">Communiqué Officiel</span>
-                            <h3 class="text-xl font-bold mb-2 truncate">Message du Maire sur la Salubrité</h3>
-                            <p class="text-gray-600 text-sm mb-4">La Mairie lance une campagne spéciale de salubrité pour rendre notre ville plus propre. L'implication de tous est cruciale.</p>
-                            <a href="#" class="font-semibold text-sm hover:underline link-accent">Lire la suite &rarr;</a>
-                        </div>
-                    </div>
-                    
-                    <!-- Article 2 : Événement --><div class="bg-white rounded-xl shadow-lg overflow-hidden card-service">
-                        <img src="https://placehold.co/400x250/3498db/FFFFFF?text=%C3%89V%C3%89NEMENT" alt="Image d'événement" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <span class="text-xs font-semibold uppercase tracking-wider mb-2 inline-block text-green-500">Événement Culturel</span>
-                            <h3 class="text-xl font-bold mb-2 truncate">Festival des Arts de Kolwezi 2024</h3>
-                            <p class="text-gray-600 text-sm mb-4">Rendez-vous les 15 et 16 septembre au stade pour la grande fête culturelle de la ville. Entrée libre.</p>
-                            <a href="#" class="font-semibold text-sm hover:underline link-accent">Voir le programme &rarr;</a>
-                        </div>
-                    </div>
-
-                    <!-- Article 3 : Alerte --><div class="bg-white rounded-xl shadow-lg overflow-hidden card-service border-l-4 border-red-500">
-                        <div class="p-6">
-                            <div class="flex items-center mb-3">
-                                <i data-lucide="alert-triangle" class="h-6 w-6 mr-3 text-red-500"></i>
-                                <span class="text-xs font-semibold uppercase tracking-wider text-red-500">Alerte Immdédiate</span>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2 truncate">Coupure d'Eau Planifiée</h3>
-                            <p class="text-gray-600 text-sm mb-4">Le service des eaux informe d'une coupure dans le quartier de Kasulo le mercredi, de 6h à 18h, pour maintenance.</p>
-                            <a href="#" class="font-semibold text-sm hover:underline text-red-500">Détails de la zone &rarr;</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. SERVICES AUX CITOYENS --><section id="services" class="py-16 md:py-24 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12">Services aux Citoyens</h2>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    
-                    <!-- Service 1: État Civil --><div class="bg-white p-6 rounded-xl shadow-lg card-service">
-                        <i data-lucide="user-check" class="h-8 w-8 mb-4" style="color: var(--color-secondary-lualaba);"></i>
-                        <h3 class="text-xl font-bold mb-2">État Civil</h3>
-                        <p class="text-gray-600 text-sm">Déclarations de naissance, mariage, décès et demande de certificat de résidence. Simplifiez vos démarches administratives.</p>
-                        <a href="#demarches" class="mt-3 inline-block font-semibold text-sm hover:underline link-accent">Accéder aux formulaires &rarr;</a>
-                    </div>
-                    
-                    <!-- Service 2: Taxes et Impôts --><div class="bg-white p-6 rounded-xl shadow-lg card-service">
-                        <i data-lucide="landmark" class="h-8 w-8 mb-4" style="color: var(--color-secondary-lualaba);"></i>
-                        <h3 class="text-xl font-bold mb-2">Taxes et Impôts Locaux</h3>
-                        <p class="text-gray-600 text-sm">Guide de paiement, formulaires de déclaration des impôts fonciers et taxes municipales. Contribuez au développement de la ville.</p>
-                        <a href="#demarches" class="mt-3 inline-block font-semibold text-sm hover:underline link-accent">Payer en ligne &rarr;</a>
-                    </div>
-                    
-                    <!-- Service 3: Urbanisme & Permis --><div class="bg-white p-6 rounded-xl shadow-lg card-service">
-                        <i data-lucide="building-2" class="h-8 w-8 mb-4" style="color: var(--color-secondary-lualaba);"></i>
-                        <h3 class="text-xl font-bold mb-2">Urbanisme & Permis</h3>
-                        <p class="text-gray-600 text-sm">Déposez une demande de permis de construire, de rénovation ou d'autorisation de lotissement. Consultez le plan d'urbanisme.</p>
-                        <a href="#demarches" class="mt-3 inline-block font-semibold text-sm hover:underline link-accent">Faire une demande &rarr;</a>
-                    </div>
-
-                    <!-- Service 4: Transports & Voirie --><div class="bg-white p-6 rounded-xl shadow-lg card-service">
-                        <i data-lucide="route" class="h-8 w-8 mb-4" style="color: var(--color-secondary-lualaba);"></i>
-                        <h3 class="text-xl font-bold mb-2">Transports & Voirie</h3>
-                        <p class="text-gray-600 text-sm">Information sur les transports en commun, le réseau routier, les travaux en cours et les demandes de permis de stationnement.</p>
-                    </div>
-
-                    <!-- Service 5: Environnement --><div class="bg-white p-6 rounded-xl shadow-lg card-service">
-                        <i data-lucide="leaf" class="h-8 w-8 mb-4" style="color: var(--color-secondary-lualaba);"></i>
-                        <h3 class="text-xl font-bold mb-2">Environnement</h3>
-                        <p class="text-gray-600 text-sm">Gestion des déchets, espaces verts, et campagnes de sensibilisation à la protection de l'écosystème du Lualaba.</p>
-                    </div>
-                    
-                    <!-- Service 6: Services Sociaux --><div class="bg-white p-6 rounded-xl shadow-lg card-service">
-                        <i data-lucide="users" class="h-8 w-8 mb-4" style="color: var(--color-secondary-lualaba);"></i>
-                        <h3 class="text-xl font-bold mb-2">Services Sociaux</h3>
-                        <p class="text-gray-600 text-sm">Aide aux familles, santé publique, programmes d'éducation et soutien aux personnes vulnérables de la communauté.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. DÉMARCHES EN LIGNE --><section id="demarches" class="py-16 md:py-24">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl md:text-4xl font-extrabold mb-10">Démarches & Formalités en Ligne</h2>
-                <p class="text-lg text-gray-700 mb-12">Gagnez du temps en effectuant vos procédures administratives directement depuis chez vous. Rapide, sécurisé et disponible 24/7.</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Démarche 1: Téléchargement --><div class="p-6 rounded-xl bg-gray-100 card-service border-t-4" style="border-color: var(--color-primary-lualaba);">
-                        <i data-lucide="download" class="h-8 w-8 mb-3" style="color: var(--color-primary-lualaba);"></i>
-                        <h3 class="font-bold mb-2">Formulaires PDF</h3>
-                        <p class="text-sm text-gray-600">Téléchargez les documents essentiels pour toutes vos démarches (Etat Civil, Urbanisme...).</p>
-                    </div>
-                    
-                    <!-- Démarche 2: Prise de RDV --><div class="p-6 rounded-xl bg-gray-100 card-service border-t-4" style="border-color: var(--color-primary-lualaba);">
-                        <i data-lucide="calendar" class="h-8 w-8 mb-3" style="color: var(--color-primary-lualaba);"></i>
-                        <h3 class="font-bold mb-2">Prise de Rendez-vous</h3>
-                        <p class="text-sm text-gray-600">Planifiez votre visite aux services municipaux à l'heure qui vous convient le mieux.</p>
-                    </div>
-                    
-                    <!-- Démarche 3: Paiement --><div class="p-6 rounded-xl bg-gray-100 card-service border-t-4" style="border-color: var(--color-primary-lualaba);">
-                        <i data-lucide="credit-card" class="h-8 w-8 mb-3" style="color: var(--color-primary-lualaba);"></i>
-                        <h3 class="font-bold mb-2">Paiement Sécurisé</h3>
-                        <p class="text-sm text-gray-600">Réglez vos taxes et redevances en toute sécurité via notre plateforme en ligne.</p>
-                    </div>
-                </div>
-                
-                <button class="mt-10 btn-primary px-8 py-4 rounded-xl font-bold shadow-xl">
-                    Accéder au Portail des Démarches
-                </button>
-            </div>
-        </section>
-
-        <!-- 6. PROJETS ET DÉVELOPPEMENT --><section id="projets" class="py-16 md:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12">Projets & Développement</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
-                    <!-- Projet 1: Infrastructures --><div class="bg-gray-100 rounded-xl p-6 shadow-md card-service">
-                        <i data-lucide="cog" class="h-8 w-8 mb-4 text-green-600"></i>
-                        <h3 class="text-xl font-bold mb-2">Projet Lualaba Connecté</h3>
-                        <p class="text-gray-600 text-sm mb-4">Mise en place de l'infrastructure pour le raccordement en fibre optique des principaux quartiers de la ville.</p>
-                        <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-green-200 text-green-800">En Cours (80% achevé)</span>
-                    </div>
-                    
-                    <!-- Projet 2: Urbanisme --><div class="bg-gray-100 rounded-xl p-6 shadow-md card-service">
-                        <i data-lucide="map" class="h-8 w-8 mb-4 text-blue-600"></i>
-                        <h3 class="text-xl font-bold mb-2">Plan Stratégique 2025-2030</h3>
-                        <p class="text-gray-600 text-sm mb-4">Vision à long terme pour l'aménagement du territoire, la gestion des ressources et la croissance économique.</p>
-                        <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-blue-200 text-blue-800">Planification</span>
-                    </div>
-                    
-                    <!-- Projet 3: Partenariats --><div class="bg-gray-100 rounded-xl p-6 shadow-md card-service">
-                        <i data-lucide="handshake" class="h-8 w-8 mb-4 text-yellow-600"></i>
-                        <h3 class="text-xl font-bold mb-2">Coopération avec l'UNICEF</h3>
-                        <p class="text-gray-600 text-sm mb-4">Partenariat pour le développement de centres d'accueil et d'éducation pour la petite enfance.</p>
-                        <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-yellow-200 text-yellow-800">Futur/Approbation</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 9. GALERIE --><section id="galerie" class="py-16 md:py-24" style="background-color: var(--color-background-lualaba);">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12">Galerie Photos & Vidéos</h2>
-                
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="overflow-hidden rounded-xl shadow-md aspect-video hover:opacity-80 transition duration-300">
-                        <img src="https://placehold.co/600x400/0A3D62/FFC312?text=C%C3%A9r%C3%A9monie+Officielle" alt="Cérémonie Officielle" class="w-full h-full object-cover">
-                    </div>
-                    <div class="overflow-hidden rounded-xl shadow-md aspect-video hover:opacity-80 transition duration-300">
-                        <img src="https://placehold.co/600x400/3498db/FFFFFF?text=Inauguration+Voirie" alt="Inauguration Voirie" class="w-full h-full object-cover">
-                    </div>
-                    <div class="overflow-hidden rounded-xl shadow-md aspect-video hover:opacity-80 transition duration-300">
-                        <img src="https://placehold.co/600x400/FFC312/0A3D62?text=Visite+du+Maire" alt="Visite du Maire" class="w-full h-full object-cover">
-                    </div>
-                    <div class="overflow-hidden rounded-xl shadow-md aspect-video hover:opacity-80 transition duration-300">
-                        <img src="https://placehold.co/600x400/FF4500/FFFFFF?text=F%C3%AAte+Culturelle" alt="Fête Culturelle" class="w-full h-full object-cover">
-                    </div>
-                </div>
-                
-                <div class="text-center mt-8">
-                    <a href="#" class="font-semibold text-lg hover:underline link-accent">Voir toutes les archives &rarr;</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- 10. CONTACT / FAQ --><section id="contact" class="py-16 md:py-24 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12">Nous Contacter & FAQ</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    
-                    <!-- Formulaire de Contact --><div class="bg-white p-8 rounded-xl shadow-xl">
-                        <h3 class="text-2xl font-bold mb-4">Formulaire de Contact</h3>
-                        <form id="contact-form">
-                            <div class="mb-4">
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nom et Prénom</label>
-                                <input type="text" id="name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-blue-300" style="--tw-ring-color: var(--color-secondary-lualaba);">
-                            </div>
-                            <div class="mb-4">
-                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                <input type="email" id="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-blue-300" style="--tw-ring-color: var(--color-secondary-lualaba);">
-                            </div>
-                            <div class="mb-4">
-                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                                <textarea id="message" rows="4" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-blue-300" style="--tw-ring-color: var(--color-secondary-lualaba);"></textarea>
-                            </div>
-                            <button type="submit" class="btn-primary w-full py-3 rounded-xl font-bold">
-                                Envoyer le Message
-                            </button>
-                            <p id="form-message" class="mt-4 text-sm text-center font-medium hidden"></p>
-                        </form>
-                    </div>
-
-                    <!-- FAQ & Adresses Utiles --><div>
-                        <h3 class="text-2xl font-bold mb-4">Questions Fréquentes (FAQ)</h3>
-                        <div class="space-y-4">
-                            <!-- Question 1 --><details class="bg-white p-4 rounded-lg shadow-md border-l-4" style="border-color: var(--color-accent-lualaba);">
-                                <summary class="font-semibold cursor-pointer flex justify-between items-center">
-                                    Comment obtenir un certificat de résidence ? <i data-lucide="chevron-down" class="h-5 w-5 ml-2"></i>
-                                </summary>
-                                <p class="pt-2 text-gray-600 text-sm">Vous devez vous présenter au service de l'État Civil avec votre pièce d'identité et un justificatif de domicile. La démarche est également possible via le portail des démarches en ligne.</p>
-                            </details>
-                            <!-- Question 2 --><details class="bg-white p-4 rounded-lg shadow-md border-l-4" style="border-color: var(--color-accent-lualaba);">
-                                <summary class="font-semibold cursor-pointer flex justify-between items-center">
-                                    Quels sont les jours de marché public ? <i data-lucide="chevron-down" class="h-5 w-5 ml-2"></i>
-                                </summary>
-                                <p class="pt-2 text-gray-600 text-sm">Le grand marché central est ouvert tous les jours. Pour les marchés locaux de quartier, veuillez consulter la section Urbanisme et Voirie.</p>
-                            </details>
-                        </div>
-                        
-                        <h3 class="text-2xl font-bold mt-10 mb-4">Numéros & Adresses Utiles</h3>
-                        <ul class="space-y-2 text-gray-700">
-                            <li class="flex items-center"><i data-lucide="ambulance" class="h-5 w-5 mr-3 text-red-500"></i> Urgences Médicales : 118</li>
-                            <li class="flex items-center"><i data-lucide="phone-call" class="h-5 w-5 mr-3 text-red-700"></i> Police Secours : 101</li>
-                            <li class="flex items-center"><i data-lucide="shield-check" class="h-5 w-5 mr-3 text-blue-500"></i> Service Sécurité Mairie : +243 999 000 002</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- PIED DE PAGE --><footer class="py-8 border-t" style="background-color: var(--color-primary-lualaba); color: white;">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:flex md:justify-between md:items-center">
-            <p class="text-sm">&copy; 2024 Mairie de Kolwezi. Tous droits réservés.</p>
-            <div class="flex justify-center md:justify-end space-x-4 mt-4 md:mt-0">
-                <a href="#" class="hover:text-gray-300 transition duration-150"><i data-lucide="facebook" class="h-6 w-6"></i></a>
-                <a href="#" class="hover:text-gray-300 transition duration-150"><i data-lucide="twitter" class="h-6 w-6"></i></a>
-                <a href="#" class="hover:text-gray-300 transition duration-150"><i data-lucide="youtube" class="h-6 w-6"></i></a>
-            </div>
+        <div class="slide">
+            <img src="https://via.placeholder.com/1200x450?text=Services+essentiels" alt="Slider 2">
+            <div class="slide-caption">Accès rapide aux services : état civil, taxes, démarches...</div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <!-- Script JS --><script type="module">
-        // --- 1. CONFIGURATION ET INITIALISATION FIREBASE (OBLIGATOIRE PAR INSTRUCTIONS) ---
+<!-- ----------------- LA MAIRIE ----------------- -->
+<section id="mairie">
+    <h2>La Mairie / Institution</h2>
+    <div id="presentation">
+        <h3>Présentation</h3>
+        <p>Histoire, missions, vision et valeurs de la mairie de Kolwezi.</p>
+    </div>
+    <div id="organigramme">
+        <h3>Organigramme</h3>
+        <p>Maire, adjoints et services municipaux.</p>
+    </div>
+    <div id="services">
+        <h3>Services municipaux</h3>
+        <ul>
+            <li>Urbanisme</li>
+            <li>Voirie</li>
+            <li>Environnement</li>
+            <li>Sécurité</li>
+        </ul>
+    </div>
+    <div id="contact">
+        <h3>Contact & horaires</h3>
+        <p>Adresse : Avenue Principale, Kolwezi</p>
+        <p>Téléphone : +243 XXX XXX XXX</p>
+        <p>Email : contact@mairie.kolwezi.cd</p>
+    </div>
+</section>
 
-        // Importations nécessaires pour Firebase (avec les versions CDN)
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-        import { getFirestore, collection, addDoc, setLogLevel } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+<!-- ----------------- ACTUALITÉS ----------------- -->
+<section id="actualites">
+    <h2>Actualités & Événements</h2>
+    <ul>
+        <li>Communiqués officiels</li>
+        <li>Événements municipaux et culturels</li>
+        <li>Alertes importantes : travaux, coupures d’eau, annonces urgentes</li>
+    </ul>
+</section>
 
-        // Définition des variables globales fournies par l'environnement
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-             // Fallback vers la configuration fournie par l'utilisateur si les variables globales ne sont pas définies
-             apiKey: "AIzaSyCr3MVt72I5aa_v0IBw7tC142kBjQJTdbU",
-             authDomain: "mairie-web-site.firebaseapp.com",
-             projectId: "mairie-web-site",
-             storageBucket: "mairie-web-site.firebasestorage.app",
-             messagingSenderId: "518997735244",
-             appId: "1:518997735244:web:a4af3a25470a39e20401e9"
-        };
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+<!-- ----------------- SERVICES AUX CITOYENS ----------------- -->
+<section id="services-citoyens">
+    <h2>Services aux citoyens</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>État civil</h3>
+            <p>Naissance, mariage, décès, certificat de résidence.</p>
+        </div>
+        <div class="card">
+            <h3>Taxes et impôts</h3>
+            <p>Paiement, formulaires et guides.</p>
+        </div>
+        <div class="card">
+            <h3>Urbanisme & permis</h3>
+            <p>Demande de construction, rénovation, autorisations.</p>
+        </div>
+        <div class="card">
+            <h3>Transports & voirie</h3>
+            <p>Permis, stationnements, routes.</p>
+        </div>
+        <div class="card">
+            <h3>Services sociaux</h3>
+            <p>Santé, éducation, aide aux familles.</p>
+        </div>
+    </div>
+</section>
 
-        // Activation des logs pour le débogage de Firestore
-        setLogLevel('debug');
+<!-- ----------------- DÉMARCHES EN LIGNE ----------------- -->
+<section id="demarches">
+    <h2>Démarches en ligne</h2>
+    <ul>
+        <li>Formulaires téléchargeables ou remplissables en ligne</li>
+        <li>Prise de rendez-vous</li>
+        <li>Paiement en ligne pour certains services</li>
+    </ul>
+</section>
 
-        // Initialisation de Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
-        let userId = null;
+<!-- ----------------- PROJETS ----------------- -->
+<section id="projets">
+    <h2>Projets et Développement</h2>
+    <ul>
+        <li>Projets en cours : infrastructures, équipements publics</li>
+        <li>Projets futurs et plans stratégiques</li>
+        <li>Partenariats et coopération avec ONG, entreprises ou gouvernements</li>
+    </ul>
+</section>
 
-        // Fonction d'authentification
-        async function authenticateUser() {
-            try {
-                if (initialAuthToken) {
-                    await signInWithCustomToken(auth, initialAuthToken);
-                    console.log("Authentification réussie via jeton personnalisé.");
-                } else {
-                    await signInAnonymously(auth);
-                    console.log("Authentification anonyme réussie.");
-                }
-                userId = auth.currentUser?.uid || crypto.randomUUID();
-            } catch (error) {
-                console.error("Erreur d'authentification Firebase:", error);
-                userId = crypto.randomUUID(); // Fallback
-            }
-        }
+<!-- ----------------- GALERIE ----------------- -->
+<section id="galerie">
+    <h2>Galerie</h2>
+    <div class="cards">
+        <div class="card"><img src="https://via.placeholder.com/300x200?text=Événement+1" alt="Événement 1" style="width:100%; border-radius:5px;"></div>
+        <div class="card"><img src="https://via.placeholder.com/300x200?text=Projet+2" alt="Projet 2" style="width:100%; border-radius:5px;"></div>
+        <div class="card"><img src="https://via.placeholder.com/300x200?text=Cérémonie+3" alt="Cérémonie 3" style="width:100%; border-radius:5px;"></div>
+    </div>
+</section>
 
-        // Fonction pour sauvegarder le message de contact dans Firestore
-        async function saveContactMessage(name, email, message) {
-            if (!userId) {
-                console.error("Erreur: Utilisateur non authentifié pour l'enregistrement Firestore.");
-                return { success: false, message: "Erreur d'authentification. Veuillez réessayer." };
-            }
+<!-- ----------------- CONTACT / FAQ ----------------- -->
+<section id="faq">
+    <h2>Contact / FAQ</h2>
+    <form>
+        <label>Nom :</label><br>
+        <input type="text" placeholder="Votre nom" required><br><br>
+        <label>Email :</label><br>
+        <input type="email" placeholder="Votre email" required><br><br>
+        <label>Message :</label><br>
+        <textarea placeholder="Votre message" required></textarea><br><br>
+        <button type="submit">Envoyer</button>
+    </form>
+</section>
 
-            try {
-                // Chemin de la collection pour les données privées de l'utilisateur
-                const messagesCollectionPath = `artifacts/${appId}/users/${userId}/contact_messages`;
-                const messagesCollection = collection(db, messagesCollectionPath);
+<!-- ----------------- FOOTER ----------------- -->
+<footer>
+    <p>&copy; 2025 Mairie de Kolwezi | <a href="#accueil">Accueil</a></p>
+</footer>
 
-                await addDoc(messagesCollection, {
-                    name,
-                    email,
-                    message,
-                    timestamp: new Date().toISOString(),
-                    senderId: userId
-                });
-                console.log("Message de contact envoyé à Firestore. Collection:", messagesCollectionPath);
-                return { success: true, message: "Votre message a été envoyé avec succès!" };
-            } catch (e) {
-                console.error("Erreur lors de l'ajout du document: ", e);
-                return { success: false, message: "Une erreur est survenue lors de l'envoi. Veuillez vérifier la console." };
-            }
-        }
+<!-- ----------------- JS SLIDER ----------------- -->
+<script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide');
+    function showSlide(i){ slides.forEach((s, idx)=> s.style.transform = `translateX(${-100*i}%)`);}
+    function nextSlide(){ index = (index + 1) % slides.length; showSlide(index);}
+    setInterval(nextSlide, 4000);
+</script>
 
-        // --- 2. LOGIQUE D'INTERFACE ET D'ANIMATION ---
-
-        document.addEventListener('DOMContentLoaded', async () => {
-            // Rendre les icônes lucide
-            lucide.createIcons();
-
-            // 2.1. Authentification Firebase au chargement
-            await authenticateUser();
-            
-            // 2.2. Gestion du Menu Mobile
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                const icon = mobileMenuButton.querySelector('i');
-                if (mobileMenu.classList.contains('hidden')) {
-                    icon.setAttribute('data-lucide', 'menu');
-                } else {
-                    icon.setAttribute('data-lucide', 'x');
-                }
-                lucide.createIcons(); // Re-créer l'icône après changement
-            });
-
-            // Fermer le menu mobile lors du clic sur un lien
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuButton.querySelector('i').setAttribute('data-lucide', 'menu');
-                    lucide.createIcons();
-                });
-            });
-
-            // 2.3. Animation du Slider
-            const sliderItems = document.querySelectorAll('.slider-item');
-            const dots = document.querySelectorAll('.dot');
-            let slideIndex = 1;
-            
-            function showSlides(n) {
-                // S'assurer que les indices restent dans les limites
-                if (n > sliderItems.length) { slideIndex = 1 }
-                if (n < 1) { slideIndex = sliderItems.length }
-                
-                // Cacher toutes les slides et désactiver tous les indicateurs
-                sliderItems.forEach((item, index) => {
-                    item.classList.remove('active');
-                    dots[index].classList.remove('bg-opacity-100');
-                    dots[index].classList.remove('active'); /* Retire la classe active */
-                });
-                
-                // Afficher la slide actuelle et activer son indicateur
-                sliderItems[slideIndex - 1].classList.add('active');
-                dots[slideIndex - 1].classList.add('active'); /* Ajoute la classe active */
-            }
-
-            // Fonction pour navigation manuelle (appelée par les boutons dot)
-            window.currentSlide = function(n) {
-                slideIndex = n;
-                showSlides(slideIndex);
-                resetTimer();
-            }
-
-            // Fonction pour défilement automatique
-            function autoSlide() {
-                slideIndex++;
-                showSlides(slideIndex);
-            }
-            
-            let slideTimer = setInterval(autoSlide, 7000); // Change l'image toutes les 7 secondes
-
-            function resetTimer() {
-                clearInterval(slideTimer);
-                slideTimer = setInterval(autoSlide, 7000);
-            }
-
-            showSlides(slideIndex); // Afficher la première slide au démarrage
-
-
-            // 2.4. Gestion du Formulaire de Contact (avec Firestore)
-            const contactForm = document.getElementById('contact-form');
-            const formMessage = document.getElementById('form-message');
-
-            contactForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                formMessage.classList.remove('hidden', 'text-green-600', 'text-red-600');
-                formMessage.classList.add('text-gray-500');
-                formMessage.textContent = "Envoi en cours...";
-
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const message = document.getElementById('message').value;
-
-                const result = await saveContactMessage(name, email, message);
-                
-                formMessage.classList.remove('text-gray-500');
-                formMessage.classList.add('hidden'); // Cacher le message de chargement
-                
-                // Afficher la notification de résultat
-                const resultDiv = document.createElement('div');
-                resultDiv.className = `fixed bottom-4 right-4 p-4 rounded-xl shadow-xl transition-transform duration-300 transform translate-x-full ${result.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
-                resultDiv.textContent = result.message;
-                document.body.appendChild(resultDiv);
-                
-                // Animer l'apparition
-                setTimeout(() => resultDiv.classList.remove('translate-x-full'), 100);
-                
-                // Animer la disparition après 5 secondes
-                setTimeout(() => {
-                    resultDiv.classList.add('translate-x-full');
-                    setTimeout(() => resultDiv.remove(), 500); // Nettoyer le DOM
-                }, 5000);
-
-                if (result.success) {
-                    contactForm.reset();
-                }
-            });
-        });
-    </script>
 </body>
 </html>
