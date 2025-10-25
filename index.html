@@ -106,7 +106,6 @@
             min-height: 80px;
         }
         
-        /* CORRECTION : Style pour l'image/logo réel, car il remplace l'icône fa-city */
         .logo {
             display: flex;
             align-items: center;
@@ -115,16 +114,15 @@
             font-weight: 800;
             text-transform: uppercase;
         }
-
-        .logo img {
-            height: 50px; /* Ajuster la taille du logo */
-            width: auto;
+        .logo i {
             margin-right: 12px;
-            /* Si vous aviez un i.logo, il aurait eu ce style, mais j'utilise l'image */
+            color: var(--highlight-color); /* Icône de la Mairie en vert/cyan */
+            font-size: 34px;
+            transform: rotate(-10deg);
             transition: transform 0.5s ease;
         }
-        .logo:hover img {
-            transform: scale(1.05); /* Effet au survol du logo */
+        .logo:hover i {
+             transform: rotate(0deg);
         }
 
         /* Styles de la Barre de Navigation (Desktop) */
@@ -528,20 +526,16 @@
                 padding: 0;
                 border-top: none;
                 transform: translateY(0);
-                opacity: 1; 
-                /* display: none; sera géré par la classe .active dans JS */
+                opacity: 1; /* Rendu visible par JS sur 'active' */
+                display: none; 
             }
             nav ul .submenu li a {
                 background-color: #ebf0f4;
                 padding-left: 40px;
                 color: var(--text-light);
             }
-            /* L'état "actif" sur mobile (clic) */
-            nav ul li.active-mobile .submenu {
-                 display: block; 
-            }
-            nav ul li.active-mobile > a i.fa-caret-down {
-                transform: rotate(180deg);
+            nav ul li.active .submenu {
+                display: block;
             }
             
             /* Footer Responsive */
@@ -551,9 +545,6 @@
             }
             .footer-column {
                 min-width: auto;
-            }
-            .footer-column h3 {
-                text-align: center; /* Centrer les titres de colonnes */
             }
             .footer-column ul li {
                 justify-content: center;
@@ -584,9 +575,8 @@
 <header>
     <div class="container header-content">
         <a href="index.html" class="logo">
-            <img src="klz.jpeg" alt="Logo de la Mairie de Kolwezi" />
-            MAIRIE DE KOLWEZI
-        </a>  
+            <i class="fa-solid fa-gavel"></i> MAIRIE DE KOLWEZI
+        </a>
         
         <nav role="navigation" aria-label="Menu principal">
             <button class="menu-toggle" aria-controls="main-menu" aria-expanded="false" title="Menu">
@@ -594,6 +584,7 @@
             </button>
             <ul id="main-menu">
                 <li class="active"><a href="index.html"><i class="fa-solid fa-house me-2"></i>Accueil</a></li>
+                
                 <li class="has-submenu">
                     <a href="mairie.html"><i class="fa-solid fa-landmark me-2"></i>Mairie <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
@@ -602,6 +593,7 @@
                         <li><a href="services_municipaux.html"><i class="fa-solid fa-briefcase"></i> Services municipaux</a></li>
                     </ul>
                 </li>
+                
                 <li class="has-submenu">
                     <a href="services.html"><i class="fa-solid fa-handshake me-2"></i>Services <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
@@ -611,6 +603,7 @@
                         <li><a href="transport_voirie.html"><i class="fa-solid fa-bus"></i> Transports & Voirie</a></li>
                     </ul>
                 </li>
+                
                 <li class="has-submenu">
                     <a href="actualites.html"><i class="fa-solid fa-newspaper me-2"></i>Actualités <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
@@ -619,6 +612,7 @@
                         <li><a href="alertes.html"><i class="fa-solid fa-triangle-exclamation"></i> Alertes et annonces</a></li>
                     </ul>
                 </li>
+                
                 <li class="has-submenu">
                     <a href="demarches.html"><i class="fa-solid fa-file-signature me-2"></i>Démarches <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
@@ -627,28 +621,25 @@
                         <li><a href="paiement.html"><i class="fa-solid fa-credit-card"></i> Paiement en ligne</a></li>
                     </ul>
                 </li>
+                
                 <li class="has-submenu">
-                    <a href="projets.html"><i class="fa-solid fa-chart-line me-2"></i>Projets <i class="fa-solid fa-caret-down"></i></a>
+                    <a href="projets.html"><i class="fa-solid fa-city me-2"></i>Projets <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
-                        <li><a href="projet_cours.html"><i class="fa-solid fa-file-lines"></i> Projet en cours</a></li>
-                        <li><a href="projet_futur.html"><i class="fa-solid fa-clock"></i> Projet futur</a></li>
-                        <li><a href="part_coop.html"><i class="fa-solid fa-credit-card"></i>Partenariats et coopération </a></li>
+                        <li><a href="infrastructures.html">Infrastructures & Équipements publics</a></li>
+                        <li><a href="urbanisme.html">Urbanisme & Aménagement</a></li>
+                        <li><a href="projets_futurs.html">Projets futurs & Plans stratégiques</a></li>
+                        <li><a href="partenariats.html">Partenariats & Coopération</a></li>
                     </ul>
                 </li>
+                
+                <li><a href="galerie.html"><i class="fa-solid fa-camera me-2"></i>Galerie</a></li>   
+                
                 <li class="has-submenu">
-                    <a href="galerie.html"><i class="fa-solid fa-camera me-2"></i>Galerie <i class="fa-solid fa-caret-down"></i></a>
+                    <a href="contact.html"><i class="fa-solid fa-phone-volume me-2"></i>Contact / FAQ <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
-                        <li><a href="photo.html"><i class="fa-solid fa-file-lines"></i>Photo</a></li>
-                        <li><a href="video.html"><i class="fa-solid fa-clock"></i>Video</a></li>
-                        <li><a href="cerenomie_officielle.html"><i class="fa-solid fa-credit-card"></i> Ceremonie officielle</a></li>
-                    </ul>
-                </li>
-                <li class="has-submenu">
-                    <a href="contact.html"><i class="fa-solid fa-headset me-2"></i>Contact <i class="fa-solid fa-caret-down"></i></a>
-                    <ul class="submenu">
-                        <li><a href="formulaire_contact.html"><i class="fa-solid fa-file-lines"></i> Formulaire de contact</a></li>
-                        <li><a href="adresse_numero.html"><i class="fa-solid fa-clock"></i> Adresses et numéros utiles.</a></li>
-                        <li><a href="question_freq.html"><i class="fa-solid fa-credit-card"></i>Questions fréquentes sur les démarches et services.</a></li>
+                        <li><a href="formulaire_contact.html">Formulaire de contact</a></li>
+                        <li><a href="adresses_utiles.html">Adresses & Numéros utiles</a></li>
+                        <li><a href="faq.html">Questions fréquentes (FAQ)</a></li>
                     </ul>
                 </li>
             </ul>
@@ -771,7 +762,7 @@
     import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
     import { getFirestore, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
     
-    // Récupération des variables globales de l'environnement (simulées)
+    // Récupération des variables globales de l'environnement
     const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
     const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
     const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
@@ -812,7 +803,6 @@
     const mainMenu = document.getElementById('main-menu');
     const menuIcon = document.getElementById('menu-icon');
     const hasSubmenus = document.querySelectorAll('.has-submenu > a');
-    const mediaQuery = window.matchMedia('(max-width: 992px)');
 
     // 1. Gestion de l'ouverture/fermeture du menu principal
     const toggleMenu = () => {
@@ -822,7 +812,7 @@
         
         // Changer l'icône : Hamburger <-> X
         menuIcon.classList.toggle('fa-bars');
-        menuIcon.classList.toggle('fa-xmark'); // L'icône 'fa-times' est obsolète, on utilise 'fa-xmark'
+        menuIcon.classList.toggle('fa-times');
     };
 
     menuToggle.addEventListener('click', toggleMenu);
@@ -830,27 +820,36 @@
     // 2. Gestion de l'ouverture/fermeture des sous-menus au clic sur mobile (992px)
     hasSubmenus.forEach(link => {
         link.addEventListener('click', (e) => {
-            // Seulement si la fenêtre est considérée comme mobile (max-width: 992px)
-            if (mediaQuery.matches) {
-                // Empêcher la navigation par défaut
+            // Seulement si la fenêtre est considérée comme mobile
+            if (window.innerWidth <= 992) {
                 e.preventDefault(); 
                 
-                const parentLi = link.closest('.has-submenu');
-                
-                // Fermer les autres sous-menus ouverts
+                const parentLi = link.closest('li');
+                const isOpen = parentLi.classList.contains('active');
+
+                // Fermer tous les autres sous-menus ouverts
                 document.querySelectorAll('.has-submenu').forEach(item => {
-                    if (item !== parentLi && item.classList.contains('active-mobile')) {
-                        item.classList.remove('active-mobile');
+                    if (item !== parentLi) {
+                        item.classList.remove('active');
                     }
                 });
-
-                // Basculer l'état "actif" du sous-menu actuel
-                parentLi.classList.toggle('active-mobile');
+                
+                // Basculer l'état du sous-menu cliqué
+                parentLi.classList.toggle('active');
             }
-            // Si c'est sur Desktop, la navigation se fait normalement et le survol gère le menu.
+        });
+        
+        // Clic sur les liens des sous-menus pour fermer le menu principal (UX mobile)
+        const submenuLinks = link.parentNode.querySelectorAll('.submenu a');
+        submenuLinks.forEach(subLink => {
+            subLink.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    toggleMenu(); // Fermer le menu après la navigation
+                }
+            });
         });
     });
-</script>
 
+</script>
 </body>
 </html>
