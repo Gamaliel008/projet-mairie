@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mairie de Kolwezi - Site Officiel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Mairie de Kolwezi - Accueil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <style>
         /* ====== Variables CSS & Reset ====== */
         :root {
-            --primary-color: #0d47a1; /* Bleu Institutionnel (similaire au style ESISalama) */
-            --secondary-color: #ffc107; /* Jaune Vif (Couleur d'accentuation) */
-            --text-dark: #212529;
-            --background-light: #f8f9fa;
+            --primary-blue: #0A3D62; /* Bleu très foncé, similaire à l'image */
+            --secondary-blue: #0F52BA; /* Un bleu légèrement plus clair pour les accents */
+            --text-dark: #333;
+            --text-light: #555;
+            --background-light: #f8f9fa; /* Presque blanc */
+            --border-color: #e0e0e0;
             --max-width: 1200px;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--background-light);
@@ -26,12 +28,11 @@
             line-height: 1.6;
         }
         
-        /* ====== HEADER & NAVIGATION GLOBALE (Style ESISalama) ====== */
+        /* ====== HEADER (Adapté à l'image) ====== */
         header {
-            background: white; /* Header blanc pour un look plus léger */
-            color: var(--primary-color);
-            padding: 0 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: white; /* Header blanc comme sur l'image */
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -43,15 +44,20 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px; /* Hauteur fixe pour un look pro */
+            min-height: 60px; /* Hauteur minimale */
         }
         
-        header h1 {
-            margin: 0;
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-blue);
             font-size: 24px;
             font-weight: 700;
-            font-family: 'Poppins', sans-serif;
-            color: var(--primary-color);
+        }
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary-blue); /* Couleur d'accentuation pour l'icône */
         }
 
         /* Styles de la Barre de Navigation (Desktop) */
@@ -63,50 +69,65 @@
         }
         nav ul li {
             position: relative;
-            margin-left: 1px; /* Espacement minimal */
+            margin-left: 25px;
         }
         nav ul li a {
             text-decoration: none;
-            color: var(--text-dark);
-            padding: 25px 18px; /* Grand padding vertical pour alignement */
+            color: var(--text-dark); /* Liens de couleur foncée */
+            padding: 10px 0;
             display: block;
             font-weight: 500;
-            transition: color 0.3s, background-color 0.3s;
-            border-bottom: 3px solid transparent; /* Ligne d'accentuation */
+            transition: color 0.3s, border-bottom-color 0.3s;
+            border-bottom: 2px solid transparent; /* Ligne sous les liens */
         }
         nav ul li a:hover, nav ul li.active > a {
-            color: var(--primary-color);
-            border-bottom-color: var(--secondary-color);
+            color: var(--primary-blue);
+            border-bottom-color: var(--secondary-blue); /* Accent bleu au survol/actif */
         }
-        
+
         /* Sous-menus (Dropdown) */
         nav ul .submenu {
             display: none;
             position: absolute;
             top: 100%;
             left: 0;
-            min-width: 250px;
+            min-width: 220px;
             background: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
             z-index: 1001;
             padding: 0;
-            border-radius: 0 0 4px 4px;
+            border-radius: 4px;
         }
         nav ul li:hover .submenu {
             display: block;
         }
         nav ul .submenu li {
             margin: 0;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border-color);
+        }
+        nav ul .submenu li:last-child {
+            border-bottom: none;
         }
         nav ul .submenu li a {
             color: var(--text-dark);
-            padding: 12px 20px;
-            border-bottom: none; /* Supprimer la ligne d'accentuation */
+            padding: 10px 15px;
+            font-weight: 400;
+            white-space: nowrap; /* Empêche le texte de se casser sur plusieurs lignes */
         }
         nav ul .submenu li a:hover {
             background-color: var(--background-light);
-            color: var(--primary-color);
+            color: var(--primary-blue);
+        }
+
+        /* Indicateur de sous-menu */
+        .has-submenu > a i.fa-caret-down {
+            margin-left: 5px;
+            font-size: 0.8em;
+            transition: transform 0.3s ease;
+        }
+        nav ul li:hover > a i.fa-caret-down {
+            transform: rotate(180deg);
         }
 
         /* Bouton Hamburger (Mobile) */
@@ -114,132 +135,116 @@
             display: none;
             background: none;
             border: none;
-            color: var(--primary-color);
+            color: var(--primary-blue);
             font-size: 28px;
             cursor: pointer;
+            padding: 5px;
         }
 
-        /* ====== MAIN CONTENT & HERO SECTION ====== */
+        /* ====== MAIN CONTENT & HERO ====== */
         main {
             max-width: var(--max-width);
-            margin: 0 auto;
+            margin: 20px auto;
             padding: 0 20px;
         }
         
-        /* Hero Section (Grand bandeau visuel) */
         .hero-section {
-            height: 400px;
-            background-image: url('https://source.unsplash.com/1600x400/?kolwezi,city'); /* Image de Kolwezi */
-            background-size: cover;
-            background-position: center;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
+            background-color: white; /* Fond blanc */
+            padding: 40px;
             border-radius: 8px;
-        }
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.4); /* Ombre légère pour le contraste */
-            z-index: 1;
-        }
-        .hero-content {
-            z-index: 2;
-            max-width: 800px;
-            padding: 20px;
-        }
-        .hero-content h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 40px;
-            margin: 0 0 10px 0;
-            color: white;
-        }
-        .hero-content p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-        }
-        .cta-button {
-            background-color: var(--secondary-color);
-            color: var(--primary-color);
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 700;
-            transition: background-color 0.3s, transform 0.2s;
-            display: inline-block;
-        }
-        .cta-button:hover {
-            background-color: #e0ac00;
-            transform: translateY(-2px);
-        }
-
-        /* Titres de Section */
-        h2 {
-            font-family: 'Poppins', sans-serif;
-            color: var(--primary-color);
-            font-size: 28px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             text-align: center;
             margin-bottom: 30px;
         }
-
-        /* Section Cartes d'Accès Rapide */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-        .quick-card {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            text-align: center;
-            transition: transform 0.3s;
-            border-bottom: 4px solid var(--secondary-color);
-        }
-        .quick-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-        .quick-card i {
-            font-size: 40px;
-            color: var(--primary-color);
+        .hero-section h1 {
+            color: var(--primary-blue);
+            font-size: 36px;
+            margin-top: 0;
             margin-bottom: 15px;
         }
-        .quick-card h3 {
-            font-family: 'Poppins', sans-serif;
-            margin-top: 0;
-            color: var(--primary-color);
-        }
-        .quick-card a {
-            text-decoration: none;
-            color: var(--primary-color);
-            font-weight: 600;
+        .hero-section p {
+            font-size: 1.1em;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        /* ====== FOOTER ====== */
+        /* ====== FOOTER (Conforme à l'image) ====== */
         footer {
-            background: var(--primary-color);
+            background: var(--primary-blue); /* Fond bleu foncé */
             color: white;
-            text-align: center;
-            padding: 30px 20px;
+            padding: 40px 20px;
             margin-top: 40px;
+        }
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px; /* Espace entre les colonnes */
+        }
+        .footer-column {
+            flex: 1; /* Chaque colonne prend de l'espace */
+            min-width: 250px; /* Largeur minimale */
+        }
+        .footer-column h3 {
+            font-size: 18px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--secondary-blue); /* Titres en bleu d'accentuation */
+        }
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-column ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .footer-column ul li i {
+            margin-right: 10px;
+            color: white;
+            font-size: 16px;
+        }
+        .footer-column ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-column ul li a:hover {
+            color: var(--secondary-blue);
+        }
+
+        .footer-social-icons a {
+            color: white;
+            font-size: 24px;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+        .footer-social-icons a:hover {
+            color: var(--secondary-blue);
+        }
+        .footer-bottom {
+            max-width: var(--max-width);
+            margin: 30px auto 0;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9em;
         }
 
         /* ====== MEDIA QUERIES (Responsive) ====== */
         @media (max-width: 992px) {
             .header-content {
-                height: 60px;
+                min-height: 50px;
             }
+            .logo {
+                font-size: 20px;
+            }
+            
             nav ul {
                 display: none;
                 flex-direction: column;
@@ -247,20 +252,20 @@
                 top: 60px; /* Sous le header */
                 left: 0;
                 width: 100%;
-                background-color: var(--primary-color);
+                background-color: white;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             }
             nav ul.open {
                 display: flex;
             }
             nav ul li a {
-                color: white;
-                padding: 15px 20px;
+                color: var(--text-dark);
+                padding: 12px 20px;
                 border-bottom: none;
             }
             nav ul li a:hover, nav ul li.active > a {
-                background-color: #0d4294; /* Bleu plus sombre pour le survol */
-                border-bottom: none;
+                background-color: var(--background-light);
+                color: var(--primary-blue);
             }
             
             .menu-toggle {
@@ -273,36 +278,52 @@
                 width: 100%;
                 box-shadow: none;
                 border-radius: 0;
+                border: none;
+                padding-left: 20px; /* Indenter */
             }
             nav ul .submenu li a {
-                background-color: #0c397e; /* Fond sombre */
+                background-color: #f0f0f0; /* Fond légèrement plus foncé */
                 padding-left: 40px;
-                color: #ddd;
+                color: var(--text-light);
             }
             nav ul li.active .submenu {
                 display: block; 
             }
+            nav ul li:hover > a i.fa-caret-down { /* Désactiver la rotation au hover sur mobile */
+                transform: none;
+            }
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-column {
+                min-width: auto;
+            }
+            .footer-column ul li {
+                justify-content: center;
+            }
+            .footer-social-icons {
+                margin-top: 20px;
+            }
         }
         
         @media (max-width: 600px) {
-            .hero-section {
-                height: 300px;
+            .hero-section h1 {
+                font-size: 28px;
             }
-            .hero-content h2 {
-                font-size: 30px;
-            }
-            .grid-container {
-                grid-template-columns: 1fr;
+            .hero-section p {
+                font-size: 1em;
             }
         }
-
     </style>
 </head>
 <body>
 
 <header>
     <div class="header-content">
-        <h1><i class="fa-solid fa-city" style="color: var(--secondary-color);"></i> MAIRIE DE KOLWEZI</h1>
+        <a href="index.html" class="logo">
+            <i class="fa-solid fa-building"></i> Mairie de Kolwezi
+        </a>
         <nav role="navigation" aria-label="Menu principal">
             <button class="menu-toggle" aria-controls="main-menu" aria-expanded="false">
                 <i class="fa-solid fa-bars" id="menu-icon"></i>
@@ -315,6 +336,7 @@
                         <li><a href="histoire.html">Histoire</a></li>
                         <li><a href="missions.html">Missions</a></li>
                         <li><a href="organigramme.html">Organigramme</a></li>
+                        <li><a href="services_municipaux.html">Services municipaux</a></li>
                     </ul>
                 </li>
                 <li class="has-submenu">
@@ -322,13 +344,14 @@
                     <ul class="submenu">
                         <li><a href="communiques.html">Communiqués officiels</a></li>
                         <li><a href="evenements.html">Événements municipaux</a></li>
-                        <li><a href="alertes.html">Alertes</a></li>
+                        <li><a href="alertes.html">Alertes et annonces</a></li>
                     </ul>
                 </li>
                 <li class="has-submenu">
-                    <a href="demarches.html">Démarches en ligne <i class="fa-solid fa-caret-down"></i></a>
+                    <a href="demarches.html">Démarches <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
                         <li><a href="formulaires.html">Formulaires</a></li>
+                        <li><a href="rendezvous.html">Prise de rendez-vous</a></li>
                         <li><a href="paiement.html">Paiement en ligne</a></li>
                     </ul>
                 </li>
@@ -336,7 +359,15 @@
                     <a href="projets.html">Projets <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="submenu">
                         <li><a href="projets_en_cours.html">Projets en cours</a></li>
+                        <li><a href="projets_futurs.html">Projets futurs</a></li>
                         <li><a href="partenariats.html">Partenariats</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="galerie.html">Galerie <i class="fa-solid fa-caret-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="photos.html">Photos</a></li>
+                        <li><a href="videos.html">Vidéos</a></li>
                     </ul>
                 </li>
                 <li><a href="contact.html">Contact / FAQ</a></li>
@@ -346,60 +377,46 @@
 </header>
 
 <main>
-    <section class="hero-section" role="banner">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h2>Bâtir l'Avenir de Kolwezi, Ensemble</h2>
-            <p>La Mairie s'engage pour la transparence, le développement et le service aux citoyens. Découvrez nos actions.</p>
-            <a href="actualites.html" class="cta-button">Voir les Annonces Importantes &rarr;</a>
-        </div>
+    <section class="hero-section">
+        <h1>Bienvenue sur le site de la Mairie de Kolwezi</h1>
+        <p>Ce site officiel présente les services municipaux, les projets en cours, les actualités et événements de la ville de Kolwezi.</p>
     </section>
 
-    <section>
-        <h2>Accès Rapide</h2>
-        <div class="grid-container">
-            <div class="quick-card">
-                <i class="fa-solid fa-address-book"></i>
-                <h3>État Civil</h3>
-                <p>Déclaration de naissance, mariage, décès et documents.</p>
-                <a href="services.html#etatcivil">Accéder aux services</a>
-            </div>
-            
-            <div class="quick-card">
-                <i class="fa-solid fa-money-bill-transfer"></i>
-                <h3>Taxes & Impôts</h3>
-                <p>Information sur les taxes locales et les moyens de paiement.</p>
-                <a href="services.html#taxes">Payer en ligne</a>
-            </div>
-            
-            <div class="quick-card">
-                <i class="fa-solid fa-helmet-safety"></i>
-                <h3>Projets de Ville</h3>
-                <p>Suivez l'avancement des infrastructures et des développements.</p>
-                <a href="projets.html">Voir les projets</a>
-            </div>
-            
-            <div class="quick-card">
-                <i class="fa-solid fa-envelopes-bulk"></i>
-                <h3>Contact & Réclamations</h3>
-                <p>Formulaires de contact, adresses utiles et questions fréquentes.</p>
-                <a href="contact.html">Nous contacter</a>
-            </div>
-        </div>
-    </section>
-    
-    <section>
-        <h2>Mot du Maire</h2>
-        <div class="quick-card" style="border-bottom-color: var(--primary-color);">
-            <p style="font-style: italic;">"Notre ville est un pôle économique majeur. Je m'engage à ce que la Mairie soit à la hauteur de cette ambition : efficace, moderne et au service de chaque citoyen de Kolwezi."</p>
-            <p style="text-align: right; margin-top: 20px;">[Nom du Maire], Maire de Kolwezi</p>
-            <a href="mairie.html" class="cta-button" style="background-color: var(--primary-color); color: white;">En savoir plus sur la Mairie</a>
-        </div>
-    </section>
-</main>
+    </main>
 
 <footer>
-    © 2025 - Mairie de Kolwezi | Tous droits réservés | Politique de Confidentialité.
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3>Mairie de Kolwezi</h3>
+            <ul>
+                <li><i class="fa-solid fa-location-dot"></i> Avenue Lumumba, Kolwezi</li>
+                <li><i class="fa-solid fa-phone"></i> +243 999 000 111</li>
+                <li><i class="fa-solid fa-envelope"></i> contact@mairiedekolwezi.cd</li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Liens rapides</h3>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="services_municipaux.html">Services</a></li>
+                <li><a href="projets.html">Projets</a></li>
+                <li><a href="actualites.html">Actualités</a></li>
+                <li><a href="evenements.html">Événements</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Suivez-nous</h3>
+            <div class="footer-social-icons">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2025 Mairie de Kolwezi - Tous droits réservés.
+    </div>
 </footer>
 
 <script type="module">
