@@ -1,341 +1,438 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mairie de Kolwezi - Site Officiel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mairie de Kolwezi - Accueil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <style>
-        /* ====== CSS de base & Variables ====== */
+        /* ====== Variables CSS & Reset ====== */
         :root {
-            --primary-color: #003366; /* Bleu institutionnel */
-            --secondary-color: #f7b731; /* Accent Jaune/Orange */
-            --background-light: #f5f5f5;
+            --primary-color: #003366; /* Bleu Foncée Institutionnel */
+            --secondary-color: #F7B731; /* Jaune/Orange Vif */
             --text-dark: #333;
-            --padding-base: 20px;
+            --background-light: #f4f6f9;
             --max-width: 1200px;
         }
 
-        /* Amélioration de la police et du fond */
         body {
+            font-family: 'Poppins', sans-serif;
             margin: 0;
-            font-family: 'Roboto', Arial, sans-serif;
+            padding: 0;
             background-color: var(--background-light);
             color: var(--text-dark);
             line-height: 1.6;
-            scroll-behavior: smooth; /* Activation du scroll doux */
         }
-
-        /* ====== HEADER & NAVIGATION ====== */
+        
+        /* ====== HEADER & NAVIGATION GLOBALE ====== */
         header {
-            background-color: var(--primary-color);
+            background: var(--primary-color);
             color: white;
-            padding: 10px var(--padding-base);
+            padding: 15px 20px;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             position: sticky;
             top: 0;
             z-index: 1000;
+        }
+        
+        .header-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
-        .logo-title {
+        header h1 {
             margin: 0;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
-            letter-spacing: 1px;
         }
 
+        /* Styles de la Barre de Navigation (Desktop) */
+        nav {
+            position: relative; /* Pour le positionnement du menu mobile */
+        }
+        
         nav ul {
             list-style: none;
-            margin: 0;
             padding: 0;
+            margin: 0;
             display: flex;
-            flex-wrap: wrap;
         }
-        nav li {
-            margin-left: 20px; /* Utilisation de margin-left plutôt que right pour une meilleure gestion du flex */
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 700;
-            padding: 5px 0;
-            transition: color 0.3s ease;
-        }
-        nav a:hover {
-            color: var(--secondary-color); /* Changement de couleur au survol */
-            text-decoration: underline;
-        }
-
-        /* ====== SLIDER AMÉLIORÉ (Conservé) ====== */
-        .slider {
+        nav ul li {
             position: relative;
-            max-width: 100%;
-            height: 400px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            margin-left: 20px;
         }
-        .slides {
-            display: flex;
-            width: 300%;
-            height: 100%;
-            animation: slide 12s infinite;
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 15px;
+            display: block;
+            font-weight: 600;
+            transition: color 0.3s, background-color 0.3s;
         }
-        .slide {
-            width: 100%;
-            flex-shrink: 0;
-            background-size: cover;
-            background-position: center;
-        }
-        /* La keyframe reste la même pour un effet de base */
-        @keyframes slide {
-            0% { transform: translateX(0); }
-            33% { transform: translateX(-100%); }
-            66% { transform: translateX(-200%); }
-            100% { transform: translateX(0); }
+        nav ul li a:hover {
+            color: var(--secondary-color);
         }
 
-        /* ====== SECTIONS & FOOTER ====== */
-        section {
-            padding: 40px var(--padding-base);
-            max-width: var(--max-width);
-            margin: auto;
+        /* Sous-menus (Dropdown) */
+        nav ul .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 220px;
             background: white;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-top: 3px solid var(--secondary-color);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            padding: 0;
+        }
+        nav ul li:hover .submenu {
+            display: block;
+        }
+        nav ul .submenu li {
+            margin: 0;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+        nav ul .submenu li:last-child {
+            border-bottom: none;
+        }
+        nav ul .submenu li a {
+            color: var(--text-dark);
+            padding: 10px 15px;
+            font-weight: 400;
+        }
+        nav ul .submenu li a:hover {
+            background-color: var(--background-light);
+            color: var(--primary-color);
+        }
+
+        /* Bouton Hamburger (Mobile) */
+        .menu-toggle {
+            display: none; /* Caché sur desktop */
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* ====== MAIN CONTENT & SECTIONS ====== */
+        main {
+            max-width: var(--max-width);
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        h1 {
+            color: var(--primary-color);
+            font-size: 32px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
         }
         h2 {
             color: var(--primary-color);
-            border-bottom: 2px solid var(--secondary-color); /* Ligne de séparation élégante */
-            padding-bottom: 10px;
-            margin-top: 0;
-            margin-bottom: 20px;
-            font-size: 28px;
-        }
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 0;
+            font-size: 24px;
+            margin-top: 30px;
         }
 
-        /* ====== FORMULAIRE AMÉLIORÉ ====== */
-        #contactForm label {
-            display: block; /* Chaque label prend toute la largeur */
-            margin-top: 15px;
-            margin-bottom: 5px;
-            font-weight: bold;
+        /* Style pour les sections (Cartes) */
+        .section-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
         }
-        #contactForm input[type="text"],
-        #contactForm input[type="email"],
-        #contactForm textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box; /* S'assure que le padding n'augmente pas la largeur totale */
-            font-size: 16px;
+
+        /* Style spécifique pour le slider/annonce */
+        .slider {
+            background: linear-gradient(135deg, var(--primary-color), #0056a0);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
         }
-        #contactForm textarea {
-            resize: vertical; /* Permet uniquement le redimensionnement vertical */
-            min-height: 100px;
+        .slider h2 {
+            color: white;
+            font-size: 28px;
+            margin-top: 0;
         }
-        #contactForm button {
+        
+        /* Accès Rapide */
+        .quick-access-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .quick-access-list a {
             background-color: var(--secondary-color);
             color: var(--primary-color);
-            border: none;
-            padding: 12px 20px;
-            text-align: center;
             text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: background-color 0.3s, transform 0.2s;
             display: inline-block;
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 20px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
         }
-        #contactForm button:hover {
-            background-color: #d1a12a; /* Assombrissement au survol */
-        }
-        #formStatus {
-            margin-top: 15px;
-            font-style: italic;
-            font-weight: bold;
+        .quick-access-list a:hover {
+            background-color: #e0a325;
+            transform: translateY(-2px);
         }
 
-        /* ====== Responsive ====== */
-        @media (max-width: 900px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
+        /* ====== FOOTER ====== */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        /* ====== MEDIA QUERIES (Responsive) ====== */
+        @media (max-width: 992px) {
+            .header-content {
+                flex-direction: row; /* Garder H1 et menu toggle sur la même ligne */
+                justify-content: space-between;
             }
+            
             nav ul {
-                margin-top: 10px;
+                display: none; /* Cacher la nav principale */
+                flex-direction: column;
+                position: absolute;
+                top: 100%; /* Sous le header */
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                z-index: 999;
             }
-            nav li {
-                margin-left: 0;
-                margin-right: 15px;
+            
+            nav ul.open {
+                display: flex; /* Afficher le menu en mode mobile */
+            }
+
+            nav ul li {
+                margin: 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            nav ul li a {
+                padding: 12px 20px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .menu-toggle {
+                display: block; /* Afficher le bouton hamburger */
+            }
+
+            /* Sous-menus en mode mobile (s'ouvrent sous le lien parent) */
+            nav ul .submenu {
+                position: static;
+                width: 100%;
+                border-top: none;
+                box-shadow: none;
+            }
+
+            nav ul li:hover .submenu {
+                display: none; /* Désactiver le :hover par défaut */
+            }
+            
+            /* Nouvelle classe JS pour ouvrir le sous-menu */
+            nav ul li.active .submenu {
+                display: block; 
+            }
+            
+            nav ul .submenu li a {
+                padding-left: 40px; /* Indenter les sous-éléments */
+                background-color: #002244;
+                color: #ddd;
             }
         }
-
+        
         @media (max-width: 600px) {
-            nav ul {
+            .quick-access-list {
                 flex-direction: column;
             }
-            nav li {
-                margin-bottom: 8px;
-            }
-            .slider {
-                height: 250px;
-            }
-            section {
-                padding: 20px;
-            }
-            h2 {
-                font-size: 24px;
+            .quick-access-list a {
+                text-align: center;
             }
         }
+
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-title">MAIRIE DE KOLWEZI 🏛️</div>
-        <nav>
-            <ul>
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#presentation">Présentation</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#projets">Projets</a></li>
-                <li><a href="#contact">Contact</a></li>
+<header>
+    <div class="header-content">
+        <h1><i class="fa-solid fa-city"></i> Mairie de Kolwezi</h1>
+        <nav role="navigation" aria-label="Menu principal">
+            <button class="menu-toggle" aria-controls="main-menu" aria-expanded="false">
+                <i class="fa-solid fa-bars" id="menu-icon"></i>
+            </button>
+            <ul id="main-menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li class="has-submenu">
+                    <a href="mairie.html">Mairie <i class="fa-solid fa-caret-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="histoire.html">Histoire</a></li>
+                        <li><a href="missions.html">Missions</a></li>
+                        <li><a href="valeurs.html">Valeurs</a></li>
+                        <li><a href="organigramme.html">Organigramme</a></li>
+                        <li><a href="services_municipaux.html">Services municipaux</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="actualites.html">Actualités <i class="fa-solid fa-caret-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="communiques.html">Communiqués officiels</a></li>
+                        <li><a href="evenements.html">Événements municipaux</a></li>
+                        <li><a href="alertes.html">Alertes et annonces importantes</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="demarches.html">Démarches en ligne <i class="fa-solid fa-caret-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="formulaires.html">Formulaires</a></li>
+                        <li><a href="rendezvous.html">Prise de rendez-vous</a></li>
+                        <li><a href="paiement.html">Paiement en ligne</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="projets.html">Projets et Développement <i class="fa-solid fa-caret-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="projets_en_cours.html">Projets en cours</a></li>
+                        <li><a href="projets_futurs.html">Projets futurs</a></li>
+                        <li><a href="partenariats.html">Partenariats</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="galerie.html">Galerie <i class="fa-solid fa-caret-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="photos.html">Photos</a></li>
+                        <li><a href="videos.html">Vidéos</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="contact.html">Contact / FAQ <i class="fa-solid fa-caret-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="formulaire_contact.html">Formulaire de contact</a></li>
+                        <li><a href="adresses.html">Adresses et numéros utiles</a></li>
+                        <li><a href="faq.html">Questions fréquentes</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
-    </header>
-
-    <div class="slider">
-        <div class="slides">
-            <div class="slide" style="background-image: url('https://source.unsplash.com/1600x400/?city,government');" aria-label="Vue de la ville de Kolwezi"></div>
-            <div class="slide" style="background-image: url('https://source.unsplash.com/1600x400/?infrastructure,development');" aria-label="Projet d'infrastructure en cours"></div>
-            <div class="slide" style="background-image: url('https://source.unsplash.com/1600x400/?community,people');" aria-label="Citoyens de Kolwezi"></div>
-        </div>
     </div>
+</header>
 
-    <section id="accueil">
-        <h2>Bienvenue à Kolwezi</h2>
-        <p><strong>Message du maire :</strong> La ville de Kolwezi est en pleine transformation, avec des projets pour améliorer la vie de tous les citoyens et soutenir le développement économique. Ensemble, construisons l'avenir de notre ville !</p>
-        <a href="#projets" style="background-color: var(--secondary-color); color: var(--primary-color); padding: 10px 15px; text-decoration: none; border-radius: 4px; display: inline-block; margin-top: 15px; font-weight: bold;">Découvrir nos Projets Majours &rarr;</a>
+<main>
+    <section class="section-card">
+        <h1>Bienvenue à la Mairie de Kolwezi</h1>
+        <p><strong>Message du Maire :</strong> Chers concitoyens, Kolwezi est en pleine mutation. Notre objectif est d'assurer une gestion transparente et de moderniser nos services pour le bien-être de tous. Votre participation est essentielle pour bâtir ensemble une ville prospère et inclusive.</p>
+        <p style="font-style: italic; text-align: right;">[Nom du Maire], Maire de Kolwezi</p>
     </section>
 
-    <section id="presentation">
-        <h2>Présentation de Kolwezi</h2>
-        <p>Kolwezi est la capitale de la province du **Lualaba**. C’est un centre **minier stratégique** pour le cuivre et le cobalt, un moteur essentiel de l'économie nationale. La ville accueille une population diverse et dynamique, engagée dans son développement.</p>
+    <section class="slider">
+        <h2><i class="fa-solid fa-bullhorn"></i> Annonces Importantes</h2>
+        <p style="font-size: 1.1em;">Alerte : Nouvelles mesures de sécurité en centre-ville à partir du 1er novembre. <a href="alertes.html" style="color: var(--secondary-color); font-weight: bold;">Lire les détails.</a></p>
+        <p style="margin-top: 10px;">Prochaine réunion publique : 15 novembre sur le budget participatif.</p>
     </section>
 
-    <section id="services">
-        <h2>Services aux citoyens</h2>
-        <p>Retrouvez ici les informations pratiques et les démarches essentielles auprès des services municipaux :</p>
-        <ul>
-            <li>**État civil :** Déclaration de naissance, mariage, décès.</li>
-            <li>**Finances :** Paiement des taxes, impôts locaux et redevances.</li>
-            <li>**Social & Éducation :** Programmes d'aide sociale, inscriptions scolaires.</li>
-            <li>**Urbanisme & Transport :** Permis de construire, plans de circulation, transport public.</li>
+    <section class="section-card">
+        <h2>Accès Rapide aux Services Essentiels</h2>
+        <ul class="quick-access-list">
+            <li><a href="services.html#etatcivil"><i class="fa-solid fa-user-check"></i> État Civil</a></li>
+            <li><a href="services.html#taxes"><i class="fa-solid fa-file-invoice-dollar"></i> Taxes & Impôts</a></li>
+            <li><a href="demarches.html"><i class="fa-solid fa-folder-open"></i> Démarches en ligne</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-map-pin"></i> Nous localiser</a></li>
         </ul>
     </section>
+</main>
 
-    <section id="projets">
-        <h2>Projets & Développement</h2>
-        <p>Suivi des projets municipaux majeurs, des nouvelles infrastructures et des initiatives économiques visant à moderniser et embellir Kolwezi.</p>
-        </section>
+<footer>
+    © 2025 - Mairie de Kolwezi | Tous droits réservés | Propulsé par la Direction Informatique.
+</footer>
 
-    <section id="contact">
-        <h2>Contactez-nous</h2>
-        <p>Utilisez le formulaire ci-dessous pour toute question, suggestion ou signalement. Nous vous répondrons dans les meilleurs délais.</p>
-        <form id="contactForm">
-            <label for="name">Nom et Prénom :</label>
-            <input type="text" id="name" name="name" required placeholder="Votre nom complet">
-            
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" required placeholder="votre.email@exemple.com">
-            
-            <label for="message">Message :</label>
-            <textarea id="message" name="message" required placeholder="Votre message..."></textarea>
-            
-            <button type="submit">Envoyer le Message ✉️</button>
-        </form>
-        <p id="formStatus" aria-live="polite"></p> </section>
+<script type="module">
+    // Import des modules Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+    // Bien que non utilisé immédiatement, le module Firestore est souvent nécessaire
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"; 
 
-    <footer>
-        <p>&copy; 2025 Mairie de Kolwezi. Tous droits réservés. | Adresse : [Votre Adresse] | Téléphone : [Votre Téléphone]</p>
-    </footer>
+    // Votre configuration Firebase (intégrée)
+    const firebaseConfig = {
+        apiKey: "AIzaSyCr3MVt72I5aa_v0IBw7tC142kBjQJTdbU",
+        authDomain: "mairie-web-site.firebaseapp.com",
+        projectId: "mairie-web-site",
+        storageBucket: "mairie-web-site.firebasestorage.app",
+        messagingSenderId: "518997735244",
+        appId: "1:518997735244:web:a4af3a25470a39e20401e9"
+    };
 
-    <script type="module">
-        // Import des modules Firebase depuis les CDN pour un fichier unique.
-        // C'est une méthode simple, mais dans un projet plus grand, on utiliserait npm et un bundler.
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+    // Initialisation de Firebase
+    const app = initializeApp(firebaseConfig);
+    // Initialisation de Firestore (prêt à l'emploi)
+    const db = getFirestore(app);
+    console.log("Firebase initialisé ! ID du projet:", firebaseConfig.projectId);
 
-        // Votre configuration Firebase (ajoutée comme demandé)
-        const firebaseConfig = {
-            apiKey: "AIzaSyCr3MVt72I5aa_v0IBw7tC142kBjQJTdbU",
-            authDomain: "mairie-web-site.firebaseapp.com",
-            projectId: "mairie-web-site",
-            storageBucket: "mairie-web-site.firebasestorage.app",
-            messagingSenderId: "518997735244",
-            appId: "1:518997735244:web:a4af3a25470a39e20401e9"
-        };
 
-        // Initialisation de Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+    // ====== Logique du Menu Hamburger et des Sous-menus (Mobile) ======
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainMenu = document.getElementById('main-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const hasSubmenus = document.querySelectorAll('.has-submenu > a');
 
-        // ====== Formulaire Contact Logic ======
-        const form = document.getElementById('contactForm');
-        const formStatus = document.getElementById('formStatus');
+    // 1. Gestion de l'ouverture/fermeture du menu principal
+    menuToggle.addEventListener('click', () => {
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
+        mainMenu.classList.toggle('open');
+        
+        // Changer l'icône : Hamburger <-> X
+        if (mainMenu.classList.contains('open')) {
+            menuIcon.classList.remove('fa-bars');
+            menuIcon.classList.add('fa-times');
+        } else {
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+        }
+    });
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // Afficher un statut d'attente
-            formStatus.textContent = "Envoi en cours...";
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            try {
-                // Tentative d'ajouter le document à la collection 'contacts'
-                await addDoc(collection(db, "contacts"), { 
-                    name, 
-                    email, 
-                    message, 
-                    date: new Date().toISOString() // Format ISO pour une meilleure gestion des dates
-                }); 
+    // 2. Gestion de l'ouverture des sous-menus au clic sur mobile
+    hasSubmenus.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Uniquement si le menu est en mode mobile (vérification visuelle)
+            if (window.innerWidth <= 992) {
+                e.preventDefault(); // Empêcher la navigation vers la page mère
                 
-                formStatus.style.color = 'green';
-                formStatus.textContent = "✅ Message envoyé avec succès ! Nous vous recontacterons bientôt.";
-                form.reset();
-            } catch (error) {
-                console.error("Erreur d'envoi à Firestore: ", error);
-                formStatus.style.color = 'red';
-                formStatus.textContent = "❌ Erreur lors de l'envoi. Veuillez réessayer ou nous contacter par téléphone.";
+                const parentLi = link.closest('li');
+                const isOpen = parentLi.classList.contains('active');
+
+                // Fermer tous les autres sous-menus ouverts
+                document.querySelectorAll('.has-submenu').forEach(item => {
+                    if (item !== parentLi) {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Basculer l'état du sous-menu cliqué
+                parentLi.classList.toggle('active');
             }
         });
-        
-        // ====== Navigation avec Scroll Doux (Amélioration UX) ======
-        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+    });
+    
+</script>
 
 </body>
 </html>
