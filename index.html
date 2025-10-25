@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mairie de Kolwezi - Portail Officiel</title>
+    <title>Mairie de Kolwezi - Portail Officiel Moderne</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <style>
-        /* ====== Variables CSS & Reset ====== */
+        /* ====== Variables CSS & Reset (Légèrement Ajusté) ====== */
         :root {
             --primary-blue: #0A3D62; /* GARDER LE BLEU FONCE INITIAL */
-            --header-bg: #032145; /* Nouveau : Bleu très foncé pour l'en-tête, comme l'exemple */
+            --header-bg: #032145; /* Bleu très foncé pour l'en-tête */
             --secondary-blue: #0F52BA; /* Bleu vibrant d'accentuation */
-            --highlight-color: #26a69a; /* Couleur d'accentuation supplémentaire (Vert/Cyan) */
-            --text-dark: #2c3e50; /* Presque noir */
-            --text-light: #607d8b; /* Gris doux */
-            --background-light: #f4f7f9; /* Arrière-plan plus doux */
-            --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            --highlight-color: #26a69a; /* Couleur d'accentuation (Vert/Cyan) */
+            --text-dark: #1f2937; /* Plus dark que le précédent pour un meilleur contraste */
+            --text-light: #6b7280; /* Gris doux */
+            --background-light: #f9fafb; /* Arrière-plan très clair/doux */
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Ombre légère pour effet de profondeur */
             --max-width: 1280px;
+            --transition-time: 0.3s;
         }
 
         * {
@@ -37,10 +38,10 @@
         a {
             text-decoration: none;
             color: var(--secondary-blue);
-            transition: color 0.3s, background-color 0.3s;
+            transition: color var(--transition-time), background-color var(--transition-time);
         }
         
-        /* ====== UTILS ====== */
+        /* ====== UTILS & Composants Modernes ====== */
         .container {
             max-width: var(--max-width);
             margin: 0 auto;
@@ -49,52 +50,35 @@
         
         .section-title {
             text-align: center;
-            font-size: 32px;
+            font-size: 36px; /* Augmenté */
             font-weight: 800;
             color: var(--primary-blue);
-            margin-bottom: 40px;
+            margin-bottom: 50px; /* Augmenté */
             position: relative;
-            padding-bottom: 15px;
         }
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -15px; /* Positionnement plus bas */
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
+            width: 80px; /* Plus compact */
+            height: 5px; /* Plus épais */
             background-color: var(--highlight-color);
-            border-radius: 2px;
+            border-radius: 3px;
         }
 
-        /* ====== ANIMATIONS KEYFRAMES ====== */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translate3d(0, 40px, 0);
-            }
-            to {
-                opacity: 1;
-                transform: none;
-            }
+        /* Utilisation d'une classe pour les icônes de sous-menus */
+        .menu-arrow {
+            margin-left: 8px;
+            font-size: 0.7em;
+            transition: transform var(--transition-time) ease;
         }
 
-        .animated {
-            animation-duration: 1s;
-            animation-fill-mode: both;
-        }
-        .fade-in-up {
-            animation-name: fadeInUp;
-        }
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-
-
-        /* ====== HEADER & NAVIGATION - MODIFIÉ POUR LOGO SOMBRE ====== */
+        /* ====== HEADER & NAVIGATION (Optimisé) ====== */
         header {
-            background: var(--header-bg); /* Fond très foncé */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Ombre ajustée */
+            background: var(--header-bg);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -104,29 +88,23 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            min-height: 90px; /* Hauteur ajustée pour l'effet */
+            min-height: 80px; /* Hauteur réduite pour un look plus élégant */
         }
         
         .logo {
             display: flex;
             align-items: center;
-            color: white; /* Texte du logo en blanc */
-            font-size: 20px; /* Taille ajustée pour moins de hauteur */
+            color: white;
+            font-size: 22px; 
             font-weight: 800;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
-        /* Styles pour l'image du logo */
         .logo .logo-img {
-            height: 65px; /* Hauteur ajustée pour l'effet */
-            width: auto;
-            object-fit: contain;
-            margin-right: 15px; /* Marge ajustée */
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover .logo-img {
-             transform: scale(1.05);
+            height: 55px; /* Taille ajustée */
+            margin-right: 15px; 
+            transition: transform var(--transition-time) ease;
         }
 
         /* Styles de la Barre de Navigation (Desktop) */
@@ -138,448 +116,209 @@
         }
         nav ul li {
             position: relative;
-            margin-left: 25px;
+            margin-left: 20px;
         }
         nav ul li a {
-            color: white; /* Couleur des liens en blanc pour le fond sombre */
-            padding: 10px 0;
+            color: white; 
+            padding: 28px 0; /* Plus de padding pour centrer le texte verticalement */
             display: flex;
             align-items: center;
             font-weight: 600;
             border-bottom: 3px solid transparent;
-            transition: color 0.3s, border-bottom 0.3s, transform 0.2s;
+            transition: color var(--transition-time), border-bottom var(--transition-time);
+        }
+        nav ul li a i.me-2 {
+            margin-right: 8px;
+            font-size: 1.1em;
         }
         nav ul li a:hover, nav ul li.active > a {
-            color: var(--highlight-color); /* Couleur au survol (Cyan) */
+            color: var(--highlight-color); 
             border-bottom-color: var(--highlight-color);
-            transform: translateY(-2px);
         }
 
-        /* Sous-menus (Dropdown) - Ajustés pour le fond sombre */
+        /* Sous-menus (Dropdown) - Amélioration des transitions et de l'esthétique */
         nav ul .submenu {
             display: none;
             position: absolute;
             top: 100%;
-            left: 0;
-            min-width: 260px;
-            background: #0f3e6a; /* Fond du sous-menu plus foncé */
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            left: 50%; /* Centré sous le lien principal */
+            transform: translateX(-50%) translateY(10px); /* Décalage initial */
+            min-width: 280px; /* Plus large */
+            background: #0f3e6a; 
+            box-shadow: var(--card-shadow);
             z-index: 1001;
             padding: 10px 0;
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
-            border-top: 4px solid var(--highlight-color);
-            transform: translateY(10px);
+            border-top: 5px solid var(--highlight-color);
             opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            pointer-events: none; /* Désactivé par défaut */
+            transition: transform var(--transition-time) ease-out, opacity var(--transition-time) ease-out;
         }
         nav ul li:hover .submenu {
             display: block;
-            transform: translateY(0);
+            transform: translateX(-50%) translateY(0); /* Position finale */
             opacity: 1;
+            pointer-events: auto; /* Activé au survol */
         }
         nav ul .submenu li {
             margin: 0;
         }
         nav ul .submenu li a {
-            color: rgba(255, 255, 255, 0.9); /* Texte des sous-menus en blanc légèrement transparent */
+            color: rgba(255, 255, 255, 0.9); 
             padding: 12px 20px;
             font-weight: 500;
             white-space: nowrap;
             width: 100%;
             border-bottom: none;
-            display: flex;
-            align-items: center;
-        }
-        nav ul .submenu li a i {
-            margin-right: 10px;
-            font-size: 0.9em;
+            justify-content: flex-start; /* Aligné à gauche */
         }
         nav ul .submenu li a:hover {
-            background-color: var(--primary-blue); /* Survol plus foncé pour les sous-menus */
+            background-color: var(--primary-blue); 
             color: var(--highlight-color);
             transform: none;
         }
-
-        /* Indicateur de sous-menu */
-        .has-submenu > a i.fa-caret-down {
-            margin-left: 5px;
-            font-size: 0.7em;
-            transition: transform 0.3s ease;
-        }
-        nav ul li:hover > a i.fa-caret-down {
+        .has-submenu:hover > a .menu-arrow {
             transform: rotate(180deg);
         }
 
-        /* Bouton Hamburger (Mobile) - Ajusté pour le fond sombre */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white; /* Icône hamburger en blanc */
-            font-size: 34px;
-            cursor: pointer;
-            padding: 5px;
-            transition: transform 0.3s;
-        }
-        .menu-toggle:hover {
-            transform: scale(1.1);
-            color: var(--highlight-color);
-        }
-
-        /* ====== MAIN CONTENT & HERO ====== */
-        main {
-            padding: 0 0 50px 0;
-        }
-
+        /* ====== MAIN CONTENT & HERO (Amélioré) ====== */
         .hero-section {
             background: linear-gradient(135deg, white 0%, var(--background-light) 100%);
-            padding: 80px 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 100px 20px; /* Plus de padding */
+            border-radius: 0 0 20px 20px; /* Coins inférieurs arrondis */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             text-align: center;
-            margin: 40px auto;
+            margin: 0 auto;
         }
         .hero-section h1 {
-            color: var(--primary-blue);
-            font-size: 48px;
-            margin-top: 0;
-            margin-bottom: 25px;
-            line-height: 1.1;
-            font-weight: 800;
+            font-size: 52px; /* Plus grand */
+            margin-bottom: 20px;
         }
         .hero-section p {
-            font-size: 1.3em;
-            color: var(--text-light);
-            max-width: 900px;
-            margin: 0 auto 40px;
-            font-weight: 500;
+            font-size: 1.4em;
+            max-width: 800px;
+            margin: 0 auto 35px;
         }
         .hero-button {
-            display: inline-flex;
-            align-items: center;
-            background-color: var(--secondary-blue);
-            color: white;
-            padding: 15px 35px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1em;
-            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-            box-shadow: 0 8px 20px rgba(15, 82, 186, 0.5);
-            text-transform: uppercase;
-        }
-        .hero-button i {
-            margin-left: 10px;
-            transition: transform 0.3s;
-        }
-        .hero-button:hover {
-            background-color: #0b4594;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(15, 82, 186, 0.6);
-        }
-        .hero-button:hover i {
-            transform: translateX(5px);
+            padding: 18px 40px; /* Plus grand */
+            box-shadow: 0 10px 25px rgba(15, 82, 186, 0.5);
         }
 
-        /* ====== FEATURE GRID (Services) ====== */
+        /* ====== FEATURE GRID (Services) - Amélioré pour l'effet 3D ====== */
         .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            margin: 60px auto;
         }
         .feature-card {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-            text-align: center;
-            border-bottom: 5px solid var(--highlight-color);
-            position: relative;
-            overflow: hidden;
-            display: block; /* S'assurer que le lien occupe toute la carte */
-        }
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(10, 61, 98, 0.03) 100%);
-            z-index: 1;
-        }
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-bottom: 5px solid var(--secondary-blue); /* Couleur accentuation changée pour le bleu secondaire */
+            border-radius: 12px;
+            padding: 40px 30px;
         }
         .feature-card i {
-            font-size: 48px;
-            color: var(--highlight-color);
-            margin-bottom: 15px;
-            transition: color 0.3s;
+            font-size: 56px; /* Plus grand */
+            color: var(--secondary-blue); /* L'icône est maintenant bleu secondaire par défaut */
         }
         .feature-card:hover i {
-            color: var(--secondary-blue);
-        }
-        .feature-card h4 {
-            font-size: 1.3em;
-            color: var(--primary-blue);
-            margin-top: 0;
-        }
-        .feature-card p {
-            font-size: 0.95em;
-            color: var(--text-light);
+            color: var(--highlight-color); /* Vert/Cyan au survol */
         }
 
         /* ====== ANNOUNCEMENTS SECTION (News Grid - Améliorée) ====== */
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 20px 0;
+        .section-announcements {
+            margin-top: 60px;
         }
-
         .news-card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #e0e0e0;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
         }
-        .news-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-
         .news-header {
-            padding: 20px;
-            border-bottom: 3px solid var(--secondary-blue);
-            background-color: #fcfcfc;
+            border-bottom-color: var(--highlight-color); /* Bordure en couleur accentuation */
+            background-color: white;
         }
-
         .news-icon-wrapper {
-            float: left;
-            margin-right: 15px;
-            color: var(--secondary-blue);
-            font-size: 28px;
-            line-height: 1;
-        }
-
-        .news-header h5 {
-            margin: 0;
-            font-size: 1.2em;
-            font-weight: 700;
-            color: var(--primary-blue);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .news-body {
-            padding: 20px;
-            flex-grow: 1;
-        }
-        .news-body small {
-            display: block;
-            margin-bottom: 10px;
-            color: var(--highlight-color);
-            font-weight: 600;
-            font-size: 0.85em;
-        }
-        .news-body p {
-            margin: 0;
-            color: var(--text-light);
-            font-size: 0.95em;
+            color: var(--highlight-color); /* Icône en couleur accentuation */
         }
         .news-link {
-            display: block;
-            text-align: right;
-            margin-top: 15px;
-            color: var(--secondary-blue);
-            font-weight: 600;
+            color: var(--highlight-color); /* Lien en couleur accentuation */
         }
         .news-link:hover {
-            text-decoration: underline;
+            color: var(--secondary-blue);
         }
 
-
-        /* ====== FOOTER ====== */
+        /* ====== FOOTER - Légèrement ajusté pour un look plus moderne ====== */
         footer {
-            background: var(--primary-blue);
-            color: white;
-            padding: 40px 20px 20px;
-        }
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-        .footer-column {
-            flex: 1;
-            min-width: 280px;
+            padding: 60px 20px 30px;
+            margin-top: 80px;
         }
         .footer-column h3 {
-            font-size: 22px;
-            margin-top: 0;
-            margin-bottom: 20px;
-            color: #90CAF9; /* Bleu clair pour le contraste */
-            border-bottom: 2px solid var(--highlight-color);
-            padding-bottom: 5px;
-            font-weight: 700;
-        }
-        .footer-column ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .footer-column ul li {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: flex-start;
-            font-size: 0.95em;
+            color: var(--highlight-color); /* Titres en couleur accentuation */
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
         }
         .footer-column ul li i {
-            margin-right: 10px;
-            color: var(--highlight-color);
-            font-size: 16px;
-            padding-top: 3px;
-        }
-        .footer-column ul li a {
-            color: rgba(255, 255, 255, 0.9);
-            transition: color 0.3s;
+            color: white; /* Icônes en blanc sur fond sombre */
         }
         .footer-column ul li a:hover {
             color: var(--highlight-color);
         }
-
-        .footer-social-icons a {
-            color: white;
-            font-size: 26px;
-            margin-right: 18px;
-            transition: transform 0.3s, color 0.3s;
-            display: inline-block;
-        }
         .footer-social-icons a:hover {
             color: var(--highlight-color);
-            transform: scale(1.15) translateY(-2px);
         }
         .footer-bottom {
-            margin-top: 40px;
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            font-size: 0.85em;
-            color: rgba(255, 255, 255, 0.7);
+            margin-top: 50px;
         }
 
-        /* ====== MEDIA QUERIES (Responsive Mobile) - AJUSTÉ POUR FOND SOMBRE ====== */
+
+        /* ====== MEDIA QUERIES (Responsive Mobile) - AJOUT DU TOOGLE SUBMENU MOBILE ====== */
         @media (max-width: 992px) {
             .header-content {
-                min-height: 70px; /* Légèrement ajusté */
+                min-height: 65px; 
             }
-            .logo {
-                font-size: 18px;
-            }
-            
-            .logo .logo-img { /* Ajustement de la taille du logo pour mobile */
-                 height: 55px; 
+            .logo .logo-img { 
+                height: 50px; 
             }
             
-            /* Menu Mobile */
             nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 70px; /* Position ajustée en fonction du min-height */
-                left: 0;
-                width: 100%;
-                background-color: var(--header-bg); /* Fond du menu mobile identique à l'en-tête */
-                box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
-                padding: 10px 0;
-            }
-            nav ul.open {
-                display: flex;
-            }
-            nav ul li {
-                margin: 0;
+                top: 65px; /* Position ajustée en fonction du min-height */
             }
             nav ul li a {
                 padding: 15px 20px;
-                border-bottom: none;
-                width: 100%;
-                justify-content: space-between;
-                color: white; /* Liens en blanc sur mobile */
-            }
-            nav ul li a:hover, nav ul li.active > a {
-                background-color: var(--primary-blue); /* Fond de survol pour mobile */
-                color: var(--highlight-color);
-                border-bottom: none;
+                display: flex; /* Assure le flex pour space-between */
             }
             
-            .menu-toggle {
-                display: block;
-            }
-
             /* Sous-menus mobile */
+            .has-submenu > a {
+                cursor: pointer; /* Indique qu'il est cliquable */
+            }
             nav ul .submenu {
-                position: static;
-                width: 100%;
-                box-shadow: none;
-                border-radius: 0;
-                border: none;
-                padding: 0;
-                border-top: none;
-                transform: translateY(0);
+                transform: none; 
                 opacity: 1; 
-                display: none; 
+                display: none; /* Cache par défaut, ouvert via JS */
+                position: relative; /* Position statique pour le flux mobile */
+                width: 100%;
+                border-top: none; 
+                padding: 0;
             }
             nav ul .submenu li a {
-                background-color: #0f3e6a; /* Fond des sous-liens mobile plus foncé */
-                padding-left: 40px;
-                color: rgba(255, 255, 255, 0.8);
-            }
-            nav ul .submenu li a:hover {
-                 background-color: var(--primary-blue); /* Survol plus foncé pour les sous-menus */
-                 color: var(--highlight-color);
-            }
-            nav ul li.active .submenu {
-                display: block;
+                padding-left: 45px; /* Indentation */
             }
             
-            /* Footer Responsive */
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            .footer-column {
-                min-width: auto;
-            }
-            .footer-column ul li {
-                justify-content: center;
-            }
-            .footer-column ul li i {
-                padding-top: 0; 
+            /* Rotation de l'icône de sous-menu pour le mobile */
+            .has-submenu.open > a .menu-arrow {
+                transform: rotate(180deg);
             }
         }
         
         @media (max-width: 600px) {
             .hero-section h1 {
-                font-size: 34px;
+                font-size: 40px;
             }
             .hero-section p {
-                font-size: 1.1em;
+                font-size: 1.2em;
             }
             .section-title {
-                font-size: 26px;
+                font-size: 28px;
             }
             .hero-section {
-                padding: 60px 20px;
+                padding: 80px 20px;
             }
         }
     </style>
@@ -601,7 +340,7 @@
                 <li class="active"><a href="index.html"><i class="fa-solid fa-house me-2"></i>Accueil</a></li>
                 
                 <li class="has-submenu">
-                    <a href="mairie.html"><i class="fa-solid fa-landmark me-2"></i>Mairie <i class="fa-solid fa-caret-down"></i></a>
+                    <a href="mairie.html"><i class="fa-solid fa-landmark me-2"></i>Mairie <i class="fa-solid fa-caret-down menu-arrow"></i></a>
                     <ul class="submenu">
                         <li><a href="histoire.html"><i class="fa-solid fa-book-open"></i> Histoire & Géographie</a></li>
                         <li><a href="organigramme.html"><i class="fa-solid fa-sitemap"></i> Organigramme</a></li>
@@ -610,7 +349,7 @@
                 </li>
                 
                 <li class="has-submenu">
-                    <a href="services.html"><i class="fa-solid fa-handshake me-2"></i>Services <i class="fa-solid fa-caret-down"></i></a>
+                    <a href="services.html"><i class="fa-solid fa-handshake me-2"></i>Services <i class="fa-solid fa-caret-down menu-arrow"></i></a>
                     <ul class="submenu">
                         <li><a href="etat_civil.html"><i class="fa-solid fa-passport"></i> État civil</a></li>
                         <li><a href="taxes_impots_locaux.html"><i class="fa-solid fa-money-bill-transfer"></i> Taxes & Impôts locaux</a></li>
@@ -620,7 +359,7 @@
                 </li>
                 
                 <li class="has-submenu">
-                    <a href="actualites.html"><i class="fa-solid fa-newspaper me-2"></i>Actualités <i class="fa-solid fa-caret-down"></i></a>
+                    <a href="actualites.html"><i class="fa-solid fa-newspaper me-2"></i>Actualités <i class="fa-solid fa-caret-down menu-arrow"></i></a>
                     <ul class="submenu">
                         <li><a href="communiques.html"><i class="fa-solid fa-bullhorn"></i> Communiqués officiels</a></li>
                         <li><a href="evenements.html"><i class="fa-solid fa-calendar-check"></i> Événements</a></li>
@@ -629,7 +368,7 @@
                 </li>
                 
                 <li class="has-submenu">
-                    <a href="demarches.html"><i class="fa-solid fa-file-signature me-2"></i>Démarches <i class="fa-solid fa-caret-down"></i></a>
+                    <a href="demarches.html"><i class="fa-solid fa-file-signature me-2"></i>Démarches <i class="fa-solid fa-caret-down menu-arrow"></i></a>
                     <ul class="submenu">
                         <li><a href="formulaires.html"><i class="fa-solid fa-file-lines"></i> Formulaires</a></li>
                         <li><a href="rendezvous.html"><i class="fa-solid fa-clock"></i> Prise de rendez-vous</a></li>
@@ -638,7 +377,7 @@
                 </li>
                 
                 <li class="has-submenu">
-                    <a href="projets.html"><i class="fa-solid fa-city me-2"></i>Projets <i class="fa-solid fa-caret-down"></i></a>
+                    <a href="projets.html"><i class="fa-solid fa-city me-2"></i>Projets <i class="fa-solid fa-caret-down menu-arrow"></i></a>
                     <ul class="submenu">
                         <li><a href="infrastructures.html">Infrastructures & Équipements publics</a></li>
                         <li><a href="urbanisme.html">Urbanisme & Aménagement</a></li>
@@ -647,14 +386,21 @@
                     </ul>
                 </li>
                 
-                <li><a href="galerie.html"><i class="fa-solid fa-camera me-2"></i>Galerie</a></li>    
+                <li class="has-submenu">
+                    <a href="galerie.html"><i class="fa-solid fa-camera me-2"></i>Galerie <i class="fa-solid fa-caret-down menu-arrow"></i></a>
+                    <ul class="submenu">
+                        <li><a href="galerie_photos.html"><i class="fa-solid fa-image"></i> Photos</a></li>
+                        <li><a href="galerie_videos.html"><i class="fa-solid fa-video"></i> Vidéos</a></li>
+                        <li><a href="galerie_ceremonies.html"><i class="fa-solid fa-ribbon"></i> Cérémonies officielles</a></li>
+                    </ul>
+                </li>
                 
                 <li class="has-submenu">
-                    <a href="contact.html"><i class="fa-solid fa-phone-volume me-2"></i>Contact <i class="fa-solid fa-caret-down"></i></a>
+                    <a href="contact.html"><i class="fa-solid fa-phone-volume me-2"></i>Contact <i class="fa-solid fa-caret-down menu-arrow"></i></a>
                     <ul class="submenu">
-                        <li><a href="formulaire_contact.html">Formulaire de contact</a></li>
-                        <li><a href="adresses_utiles.html">Adresses & Numéros utiles</a></li>
-                        <li><a href="faq.html">Questions fréquentes (FAQ)</a></li>
+                        <li><a href="formulaire_contact.html"><i class="fa-solid fa-envelope"></i> Formulaire de contact</a></li>
+                        <li><a href="adresses_utiles.html"><i class="fa-solid fa-map-pin"></i> Adresses & Numéros utiles</a></li>
+                        <li><a href="faq.html"><i class="fa-solid fa-circle-question"></i> Questions fréquentes (FAQ)</a></li>
                     </ul>
                 </li>
             </ul>
@@ -668,6 +414,7 @@
             <h1>Ensemble, Bâtissons la Ville de Kolwezi</h1>
             <p>Bienvenue sur le portail officiel de la Mairie de Kolwezi. Retrouvez ici toutes les informations, démarches et actualités pour mieux vivre votre ville.</p>
             <a href="demarches.html" class="hero-button">Faire une démarche en ligne <i class="fa-solid fa-arrow-right-long"></i></a>
+            
         </section>
 
         <section class="section-services">
@@ -771,90 +518,99 @@
     </div>
 </footer>
 
-<script type="module">
-    // Import des modules Firebase v11.6.1
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-    import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-    import { getFirestore, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+<script>
+    // Le code Firebase est supprimé pour se concentrer sur le JS du menu
+    // et éviter les erreurs d'initialisation des variables non définies.
     
-    // Récupération des variables globales de l'environnement
-    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-    const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
-    const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mainMenu = document.getElementById('main-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const hasSubmenus = document.querySelectorAll('.has-submenu'); // Sélectionne les LI
 
-    let app, db, auth;
-
-    if (firebaseConfig) {
-        try {
-            // Initialisation de Firebase
-            app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            auth = getAuth(app);
-            setLogLevel('debug'); // Activer le log de debug pour Firestore
-
-            // Logique d'Authentification (obligatoire)
-            async function initializeAuth() {
-                if (initialAuthToken) {
-                    await signInWithCustomToken(auth, initialAuthToken);
-                    console.log(`[Firebase] Authentification avec jeton personnalisé (UID: ${auth.currentUser.uid}).`);
-                } else {
-                    await signInAnonymously(auth);
-                    console.log(`[Firebase] Authentification anonyme (UID: ${auth.currentUser.uid}).`);
-                }
-            }
-
-            initializeAuth();
+        // 1. Gestion de l'ouverture/fermeture du menu principal (Hamburger)
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            mainMenu.classList.toggle('open');
             
-        } catch (error) {
-            console.error("[Firebase] Erreur d'initialisation ou d'authentification:", error);
-        }
-    } else {
-        console.error("[Firebase] Configuration introuvable. Les services de données ne sont pas disponibles.");
-    }
-
-
-    // ====== Logique du Menu Hamburger et des Sous-menus (Mobile) ======
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mainMenu = document.getElementById('main-menu');
-    const menuIcon = document.getElementById('menu-icon');
-    const hasSubmenus = document.querySelectorAll('.has-submenu > a');
-
-    // 1. Gestion de l'ouverture/fermeture du menu principal
-    const toggleMenu = () => {
-        const isExpanded = mainMenu.classList.contains('open');
-        menuToggle.setAttribute('aria-expanded', !isExpanded);
-        mainMenu.classList.toggle('open');
-        
-        // Changer l'icône : Hamburger <-> X
-        menuIcon.classList.toggle('fa-bars');
-        menuIcon.classList.toggle('fa-times');
-    };
-
-    menuToggle.addEventListener('click', toggleMenu);
-    
-    // 2. Gestion de l'ouverture/fermeture des sous-menus au clic sur mobile (992px)
-    hasSubmenus.forEach(link => {
-        link.addEventListener('click', (e) => {
-            // Seulement si la fenêtre est considérée comme mobile
-            if (window.innerWidth <= 992) {
-                e.preventDefault(); 
+            // Changement de l'icône du bouton
+            if (!isExpanded) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark'); // Icône X
+            } else {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars'); // Icône Hamburger
                 
-                const parentLi = link.closest('li');
-                const isOpen = parentLi.classList.contains('active');
+                // Fermer tous les sous-menus lorsqu'on ferme le menu principal
+                hasSubmenus.forEach(li => {
+                    li.classList.remove('open');
+                    const submenu = li.querySelector('.submenu');
+                    if(submenu) submenu.style.display = 'none';
+                });
+            }
+        });
 
-                // Fermer tous les autres sous-menus ouverts
-                document.querySelectorAll('.has-submenu').forEach(item => {
-                    if (item !== parentLi) {
-                        item.classList.remove('active');
+        // 2. Gestion de l'ouverture/fermeture des sous-menus au Clic (Mobile)
+        hasSubmenus.forEach(li => {
+            const link = li.querySelector('a');
+            const submenu = li.querySelector('.submenu');
+            
+            if (submenu) {
+                // Pour le mobile, on ne veut pas que le lien principal navigue,
+                // mais qu'il ouvre/ferme le sous-menu.
+                link.addEventListener('click', (e) => {
+                    // Vérifie si le menu est en mode mobile (menu ouvert)
+                    if (window.innerWidth <= 992) {
+                        e.preventDefault(); 
+                        
+                        const isCurrentlyOpen = li.classList.contains('open');
+
+                        // Fermer les autres sous-menus
+                        hasSubmenus.forEach(otherLi => {
+                            if (otherLi !== li) {
+                                otherLi.classList.remove('open');
+                                const otherSubmenu = otherLi.querySelector('.submenu');
+                                if (otherSubmenu) otherSubmenu.style.display = 'none';
+                            }
+                        });
+
+                        // Ouvrir/fermer le sous-menu cliqué
+                        li.classList.toggle('open');
+                        submenu.style.display = isCurrentlyOpen ? 'none' : 'block';
                     }
                 });
-                
-                // Basculer l'état du sous-menu actuel
-                parentLi.classList.toggle('active');
+            }
+        });
+        
+        // 3. Gestion de la fermeture des sous-menus au redimensionnement (passage mobile/desktop)
+        window.addEventListener('resize', () => {
+             if (window.innerWidth > 992) {
+                // En mode desktop, s'assurer que le menu principal est visible
+                mainMenu.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+
+                // Réinitialiser les sous-menus mobiles pour qu'ils fonctionnent en hover
+                hasSubmenus.forEach(li => {
+                    li.classList.remove('open');
+                    const submenu = li.querySelector('.submenu');
+                    if(submenu) submenu.style.display = ''; // Retire le style inline pour que le CSS prenne le relais
+                });
+            }
+        });
+        
+        // 4. Ajout d'une ombre au header lors du défilement
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 0) {
+                header.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.4)';
+            } else {
+                header.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.25)';
             }
         });
     });
 </script>
-
 </body>
 </html>
