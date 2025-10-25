@@ -10,7 +10,8 @@
     <style>
         /* ====== Variables CSS & Reset ====== */
         :root {
-            --primary-blue: #0A3D62; /* Bleu foncé Mairie */
+            --primary-blue: #0A3D62; /* GARDER LE BLEU FONCE INITIAL */
+            --header-bg: #032145; /* Nouveau : Bleu très foncé pour l'en-tête, comme l'exemple */
             --secondary-blue: #0F52BA; /* Bleu vibrant d'accentuation */
             --highlight-color: #26a69a; /* Couleur d'accentuation supplémentaire (Vert/Cyan) */
             --text-dark: #2c3e50; /* Presque noir */
@@ -90,10 +91,10 @@
         .delay-2 { animation-delay: 0.4s; }
 
 
-        /* ====== HEADER & NAVIGATION ====== */
+        /* ====== HEADER & NAVIGATION - MODIFIÉ POUR LOGO SOMBRE ====== */
         header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            background: var(--header-bg); /* Fond très foncé */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Ombre ajustée */
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -103,32 +104,30 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            min-height: 80px;
+            min-height: 90px; /* Hauteur ajustée pour l'effet */
         }
         
         .logo {
             display: flex;
             align-items: center;
-            color: var(--primary-blue);
-            font-size: 26px;
+            color: white; /* Texte du logo en blanc */
+            font-size: 20px; /* Taille ajustée pour moins de hauteur */
             font-weight: 800;
             text-transform: uppercase;
         }
         
-        /* NOUVEAU: Styles pour l'image du logo */
+        /* Styles pour l'image du logo */
         .logo .logo-img {
-            height: 55px; /* Hauteur définie pour une bonne intégration dans l'en-tête */
+            height: 65px; /* Hauteur ajustée pour l'effet */
             width: auto;
-            object-fit: contain; /* Assure que l'image ne soit pas déformée */
-            margin-right: 12px;
+            object-fit: contain;
+            margin-right: 15px; /* Marge ajustée */
             transition: transform 0.3s ease;
         }
 
         .logo:hover .logo-img {
-             transform: scale(1.05); /* Effet au survol */
+             transform: scale(1.05);
         }
-
-        /* Suppression de l'ancien style .logo i qui utilisait l'icône de marteau */
 
         /* Styles de la Barre de Navigation (Desktop) */
         nav ul {
@@ -142,7 +141,7 @@
             margin-left: 25px;
         }
         nav ul li a {
-            color: var(--text-dark);
+            color: white; /* Couleur des liens en blanc pour le fond sombre */
             padding: 10px 0;
             display: flex;
             align-items: center;
@@ -151,25 +150,25 @@
             transition: color 0.3s, border-bottom 0.3s, transform 0.2s;
         }
         nav ul li a:hover, nav ul li.active > a {
-            color: var(--secondary-blue);
-            border-bottom-color: var(--secondary-blue);
+            color: var(--highlight-color); /* Couleur au survol (Cyan) */
+            border-bottom-color: var(--highlight-color);
             transform: translateY(-2px);
         }
 
-        /* Sous-menus (Dropdown) */
+        /* Sous-menus (Dropdown) - Ajustés pour le fond sombre */
         nav ul .submenu {
             display: none;
             position: absolute;
             top: 100%;
             left: 0;
             min-width: 260px;
-            background: white;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            background: #0f3e6a; /* Fond du sous-menu plus foncé */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
             z-index: 1001;
             padding: 10px 0;
             border-radius: 8px;
             overflow: hidden;
-            border-top: 4px solid var(--secondary-blue);
+            border-top: 4px solid var(--highlight-color);
             transform: translateY(10px);
             opacity: 0;
             transition: transform 0.3s ease, opacity 0.3s ease;
@@ -183,7 +182,7 @@
             margin: 0;
         }
         nav ul .submenu li a {
-            color: var(--text-dark);
+            color: rgba(255, 255, 255, 0.9); /* Texte des sous-menus en blanc légèrement transparent */
             padding: 12px 20px;
             font-weight: 500;
             white-space: nowrap;
@@ -197,8 +196,8 @@
             font-size: 0.9em;
         }
         nav ul .submenu li a:hover {
-            background-color: var(--background-light);
-            color: var(--primary-blue);
+            background-color: var(--primary-blue); /* Survol plus foncé pour les sous-menus */
+            color: var(--highlight-color);
             transform: none;
         }
 
@@ -212,12 +211,12 @@
             transform: rotate(180deg);
         }
 
-        /* Bouton Hamburger (Mobile) */
+        /* Bouton Hamburger (Mobile) - Ajusté pour le fond sombre */
         .menu-toggle {
             display: none;
             background: none;
             border: none;
-            color: var(--primary-blue);
+            color: white; /* Icône hamburger en blanc */
             font-size: 34px;
             cursor: pointer;
             padding: 5px;
@@ -225,6 +224,7 @@
         }
         .menu-toggle:hover {
             transform: scale(1.1);
+            color: var(--highlight-color);
         }
 
         /* ====== MAIN CONTENT & HERO ====== */
@@ -478,17 +478,17 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
-        /* ====== MEDIA QUERIES (Responsive Mobile) ====== */
+        /* ====== MEDIA QUERIES (Responsive Mobile) - AJUSTÉ POUR FOND SOMBRE ====== */
         @media (max-width: 992px) {
             .header-content {
-                min-height: 65px;
+                min-height: 70px; /* Légèrement ajusté */
             }
             .logo {
-                font-size: 22px;
+                font-size: 18px;
             }
             
             .logo .logo-img { /* Ajustement de la taille du logo pour mobile */
-                 height: 45px; 
+                 height: 55px; 
             }
             
             /* Menu Mobile */
@@ -496,11 +496,11 @@
                 display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 65px; 
+                top: 70px; /* Position ajustée en fonction du min-height */
                 left: 0;
                 width: 100%;
-                background-color: white;
-                box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+                background-color: var(--header-bg); /* Fond du menu mobile identique à l'en-tête */
+                box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
                 padding: 10px 0;
             }
             nav ul.open {
@@ -514,10 +514,11 @@
                 border-bottom: none;
                 width: 100%;
                 justify-content: space-between;
+                color: white; /* Liens en blanc sur mobile */
             }
             nav ul li a:hover, nav ul li.active > a {
-                background-color: var(--background-light);
-                color: var(--primary-blue);
+                background-color: var(--primary-blue); /* Fond de survol pour mobile */
+                color: var(--highlight-color);
                 border-bottom: none;
             }
             
@@ -535,13 +536,17 @@
                 padding: 0;
                 border-top: none;
                 transform: translateY(0);
-                opacity: 1; /* Rendu visible par JS sur 'active' */
+                opacity: 1; 
                 display: none; 
             }
             nav ul .submenu li a {
-                background-color: #ebf0f4;
+                background-color: #0f3e6a; /* Fond des sous-liens mobile plus foncé */
                 padding-left: 40px;
-                color: var(--text-light);
+                color: rgba(255, 255, 255, 0.8);
+            }
+            nav ul .submenu li a:hover {
+                 background-color: var(--primary-blue); /* Survol plus foncé pour les sous-menus */
+                 color: var(--highlight-color);
             }
             nav ul li.active .submenu {
                 display: block;
@@ -844,22 +849,12 @@
                     }
                 });
                 
-                // Basculer l'état du sous-menu cliqué
+                // Basculer l'état du sous-menu actuel
                 parentLi.classList.toggle('active');
             }
         });
-        
-        // Clic sur les liens des sous-menus pour fermer le menu principal (UX mobile)
-        const submenuLinks = link.parentNode.querySelectorAll('.submenu a');
-        submenuLinks.forEach(subLink => {
-            subLink.addEventListener('click', () => {
-                if (window.innerWidth <= 992) {
-                    toggleMenu(); // Ferme le menu principal
-                }
-            });
-        });
     });
-
 </script>
+
 </body>
 </html>
