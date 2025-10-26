@@ -1,179 +1,577 @@
 <!DOCTYPE html>
-<html lang="fr"> 
+<html lang="fr" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mairie de Kolwezi</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/flowbite@2.5.2/dist/flowbite.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mairie de Kolwezi - Magazine de la Cité</title>
+  
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  
+  <script src="https://unpkg.com/flowbite@2.5.2/dist/flowbite.min.js"></script>
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    /* Variables CSS pour une gestion facile des couleurs */
+    :root {
+      --primary-blue: #0A2E50; /* Bleu marine foncé, presque noir pour le texte principal */
+      --secondary-blue: #1C4E80; /* Bleu légèrement plus clair pour les fonds */
+      --accent-yellow: #FFC300; /* Jaune vif pour l'accentuation */
+      --text-light: #F8F8F8; /* Texte clair */
+      --text-dark: #333333; /* Texte foncé */
+    }
+
+    /* Configuration Tailwind CSS avec les variables et les polices */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+        font-family: 'Roboto', sans-serif;
+        color: var(--text-dark);
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Poppins', sans-serif;
+        color: var(--primary-blue);
+    }
+
+    .text-shadow-kolwezi {
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+    }
+    .bg-primary-blue { background-color: var(--primary-blue); }
+    .text-primary-blue { color: var(--primary-blue); }
+    .bg-secondary-blue { background-color: var(--secondary-blue); }
+    .text-secondary-blue { color: var(--secondary-blue); }
+    .bg-accent-yellow { background-color: var(--accent-yellow); }
+    .text-accent-yellow { color: var(--accent-yellow); }
+    .border-accent-yellow { border-color: var(--accent-yellow); }
+
+    /* Styles pour la section Hero */
+    .hero-section {
+        background: linear-gradient(rgba(10, 46, 80, 0.75), rgba(10, 46, 80, 0.75)), url('https://placehold.co/1920x800/0A2E50/FFC300?text=Ville+de+Kolwezi'); 
+        background-size: cover;
+        background-position: center;
+        min-height: 70vh; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    /* Styles pour la photo du Maire (Style Magazine) */
+    .maire-photo {
+        width: 100%;
+        max-width: 180px; 
+        height: auto;
+        object-fit: cover;
+        border-radius: 8px; 
+        border: 2px solid var(--accent-yellow);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Styles pour le Carrousel d'Images */
+    .carousel-container {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%; /* Ratio 16:9 */
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Ombre plus marquée */
+    }
+    .carousel-item-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+    .carousel-item-img.active {
+        opacity: 1;
+    }
+
+    /* Style des cartes d'actualités (Magazine Look) */
+    .news-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 16px; /* Coins plus arrondis */
+    }
+    .news-card:hover {
+        transform: translateY(-8px) scale(1.02); /* Petit zoom/soulèvement */
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); /* Ombre plus dramatique */
+    }
+    .news-card img {
+        transition: transform 0.4s ease;
+    }
+    .news-card:hover img {
+        transform: scale(1.08); /* Effet d'agrandissement sur l'image */
+    }
+    
+    /* Animation pour les liens au survol */
+    .hover-underline-animation {
+        display: inline-block;
+        position: relative;
+        color: var(--primary-blue);
+    }
+
+    .hover-underline-animation:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: -2px; /* Ligne légèrement décalée du texte */
+        left: 0;
+        background-color: var(--accent-yellow);
+        transform-origin: bottom right;
+        transition: transform 0.25s ease-out;
+    }
+
+    .hover-underline-animation:hover:after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+
+    /* Style du bouton principal */
+    .btn-primary {
+        background-color: var(--accent-yellow);
+        color: var(--primary-blue);
+        font-weight: 700;
+        padding: 0.75rem 2rem;
+        border-radius: 9999px; 
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    .btn-primary:hover {
+        background-color: #FFD74D; 
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+    }
+
+    /* Bloc Mot du Maire pour un look magazine */
+    .maire-editorial-block {
+        border: 1px solid #e0e0e0;
+        border-radius: 16px;
+        padding: 2rem;
+        transition: box-shadow 0.3s;
+    }
+    .maire-editorial-block:hover {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-50">
 
-  <!-- NAVBAR -->
-  <nav class="bg-blue-900 text-white shadow">
-    <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
-      <!-- Logo -->
-      <a href="#" class="flex items-center text-2xl font-bold space-x-2">
-        <i class="fa-solid fa-landmark"></i>
-        <span>Mairie de Kolwezi</span>
-      </a>
+  
+  <!-- NAVIGATION (identique) -->
+  <nav class="bg-primary-blue text-text-light shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
+      
+      <!-- Logo et Nom de la Mairie -->
+      <a href="#" class="flex items-center text-3xl font-bold space-x-2 transform hover:scale-105 transition duration-300">
+        <i class="fa-solid fa-landmark-dome text-accent-yellow"></i>
+        <span>Kolwezi</span>
+      </a>
 
-      <!-- Menu -->
-      <ul class="hidden md:flex space-x-6 font-medium">
-        
-        <!-- Accueil -->
-        <li>
-          <a href="#" class="flex items-center hover:text-yellow-400">
-            <i class="fa-solid fa-house mr-1"></i> Accueil
-          </a>
-        </li>
+      <!-- Menu principal (Desktop) -->
+      <ul class="hidden md:flex space-x-8 font-medium">
+        
+        <!-- Accueil -->
+        <li>
+          <a href="#" class="flex items-center hover:text-accent-yellow transition duration-200">
+            <i class="fa-solid fa-house mr-2"></i> Accueil
+          </a>
+        </li>
 
-        <!-- Services municipaux -->
-        <li class="relative">
-          <button data-dropdown-toggle="menuServices" class="flex items-center hover:text-yellow-400">
-            <i class="fa-solid fa-gear mr-1"></i> Services
-            <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
-          </button>
-          <div id="menuServices" class="hidden absolute mt-2 bg-white text-gray-800 shadow-lg rounded-lg w-64">
-            <ul class="py-2">
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-id-card mr-2"></i> État civil</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-city mr-2"></i> Urbanisme & Permis</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-hospital mr-2"></i> Santé publique</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-shield-halved mr-2"></i> Sécurité & Police</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-recycle mr-2"></i> Environnement & Propreté</a></li>
-              
-              <!-- Sous-menu Finances -->
-              <li class="relative group">
-                <button class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100">
-                  <span><i class="fa-solid fa-sack-dollar mr-2"></i> Finances</span>
-                  <i class="fa-solid fa-chevron-right text-xs"></i>
-                </button>
-                <div class="hidden group-hover:block absolute left-full top-0 bg-white text-gray-800 shadow-lg rounded-lg w-56">
-                  <ul class="py-2">
-                    <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-money-bill mr-2"></i> Impôts & Taxes locales</a></li>
-                    <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-chart-line mr-2"></i> Budget municipal</a></li>
-                    <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-coins mr-2"></i> Recettes & Dépenses</a></li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </li>
+        <!-- Services (Dropdown) -->
+        <li class="relative group">
+          <button data-dropdown-toggle="menuServices" class="flex items-center hover:text-accent-yellow transition duration-200">
+            <i class="fa-solid fa-gear mr-2"></i> Services
+            <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
+          </button>
+          <div id="menuServices" class="hidden absolute z-50 mt-2 bg-white text-text-dark shadow-xl rounded-lg w-64 ring-1 ring-gray-200 animate-fade-in-up origin-top">
+            <ul class="py-2">
+              <li><a href="#" class="block px-4 py-3 hover:bg-gray-100 transition duration-150"><i class="fa-solid fa-id-card mr-3 text-secondary-blue"></i> État civil</a></li>
+              <li><a href="#" class="block px-4 py-3 hover:bg-gray-100 transition duration-150"><i class="fa-solid fa-city mr-3 text-secondary-blue"></i> Urbanisme & Permis</a></li>
+              <li><a href="#" class="block px-4 py-3 hover:bg-gray-100 transition duration-150"><i class="fa-solid fa-hospital-user mr-3 text-secondary-blue"></i> Santé publique</a></li>
+              <li><a href="#" class="block px-4 py-3 hover:bg-gray-100 transition duration-150"><i class="fa-solid fa-shield-halved mr-3 text-secondary-blue"></i> Sécurité & Police</a></li>
+              
+              <!-- Sous-menu imbriqué (Finances) -->
+              <li class="relative group">
+                <button class="flex items-center justify-between w-full px-4 py-3 hover:bg-gray-100 transition duration-150">
+                  <span><i class="fa-solid fa-sack-dollar mr-3 text-secondary-blue"></i> Finances</span>
+                  <i class="fa-solid fa-chevron-right text-xs ml-auto"></i>
+                </button>
+                <div class="hidden group-hover:block absolute left-full top-0 ml-1 bg-white text-text-dark shadow-xl rounded-lg w-56 ring-1 ring-gray-200 animate-fade-in-up origin-top">
+                  <ul class="py-2">
+                    <li><a href="#" class="block px-4 py-3 hover:bg-gray-100 transition duration-150"><i class="fa-solid fa-money-bill-wave mr-3 text-secondary-blue"></i> Impôts & Taxes</a></li>
+                    <li><a href="#" class="block px-4 py-3 hover:bg-gray-100 transition duration-150"><i class="fa-solid fa-chart-line mr-3 text-secondary-blue"></i> Budget municipal</a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </li>
 
-        <!-- Projets -->
-        <li class="relative">
-          <button data-dropdown-toggle="menuProjets" class="flex items-center hover:text-yellow-400">
-            <i class="fa-solid fa-building mr-1"></i> Projets
-            <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
-          </button>
-          <div id="menuProjets" class="hidden absolute mt-2 bg-white text-gray-800 shadow-lg rounded-lg w-60">
-            <ul class="py-2">
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-road mr-2"></i> Infrastructures routières</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-bolt mr-2"></i> Énergie & Éclairage</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-tree mr-2"></i> Espaces verts</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-school mr-2"></i> Infrastructures scolaires</a></li>
-            </ul>
-          </div>
-        </li>
+        <!-- Projets -->
+        <li><a href="#" class="flex items-center hover:text-accent-yellow transition duration-200"><i class="fa-solid fa-helmet-safety mr-2"></i> Projets</a></li>
+        
+        <!-- Actualités -->
+        <li><a href="#actualites" class="flex items-center hover:text-accent-yellow transition duration-200"><i class="fa-solid fa-newspaper mr-2"></i> Actualités</a></li>
+        
+        <!-- Événements -->
+        <li><a href="#" class="flex items-center hover:text-accent-yellow transition duration-200"><i class="fa-solid fa-calendar-alt mr-2"></i> Événements</a></li>
+        
+        <!-- À propos -->
+        <li><a href="#" class="flex items-center hover:text-accent-yellow transition duration-200"><i class="fa-solid fa-circle-info mr-2"></i> À propos</a></li>
 
-        <!-- Actualités -->
-        <li class="relative">
-          <button data-dropdown-toggle="menuActu" class="flex items-center hover:text-yellow-400">
-            <i class="fa-solid fa-newspaper mr-1"></i> Actualités
-            <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
-          </button>
-          <div id="menuActu" class="hidden absolute mt-2 bg-white text-gray-800 shadow-lg rounded-lg w-56">
-            <ul class="py-2">
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-bullhorn mr-2"></i> Communiqués officiels</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-file-alt mr-2"></i> Rapports publics</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-book-open mr-2"></i> Publications</a></li>
-            </ul>
-          </div>
-        </li>
+      </ul>
 
-        <!-- Événements -->
-        <li class="relative">
-          <button data-dropdown-toggle="menuEvents" class="flex items-center hover:text-yellow-400">
-            <i class="fa-solid fa-calendar-days mr-1"></i> Événements
-            <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
-          </button>
-          <div id="menuEvents" class="hidden absolute mt-2 bg-white text-gray-800 shadow-lg rounded-lg w-56">
-            <ul class="py-2">
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-flag mr-2"></i> Cérémonies officielles</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-masks-theater mr-2"></i> Fêtes locales</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-users mr-2"></i> Rencontres citoyennes</a></li>
-            </ul>
-          </div>
-        </li>
+        <!-- Bouton Menu Mobile (Burger) -->
+<button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-200 rounded-lg md:hidden hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+            </svg>
+        </button>
+    </div>
 
-        <!-- A propos -->
-        <li class="relative">
-          <button data-dropdown-toggle="menuAbout" class="flex items-center hover:text-yellow-400">
-            <i class="fa-solid fa-circle-info mr-1"></i> À propos
-            <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
-          </button>
-          <div id="menuAbout" class="hidden absolute mt-2 bg-white text-gray-800 shadow-lg rounded-lg w-56">
-            <ul class="py-2">
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-landmark-dome mr-2"></i> Histoire de la ville</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-sitemap mr-2"></i> Organisation municipale</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fa-solid fa-envelope mr-2"></i> Contact</a></li>
-            </ul>
-          </div>
-        </li>
-
-      </ul>
-    </div>
-  </nav>
-
-  <!-- CONTENU (placeholder) -->
-  <main class="max-w-7xl mx-auto py-16 px-6">
-    <h1 class="text-3xl font-bold text-blue-900 mb-6">Bienvenue sur le site de la Mairie de Kolwezi</h1>
-    <p class="text-lg text-gray-700">Ce site officiel présente les services municipaux, les projets en cours, les actualités et événements de la ville de Kolwezi.</p>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="bg-blue-900 text-white mt-12">
-    <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-      
-      <!-- Infos -->
-      <div>
-        <h3 class="text-xl font-semibold mb-3">Mairie de Kolwezi</h3>
-        <p>📍 Avenue Lumumba, Kolwezi</p>
-        <p>☎️ +243 999 000 111</p>
-        <p>📧 contact@mairiekolwezi.cd</p>
-      </div>
-
-      <!-- Liens rapides -->
-      <div>
-        <h3 class="text-xl font-semibold mb-3">Liens rapides</h3>
-        <ul class="space-y-2">
-          <li><a href="#" class="hover:text-yellow-400"><i class="fa-solid fa-house mr-2"></i> Accueil</a></li>
-          <li><a href="#" class="hover:text-yellow-400"><i class="fa-solid fa-gear mr-2"></i> Services</a></li>
-          <li><a href="#" class="hover:text-yellow-400"><i class="fa-solid fa-building mr-2"></i> Projets</a></li>
-          <li><a href="#" class="hover:text-yellow-400"><i class="fa-solid fa-newspaper mr-2"></i> Actualités</a></li>
-          <li><a href="#" class="hover:text-yellow-400"><i class="fa-solid fa-calendar-days mr-2"></i> Événements</a></li>
+    <!-- Menu mobile dépliant -->
+<div class="items-center justify-between hidden w-full md:hidden" id="navbar-sticky">
+        <ul class="flex flex-col p-4 mt-4 font-medium bg-primary-blue rounded-lg space-y-2">
+            <li><a href="#" class="block py-2 px-3 text-white rounded hover:bg-secondary-blue"><i class="fa-solid fa-house mr-2"></i> Accueil</a></li>
+            <li><a href="#" class="block py-2 px-3 text-white rounded hover:bg-secondary-blue"><i class="fa-solid fa-gear mr-2"></i> Services</a></li>
+            <li><a href="#" class="block py-2 px-3 text-white rounded hover:bg-secondary-blue"><i class="fa-solid fa-helmet-safety mr-2"></i> Projets</a></li>
+            <li><a href="#actualites" class="block py-2 px-3 text-white rounded hover:bg-secondary-blue"><i class="fa-solid fa-newspaper mr-2"></i> Actualités</a></li>
+            <li><a href="#" class="block py-2 px-3 text-white rounded hover:bg-secondary-blue"><i class="fa-solid fa-calendar-alt mr-2"></i> Événements</a></li>
+            <li><a href="#" class="block py-2 px-3 text-white rounded hover:bg-secondary-blue"><i class="fa-solid fa-circle-info mr-2"></i> À propos</a></li>
         </ul>
-      </div>
-
-      <!-- Réseaux sociaux -->
-      <div>
-        <h3 class="text-xl font-semibold mb-3">Suivez-nous</h3>
-        <div class="flex space-x-4 text-2xl">
-          <a href="#" class="hover:text-yellow-400"><i class="fab fa-facebook"></i></a>
-          <a href="#" class="hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="hover:text-yellow-400"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="hover:text-yellow-400"><i class="fab fa-youtube"></i></a>
-        </div>
-      </div>
     </div>
+  </nav>
 
-    <!-- Bas de page -->
-    <div class="bg-blue-950 text-center py-4 text-sm">
-      © 2025 Mairie de Kolwezi - Tous droits réservés
-    </div>
-  </footer>
+  
+
+  <main>
+
+        <!-- Section HÉRO (identique) -->
+<section class="hero-section text-text-light" data-aos="fade-up" data-aos-duration="1000">
+            <div class="max-w-4xl text-center">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight text-shadow-kolwezi">
+                    Bienvenue sur le site de la Mairie de Kolwezi
+                </h1>
+                <p class="text-xl md:text-2xl font-light mb-8 max-w-2xl mx-auto">
+                    Ce site officiel présente les services municipaux, les projets en cours, les actualités et événements de la ville de Kolwezi.
+                </p>
+                <a href="#actualites" class="btn-primary inline-flex items-center text-lg shadow-lg hover:shadow-xl">
+                    <i class="fa-solid fa-bullhorn mr-3"></i> Découvrir les actualités
+                </a>
+            </div>
+        </section>
+
+        
+        <!-- NOUVELLE STRUCTURE EN DEUX PARTIES (Magazine Editorial et Images) -->
+<section class="max-w-7xl mx-auto py-16 px-6" data-aos="fade-up" data-aos-delay="200">
+            <h2 class="text-4xl font-extrabold text-center mb-12 border-b-4 border-accent-yellow pb-3 inline-block mx-auto">
+                L'éditorial de la Cité
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+                
+                <!-- PARTIE 1: MOT DU MAIRE (Style Magazine) -->
+<div class="bg-white maire-editorial-block shadow-2xl flex flex-col justify-between" data-aos="fade-right" data-aos-delay="400">
+                    <div>
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start sm:space-x-6 mb-6 border-b pb-4">
+                            <img 
+                                src="https://placehold.co/180x220/0A2E50/FFC300?text=Le+Maire" 
+                                alt="Portrait du Maire de Kolwezi" 
+                                class="maire-photo mb-4 sm:mb-0"
+                            >
+                            <div>
+                                <h3 class="text-3xl font-bold text-primary-blue mb-1 leading-tight border-b-2 border-secondary-blue pb-1 inline-block">Mot du Maire</h3>
+                                <p class="text-md font-semibold text-accent-yellow mt-2">
+                                    [Nom et Prénom du Maire], Votre Serviteur
+                                </p>
+                            </div>
+                        </div>
+                        <blockquote class="italic text-gray-700 leading-relaxed border-l-4 border-accent-yellow pl-5 py-2 text-lg">
+                            "Chers habitants de Kolwezi, notre ville est en pleine effervescence. Ensemble, nous construisons un avenir meilleur, fondé sur la transparence, l'innovation et la participation citoyenne. Chaque projet, chaque initiative, vise à améliorer votre quotidien et à renforcer le tissu de notre communauté. Je vous invite à vous engager activement pour faire rayonner notre chère Kolwezi. L'administration est à votre écoute."
+                        </blockquote>
+                    </div>
+                    <div class="mt-8 text-right">
+                        <a href="#" class="hover-underline-animation text-primary-blue font-semibold inline-flex items-center">
+                            Découvrir notre vision stratégique <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PARTIE 2: CARROUSEL D'IMAGES DE LA MAIRIE -->
+<div class="bg-gray-100 p-6 rounded-xl shadow-2xl border-b-4 border-secondary-blue flex flex-col justify-center" data-aos="fade-left" data-aos-delay="600">
+                    <h3 class="text-2xl font-bold text-center text-primary-blue mb-6 border-b border-accent-yellow pb-2">
+                        <i class="fa-solid fa-camera-retro mr-2 text-accent-yellow"></i> La Mairie en Images
+                    </h3>
+                    <div id="image-carousel" class="carousel-container">
+                        <!-- Les images du carrousel seront injectées ici par JS -->
+                    </div>
+                    <p class="text-center text-sm mt-4 text-gray-600 font-light">Explorez les infrastructures et la vie quotidienne de notre administration.</p>
+                </div>
+
+            </div>
+        </section>
+
+        
+        <!-- ACTUALITÉS RÉCENTES (Style Magazine) -->
+<section id="actualites" class="max-w-7xl mx-auto py-16 px-6 bg-white rounded-xl shadow-lg my-12" data-aos="fade-up" data-aos-delay="800">
+            <h2 class="text-4xl font-extrabold text-center text-primary-blue mb-10">
+                <i class="fa-solid fa-newspaper text-accent-yellow mr-3"></i> Les Dépêches de la Mairie
+            </h2>
+            <p class="text-center text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
+                Les trois articles phares du moment. Restez informés des événements, annonces et initiatives officielles.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Actualité 1 -->
+<div class="news-card bg-white rounded-xl overflow-hidden border border-gray-100 shadow-md" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative h-56 overflow-hidden">
+                        <img 
+                            src="https://placehold.co/800x500/0A2E50/FFC300?text=Inauguration+Route" 
+                            alt="Inauguration d'une route" 
+                            class="w-full h-full object-cover"
+                        >
+                        <div class="absolute bottom-0 right-0 bg-primary-blue text-text-light px-3 py-1 text-xs font-semibold rounded-tl-lg shadow-lg">
+                            INFRASTRUCTURE
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-2 font-medium"><i class="fa-regular fa-clock mr-2"></i> 25 Septembre 2024</p>
+                        <h3 class="text-xl font-bold text-primary-blue mb-3 leading-tight hover-underline-animation">
+                            Inauguration de la Grande Artère du Quartier N'Sele
+                        </h3>
+                        <p class="text-gray-700 text-base line-clamp-3 mb-4">
+                            Une nouvelle étape franchie pour le développement urbain de Kolwezi avec l'ouverture officielle de cette route stratégique, améliorant la fluidité du trafic et l'accès aux services.
+                        </p>
+                        <a href="#" class="hover-underline-animation text-secondary-blue font-semibold inline-flex items-center text-sm">
+                            Lire l'article <i class="fa-solid fa-angle-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Actualité 2 -->
+<div class="news-card bg-white rounded-xl overflow-hidden border border-gray-100 shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative h-56 overflow-hidden">
+                        <img 
+                            src="https://placehold.co/800x500/1C4E80/FFC300?text=Campagne+Santé" 
+                            alt="Campagne de sensibilisation à la santé" 
+                            class="w-full h-full object-cover"
+                        >
+                        <div class="absolute bottom-0 right-0 bg-secondary-blue text-text-light px-3 py-1 text-xs font-semibold rounded-tl-lg shadow-lg">
+                            SANTÉ PUBLIQUE
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-2 font-medium"><i class="fa-regular fa-clock mr-2"></i> 18 Septembre 2024</p>
+                        <h3 class="text-xl font-bold text-primary-blue mb-3 leading-tight hover-underline-animation">
+                            Lancement de la Campagne "Zéro Palu à Kolwezi"
+                        </h3>
+                        <p class="text-gray-700 text-base line-clamp-3 mb-4">
+                            La Mairie s'engage activement dans la lutte contre le paludisme avec une vaste campagne de sensibilisation, de distribution de moustiquaires imprégnées et de dépistage gratuit.
+                        </p>
+                        <a href="#" class="hover-underline-animation text-secondary-blue font-semibold inline-flex items-center text-sm">
+                            Lire l'article <i class="fa-solid fa-angle-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Actualité 3 -->
+<div class="news-card bg-white rounded-xl overflow-hidden border border-gray-100 shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative h-56 overflow-hidden">
+                        <img 
+                            src="https://placehold.co/800x500/FFC300/0A2E50?text=Forum+Citoyen" 
+                            alt="Forum citoyen" 
+                            class="w-full h-full object-cover"
+                        >
+                        <div class="absolute bottom-0 right-0 bg-accent-yellow text-primary-blue px-3 py-1 text-xs font-semibold rounded-tl-lg shadow-lg">
+                            VIE CITOYENNE
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-2 font-medium"><i class="fa-regular fa-clock mr-2"></i> 10 Septembre 2024</p>
+                        <h3 class="text-xl font-bold text-primary-blue mb-3 leading-tight hover-underline-animation">
+                            Forum Communautaire : Ensemble pour une Kolwezi plus verte
+                        </h3>
+                        <p class="text-gray-700 text-base line-clamp-3 mb-4">
+                            Un dialogue ouvert entre citoyens et autorités pour discuter des initiatives écologiques et des projets d'embellissement des espaces publics.
+                        </p>
+                        <a href="#" class="hover-underline-animation text-secondary-blue font-semibold inline-flex items-center text-sm">
+                            Lire l'article <i class="fa-solid fa-angle-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
+                <a href="#" class="btn-primary inline-flex items-center text-lg">
+                    <i class="fa-solid fa-arrow-right mr-3"></i> Voir toutes les actualités
+                </a>
+            </div>
+
+        </section>
+
+  </main>
+
+  
+  <!-- FOOTER (identique) -->
+  <footer class="bg-primary-blue text-text-light mt-16 py-12">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
+      
+      <!-- Coordonnées -->
+      <div class="md:col-span-1" data-aos="fade-up">
+        <a href="#" class="flex items-center text-3xl font-bold space-x-2 mb-4">
+          <i class="fa-solid fa-landmark-dome text-accent-yellow"></i>
+          <span>Kolwezi</span>
+        </a>
+        <p class="text-gray-300 mb-2"><i class="fa-solid fa-location-dot mr-3 text-accent-yellow"></i> Avenue Lumumba, Kolwezi</p>
+        <p class="text-gray-300 mb-2"><i class="fa-solid fa-phone mr-3 text-accent-yellow"></i> +243 999 000 111</p>
+        <p class="text-gray-300"><i class="fa-solid fa-envelope mr-3 text-accent-yellow"></i> contact@mairiekolwezi.cd</p>
+      </div>
+
+      <!-- Liens de Navigation -->
+      <div data-aos="fade-up" data-aos-delay="100">
+        <h3 class="text-xl font-bold mb-5 border-b-2 border-accent-yellow pb-2 inline-block">Navigation</h3>
+        <ul class="space-y-3">
+          <li><a href="#" class="hover:text-accent-yellow transition duration-200"><i class="fa-solid fa-house mr-3"></i> Accueil</a></li>
+          <li><a href="#" class="hover:text-accent-yellow transition duration-200"><i class="fa-solid fa-gear mr-3"></i> Services</a></li>
+          <li><a href="#" class="hover:text-accent-yellow transition duration-200"><i class="fa-solid fa-helmet-safety mr-3"></i> Projets</a></li>
+          <li><a href="#actualites" class="hover:text-accent-yellow transition duration-200"><i class="fa-solid fa-newspaper mr-3"></i> Actualités</a></li>
+          <li><a href="#" class="hover:text-accent-yellow transition duration-200"><i class="fa-solid fa-calendar-alt mr-3"></i> Événements</a></li>
+        </ul>
+      </div>
+
+      <!-- Démarches -->
+      <div data-aos="fade-up" data-aos-delay="200">
+        <h3 class="text-xl font-bold mb-5 border-b-2 border-accent-yellow pb-2 inline-block">Démarches</h3>
+        <ul class="space-y-3">
+          <li><a href="#" class="hover:text-accent-yellow transition duration-200"><i class="fa-solid fa-file-signature mr-3"></i> Demander un Acte</a></li>
+          <li><a href="#" class="hover:text-accent-yellow transition duration-200"><i class="fa-solid fa-map-marked-alt mr-3"></i> Permis de Construire</a></li>
+          <li><a href="#" class="hover:text-accent-yellow transition duration-200"><i class="fa-solid fa-user-friends mr-3"></i> Vos Démarches</a></li>
+          <li><a href="#" class="hover:text-accent-yellow transition duration-200"><i class="fa-solid fa-info-circle mr-3"></i> Questions fréquentes</a></li>
+        </ul>
+      </div>
+
+      <!-- Réseaux Sociaux & Newsletter -->
+      <div data-aos="fade-up" data-aos-delay="300">
+        <h3 class="text-xl font-bold mb-5 border-b-2 border-accent-yellow pb-2 inline-block">Suivez-nous</h3>
+        <div class="flex space-x-5 text-4xl mb-6">
+          <a href="#" class="text-gray-300 hover:text-accent-yellow transform hover:scale-110 transition duration-300"><i class="fab fa-facebook-square"></i></a>
+          <a href="#" class="text-gray-300 hover:text-accent-yellow transform hover:scale-110 transition duration-300"><i class="fab fa-twitter-square"></i></a>
+          <a href="#" class="text-gray-300 hover:text-accent-yellow transform hover:scale-110 transition duration-300"><i class="fab fa-instagram-square"></i></a>
+          <a href="#" class="text-gray-300 hover:text-accent-yellow transform hover:scale-110 transition duration-300"><i class="fab fa-youtube-square"></i></a>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Newsletter</h3>
+        <form class="flex">
+          <input type="email" placeholder="Votre email" class="p-3 rounded-l-lg outline-none flex-grow bg-secondary-blue border border-secondary-blue text-white placeholder-gray-300">
+          <button type="submit" class="bg-accent-yellow text-primary-blue p-3 rounded-r-lg font-semibold hover:bg-yellow-400 transition duration-300">S'inscrire</button>
+        </form>
+      </div>
+
+    </div>
+
+    
+    <div class="bg-blue-950 text-center py-6 text-sm mt-12 border-t border-secondary-blue">
+      © <span id="current-year"></span> Mairie de Kolwezi - Tous droits réservés
+    </div>
+  </footer>
+
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Initialisation de la librairie d'animation au défilement
+    AOS.init({
+        once: true, 
+        duration: 800, 
+        easing: 'ease-out-quad', 
+    });
+
+    // Configuration et logique du Carrousel d'Images amélioré
+    document.addEventListener('DOMContentLoaded', () => {
+        const carousel = document.getElementById('image-carousel');
+        const images = [
+            {src: "https://placehold.co/800x450/0A2E50/FFC300?text=Mairie+Vue+Principale", alt: "Vue principale de la Mairie de Kolwezi"},
+            {src: "https://placehold.co/800x450/1C4E80/FFFFFF?text=Salle+de+Réunion", alt: "Salle de réunion du conseil municipal"},
+            {src: "https://placehold.co/800x450/FFC300/0A2E50?text=Bureaux+Administratifs", alt: "Intérieur des bureaux administratifs"},
+            {src: "https://placehold.co/800x450/0A2E50/FFFFFF?text=Jardins+Mairie", alt: "Jardins et extérieurs de la Mairie"}
+        ];
+        let currentIndex = 0;
+
+        // Fonction pour créer un élément d'image du carrousel
+        const createCarouselItem = (imgData, index) => {
+            const img = document.createElement('img');
+            img.src = imgData.src;
+            img.alt = imgData.alt;
+            img.className = 'carousel-item-img';
+            img.classList.toggle('active', index === 0); // Seul le premier est actif
+            img.onerror = function() {
+                this.onerror = null; 
+                this.src = `https://placehold.co/800x450/CCCCCC/333333?text=Image+Indisponible`; // Fallback
+                this.alt = `Image indisponible`;
+            };
+            return img;
+        };
+
+        // Remplir le carrousel avec les images
+        images.forEach((imgData, index) => {
+            carousel.appendChild(createCarouselItem(imgData, index));
+        });
+
+        const items = carousel.querySelectorAll('.carousel-item-img');
+
+        // Fonction pour afficher l'image suivante
+        const showNextImage = () => {
+            items[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            items[currentIndex].classList.add('active');
+        };
+
+        // Démarrer l'intervalle de défilement (toutes les 5 secondes)
+        if (items.length > 1) {
+            setInterval(showNextImage, 5000); 
+        }
+
+        // Mettre à jour l'année dans le footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    });
+</script>
+
+
+<script type="module">
+    // Configuration Firebase pour le mode multi-utilisateur ou persistance (si nécessaire pour une application réelle)
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+
+    // Les variables globales sont fournies par l'environnement Canvas
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+    const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+
+    if (Object.keys(firebaseConfig).length > 0) {
+        const app = initializeApp(firebaseConfig);
+        console.log("Firebase App initialized. Project ID:", app.options.projectId);
+    } else {
+        console.log("Firebase configuration is missing or empty. Skipping initialization.");
+    }
+</script>
 
 </body>
 </html>
