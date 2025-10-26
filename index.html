@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"> 
+<html lang="fr"> 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/flowbite@2.5.2/dist/flowbite.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
+  
   <!-- Configuration de la police Inter -->
   <style>
     html {
@@ -39,7 +39,7 @@
 
       <!-- Menu -->
       <ul class="hidden md:flex space-x-6 font-medium">
-        
+        
         <!-- Accueil -->
         <li>
           <a href="#" class="flex items-center hover:text-yellow-400 p-2 rounded-lg bg-blue-800">
@@ -60,7 +60,7 @@
               <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:text-blue-700"><i class="fa-solid fa-hospital mr-2"></i> Santé publique</a></li>
               <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:text-blue-700"><i class="fa-solid fa-shield-halved mr-2"></i> Sécurité & Police</a></li>
               <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:text-blue-700"><i class="fa-solid fa-recycle mr-2"></i> Environnement & Propreté</a></li>
-              
+              
               <!-- Sous-menu Finances -->
               <li class="relative group">
                 <button class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 hover:text-blue-700 rounded-b-xl">
@@ -152,7 +152,7 @@
 
     <!-- SECTION MAGAZINE ET CARROUSEL (2 COLONNES) -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16">
-      
+      
       <!-- 1. MESSAGE ET PHOTO DU MAIRE (Style Magazine) -->
       <div class="bg-white p-6 rounded-xl shadow-2xl transition duration-300 hover:shadow-blue-300/50">
         <div class="relative mb-6 rounded-lg overflow-hidden">
@@ -172,7 +172,7 @@
       <div class="bg-white p-6 rounded-xl shadow-2xl">
         <h2 class="text-2xl font-bold text-blue-900 mb-4">La Mairie en images</h2>
         <div id="image-carousel" class="relative w-full h-96 overflow-hidden rounded-lg shadow-inner">
-          
+          
           <!-- Images du carrousel (placeholders) -->
           <div class="slider-image absolute top-0 left-0 w-full h-full active" data-index="0">
             <img src="https://placehold.co/800x600/1e3a8a/ffffff?text=Mairie+Vue+Extérieure" alt="Vue de face de la Mairie" class="w-full h-full object-cover">
@@ -195,44 +195,59 @@
       </div>
     </div>
 
-    <!-- SECTION DES ACTUALITÉS RÉCENTES (Magazine Style) -->
+    <!-- SECTION DES ACTUALITÉS RÉCENTES (Nouveau Style Sombre) -->
     <div class="mb-16">
       <h2 class="text-3xl font-extrabold text-blue-900 mb-6 border-b-2 border-blue-900 pb-2">
-        Les dernières Actualités
+        Actualités du Lualaba et de Kolwezi
       </h2>
-      
+      
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <!-- Article 1 -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden border-t-4 border-yellow-400">
-          <img src="https://placehold.co/600x400/34495e/ffffff?text=Projet+Voirie" alt="Travaux de voirie" class="w-full h-40 object-cover">
+        
+        <!-- Article 1 - Style Sombre -->
+        <div class="bg-gray-900 text-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl hover:shadow-yellow-500/30 cursor-pointer">
+          <img src="https://placehold.co/600x400/546e7a/ffffff?text=Élus+Lualaba" alt="Les élus du Lualaba plaidant" class="w-full h-48 object-cover">
           <div class="p-5">
-            <p class="text-sm text-yellow-500 font-semibold mb-2">PROJETS | 15 NOV 2025</p>
-            <h3 class="text-xl font-bold text-blue-900 mb-2">Lancement de la réhabilitation de l'Avenue des Martyrs</h3>
-            <p class="text-gray-600 text-sm">Les travaux de modernisation des infrastructures routières progressent. La circulation sera momentanément déviée...</p>
-            <a href="#" class="mt-3 inline-block text-blue-700 hover:text-yellow-400 font-semibold text-sm">Lire la suite <i class="fa-solid fa-arrow-right ml-1"></i></a>
+            <!-- Source -->
+            <div class="flex items-center text-sm text-yellow-400 font-semibold mb-3">
+              <i class="fa-solid fa-bell mr-2"></i> Actualite.cd
+            </div>
+            <h3 class="text-xl font-bold mb-4 leading-tight hover:text-yellow-400 transition">
+              RDC : les élus du Lualaba plaident pour la relance de l'Entreprise Kisenge Manganèse
+            </h3>
+            <!-- Temps écoulé -->
+            <p class="text-sm text-gray-400">il y a 28 jours</p>
           </div>
         </div>
 
-        <!-- Article 2 -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden border-t-4 border-yellow-400">
-          <img src="https://placehold.co/600x400/27ae60/ffffff?text=Collecte+Déchets" alt="Agents de propreté" class="w-full h-40 object-cover">
+        <!-- Article 2 - Style Sombre -->
+        <div class="bg-gray-900 text-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl hover:shadow-yellow-500/30 cursor-pointer">
+          <img src="https://placehold.co/600x400/3e2723/ffffff?text=Cobalt+Stock" alt="Stock de cobalt ou minerai" class="w-full h-48 object-cover">
           <div class="p-5">
-            <p class="text-sm text-yellow-500 font-semibold mb-2">ENVIRONNEMENT | 10 NOV 2025</p>
-            <h3 class="text-xl font-bold text-blue-900 mb-2">Nouvelles mesures pour la propreté urbaine</h3>
-            <p class="text-gray-600 text-sm">La Mairie renforce son dispositif de collecte des déchets. Tous les citoyens sont appelés à la collaboration...</p>
-            <a href="#" class="mt-3 inline-block text-blue-700 hover:text-yellow-400 font-semibold text-sm">Lire la suite <i class="fa-solid fa-arrow-right ml-1"></i></a>
+            <!-- Source -->
+            <div class="flex items-center text-sm text-yellow-400 font-semibold mb-3">
+              <i class="fa-solid fa-bell mr-2"></i> Actualite.cd
+            </div>
+            <h3 class="text-xl font-bold mb-4 leading-tight hover:text-yellow-400 transition">
+              RDC : Félix Tshisekedi maintient la ligne de régulation stricte du secteur du cobalt
+            </h3>
+            <!-- Temps écoulé -->
+            <p class="text-sm text-gray-400">il y a 21 jours</p>
           </div>
         </div>
 
-        <!-- Article 3 -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden border-t-4 border-yellow-400">
-          <img src="https://placehold.co/600x400/9b59b6/ffffff?text=Événement+Culturel" alt="Événement culturel" class="w-full h-40 object-cover">
+        <!-- Article 3 - Style Sombre -->
+        <div class="bg-gray-900 text-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl hover:shadow-yellow-500/30 cursor-pointer">
+          <img src="https://placehold.co/600x400/000080/ffffff?text=Colloque+Extractif" alt="Colloque sur la sécurisation des investissements extractifs" class="w-full h-48 object-cover">
           <div class="p-5">
-            <p class="text-sm text-yellow-500 font-semibold mb-2">ÉVÉNEMENTS | 05 NOV 2025</p>
-            <h3 class="text-xl font-bold text-blue-900 mb-2">Fête de l'Indépendance : programme des festivités</h3>
-            <p class="text-gray-600 text-sm">Découvrez le calendrier complet des célébrations culturelles, des concerts et des défilés organisés en ville...</p>
-            <a href="#" class="mt-3 inline-block text-blue-700 hover:text-yellow-400 font-semibold text-sm">Lire la suite <i class="fa-solid fa-arrow-right ml-1"></i></a>
+            <!-- Source -->
+            <div class="flex items-center text-sm text-yellow-400 font-semibold mb-3">
+              <i class="fa-solid fa-globe mr-2"></i> OHADA.com
+            </div>
+            <h3 class="text-xl font-bold mb-4 leading-tight hover:text-yellow-400 transition">
+              Colloque sur la sécurisation des investissements extractifs en zone de conflits
+            </h3>
+            <!-- Temps écoulé -->
+            <p class="text-sm text-gray-400">il y a 30 jours</p>
           </div>
         </div>
       </div>
@@ -243,7 +258,7 @@
   <!-- FOOTER (Design maintenu) -->
   <footer class="bg-blue-900 text-white mt-12">
     <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-      
+      
       <!-- Infos -->
       <div>
         <h3 class="text-xl font-semibold mb-3">Mairie de Kolwezi</h3>
@@ -279,6 +294,7 @@
     <!-- Bas de page -->
     <div class="bg-blue-950 text-center py-4 text-sm text-gray-400">
       © 2025 Mairie de Kolwezi - Tous droits réservés
+      <p class="text-xs mt-1">Design inspiré des actualités du Lualaba</p>
     </div>
   </footer>
 
@@ -286,7 +302,7 @@
     // Logique JavaScript pour le Carrousel d'Images
     let slideIndex = 0;
     const slides = document.querySelectorAll('.slider-image');
-    
+    
     function showSlides(n) {
       if (slides.length === 0) return;
 
@@ -307,7 +323,7 @@
 
     // Auto-rotation
     let slideTimer;
-    
+    
     function startTimer() {
       slideTimer = setInterval(() => {
         slideIndex++;
