@@ -1,89 +1,214 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Environnement & Propreté — Mairie de Kolwezi</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Environnement & Propreté — Mairie de Kolwezi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        .font-\[Inter\] {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
+
 <body class="bg-gray-50 text-gray-800 font-[Inter]">
 
-<nav class="bg-blue-900 text-white shadow sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
-    <a href="index.html" class="flex items-center text-2xl font-bold space-x-2"><i class="fa-solid fa-landmark text-yellow-400"></i><span>Mairie de Kolwezi</span></a>
-    <ul class="hidden md:flex space-x-6 font-medium">
-      <li><a href="index.html" class="flex items-center hover:text-yellow-400"><i class="fa-solid fa-house mr-1"></i> Accueil</a></li>
-      <li><a href="environnement.html" class="flex items-center text-yellow-400"><i class="fa-solid fa-recycle mr-1"></i> Environnement</a></li>
-      <li><a href="securite_police.html" class="flex items-center hover:text-yellow-400"><i class="fa-solid fa-shield-halved mr-1"></i> Sécurité</a></li>
-    </ul>
-  </div>
-</nav>
+    <nav class="bg-blue-900 text-white shadow sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
+            <a href="index.html" class="flex items-center text-2xl font-bold space-x-2">
+                <i class="fa-solid fa-landmark text-yellow-400"></i>
+                <span>Mairie de Kolwezi</span>
+            </a>
+            <ul class="hidden md:flex space-x-6 font-medium">
+                <li><a href="index.html" class="flex items-center hover:text-yellow-400 transition duration-200"><i class="fa-solid fa-house mr-1"></i> Accueil</a></li>
+                <li class="group relative">
+                    <a href="environnement.html" class="flex items-center text-yellow-400 border-b-2 border-yellow-400 pb-1"><i class="fa-solid fa-seedling mr-1"></i> Environnement</a>
+                    <div class="absolute hidden group-hover:block bg-blue-800 shadow-xl rounded-b-lg top-full pt-2 -left-2 w-60 transition duration-300">
+                        <a href="#dechets" class="block px-4 py-2 hover:bg-blue-700 transition">Déchets & Recyclage</a>
+                        <a href="#proprete" class="block px-4 py-2 hover:bg-blue-700 transition">Salubrité Urbaine</a>
+                        <a href="#verts" class="block px-4 py-2 hover:bg-blue-700 transition">Espaces Verts & Faune</a>
+                        <a href="#signalement" class="block px-4 py-2 hover:bg-blue-700 transition">Signalement Citoyen</a>
+                    </div>
+                </li>
+                <li><a href="securite_police.html" class="flex items-center hover:text-yellow-400 transition duration-200"><i class="fa-solid fa-shield-halved mr-1"></i> Sécurité</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<main class="max-w-5xl mx-auto py-12 px-6 space-y-10">
-  <header class="text-center">
-    <h1 class="text-4xl font-extrabold text-blue-900 mb-2"><i class="fa-solid fa-recycle mr-2 text-yellow-400"></i>Environnement & Propreté</h1>
-    <p class="text-gray-600">Gestion des déchets • Espaces verts • Propreté urbaine</p>
-  </header>
+    <main class="max-w-6xl mx-auto py-16 px-6 space-y-16">
 
-  <section class="bg-white rounded-xl shadow-lg border-t-4 border-yellow-400 p-6">
-    <h2 class="text-2xl font-bold text-blue-900 mb-4">Nos programmes</h2>
-    <ul class="list-disc ml-5 text-gray-700">
-      <li>Collecte et tri des déchets.</li>
-      <li>Actions d'assainissement dans les quartiers.</li>
-      <li>Plantation et entretien d'espaces verts.</li>
-    </ul>
-  </section>
+        <header class="text-center bg-green-100 p-12 rounded-xl shadow-2xl border-b-4 border-green-600">
+            <h1 class="text-5xl font-extrabold text-blue-900 mb-3">
+                <i class="fa-solid fa-leaf text-green-600 mr-3"></i>
+                Direction de l'Environnement et de la Propreté
+            </h1>
+            <p class="text-gray-700 text-xl italic max-w-4xl mx-auto">
+                Assurer un cadre de vie sain et durable : gestion des déchets, lutte contre la pollution et promotion des espaces verts.
+            </p>
+        </header>
 
-  <section class="bg-white rounded-xl shadow-lg border-t-4 border-blue-900 p-6">
-    <h2 class="text-2xl font-bold text-blue-900 mb-4">Guides pratiques</h2>
-    <div id="formulaires" class="space-y-3 text-gray-700"><p class="italic text-gray-500">Chargement...</p></div>
-  </section>
+        <section class="p-6 bg-yellow-100 border-l-4 border-yellow-500 rounded-xl shadow-md">
+            <h2 class="text-2xl font-bold text-yellow-700 flex items-center mb-2">
+                <i class="fa-solid fa-people-carry-box mr-3"></i> Civisme et Responsabilité
+            </h2>
+            <p class="text-gray-700">
+                Chaque citoyen est responsable de la propreté de son environnement immédiat. Les dépôts sauvages de déchets sont strictement interdits et passibles de sanctions. Aidez-nous à garder Kolwezi propre !
+            </p>
+        </section>
 
-  <section class="bg-white rounded-xl shadow-lg border-t-4 border-green-600 p-6">
-    <h2 class="text-2xl font-bold text-blue-900 mb-4">Signaler un problème environnemental</h2>
-    <form id="demandeForm" class="space-y-4">
-      <input type="text" id="nom" placeholder="Nom" class="w-full p-3 border rounded" required>
-      <input type="tel" id="telephone" placeholder="Téléphone" class="w-full p-3 border rounded">
-      <textarea id="description" placeholder="Description (lieu, type de problème)" class="w-full p-3 border rounded h-28" required></textarea>
-      <div class="text-right"><button class="px-6 py-2 bg-blue-900 text-white rounded hover:bg-blue-800">Signaler</button></div>
-    </form>
-  </section>
-</main>
+        <h2 class="text-4xl font-extrabold text-blue-900 text-center mb-10">Nos Domaines d'Action Clés</h2>
 
-<footer class="bg-blue-900 text-white mt-12 pt-10 pb-6 text-center">&copy; <span id="yr">2025</span> Mairie de Kolwezi</footer>
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+        <div class="grid lg:grid-cols-3 gap-10">
 
-<script>
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
+            <section id="dechets" class="bg-white p-8 rounded-xl shadow-lg border-t-8 border-yellow-600 space-y-4 hover:shadow-2xl transition duration-300">
+                <i class="fa-solid fa-trash-arrow-up text-5xl text-yellow-600 mb-3"></i>
+                <h3 class="font-bold text-2xl text-blue-900">Déchets et Recyclage</h3>
+                <p class="text-gray-700">Organisation de la collecte, gestion des centres de transfert et promotion du tri sélectif auprès des ménages et entreprises.</p>
+                <ul class="list-disc ml-5 text-sm text-gray-600">
+                    <li>Planification des tournées de ramassage</li>
+                    <li>Campagnes de compostage</li>
+                    <li>Autorisation de gestion des déchets spéciaux</li>
+                </ul>
+            </section>
 
-  db.ref('environnement/formulaires').on('value', s => {
-    const v = s.val() || {};
-    const container = document.getElementById('formulaires');
-    container.innerHTML = '';
-    if (Object.keys(v).length === 0) container.innerHTML = '<p class="text-gray-500 italic">Aucun document disponible.</p>';
-    else Object.values(v).forEach(f => container.innerHTML += `<div class="p-3 border rounded"><h3 class="font-semibold text-blue-800">${f.titre}</h3><p>${f.description||''}</p>${f.lien?`<a href="${f.lien}" class="text-blue-600">Télécharger</a>`:''}</div>`);
-  });
+            <section id="proprete" class="bg-white p-8 rounded-xl shadow-lg border-t-8 border-blue-600 space-y-4 hover:shadow-2xl transition duration-300">
+                <i class="fa-solid fa-broom-ball text-5xl text-blue-600 mb-3"></i>
+                <h3 class="font-bold text-2xl text-blue-900">Salubrité Urbaine</h3>
+                <p class="text-gray-700">Nettoyage des voiries, entretien des marchés et des espaces publics, lutte contre les nuisances sonores et les pollutions visuelles.</p>
+                <ul class="list-disc ml-5 text-sm text-gray-600">
+                    <li>Contrôle de l'assainissement de l'eau</li>
+                    <li>Règlement de l'affichage publicitaire</li>
+                    <li>Gestion des égouts et caniveaux</li>
+                </ul>
+            </section>
 
-  document.getElementById('demandeForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const data = { nom: document.getElementById('nom').value, telephone: document.getElementById('telephone').value, description: document.getElementById('description').value, createdAt: new Date().toISOString() };
-    const ref = db.ref('environnement/signalements').push();
-    ref.set(data).then(()=> { alert('Signalement envoyé — Réf : ' + ref.key); e.target.reset(); }).catch(()=> alert('Erreur'));
-  });
-</script>
+            <section id="verts" class="bg-white p-8 rounded-xl shadow-lg border-t-8 border-green-600 space-y-4 hover:shadow-2xl transition duration-300">
+                <i class="fa-solid fa-tree text-5xl text-green-600 mb-3"></i>
+                <h3 class="font-bold text-2xl text-blue-900">Espaces Verts et Faune</h3>
+                <p class="text-gray-700">Entretien des parcs et jardins municipaux, programmes de reforestation urbaine et protection de la faune locale (animaux errants).</p>
+                <ul class="list-disc ml-5 text-sm text-gray-600">
+                    <li>Permis d'abattage d'arbres</li>
+                    <li>Création de parcs publics</li>
+                    <li>Sensibilisation à la biodiversité</li>
+                </ul>
+            </section>
+
+        </div>
+
+        <section id="guides" class="bg-gray-100 shadow-xl rounded-xl p-10 border-4 border-blue-200">
+            <h2 class="text-3xl font-bold text-blue-900 mb-8 flex items-center">
+                <i class="fa-solid fa-book-open-reader mr-3 text-blue-600"></i>
+                Règlements & Guides Pratiques
+            </h2>
+            <p class="text-gray-600 mb-6">Téléchargez les règlements municipaux (collecte, hygiène) et les guides pratiques pour une gestion éco-responsable à la maison.</p>
+
+            <div id="formulaires" class="space-y-4 text-gray-700">
+                <div class="flex justify-center items-center h-16">
+                    <i class="fa-solid fa-spinner fa-spin text-3xl text-gray-400 mr-3"></i>
+                    <p class="italic text-gray-500">Chargement des documents depuis la base de données...</p>
+                </div>
+                </div>
+        </section>
+
+        <section id="signalement" class="bg-white shadow-2xl rounded-xl p-10 border-t-8 border-red-700">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center">
+                <i class="fa-solid fa-magnifying-glass-location mr-3 text-red-700"></i>
+                Signaler un Problème (Décharge Sauvage, Pollution)
+            </h2>
+            <p class="text-gray-600 mb-6">Aidez-nous à intervenir rapidement ! Utilisez ce formulaire pour signaler un dépôt illégal, une pollution de l'eau ou tout autre manquement grave à la propreté urbaine.</p>
+            <form id="demandeForm" class="space-y-5">
+                <input type="text" id="nom" placeholder="Votre nom complet" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
+                <input type="tel" id="telephone" placeholder="Téléphone (Obligatoire pour suivi)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
+                <input type="text" id="emplacement" placeholder="Emplacement précis du problème (Rue, Carrefour)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
+                <textarea id="description" placeholder="Décrivez le problème et sa nature (Déchets, odeur, pollution...)" class="w-full p-4 border border-gray-300 rounded-lg h-36 focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required></textarea>
+                <div class="text-right">
+                    <button type="submit" class="bg-green-700 text-white px-8 py-3 rounded-xl font-semibold text-lg hover:bg-green-600 transition duration-300 shadow-lg flex items-center ml-auto">
+                        <i class="fa-solid fa-file-signature mr-2"></i> Envoyer le Signalement
+                    </button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="bg-blue-900 text-white mt-16 pt-10 pb-6">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="mb-2">Environnement et Propreté — Mairie de Kolwezi | Ensemble pour une ville plus verte.</p>
+            <p>&copy; <span id="yr">2025</span> Mairie de Kolwezi — Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('yr').textContent = new Date().getFullYear();
+
+        // --- Configuration Firebase (À REMPLACER) ---
+        // Utilisation de la configuration existante mais ciblant 'environnement'
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // Charger documents (sous /environnement/formulaires)
+        const formulairesDiv = document.getElementById('formulaires');
+        db.ref('environnement/formulaires').on('value', snapshot => {
+            const val = snapshot.val();
+            formulairesDiv.innerHTML = ''; // Nettoie le message de chargement
+            if (!val) {
+                formulairesDiv.innerHTML = '<p class="text-gray-500 italic p-4 border rounded-lg bg-white text-center"><i class="fa-solid fa-info-circle mr-2"></i> Aucun document ou guide disponible au téléchargement.</p>';
+                return;
+            }
+            // Affichage des documents
+            Object.keys(val).forEach(k => {
+                const f = val[k];
+                formulairesDiv.innerHTML += `
+                    <div class="p-5 border border-yellow-300 rounded-xl bg-white hover:bg-yellow-50 transition flex justify-between items-center shadow-sm">
+                        <div>
+                            <h3 class="font-bold text-xl text-blue-900">${f.titre || 'Document Environnement'}</h3>
+                            <p class="text-sm text-gray-600">${f.description || 'Description non disponible.'}</p>
+                        </div>
+                        ${f.lien ? `<a href="${f.lien}" target="_blank" class="bg-yellow-500 text-blue-900 px-5 py-2 rounded-full font-semibold hover:bg-yellow-400 transition flex items-center shadow-md">
+                            <i class="fa-solid fa-file-pdf mr-2"></i> Télécharger
+                        </a>` : `<span class="text-red-500 text-sm">Lien non disponible</span>`}
+                    </div>
+                `;
+            });
+        });
+
+        // Soumettre signalement (sous /environnement/signalements)
+        document.getElementById('demandeForm').addEventListener('submit', e => {
+            e.preventDefault();
+            const data = {
+                nom: document.getElementById('nom').value,
+                telephone: document.getElementById('telephone').value,
+                emplacement: document.getElementById('emplacement').value,
+                description: document.getElementById('description').value,
+                createdAt: new Date().toISOString()
+            };
+            
+            const ref = db.ref('environnement/signalements').push();
+            ref.set(data)
+                .then(()=> { 
+                    alert('✅ Signalement environnemental envoyé avec succès ! Nous allons intervenir. Référence : ' + ref.key); 
+                    e.target.reset(); 
+                })
+                .catch(err => { 
+                    console.error(err); 
+                    alert('❌ Erreur lors de l\'envoi du signalement. Veuillez réessayer.'); 
+                });
+        });
+    </script>
 
 </body>
 </html>
-
