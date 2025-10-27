@@ -1,234 +1,131 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>État Civil - Mairie de Kolwezi</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-        .font-\[Inter\] {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
-    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>État Civil — Mairie de Kolwezi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
-
 <body class="bg-gray-50 text-gray-800 font-[Inter]">
 
-    <nav class="bg-blue-900 text-white shadow sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
-            <a href="index.html" class="flex items-center text-2xl font-bold space-x-2">
-                <i class="fa-solid fa-landmark text-yellow-400"></i>
-                <span>Mairie de Kolwezi</span>
-            </a>
-            <ul class="hidden md:flex space-x-6 font-medium">
-                <li><a href="index.html" class="hover:text-yellow-400 transition duration-300"><i class="fa-solid fa-house mr-1"></i>Accueil</a></li>
-                <li><a href="etat_civil.html" class="text-yellow-400 border-b-2 border-yellow-400 pb-1"><i class="fa-solid fa-id-card mr-1"></i>État civil</a></li>
-                </ul>
+<!-- NAV (identique à l'index) -->
+<nav class="bg-blue-900 text-white shadow sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
+    <a href="index.html" class="flex items-center text-2xl font-bold space-x-2">
+      <i class="fa-solid fa-landmark text-yellow-400"></i>
+      <span>Mairie de Kolwezi</span>
+    </a>
+    <ul class="hidden md:flex space-x-6 font-medium">
+      <li><a href="index.html" class="flex items-center hover:text-yellow-400"><i class="fa-solid fa-house mr-1"></i> Accueil</a></li>
+      <li><a href="etat_civil.html" class="flex items-center text-yellow-400"><i class="fa-solid fa-id-card mr-1"></i> État civil</a></li>
+      <li><a href="urbanisme.html" class="flex items-center hover:text-yellow-400"><i class="fa-solid fa-city mr-1"></i> Urbanisme</a></li>
+      <li><a href="sante_publique.html" class="flex items-center hover:text-yellow-400"><i class="fa-solid fa-hospital mr-1"></i> Santé</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="max-w-5xl mx-auto py-12 px-6 space-y-10">
+
+  <header class="text-center">
+    <h1 class="text-4xl font-extrabold text-blue-900 mb-2"><i class="fa-solid fa-id-card mr-2 text-yellow-400"></i>Service État Civil</h1>
+    <p class="text-gray-600">Naissances • Mariages • Décès — démarches et formulaires officiels.</p>
+  </header>
+
+  <section class="bg-white rounded-xl shadow-lg border-t-4 border-yellow-400 p-6">
+    <h2 class="text-2xl font-bold text-blue-900 mb-4">Nos prestations</h2>
+    <ul class="list-disc ml-5 text-gray-700">
+      <li>Délivrance d'extraits de naissance.</li>
+      <li>Actes de mariage et PACS.</li>
+      <li>Actes de décès et certificats administratifs.</li>
+      <li>Rectifications d'état civil.</li>
+    </ul>
+  </section>
+
+  <section class="bg-white rounded-xl shadow-lg border-t-4 border-blue-900 p-6">
+    <h2 class="text-2xl font-bold text-blue-900 mb-4">Formulaires officiels</h2>
+    <div id="formulaires" class="space-y-3 text-gray-700">
+      <p class="italic text-gray-500">Chargement des formulaires…</p>
+    </div>
+  </section>
+
+  <section class="bg-white rounded-xl shadow-lg border-t-4 border-green-600 p-6">
+    <h2 class="text-2xl font-bold text-blue-900 mb-4">Soumettre une demande</h2>
+    <form id="demandeForm" class="space-y-4">
+      <input type="text" id="nom" placeholder="Nom complet" class="w-full p-3 border rounded" required>
+      <input type="tel" id="telephone" placeholder="Téléphone" class="w-full p-3 border rounded" required>
+      <input type="email" id="email" placeholder="Email (optionnel)" class="w-full p-3 border rounded">
+      <textarea id="message" placeholder="Objet de la demande / pièces jointes (décrivez)" class="w-full p-3 border rounded h-28" required></textarea>
+      <div class="text-right">
+        <button class="px-6 py-2 bg-blue-900 text-white rounded hover:bg-blue-800">Envoyer la demande</button>
+      </div>
+    </form>
+  </section>
+
+</main>
+
+<footer class="bg-blue-900 text-white mt-12 pt-10 pb-6">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    &copy; <span id="yr">2025</span> Mairie de Kolwezi — Tous droits réservés.
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+
+<script>
+  // --- Remplace les valeurs par ton projet Firebase Realtime Database ---
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+  // Initialisation
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  // Charger formulaires (sous /etat_civil/formulaires)
+  const formulairesDiv = document.getElementById('formulaires');
+  db.ref('etat_civil/formulaires').on('value', snapshot => {
+    const val = snapshot.val();
+    formulairesDiv.innerHTML = '';
+    if (!val) {
+      formulairesDiv.innerHTML = '<p class="text-gray-500 italic">Aucun formulaire disponible.</p>';
+      return;
+    }
+    Object.keys(val).forEach(k => {
+      const f = val[k];
+      formulairesDiv.innerHTML += `
+        <div class="p-4 border rounded hover:bg-gray-50">
+          <h3 class="font-semibold text-blue-800">${f.titre || 'Formulaire'}</h3>
+          <p class="text-sm text-gray-700">${f.description || ''}</p>
+          ${f.lien ? `<a href="${f.lien}" class="text-blue-600 hover:underline">Télécharger</a>` : ''}
         </div>
-    </nav>
+      `;
+    });
+  });
 
-    <main class="max-w-6xl mx-auto py-16 px-6 space-y-16">
-
-        <header class="text-center bg-blue-100 p-10 rounded-xl shadow-2xl">
-            <h1 class="text-5xl font-extrabold text-blue-900 mb-4">
-                <i class="fa-solid fa-scroll text-yellow-600 mr-3"></i>
-                Service de l’État Civil
-            </h1>
-            <p class="text-gray-700 text-xl italic max-w-3xl mx-auto">
-                L'enregistrement des événements majeurs de votre vie : **naissance, mariage, décès**. Obtenez vos actes officiels sans délai.
-            </p>
-        </header>
-        
-        <section class="grid md:grid-cols-2 gap-8">
-            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-600">
-                <h3 class="text-2xl font-bold text-blue-900 mb-4 flex items-center">
-                    <i class="fa-solid fa-location-dot text-blue-600 mr-3"></i>
-                    Informations Pratiques
-                </h3>
-                <p class="text-gray-700 mb-2">
-                    **Adresse :** Bâtiment Principal de la Mairie, Rez-de-Chaussée.
-                </p>
-                <div class="space-y-1">
-                    <p class="font-semibold text-gray-800">Horaires d'ouverture :</p>
-                    <p>
-                        <i class="fa-solid fa-clock mr-2 text-yellow-500"></i>
-                        Lundi au Vendredi : **08h00 - 15h30**
-                    </p>
-                    <p>
-                        <i class="fa-solid fa-calendar-times mr-2 text-red-500"></i>
-                        Samedi, Dimanche et Jours Fériés : **Fermé**
-                    </p>
-                </div>
-            </div>
-
-            <div class="bg-yellow-50 p-6 rounded-xl shadow-lg border-l-4 border-yellow-600">
-                <h3 class="text-2xl font-bold text-yellow-800 mb-4 flex items-center">
-                    <i class="fa-solid fa-triangle-exclamation text-yellow-600 mr-3"></i>
-                    Avis Important
-                </h3>
-                <p class="text-gray-700">
-                    <span class="font-bold">Authentification des Actes :</span> Tous les actes d'état civil originaux doivent être retirés et légalisés sur place. Aucun document officiel n'est transmis par e-mail ou courrier. Prévoyez une pièce d'identité.
-                </p>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="text-3xl font-bold text-blue-900 mb-8 text-center border-b pb-3">Nos Prestations Détaillées</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 border-b-4 border-green-500 transform hover:scale-[1.02]">
-                    <i class="fa-solid fa-baby-carriage text-4xl text-green-600 mb-3"></i>
-                    <h3 class="text-xl font-bold text-blue-900 mb-2">Déclaration de Naissance</h3>
-                    <p class="text-gray-700 text-sm">Formalités, pièces à fournir, et délais légaux pour l'enregistrement de votre enfant.</p>
-                    <a href="#formulaires" class="text-green-600 font-semibold mt-3 block hover:underline">Accéder aux formulaires <i class="fa-solid fa-arrow-right ml-1"></i></a>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 border-b-4 border-yellow-500 transform hover:scale-[1.02]">
-                    <i class="fa-solid fa-heart-pulse text-4xl text-yellow-600 mb-3"></i>
-                    <h3 class="text-xl font-bold text-blue-900 mb-2">Mariage Civil</h3>
-                    <p class="text-gray-700 text-sm">Préparation du dossier, dépôt des bans, conditions et cérémonie officielle.</p>
-                    <a href="#faq" class="text-yellow-600 font-semibold mt-3 block hover:underline">Consulter la FAQ <i class="fa-solid fa-arrow-right ml-1"></i></a>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 border-b-4 border-red-500 transform hover:scale-[1.02]">
-                    <i class="fa-solid fa-skull-crossbones text-4xl text-red-600 mb-3"></i>
-                    <h3 class="text-xl font-bold text-blue-900 mb-2">Déclaration de Décès</h3>
-                    <p class="text-gray-700 text-sm">Procédure d'enregistrement obligatoire et obtention des documents nécessaires aux obsèques.</p>
-                    <a href="#formulaires" class="text-red-600 font-semibold mt-3 block hover:underline">Voir la procédure <i class="fa-solid fa-arrow-right ml-1"></i></a>
-                </div>
-            </div>
-        </section>
-
-        ---
-
-        <section id="formulaires" class="bg-white shadow-2xl rounded-xl p-10 border-t-8 border-blue-600">
-            <h2 class="text-3xl font-bold text-blue-900 mb-8 flex items-center">
-                <i class="fa-solid fa-file-arrow-down mr-3 text-blue-600"></i>
-                Téléchargement des Formulaires Officiels
-            </h2>
-            <p class="text-gray-600 mb-6">Téléchargez le formulaire requis, remplissez-le et déposez-le à la Mairie pour lancer votre démarche.</p>
-
-            <div id="formulaires" class="space-y-4 text-gray-700">
-                <div class="flex justify-center items-center h-24">
-                    <i class="fa-solid fa-spinner fa-spin text-4xl text-gray-400 mr-3"></i>
-                    <p class="italic text-gray-500">Chargement des formulaires depuis la base de données...</p>
-                </div>
-                </div>
-        </section>
-
-        ---
-
-        <section class="bg-white shadow-2xl rounded-xl p-10 border-t-8 border-green-700" id="contact">
-            <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center">
-                <i class="fa-solid fa-comment-dots mr-3 text-green-700"></i>
-                Contactez-nous (Questions Non Urgentes)
-            </h2>
-            <p class="text-gray-600 mb-6">Pour toute question ne nécessitant pas un déplacement immédiat, utilisez ce formulaire. Pour les urgences (ex: décès), veuillez appeler directement.</p>
-            <form id="demandeForm" class="space-y-5">
-                <input type="text" id="nom" placeholder="Votre nom complet" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
-                <input type="email" id="email" placeholder="Votre adresse e-mail" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
-                <textarea id="message" placeholder="Votre demande ou question détaillée..." class="w-full p-4 border border-gray-300 rounded-lg h-40 focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required></textarea>
-                <button type="submit" class="bg-blue-900 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 transition duration-300 shadow-lg">
-                    <i class="fa-solid fa-paper-plane mr-2"></i> Envoyer
-                </button>
-            </form>
-        </section>
-
-        ---
-
-        <section id="faq" class="bg-gray-100 rounded-xl p-10 shadow-inner">
-            <h2 class="text-3xl font-bold text-blue-900 mb-6 text-center">Foire Aux Questions (FAQ)</h2>
-            <div class="space-y-4">
-                <details class="bg-white p-4 rounded-lg shadow cursor-pointer hover:bg-gray-50 transition duration-200">
-                    <summary class="font-semibold text-lg text-blue-800 flex justify-between items-center">
-                        Quel est le délai maximum pour déclarer une naissance ?
-                        <i class="fa-solid fa-chevron-down text-sm ml-2"></i>
-                    </summary>
-                    <p class="pt-3 text-gray-700 border-t mt-3">Le délai légal pour la déclaration d’une naissance est généralement de **quinze (15) jours** suivant l'accouchement. Passé ce délai, une procédure judiciaire peut être nécessaire pour établir l'acte.</p>
-                </details>
-
-                <details class="bg-white p-4 rounded-lg shadow cursor-pointer hover:bg-gray-50 transition duration-200">
-                    <summary class="font-semibold text-lg text-blue-800 flex justify-between items-center">
-                        Quelles sont les pièces nécessaires pour un mariage ?
-                        <i class="fa-solid fa-chevron-down text-sm ml-2"></i>
-                    </summary>
-                    <p class="pt-3 text-gray-700 border-t mt-3">Les pièces incluent notamment : une pièce d'identité valide, l'acte de naissance récent, le certificat de célibat (ou de divorce/veuvage), et les fiches de renseignements à télécharger ci-dessus.</p>
-                </details>
-
-                <details class="bg-white p-4 rounded-lg shadow cursor-pointer hover:bg-gray-50 transition duration-200">
-                    <summary class="font-semibold text-lg text-blue-800 flex justify-between items-center">
-                        Comment demander une copie ou un extrait d'acte ?
-                        <i class="fa-solid fa-chevron-down text-sm ml-2"></i>
-                    </summary>
-                    <p class="pt-3 text-gray-700 border-t mt-3">La demande s'effectue via un formulaire spécifique (téléchargeable ci-dessus) et doit être déposée physiquement à la Mairie. Prévoyez une pièce justificative de votre lien avec l'acte.</p>
-                </details>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-blue-900 text-white py-8 text-center mt-16">
-        <p>&copy; 2025 Mairie de Kolwezi — Tous droits réservés. | Service de l'État Civil.</p>
-    </footer>
-
-    <script>
-        // Configuration Firebase (IMPORTANT : REMPLACER AVEC VOTRE VRAIE CLÉ)
-        const firebaseConfig = {
-            apiKey: "AIzaSyEXAMPLE-KEY-REMPLACE-MOI",
-            authDomain: "mairie-kolwezi.firebaseapp.com",
-            databaseURL: "https://mairie-kolwezi-default-rtdb.firebaseio.com",
-            projectId: "mairie-kolwezi",
-            storageBucket: "mairie-kolwezi.appspot.com",
-            messagingSenderId: "986543210",
-            appId: "1:986543210:web:abcdef123456"
-        };
-
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
-
-        // Charger les formulaires
-        const formulairesDiv = document.getElementById('formulaires');
-        db.ref('etat_civil/formulaires').on('value', (snapshot) => {
-            const data = snapshot.val();
-            formulairesDiv.innerHTML = ''; // Nettoyer l'indicateur de chargement
-            if (data) {
-                Object.values(data).forEach(item => {
-                    formulairesDiv.innerHTML += `
-                        <div class="p-5 border border-gray-200 rounded-xl hover:bg-blue-50 transition flex justify-between items-center">
-                            <div>
-                                <h3 class="font-bold text-xl text-blue-900">${item.titre}</h3>
-                                <p class="text-sm text-gray-600">${item.description}</p>
-                            </div>
-                            <a href="${item.lien}" target="_blank" class="bg-yellow-500 text-blue-900 px-5 py-2 rounded-full font-semibold hover:bg-yellow-400 transition flex items-center shadow-md">
-                                <i class="fa-solid fa-file-pdf mr-2"></i> Télécharger
-                            </a>
-                        </div>
-                    `;
-                });
-            } else {
-                formulairesDiv.innerHTML = '<p class="text-gray-500 italic p-4 border rounded-lg bg-gray-50 text-center"><i class="fa-solid fa-circle-info mr-2"></i> Aucun formulaire disponible pour le moment. Veuillez contacter la Mairie.</p>';
-            }
-        });
-
-        // Formulaire de demande (Soumettre à la base de données)
-        document.getElementById('demandeForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const nom = document.getElementById('nom').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            // Ajout des données à la référence 'etat_civil/demandes'
-            db.ref('etat_civil/demandes').push({ nom, email, message, date: new Date().toISOString() })
-                .then(() => {
-                    alert("✅ Votre demande a été soumise avec succès ! Un agent vous contactera par e-mail.");
-                    e.target.reset();
-                })
-                .catch((error) => {
-                    alert("❌ Une erreur est survenue lors de l'envoi de votre demande : " + error.message);
-                });
-        });
-    </script>
+  // Soumettre demande
+  document.getElementById('demandeForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const data = {
+      nom: document.getElementById('nom').value,
+      telephone: document.getElementById('telephone').value,
+      email: document.getElementById('email').value,
+      message: document.getElementById('message').value,
+      createdAt: new Date().toISOString()
+    };
+    const ref = db.ref('etat_civil/demandes').push();
+    ref.set(data)
+      .then(()=> { alert('Demande envoyée — Réf : ' + ref.key); e.target.reset(); })
+      .catch(err => { console.error(err); alert('Erreur lors de l\'envoi.'); });
+  });
+</script>
 
 </body>
 </html>
