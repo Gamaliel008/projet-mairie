@@ -1,239 +1,131 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mairie de Kolwezi - Services Publics</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module">
-        // Importez les fonctions nécessaires de l'API Firebase que vous souhaitez utiliser
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-        // Vous pouvez ajouter d'autres services comme Firestore, Auth, etc.
-        // import { getFirestore } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
-
-        // Votre configuration Firebase (À REMPLACER par vos propres clés)
-        const firebaseConfig = {
-            apiKey: "VOTRE_API_KEY", // Remplacez ceci
-            authDomain: "VOTRE_PROJECT_ID.firebaseapp.com", // Remplacez ceci
-            projectId: "VOTRE_PROJECT_ID", // Remplacez ceci
-            storageBucket: "VOTRE_PROJECT_ID.appspot.com", // Remplacez ceci
-            messagingSenderId: "VOTRE_MESSAGING_SENDER_ID", // Remplacez ceci
-            appId: "VOTRE_APP_ID" // Remplacez ceci
-        };
-
-        // Initialiser Firebase
-        const app = initializeApp(firebaseConfig);
-        // const db = getFirestore(app); // Exemple d'initialisation de Firestore
-
-        console.log("Firebase a été initialisé.");
-        // Vous pouvez maintenant utiliser 'app' ou 'db' pour interagir avec Firebase
-    </script>
-    <style>
-        /* Styles CSS personnalisés */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f4f7f9;
-        }
-        /* Styles personnalisés pour améliorer l'aspect des liens */
-        .dropdown-item-hover:hover {
-            background-color: #e5e7eb; /* gray-100 */
-            color: #1f2937; /* gray-800 */
-        }
-        /* Styles spécifiques aux pages de services */
-        .service-tab-active {
-            border-bottom: 3px solid #f59e0b; /* Jaune-400 */
-            color: #1e40af; /* Bleu-700 */
-            font-weight: 600;
-        }
-    </style>
-    <script src="https://unpkg.com/flowbite@2.5.2/dist/flowbite.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>État Civil - Mairie de Kolwezi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body class="bg-gray-50 text-gray-800">
 
-    <nav class="bg-blue-900 text-white shadow sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
-            <a href="index.html" class="flex items-center text-2xl font-bold space-x-2">
-                <i class="fa-solid fa-landmark text-yellow-400"></i>
-                <span>Mairie de Kolwezi</span>
-            </a>
+<body class="bg-gray-50 text-gray-800 font-[Inter]">
 
-            <ul class="hidden md:flex space-x-6 font-medium">
-                <li><a href="index.html" class="flex items-center hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-house mr-1"></i> Accueil</a></li>
-                <li class="relative"><button data-dropdown-toggle="menuServices" class="flex items-center text-yellow-400 transition duration-150"><i class="fa-solid fa-gear mr-1"></i> Services<i class="fa-solid fa-chevron-down ml-2 text-xs"></i></button><div id="menuServices" class="hidden absolute z-10 mt-2 bg-white text-gray-800 shadow-xl rounded-lg w-64 ring-1 ring-black ring-opacity-5"><ul class="py-2">
-                    <li><a href="etat_civil.html" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-id-card mr-2"></i> État civil</a></li>
-                    <li><a href="urbanisme.html" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-city mr-2"></i> Urbanisme & Permis</a></li>
-                    <li><a href="sante_publique.html" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-hospital mr-2"></i> Santé publique</a></li>
-                    <li><a href="securite_police.html" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-shield-halved mr-2"></i> Sécurité & Police</a></li>
-                    <li><a href="environnement.html" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-recycle mr-2"></i> Environnement & Propreté</a></li>
-                    <li class="relative group">
-                        <a href="finances.html" class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover">
-                            <span><i class="fa-solid fa-sack-dollar mr-2"></i> Finances</span>
-                            <i class="fa-solid fa-chevron-right text-xs"></i>
-                        </a>
-                        <div class="hidden group-hover:block absolute left-full top-0 bg-white text-gray-800 shadow-xl rounded-lg w-56 ring-1 ring-black ring-opacity-5">
-                            <ul class="py-2">
-                                <li><a href="impots_taxes.html" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-money-bill mr-2"></i> Impôts & Taxes locales</a></li>
-                                <li><a href="budget_municipal.html" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-chart-line mr-2"></i> Budget municipal</a></li>
-                                <li><a href="recette_depense.html" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-coins mr-2"></i> Recettes & Dépenses</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul></div></li>
-                 <li><a href="#" class="flex items-center hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-building mr-1"></i> Projets</a></li>
-                 <li><a href="#" class="flex items-center hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-newspaper mr-1"></i> Actualités</a></li>
-                 <li><a href="#" class="flex items-center hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-calendar-days mr-1"></i> Événements</a></li>
-                 <li><a href="#" class="flex items-center hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-circle-info mr-1"></i> À propos</a></li>
-            </ul>
-        </div>
-    </nav>
-    <main class="max-w-7xl mx-auto py-12 px-6 space-y-16">
-        
-        <section id="service-page" class="bg-white p-6 md:p-10 rounded-xl shadow-2xl border-t-4 border-yellow-500">
-            
-            <div class="text-center mb-10">
-                <i class="fa-solid fa-id-card text-5xl text-blue-900 mb-4"></i> <h1 class="text-4xl font-extrabold text-blue-900 mb-2">Service d'État Civil</h1>
-                <p class="text-xl text-gray-600">Simplifiez vos démarches administratives de la vie courante.</p>
-                <p class="mt-4 text-sm text-gray-500 italic">Page: etat_civil.html</p>
-            </div>
-            
-            <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-                <ul class="flex flex-wrap -mb-px text-lg font-medium text-center text-gray-500" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
-                    <li class="me-2" role="presentation">
-                        <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 service-tab-active" id="description-tab" data-tabs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">
-                            <i class="fa-solid fa-file-alt mr-2"></i> Description
-                        </button>
-                    </li>
-                    <li class="me-2" role="presentation">
-                        <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="demarches-tab" data-tabs-target="#demarches" type="button" role="tab" aria-controls="demarches" aria-selected="false">
-                            <i class="fa-solid fa-list-check mr-2"></i> Procédures & Démarches
-                        </button>
-                    </li>
-                    <li class="me-2" role="presentation">
-                        <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="contact-tab" data-tabs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">
-                            <i class="fa-solid fa-headset mr-2"></i> Contact & Horaires
-                        </button>
-                    </li>
-                </ul>
-            </div>
-            
-            <div id="default-tab-content">
-                
-                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="description" role="tabpanel" aria-labelledby="description-tab">
-                    <h2 class="text-2xl font-bold text-blue-800 mb-4">Rôle du Service d'État Civil</h2>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        Le Service d'État Civil est chargé de la tenue des registres des actes de la vie de l'individu : 
-                        <span class="font-semibold text-blue-900">naissance, mariage et décès</span>. Il délivre les copies et extraits de ces actes, garantissant la légalité et l'authenticité de votre identité.
-                    </p>
-                    <div class="grid md:grid-cols-3 gap-6 mt-6">
-                        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-200">
-                            <i class="fa-solid fa-baby text-3xl text-green-500 mb-2"></i>
-                            <h3 class="font-semibold text-gray-800">Actes de Naissance</h3>
-                            <p class="text-sm text-gray-600">Déclaration obligatoire dans les 15 jours suivant la naissance.</p>
-                        </div>
-                        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-200">
-                            <i class="fa-solid fa-ring text-3xl text-pink-500 mb-2"></i>
-                            <h3 class="font-semibold text-gray-800">Célébration de Mariage</h3>
-                            <p class="text-sm text-gray-600">Formalités et publication des bans pour l'union civile.</p>
-                        </div>
-                        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-200">
-                            <i class="fa-solid fa-cross text-3xl text-red-500 mb-2"></i>
-                            <h3 class="font-semibold text-gray-800">Actes de Décès</h3>
-                            <p class="text-sm text-gray-600">Enregistrement et délivrance des certificats de décès.</p>
-                        </div>
-                    </div>
-                </div>
+  <!-- Navbar identique à l’index -->
+  <nav class="bg-blue-900 text-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
+      <a href="index.html" class="flex items-center text-2xl font-bold space-x-2">
+        <i class="fa-solid fa-landmark text-yellow-400"></i>
+        <span>Mairie de Kolwezi</span>
+      </a>
+      <ul class="hidden md:flex space-x-6 font-medium">
+        <li><a href="index.html" class="hover:text-yellow-400"><i class="fa-solid fa-house mr-1"></i>Accueil</a></li>
+        <li><a href="etat_civil.html" class="text-yellow-400"><i class="fa-solid fa-id-card mr-1"></i>État civil</a></li>
+        <li><a href="urbanisme.html" class="hover:text-yellow-400"><i class="fa-solid fa-city mr-1"></i>Urbanisme</a></li>
+        <li><a href="sante_publique.html" class="hover:text-yellow-400"><i class="fa-solid fa-hospital mr-1"></i>Santé</a></li>
+      </ul>
+    </div>
+  </nav>
 
-                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="demarches" role="tabpanel" aria-labelledby="demarches-tab">
-                    <h2 class="text-2xl font-bold text-blue-800 mb-4">Comment Obtenir un Acte ?</h2>
-                    <ul class="list-disc list-inside space-y-3 text-gray-700 ml-4">
-                        <li class="font-medium text-gray-900">
-                            Demande d'Acte de Naissance : 
-                            <span class="font-normal text-gray-700">Présentez-vous au guichet avec une pièce d'identité et les informations sur la personne concernée, ou utilisez le <a href="#" class="text-yellow-600 hover:underline">Formulaire en Ligne</a>.</span>
-                        </li>
-                        <li class="font-medium text-gray-900">
-                            Dossier de Mariage : 
-                            <span class="font-normal text-gray-700">Prenez rendez-vous pour déposer les pièces requises (certificats de célibat, attestations de résidence, etc.) au moins un mois à l'avance.</span>
-                        </li>
-                        <li class="font-medium text-gray-900">
-                            Coût des Copies/Extraits : 
-                            <span class="font-normal text-gray-700">Le tarif est fixé à **500 FC** par copie certifiée conforme. Paiement par caisse ou Mobile Money.</span>
-                        </li>
-                    </ul>
-                    <div class="mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700">
-                        <p class="font-semibold"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Important :</p>
-                        <p class="text-sm">Toutes les demandes en ligne doivent être confirmées par un passage au bureau pour la signature et la remise de l'original.</p>
-                    </div>
-                </div>
+  <!-- Section principale -->
+  <main class="max-w-5xl mx-auto py-12 px-6 space-y-12">
 
-                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                    <h2 class="text-2xl font-bold text-blue-800 mb-4">Informations Utiles</h2>
-                    <div class="space-y-4">
-                        <p class="flex items-center text-lg text-gray-700"><i class="fa-solid fa-location-dot text-red-500 mr-3 w-5"></i>
-                            <span class="font-semibold">Adresse:</span> Bâtiment de la Mairie, Avenue de la Justice, Kolwezi Centre.
-                        </p>
-                        <p class="flex items-center text-lg text-gray-700"><i class="fa-solid fa-clock text-blue-500 mr-3 w-5"></i>
-                            <span class="font-semibold">Horaires:</span> Lundi au Vendredi, de **8h00 à 15h30** (Guichet jusqu'à 14h00).
-                        </p>
-                        <p class="flex items-center text-lg text-gray-700"><i class="fa-solid fa-phone-alt text-green-500 mr-3 w-5"></i>
-                            <span class="font-semibold">Téléphone:</span> +243 99 123 4567 (Standard Mairie)
-                        </p>
-                        <p class="flex items-center text-lg text-gray-700"><i class="fa-solid fa-envelope text-yellow-500 mr-3 w-5"></i>
-                            <span class="font-semibold">Email:</span> etatcivil@mairiekolwezi.cd
-                        </p>
-                    </div>
-                    <div class="mt-8">
-                        <a href="#" class="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
-                            <i class="fa-solid fa-calendar-alt mr-2"></i> Prendre Rendez-vous
-                        </a>
-                    </div>
-                </div>
-                
-            </div>
-            
-        </section>
+    <!-- Titre -->
+    <section class="text-center">
+      <h1 class="text-4xl font-extrabold text-blue-900 mb-2">
+        <i class="fa-solid fa-id-card mr-2 text-yellow-500"></i>
+        Service de l’État Civil
+      </h1>
+      <p class="text-gray-600 text-lg italic">Mariage, naissance, décès — la mémoire administrative de notre cité.</p>
+    </section>
 
-    </main>
-    
-    <footer class="bg-blue-900 text-white mt-12">
-        <div class="max-w-7xl mx-auto px-6 py-8 md:flex md:justify-between md:items-center">
-            <div class="text-center md:text-left mb-4 md:mb-0">
-                <p class="font-bold text-lg">Mairie de Kolwezi</p>
-                <p class="text-sm text-gray-300">Portail Officiel de la Ville</p>
+    <!-- Présentation -->
+    <section class="bg-white shadow-lg rounded-xl p-8 border-t-4 border-yellow-400">
+      <h2 class="text-2xl font-bold text-blue-900 mb-4">Nos services</h2>
+      <ul class="list-disc list-inside space-y-2 text-gray-700">
+        <li>Enregistrement des naissances et délivrance d’actes.</li>
+        <li>Enregistrement des mariages et délivrance de certificats.</li>
+        <li>Enregistrement des décès et mise à jour des registres.</li>
+        <li>Rectification ou duplication d’actes.</li>
+      </ul>
+    </section>
+
+    <!-- Zone Firebase -->
+    <section class="bg-white shadow-lg rounded-xl p-8 border-t-4 border-blue-600">
+      <h2 class="text-2xl font-bold text-blue-900 mb-6">Formulaires disponibles</h2>
+      <div id="formulaires" class="space-y-4 text-gray-700">
+        <p class="italic text-gray-500">Chargement des formulaires depuis la base de données...</p>
+      </div>
+    </section>
+
+    <!-- Interaction citoyenne -->
+    <section class="bg-white shadow-lg rounded-xl p-8 border-t-4 border-green-500">
+      <h2 class="text-2xl font-bold text-blue-900 mb-4">Soumettre une demande</h2>
+      <form id="demandeForm" class="space-y-4">
+        <input type="text" id="nom" placeholder="Votre nom complet" class="w-full p-3 border rounded-lg focus:ring focus:ring-blue-200" required>
+        <input type="email" id="email" placeholder="Votre adresse e-mail" class="w-full p-3 border rounded-lg focus:ring focus:ring-blue-200" required>
+        <textarea id="message" placeholder="Votre demande ou question..." class="w-full p-3 border rounded-lg h-32 focus:ring focus:ring-blue-200" required></textarea>
+        <button type="submit" class="bg-blue-900 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition">Envoyer</button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-6 text-center mt-12">
+    <p>&copy; 2025 Mairie de Kolwezi — Tous droits réservés.</p>
+  </footer>
+
+  <!-- Firebase Config + JS -->
+  <script>
+    // Configuration Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyEXAMPLE-KEY-REMPLACE-MOI",
+      authDomain: "mairie-kolwezi.firebaseapp.com",
+      databaseURL: "https://mairie-kolwezi-default-rtdb.firebaseio.com",
+      projectId: "mairie-kolwezi",
+      storageBucket: "mairie-kolwezi.appspot.com",
+      messagingSenderId: "986543210",
+      appId: "1:986543210:web:abcdef123456"
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    // Charger les formulaires
+    const formulairesDiv = document.getElementById('formulaires');
+    db.ref('etat_civil/formulaires').on('value', (snapshot) => {
+      const data = snapshot.val();
+      formulairesDiv.innerHTML = '';
+      if (data) {
+        Object.values(data).forEach(item => {
+          formulairesDiv.innerHTML += `
+            <div class="p-4 border rounded-lg hover:bg-gray-50 transition">
+              <h3 class="font-semibold text-blue-800">${item.titre}</h3>
+              <p>${item.description}</p>
+              <a href="${item.lien}" class="text-blue-600 hover:underline">Télécharger</a>
             </div>
-            <div class="flex justify-center space-x-6">
-                <a href="#" class="text-gray-300 hover:text-yellow-400"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-gray-300 hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="text-gray-300 hover:text-yellow-400"><i class="fab fa-youtube"></i></a>
-            </div>
-        </div>
-        <div class="border-t border-blue-800 py-4 text-center text-xs text-gray-400">
-            &copy; 2025 Mairie de Kolwezi. Tous droits réservés. Propulsé par la Direction des Systèmes d'Information.
-        </div>
-    </footer>
-    <script>
-        // Le code JavaScript pour la gestion des onglets est inclus par Flowbite (data-tabs-toggle),
-        // mais nous allons ajouter un petit script pour s'assurer que l'onglet actif a le style correct
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabs = document.querySelectorAll('[role="tab"]');
-            
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Supprimer la classe active de tous les boutons
-                    tabs.forEach(t => t.classList.remove('service-tab-active'));
-                    
-                    // Ajouter la classe active au bouton cliqué
-                    tab.classList.add('service-tab-active');
-                });
-            });
-            
-            // Pour le premier chargement, activez la classe active pour le premier onglet
-            const initialActiveTab = document.querySelector('[aria-selected="true"]');
-            if (initialActiveTab) {
-                initialActiveTab.classList.add('service-tab-active');
-            }
+          `;
         });
-    </script>
+      } else {
+        formulairesDiv.innerHTML = '<p class="text-gray-500 italic">Aucun formulaire disponible pour le moment.</p>';
+      }
+    });
+
+    // Formulaire de demande
+    document.getElementById('demandeForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nom = document.getElementById('nom').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      db.ref('etat_civil/demandes').push({ nom, email, message, date: new Date().toISOString() });
+
+      alert("Votre demande a été soumise avec succès !");
+      e.target.reset();
+    });
+  </script>
+
 </body>
 </html>
