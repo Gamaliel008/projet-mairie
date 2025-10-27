@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>État Civil - Mon Application</title>
 
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="etat_civil.html" class="active">État Civil</a></li>
+                <li><a href="documents.html">Documents</a></li>
+                <li><a id="lien-deconnexion" href="#">Se Déconnecter</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Gestion des Dossiers d'État Civil</h1>
+        <p>Contenu de la page...</p>
+
+        </main>
+
+    <footer>
+        <p>&copy; 2024 Mon Application</p>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script>
+        // 4. MA CONFIGURATION FIREBASE (À REMPLACER !)
+        const firebaseConfig = {
+            apiKey: "AIzaSy...VOTRE_CLE_API_ICI",
+            authDomain: "votre-projet-id.firebaseapp.com",
+            projectId: "votre-projet-id",
+            storageBucket: "votre-projet-id.appspot.com",
+            messagingSenderId: "1234567890",
+            appId: "1:1234567890:web:abcdefghijk"
+        };
+
+        // Initialiser Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // Exemple : Vérifier l'authentification au chargement de la page
+        auth.onAuthStateChanged(user => {
+            if (!user) {
+                console.log("Utilisateur non connecté. Redirection...");
+                // window.location.href = "login.html"; // Décommenter pour forcer la connexion
+            } else {
+                console.log("Utilisateur connecté :", user.email);
+            }
+        });
+
+        // Fonctionnalité de déconnexion
+        document.getElementById('lien-deconnexion').addEventListener('click', (e) => {
+            e.preventDefault();
+            auth.signOut().then(() => {
+                console.log("Déconnexion réussie");
+                // window.location.href = "login.html";
+            }).catch((error) => {
+                console.error("Erreur de déconnexion", error);
+            });
+        });
+
+    </script>
+
+    <script src="js/etat_civil_logic.js"></script>
+
+</body>
+</html>
