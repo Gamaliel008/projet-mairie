@@ -1,86 +1,229 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Impôts & Taxes — Mairie de Kolwezi</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Impôts & Taxes — Mairie de Kolwezi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        .font-\[Inter\] {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
+
 <body class="bg-gray-50 text-gray-800 font-[Inter]">
 
-<nav class="bg-blue-900 text-white shadow sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
-    <a href="index.html" class="flex items-center text-2xl font-bold space-x-2"><i class="fa-solid fa-landmark text-yellow-400"></i><span>Mairie de Kolwezi</span></a>
-    <ul class="hidden md:flex space-x-6 font-medium">
-      <li><a href="index.html" class="flex items-center hover:text-yellow-400">Accueil</a></li>
-      <li><a href="impots_taxes.html" class="flex items-center text-yellow-400"><i class="fa-solid fa-money-bill mr-1"></i> Impôts & Taxes</a></li>
-      <li><a href="finances.html" class="flex items-center hover:text-yellow-400">Finances</a></li>
-    </ul>
-  </div>
-</nav>
+    <nav class="bg-blue-900 text-white shadow sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
+            <a href="index.html" class="flex items-center text-2xl font-bold space-x-2">
+                <i class="fa-solid fa-landmark text-yellow-400"></i>
+                <span>Mairie de Kolwezi</span>
+            </a>
+            <ul class="hidden md:flex space-x-6 font-medium">
+                <li><a href="index.html" class="flex items-center hover:text-yellow-400 transition duration-200"><i class="fa-solid fa-house mr-1"></i> Accueil</a></li>
+                <li class="group relative">
+                    <a href="impots_taxes.html" class="flex items-center text-yellow-400 border-b-2 border-yellow-400 pb-1"><i class="fa-solid fa-money-bill-transfer mr-1"></i> Impôts & Taxes</a>
+                    <div class="absolute hidden group-hover:block bg-blue-800 shadow-xl rounded-b-lg top-full pt-2 -left-2 w-56 transition duration-300">
+                        <a href="#foncier" class="block px-4 py-2 hover:bg-blue-700 transition">Impôts Foncier & Personnel</a>
+                        <a href="#professionnel" class="block px-4 py-2 hover:bg-blue-700 transition">Taxes Commerciales</a>
+                        <a href="#paiement" class="block px-4 py-2 hover:bg-blue-700 transition">Modalités de Paiement</a>
+                        <a href="#formulaires" class="block px-4 py-2 hover:bg-blue-700 transition">Documents Fiscaux</a>
+                    </div>
+                </li>
+                <li><a href="finances.html" class="flex items-center hover:text-yellow-400 transition duration-200"><i class="fa-solid fa-wallet mr-1"></i> Finances</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<main class="max-w-5xl mx-auto py-12 px-6 space-y-10">
-  <header class="text-center"><h1 class="text-4xl font-extrabold text-blue-900 mb-2"><i class="fa-solid fa-money-bill mr-2 text-yellow-400"></i>Impôts & Taxes</h1><p class="text-gray-600">Paiement, échéances et formulaires</p></header>
+    <main class="max-w-6xl mx-auto py-16 px-6 space-y-16">
 
-  <section class="bg-white rounded-xl shadow-lg border-t-4 border-yellow-400 p-6">
-    <h2 class="text-2xl font-bold text-blue-900 mb-4">Informations</h2>
-    <ul class="list-disc ml-5 text-gray-700">
-      <li>Types de taxes locales et modalités de paiement.</li>
-      <li>Echéances fiscales et modes de règlement.</li>
-      <li>Aides et exonérations possibles.</li>
-    </ul>
-  </section>
+        <header class="text-center bg-blue-100 p-12 rounded-xl shadow-2xl border-b-4 border-yellow-600">
+            <h1 class="text-5xl font-extrabold text-blue-900 mb-3">
+                <i class="fa-solid fa-piggy-bank text-yellow-600 mr-3"></i>
+                Service de la Fiscalité Locale
+            </h1>
+            <p class="text-gray-700 text-xl italic max-w-4xl mx-auto">
+                Toutes les informations sur vos impôts, taxes municipales et contributions pour le développement de Kolwezi.
+            </p>
+        </header>
 
-  <section class="bg-white rounded-xl shadow-lg border-t-4 border-blue-900 p-6">
-    <h2 class="text-2xl font-bold text-blue-900 mb-4">Documents utiles</h2>
-    <div id="formulaires" class="space-y-3 text-gray-700"><p class="italic text-gray-500">Chargement...</p></div>
-  </section>
+        <section class="p-6 bg-white rounded-xl shadow-lg border-l-4 border-blue-600 grid md:grid-cols-2 gap-6 items-center">
+            <div>
+                <h2 class="text-2xl font-bold text-blue-900 mb-3 flex items-center"><i class="fa-solid fa-building-columns mr-3 text-blue-600"></i> Contactez la Recette Municipale</h2>
+                <p class="text-gray-700">
+                    <span class="font-semibold">Adresse :</span> Mairie de Kolwezi, 1er Étage, Bureau des Contributions.<br>
+                    <span class="font-semibold">Horaires :</span> Lun. au Ven. de **08h00 à 14h30** (pour le public).
+                </p>
+            </div>
+            <div class="md:text-right">
+                <p class="text-xl font-bold text-yellow-600"><i class="fa-solid fa-phone mr-2"></i> [Numéro de Téléphone du Service Fiscal]</p>
+                <p class="text-sm text-gray-500">Pour toute question sur votre dossier ou vos échéances.</p>
+            </div>
+        </section>
 
-  <section class="bg-white rounded-xl shadow-lg border-t-4 border-green-600 p-6">
-    <h2 class="text-2xl font-bold text-blue-900 mb-4">Demande / Réclamation</h2>
-    <form id="demandeForm" class="space-y-4">
-      <input type="text" id="nom" placeholder="Nom" class="w-full p-3 border rounded" required>
-      <input type="text" id="matricule" placeholder="N° contribuable (si connu)" class="w-full p-3 border rounded">
-      <textarea id="description" placeholder="Objet de la demande / réclamation" class="w-full p-3 border rounded h-28" required></textarea>
-      <div class="text-right"><button class="px-6 py-2 bg-blue-900 text-white rounded hover:bg-blue-800">Envoyer</button></div>
-    </form>
-  </section>
-</main>
+        <h2 class="text-3xl font-bold text-blue-900 text-center mb-8 border-b pb-3">Vos Obligations Fiscales Locales</h2>
 
-<footer class="bg-blue-900 text-white mt-12 pt-10 pb-6 text-center">&copy; <span id="yr">2025</span> Mairie de Kolwezi</footer>
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+        <div class="grid lg:grid-cols-3 gap-8">
 
-<script>
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
+            <section id="foncier" class="bg-white p-6 rounded-xl shadow-lg border-t-8 border-green-600 space-y-3 hover:shadow-2xl transition duration-300">
+                <i class="fa-solid fa-house-chimney text-4xl text-green-600 mb-2"></i>
+                <h3 class="font-bold text-xl text-blue-900">Impôt Foncier & Personnel</h3>
+                <p class="text-gray-700 text-sm">Concerne les propriétaires de terrains et d'immeubles bâtis. Inclut l'impôt personnel minimum.</p>
+                <ul class="list-disc ml-5 text-xs text-gray-600">
+                    <li>Base de calcul : valeur locative cadastrale</li>
+                    <li>Échéance annuelle</li>
+                </ul>
+            </section>
 
-  db.ref('impots_taxes/formulaires').on('value', s => {
-    const v = s.val() || {};
-    const container = document.getElementById('formulaires');
-    container.innerHTML = '';
-    if (Object.keys(v).length === 0) container.innerHTML = '<p class="text-gray-500 italic">Aucun document.</p>';
-    else Object.values(v).forEach(f => container.innerHTML += `<div class="p-3 border rounded"><h3 class="font-semibold text-blue-800">${f.titre}</h3><p>${f.description||''}</p>${f.lien?`<a href="${f.lien}" class="text-blue-600">Télécharger</a>`:''}</div>`);
-  });
+            <section id="professionnel" class="bg-white p-6 rounded-xl shadow-lg border-t-8 border-yellow-600 space-y-3 hover:shadow-2xl transition duration-300">
+                <i class="fa-solid fa-store text-4xl text-yellow-600 mb-2"></i>
+                <h3 class="font-bold text-xl text-blue-900">Taxes Commerciales/Industrielles</h3>
+                <p class="text-gray-700 text-sm">Licences d'exploitation, taxes sur le chiffre d'affaires (TCA) local et autres patentes municipales.</p>
+                <ul class="list-disc ml-5 text-xs text-gray-600">
+                    <li>Taxe d'ouverture d'établissement</li>
+                    <li>Taxes sur les enseignes publicitaires</li>
+                </ul>
+            </section>
 
-  document.getElementById('demandeForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const data = { nom: document.getElementById('nom').value, matricule: document.getElementById('matricule').value, description: document.getElementById('description').value, createdAt: new Date().toISOString() };
-    const ref = db.ref('impots_taxes/demandes').push();
-    ref.set(data).then(()=> { alert('Demande envoyée — Réf : ' + ref.key); e.target.reset(); }).catch(()=> alert('Erreur'));
-  });
-</script>
+            <section id="autres" class="bg-white p-6 rounded-xl shadow-lg border-t-8 border-red-600 space-y-3 hover:shadow-2xl transition duration-300">
+                <i class="fa-solid fa-road text-4xl text-red-600 mb-2"></i>
+                <h3 class="font-bold text-xl text-blue-900">Autres Taxes et Droits</h3>
+                <p class="text-gray-700 text-sm">Droits de voirie, taxes sur les véhicules, taxes environnementales et redevances de marché.</p>
+                <ul class="list-disc ml-5 text-xs text-gray-600">
+                    <li>Taxe de circulation routière (TCR)</li>
+                    <li>Redevances de stationnement</li>
+                </ul>
+            </section>
+        </div>
+        
+        <section id="paiement" class="bg-blue-50 p-8 rounded-xl shadow-lg border-l-4 border-yellow-600 mt-10">
+            <h2 class="text-3xl font-bold text-blue-900 mb-4 flex items-center"><i class="fa-solid fa-receipt mr-3 text-yellow-600"></i> Comment Payer Vos Taxes ?</h2>
+            <div class="grid md:grid-cols-2 gap-6 text-gray-700">
+                <div>
+                    <h4 class="font-semibold text-xl text-blue-800 mb-2">Paiement au Guichet</h4>
+                    <p>Vous pouvez régler vos impôts directement au guichet de la **Recette Municipale** aux heures d'ouverture. Les paiements par chèque et en espèces sont acceptés.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-xl text-blue-800 mb-2">Paiement Mobile ou Bancaire</h4>
+                    <p>La Mairie travaille à l'intégration de solutions de paiement par mobile money ou virement bancaire. Consultez les documents ci-dessous pour les **références bancaires officielles**.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="formulaires" class="bg-gray-100 shadow-xl rounded-xl p-10 border-4 border-blue-200">
+            <h2 class="text-3xl font-bold text-blue-900 mb-8 flex items-center">
+                <i class="fa-solid fa-file-lines mr-3 text-blue-600"></i>
+                Formulaires et Documents Fiscaux
+            </h2>
+            <p class="text-gray-600 mb-6">Téléchargez les déclarations fiscales, les bordereaux de versement et les règlements relatifs aux impôts et taxes de Kolwezi.</p>
+
+            <div id="firebase_formulaires" class="space-y-4 text-gray-700">
+                <div class="flex justify-center items-center h-16">
+                    <i class="fa-solid fa-spinner fa-spin text-3xl text-gray-400 mr-3"></i>
+                    <p class="italic text-gray-500">Chargement des documents depuis la base de données...</p>
+                </div>
+                </div>
+        </section>
+
+        <section id="reclamation" class="bg-white shadow-2xl rounded-xl p-10 border-t-8 border-green-700">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center">
+                <i class="fa-solid fa-hand-holding-dollar mr-3 text-green-700"></i>
+                Demande d'Information ou Réclamation Fiscale
+            </h2>
+            <p class="text-gray-600 mb-6">Utilisez ce formulaire pour demander des éclaircissements sur un avis d'imposition, signaler une erreur de calcul, ou demander des informations sur les exonérations.</p>
+            <form id="demandeForm" class="space-y-5">
+                <input type="text" id="nom" placeholder="Nom complet ou Dénomination Sociale" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
+                <input type="text" id="matricule" placeholder="N° contribuable / N° de rôle (Obligatoire pour les réclamations)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition">
+                <input type="email" id="email" placeholder="Email (pour le suivi)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition">
+                <textarea id="description" placeholder="Objet de la demande (ex: Éclaircissement, Réclamation, Exonération)" class="w-full p-4 border border-gray-300 rounded-lg h-36 focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required></textarea>
+                <div class="text-right">
+                    <button type="submit" class="bg-blue-900 text-white px-8 py-3 rounded-xl font-semibold text-lg hover:bg-blue-700 transition duration-300 shadow-lg flex items-center ml-auto">
+                        <i class="fa-solid fa-share-from-square mr-2"></i> Envoyer la Demande
+                    </button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="bg-blue-900 text-white mt-16 pt-10 pb-6">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="mb-2">Service de la Fiscalité Locale — Mairie de Kolwezi | Nos impôts construisent notre ville.</p>
+            <p>&copy; <span id="yr">2025</span> Mairie de Kolwezi — Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('yr').textContent = new Date().getFullYear();
+
+        // --- Configuration Firebase (À REMPLACER) ---
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // Charger documents (sous /impots_taxes/formulaires)
+        const formulairesDiv = document.getElementById('firebase_formulaires');
+        db.ref('impots_taxes/formulaires').on('value', snapshot => {
+            const val = snapshot.val();
+            formulairesDiv.innerHTML = ''; // Nettoie le message de chargement
+            if (!val) {
+                formulairesDiv.innerHTML = '<p class="text-gray-500 italic p-4 border rounded-lg bg-white text-center"><i class="fa-solid fa-info-circle mr-2"></i> Aucun document fiscal n\'est disponible au téléchargement.</p>';
+                return;
+            }
+            // Affichage des documents
+            Object.keys(val).forEach(k => {
+                const f = val[k];
+                formulairesDiv.innerHTML += `
+                    <div class="p-5 border border-yellow-300 rounded-xl bg-white hover:bg-yellow-50 transition flex justify-between items-center shadow-sm">
+                        <div>
+                            <h3 class="font-bold text-xl text-blue-900">${f.titre || 'Document Fiscal'}</h3>
+                            <p class="text-sm text-gray-600">${f.description || 'Description non disponible.'}</p>
+                        </div>
+                        ${f.lien ? `<a href="${f.lien}" target="_blank" class="bg-yellow-500 text-blue-900 px-5 py-2 rounded-full font-semibold hover:bg-yellow-400 transition flex items-center shadow-md">
+                            <i class="fa-solid fa-file-pdf mr-2"></i> Télécharger
+                        </a>` : `<span class="text-red-500 text-sm">Lien non disponible</span>`}
+                    </div>
+                `;
+            });
+        });
+
+        // Soumettre demande/réclamation (sous /impots_taxes/demandes)
+        document.getElementById('demandeForm').addEventListener('submit', e => {
+            e.preventDefault();
+            const data = {
+                nom: document.getElementById('nom').value,
+                matricule: document.getElementById('matricule').value,
+                email: document.getElementById('email').value,
+                description: document.getElementById('description').value,
+                createdAt: new Date().toISOString()
+            };
+            
+            const ref = db.ref('impots_taxes/demandes').push();
+            ref.set(data)
+                .then(()=> { 
+                    alert('✅ Demande fiscale envoyée avec succès ! Référence : ' + ref.key); 
+                    e.target.reset(); 
+                })
+                .catch(err => { 
+                    console.error(err); 
+                    alert('❌ Erreur lors de l\'envoi de la demande. Veuillez réessayer.'); 
+                });
+        });
+    </script>
 
 </body>
 </html>
-
