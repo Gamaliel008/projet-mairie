@@ -1,1 +1,482 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mairie de Kolwezi - Portail Officiel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f9;
+        }
+        /* Styles personnalisés pour améliorer l'aspect des liens */
+        .dropdown-item-hover:hover {
+            background-color: #e5e7eb; /* gray-100 */
+            color: #1f2937; /* gray-800 */
+        }
+        /* Styles pour masquer les éléments non actifs du carrousel textuel */
+        .text-carousel-item {
+            display: none;
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0;
+            position: absolute; 
+            width: 90%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center; /* Centrer le texte dans le carrousel */
+        }
+        .text-carousel-item.active {
+            display: block;
+            opacity: 1;
+        }
 
+        /* NOUVEAU STYLE POUR UNIFORMISER LES CARROUSELS DE TEXTE */
+        .text-carousel-container {
+            height: 24rem; /* h-96 pour correspondre à la hauteur des images */
+        }
+    </style>
+    <script src="https://unpkg.com/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/">
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <nav class="bg-blue-900 text-white shadow sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
+            <a href="#" class="flex items-center text-2xl font-bold space-x-2">
+                <i class="fa-solid fa-landmark text-yellow-400"></i>
+                <span>Mairie de Kolwezi</span>
+            </a>
+
+            <ul class="hidden md:flex space-x-6 font-medium">
+                <li><a href="#" class="flex items-center hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-house mr-1"></i> Accueil</a></li>
+                
+                <li class="relative">
+                    <button data-dropdown-toggle="menuServices" class="flex items-center hover:text-yellow-400 transition duration-150">
+                        <i class="fa-solid fa-gear mr-1"></i> Services
+                        <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
+                    </button>
+                    <div id="menuServices" class="hidden absolute z-10 mt-2 bg-white text-gray-800 shadow-xl rounded-lg w-64 ring-1 ring-black ring-opacity-5">
+                        <ul class="py-2">
+                            <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-id-card mr-2"></i> État civil</a></li>
+                            <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-city mr-2"></i> Urbanisme & Permis</a></li>
+                            <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-hospital mr-2"></i> Santé publique</a></li>
+                            <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-shield-halved mr-2"></i> Sécurité & Police</a></li>
+                            <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-recycle mr-2"></i> Environnement & Propreté</a></li>
+                            
+                            <li class="relative group">
+                                <button class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover">
+                                    <span><i class="fa-solid fa-sack-dollar mr-2"></i> Finances</span>
+                                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                                </button>
+                                <div class="hidden group-hover:block absolute left-full top-0 bg-white text-gray-800 shadow-xl rounded-lg w-56 ring-1 ring-black ring-opacity-5">
+                                    <ul class="py-2">
+                                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-money-bill mr-2"></i> Impôts & Taxes locales</a></li>
+                                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-chart-line mr-2"></i> Budget municipal</a></li>
+                                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-coins mr-2"></i> Recettes & Dépenses</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li class="relative"><button data-dropdown-toggle="menuProjets" class="flex items-center hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-building mr-1"></i> Projets<i class="fa-solid fa-chevron-down ml-2 text-xs"></i></button><div id="menuProjets" class="hidden absolute z-10 mt-2 bg-white text-gray-800 shadow-xl rounded-lg w-60 ring-1 ring-black ring-opacity-5"><ul class="py-2"><li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-road mr-2"></i> Infrastructures routières</a></li><li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-bolt mr-2"></i> Énergie & Éclairage</a></li><li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-tree mr-2"></i> Espaces verts</a></li><li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-school mr-2"></i> Infrastructures scolaires</a></li></ul></div></li>
+                <li class="relative"><button data-dropdown-toggle="menuActu" class="flex items-center hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-newspaper mr-1"></i> Actualités<i class="fa-solid fa-chevron-down ml-2 text-xs"></i></button><div id="menuActu" class="hidden absolute z-10 mt-2 bg-white text-gray-800 shadow-xl rounded-lg w-56 ring-1 ring-black ring-opacity-5"><ul class="py-2"><li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-bullhorn mr-2"></i> Communiqués officiels</a></li><li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-file-alt mr-2"></i> Rapports publics</a></li><li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-book-open mr-2"></i> Publications</a></li></ul></div></li>
+                <li class="relative"><button data-dropdown-toggle="menuEvents" class="flex items-center hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-calendar-days mr-1"></i> Événements<i class="fa-solid fa-chevron-down ml-2 text-xs"></i></button><div id="menuEvents" class="hidden absolute z-10 mt-2 bg-white text-gray-800 shadow-xl rounded-lg w-56 ring-1 ring-black ring-opacity-5"><ul class="py-2"><li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-flag mr-2"></i> Cérémonies officielles</a></li><li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-masks-theater mr-2"></i> Fêtes locales</a></li><li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-users mr-2"></i> Rencontres citoyennes</a></li></ul></div></li>
+                <li class="relative"><button data-dropdown-toggle="menuAbout" class="flex items-center hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-circle-info mr-1"></i> À propos<i class="fa-solid fa-chevron-down ml-2 text-xs"></i></button><div id="menuAbout" class="hidden absolute z-10 mt-2 bg-white text-gray-800 shadow-xl rounded-lg w-56 ring-1 ring-black ring-opacity-5"><ul class="py-2"><li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-landmark-dome mr-2"></i> Histoire de la ville</a></li><li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-sitemap mr-2"></i> Organisation municipale</a></li><li><a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-envelope mr-2"></i> Contact</a></li></ul></div></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto py-12 px-6 space-y-16">
+        
+        <section id="mot-du-maire-photos" class="grid lg:grid-cols-2 gap-8 bg-white p-6 rounded-xl shadow-2xl border-t-4 border-yellow-400">
+            
+            <div>
+                <h2 class="text-3xl font-extrabold text-blue-900 mb-4 border-b pb-2 flex items-center">
+                    <i class="fa-solid fa-camera text-yellow-500 mr-3"></i> Le Maire en Images
+                </h2>
+                <div id="carousel-maire-images" class="relative w-full" data-carousel="slide" data-carousel-sync="#carousel-maire-text" data-carousel-interval="7000">
+                    <div class="relative h-96 overflow-hidden rounded-lg shadow-lg">
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Photo du Maire lors d'un événement">
+                        </div>
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Maire en discussion avec des citoyens">
+                        </div>
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Maire inaugurant un projet">
+                        </div>
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Maire lors d'une allocution">
+                        </div>
+                    </div>
+                    <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-900/30 group-hover:bg-blue-900/50 transition duration-150"><svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/></svg><span class="sr-only">Previous</span></span>
+                    </button>
+                    <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-900/30 group-hover:bg-blue-900/50 transition duration-150"><svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/></svg><span class="sr-only">Next</span></span>
+                    </button>
+                    <div class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2" data-carousel-indicators>
+                        <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-blue-500" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+                        <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-blue-500" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+                        <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-blue-500" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+                        <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-blue-500" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-3xl font-extrabold text-blue-900 mb-4 border-b pb-2 flex items-center">
+                    <i class="fa-solid fa-microphone-alt text-blue-600 mr-3"></i> Mot du Maire
+                </h2>
+                <div id="carousel-maire-text" class="relative w-full text-carousel-container bg-gray-50 rounded-lg p-6 shadow-inner flex items-center justify-center overflow-hidden">
+                    
+                    <div class="text-carousel-item active p-4">
+                        <p class="text-lg text-gray-700 mb-3 leading-relaxed font-medium">
+                            Chers concitoyens de Kolwezi, c'est avec une grande fierté que je vous accueille sur notre nouveau portail numérique. Cet outil est le reflet de notre engagement pour une **transparence** totale et une **administration de proximité**.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed italic">
+                            Nous œuvrons chaque jour pour améliorer nos infrastructures et stimuler notre économie locale. Votre participation et vos suggestions sont essentielles pour bâtir la Kolwezi moderne que nous méritons tous.
+                        </p>
+                        <p class="text-lg text-gray-700 font-semibold text-right mt-4">Me Jacques MASENGO KINDELE</p>
+                        <p class="text-lg text-gray-700 font-semibold text-right mt-4">Maire de la ville de kolwezi</p>
+                    </div>
+
+                    <div class="text-carousel-item p-4">
+                        <p class="text-lg text-gray-700 mb-3 leading-relaxed font-medium">
+                            La **bonne gouvernance** et l'**inclusion** sont au cœur de ma vision. Chaque décision prise vise à garantir un environnement sain et sécurisé, où les opportunités sont équitablement réparties pour nos jeunes.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed italic">
+                            Je vous invite à consulter régulièrement les sections Projets et Actualités pour suivre l'avancement des chantiers qui transforment notre ville. Ensemble, relevons les défis et célébrons nos succès.
+                        </p>
+                        <p class="text-lg text-gray-700 font-semibold text-right mt-4">Me Jacques MASENGO KINDELE</p>
+                        <p class="text-lg text-gray-700 font-semibold text-right mt-4">Maire de la ville de kolwezi</p>
+                    </div>
+
+                    <div class="text-carousel-item p-4">
+                        <p class="text-lg text-gray-700 mb-3 leading-relaxed font-medium">
+                            L'ère numérique nous offre de nouvelles façons de communiquer. Notre objectif est de simplifier vos démarches administratives, de l'état civil aux permis d'urbanisme, en favorisant l'accès aux services en ligne.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed italic">
+                            Votre bien-être est notre priorité absolue. Nous mettons tout en œuvre pour renforcer la santé publique et garantir une éducation de qualité dans toute l'étendue de la commune.
+                        </p>
+                        <p class="text-lg text-gray-700 font-semibold text-right mt-4">Me Jacques MASENGO KINDELE</p>
+                        <p class="text-lg text-gray-700 font-semibold text-right mt-4">Maire de la ville de kolwezi</p>
+                    </div>
+                    
+                    <div class="text-carousel-item p-4">
+                        <p class="text-lg text-gray-700 mb-3 leading-relaxed font-medium">
+                            Kolwezi est une ville d'avenir, bâtie sur le courage et la détermination de ses habitants. Nous sommes fiers de notre héritage et résolument tournés vers un futur de **prospérité collective**.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed italic">
+                            Que ce site devienne votre plateforme de référence pour tout savoir sur la vie municipale. Au plaisir de vous rencontrer et d'échanger pour le progrès de Kolwezi.
+                        </p>
+                        <p class="text-lg text-gray-700 font-semibold text-right mt-4">Me Jacques MASENGO KINDELE</p>
+                        <p class="text-lg text-gray-700 font-semibold text-right mt-4">Maire de la ville de kolwezi</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        ---
+
+        <section id="kolwezi-en-detail" class="grid lg:grid-cols-2 gap-8 bg-white p-6 rounded-xl shadow-2xl border-t-4 border-blue-600">
+            
+            <div>
+                <h2 class="text-3xl font-extrabold text-blue-900 mb-4 border-b pb-2 flex items-center">
+                    <i class="fa-solid fa-city text-blue-600 mr-3"></i> Kolwezi : Notre Ville en Images
+                </h2>
+                <div id="carousel-ville-images" class="relative w-full" data-carousel="slide" data-carousel-sync="#carousel-ville-text" data-carousel-interval="7000">
+                    <div class="relative h-96 overflow-hidden rounded-lg shadow-lg">
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Vue panoramique de Kolwezi, avec des immeubles modernes et des espaces verts luxuriants, sous un ciel bleu dégagé.">
+                        </div>
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Une rue commerçante animée de Kolwezi, avec des boutiques colorées, des passants et des véhicules, reflétant l'activité économique.">
+                        </div>
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Un marché en plein air à Kolwezi, avec des étals remplis de produits frais locaux et des commerçants interagissant avec les clients.">
+                        </div>
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Une nouvelle infrastructure moderne à Kolwezi, comme un pont ou un bâtiment public, symbolisant le développement et la croissance.">
+                        </div>
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Un quartier résidentiel paisible à Kolwezi, avec des maisons bien entretenues et des jardins, illustrant la qualité de vie.">
+                        </div>
+                    </div>
+                    <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-900/30 group-hover:bg-blue-900/50 transition duration-150"><svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/></svg><span class="sr-only">Previous</span></span>
+                    </button>
+                    <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-900/30 group-hover:bg-blue-900/50 transition duration-150"><svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/></svg><span class="sr-only">Next</span></span>
+                    </button>
+                    <div class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2" data-carousel-indicators>
+                        <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-blue-500" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+                        <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-blue-500" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+                        <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-blue-500" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+                        <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-blue-500" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
+                        <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-blue-500" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-3xl font-extrabold text-blue-900 mb-4 border-b pb-2 flex items-center">
+                    <i class="fa-solid fa-info-circle text-yellow-500 mr-3"></i> Découvrez Kolwezi
+                </h2>
+                <div id="carousel-ville-text" class="relative w-full text-carousel-container bg-gray-50 rounded-lg p-6 shadow-inner flex items-center justify-center overflow-hidden">
+                    
+                    <div class="text-carousel-item active p-4">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Kolwezi, Capitale du Lualaba</h3>
+                        <p class="text-lg text-gray-700 leading-relaxed mb-2">
+                            Vue imprenable de Kolwezi, la ville minière au cœur du Lualaba. Son dynamisme urbain en fait une métropole en pleine croissance.
+                        </p>
+                        <p class="text-gray-600 italic text-sm">
+                            Le développement des infrastructures est notre priorité pour une ville plus connectée et moderne.
+                        </p>
+                    </div>
+
+                    <div class="text-carousel-item p-4">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Le Cœur Battant de la Ville</h3>
+                        <p class="text-lg text-gray-700 leading-relaxed mb-2">
+                            Nos rues animées témoignent de l'effervescence et de la vitalité. Un mélange harmonieux de modernité et de tradition qui invite à l'exploration.
+                        </p>
+                        <p class="text-gray-600 italic text-sm">
+                            Le commerce local est soutenu par la Mairie pour créer plus d'emplois et de richesse.
+                        </p>
+                    </div>
+
+                    <div class="text-carousel-item p-4">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Marchés et Communautés</h3>
+                        <p class="text-lg text-gray-700 leading-relaxed mb-2">
+                            Plongez au cœur de nos marchés vibrants, véritables lieux de rencontre et d'échange, où la culture et l'hospitalité s'expriment.
+                        </p>
+                        <p class="text-gray-600 italic text-sm">
+                            Des efforts sont faits pour la salubrité et la sécurité de tous les espaces publics.
+                        </p>
+                    </div>
+
+                    <div class="text-carousel-item p-4">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Vers un Avenir Meilleur</h3>
+                        <p class="text-lg text-gray-700 leading-relaxed mb-2">
+                            Admirez nos nouvelles infrastructures, symboles de l'engagement de la Mairie pour un développement durable.
+                        </p>
+                        <p class="text-gray-600 italic text-sm">
+                            Chaque projet est un pas de plus vers une meilleure qualité de vie pour tous les Kolweziens.
+                        </p>
+                    </div>
+                    <div class="text-carousel-item p-4">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Vie de Quartier Sereine</h3>
+                        <p class="text-lg text-gray-700 leading-relaxed mb-2">
+                            Découvrez la tranquillité de nos quartiers résidentiels, où la communauté et le bien-être sont au premier plan.
+                        </p>
+                        <p class="text-gray-600 italic text-sm">
+                            La Mairie s'investit pour garantir un environnement agréable et sûr pour toutes les familles.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        ---
+
+        <section id="actualites-lualaba" class="bg-white p-6 md:p-10 rounded-xl shadow-2xl border-t-4 border-red-500">
+            <h2 class="text-3xl font-extrabold text-blue-900 text-center mb-8 border-b-2 border-red-500 pb-2 flex items-center justify-center">
+                <i class="fa-solid fa-bullhorn text-red-600 mr-3"></i> Les Dernières Actualités du Lualaba
+            </h2>
+            <p class="text-center text-gray-600 mb-10">Informations importantes, décrets provinciaux et événements majeurs dans la province du Lualaba.</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg border-t-4 border-yellow-700 hover:shadow-xl transition duration-300">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center"><i class="fa-solid fa-handshake mr-2 text-yellow-600"></i> Nouvelle loi sur l'investissement</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Le Gouvernorat a promulgué une nouvelle législation visant à faciliter l'établissement et la protection des investissements étrangers dans le secteur minier et agricole.</p>
+                    <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm transition">
+                        Lire le décret
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg border-t-4 border-blue-700 hover:shadow-xl transition duration-300">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center"><i class="fa-solid fa-road mr-2 text-blue-600"></i> Réhabilitation de l'axe Kolwezi-Dilolo</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Les travaux de grande envergure pour la réhabilitation de l'axe routier stratégique reliant Kolwezi à la frontière angolaise progressent conformément au calendrier établi.</p>
+                    <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm transition">
+                        Voir le rapport d'étape
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg border-t-4 border-green-700 hover:shadow-xl transition duration-300">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center"><i class="fa-solid fa-hospital mr-2 text-green-600"></i> Inauguration d'un Hôpital Général</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Cérémonie d'inauguration du nouvel Hôpital Général de Référence, financé par la province, renforçant l'accès aux soins de qualité pour la population.</p>
+                    <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm transition">
+                        Galerie de l'événement
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+            </div>
+            <div class="text-center mt-8">
+                <a href="#" class="inline-block px-6 py-3 bg-red-600 text-white font-semibold rounded-lg shadow-lg hover:bg-red-700 transition duration-300">Toutes les Actualités du Lualaba &rarr;</a>
+            </div>
+        </section>
+
+        ---
+
+        <section id="projets-phares" class="bg-white p-6 md:p-10 rounded-xl shadow-2xl border-t-4 border-red-500">
+            <h2 class="text-3xl font-extrabold text-blue-900 text-center mb-8 border-b-2 border-red-500 pb-2 flex items-center justify-center">
+                <i class="fa-solid fa-hammer text-red-600 mr-3"></i> Nos Projets d'Avenir de Kolwezi
+            </h2>
+            <p class="text-center text-gray-600 mb-10">Découvrez les initiatives clés qui façonnent l'avenir de notre ville.</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg border-t-4 border-blue-700 hover:shadow-xl transition duration-300">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center"><i class="fa-solid fa-road mr-2 text-blue-600"></i> Rénovation Urbaine</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Programme de réhabilitation des axes routiers principaux et de l'éclairage public pour améliorer la qualité de vie et la sécurité.</p>
+                    <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm transition">Détails du projet<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg border-t-4 border-yellow-700 hover:shadow-xl transition duration-300">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center"><i class="fa-solid fa-graduation-cap mr-2 text-yellow-600"></i> Pôle Jeunesse et Sport</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Construction de complexes sportifs et de centres de formation pour offrir de nouvelles perspectives à la jeunesse de Kolwezi.</p>
+                    <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm transition">Avancement des travaux<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg border-t-4 border-green-700 hover:shadow-xl transition duration-300">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center"><i class="fa-solid fa-recycle mr-2 text-green-600"></i> Kolwezi Verte</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Initiative écologique pour le reboisement urbain et la mise en place de systèmes modernes de gestion et de recyclage des déchets.</p>
+                    <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm transition">En savoir plus<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a>
+                </div>
+
+            </div>
+            <div class="text-center mt-8">
+                <a href="#" class="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition duration-300">Tous les Projets Municipaux &rarr;</a>
+            </div>
+        </section>
+        
+        <section id="contact-mairie" class="bg-blue-900 text-white p-6 md:p-10 rounded-xl shadow-2xl border-t-4 border-yellow-400">
+            <h2 class="text-3xl font-extrabold text-white text-center mb-8 pb-2 flex items-center justify-center">
+                <i class="fa-solid fa-envelope-open-text text-yellow-400 mr-3"></i> Contactez la Mairie
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div>
+                    <i class="fa-solid fa-location-dot text-4xl text-yellow-400 mb-3"></i>
+                    <p class="font-semibold text-lg">Adresse Postale</p>
+                    <p>Mairie de Kolwezi, Avenue Principale, Kolwezi, RDC</p>
+                </div>
+                <div>
+                    <i class="fa-solid fa-phone text-4xl text-yellow-400 mb-3"></i>
+                    <p class="font-semibold text-lg">Téléphone</p>
+                    <p>+243 xx xxx xxxx</p>
+                </div>
+                <div>
+                    <i class="fa-solid fa-at text-4xl text-yellow-400 mb-3"></i>
+                    <p class="font-semibold text-lg">Email</p>
+                    <p>contact@mairie-kolwezi.cd</p>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <a href="#" class="inline-block px-6 py-3 bg-yellow-400 text-blue-900 font-semibold rounded-lg shadow-lg hover:bg-yellow-500 transition duration-300">Formulaire de Contact</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-blue-900 text-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 border-b border-blue-700 pb-8 mb-8">
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-yellow-400">Services</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-yellow-400 transition">État Civil</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition">Urbanisme</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition">Finances</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition">Sécurité</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-yellow-400">Projets</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-yellow-400 transition">Routières</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition">Énergie</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition">Éducation</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition">Santé</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-yellow-400">Actualités</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-yellow-400 transition">Communiqués</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition">Rapports</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition">Publications</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-yellow-400">À Propos</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-yellow-400 transition">Histoire de la Ville</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition">Organisation</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition">Nous Contacter</a></li>
+                    </ul>
+                </div>
+                <div class="col-span-2 md:col-span-1">
+                    <h4 class="font-bold text-lg mb-4 text-yellow-400">Réseaux Sociaux</h4>
+                    <div class="flex space-x-4 text-2xl">
+                        <a href="#" class="hover:text-yellow-400 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-yellow-400 transition"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="hover:text-yellow-400 transition"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="hover:text-yellow-400 transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center text-sm pt-4 border-t border-blue-700">
+                &copy; 2024 Mairie de Kolwezi. Tous droits réservés.
+                <p class="mt-2">Développé pour la transparence et la proximité citoyenne.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Ce script ne gère que la synchronisation des carrousels (images/texte).
+        // Le menu de navigation (dropdowns) est géré automatiquement par Flowbite (via le script dans le <head>).
+        document.addEventListener('DOMContentLoaded', () => {
+            const carousels = document.querySelectorAll('[data-carousel-sync]');
+            carousels.forEach(container => {
+                const imgCarouselId = container.id;
+                const textCarouselId = container.getAttribute('data-carousel-sync');
+                
+                // Initialise le carrousel d'images (Flowbite gère déjà cette partie)
+                const imgCarousel = new Flowbite.Carousel(document.getElementById(imgCarouselId), {}, {
+                    interval: 7000 
+                });
+                
+                // Si l'élément de texte est défini et existe
+                if (textCarouselId) {
+                    const textCarousel = document.getElementById(textCarouselId);
+                    const textItems = textCarousel.querySelectorAll('.text-carousel-item');
+
+                    // Synchroniser le changement d'image avec le changement de texte
+                    imgCarousel.element.addEventListener('slide-change', (event) => {
+                        // Désactiver l'élément de texte actif précédent
+                        textItems.forEach(item => item.classList.remove('active'));
+                        
+                        // Activer le nouvel élément de texte correspondant à l'index
+                        const newIndex = event.detail.to;
+                        if (textItems[newIndex]) {
+                            textItems[newIndex].classList.add('active');
+                        }
+                    });
+
+                    // Assurez-vous que le premier élément de texte est actif au chargement
+                    if (textItems.length > 0) {
+                        textItems[0].classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
