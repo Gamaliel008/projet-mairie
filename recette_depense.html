@@ -1,82 +1,206 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Recettes & Dépenses — Mairie de Kolwezi</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Recettes & Dépenses — Mairie de Kolwezi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        .font-\[Inter\] {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
+
 <body class="bg-gray-50 text-gray-800 font-[Inter]">
 
-<nav class="bg-blue-900 text-white shadow sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
-    <a href="index.html" class="flex items-center text-2xl font-bold space-x-2"><i class="fa-solid fa-landmark text-yellow-400"></i><span>Mairie de Kolwezi</span></a>
-    <ul class="hidden md:flex space-x-6 font-medium">
-      <li><a href="index.html" class="flex items-center hover:text-yellow-400">Accueil</a></li>
-      <li><a href="recette_depense.html" class="flex items-center text-yellow-400"><i class="fa-solid fa-coins mr-1"></i> Recettes & Dépenses</a></li>
-      <li><a href="budget_municipal.html" class="flex items-center hover:text-yellow-400">Budget</a></li>
-    </ul>
-  </div>
-</nav>
+    <nav class="bg-blue-900 text-white shadow sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
+            <a href="index.html" class="flex items-center text-2xl font-bold space-x-2">
+                <i class="fa-solid fa-landmark text-yellow-400"></i>
+                <span>Mairie de Kolwezi</span>
+            </a>
+            <ul class="hidden md:flex space-x-6 font-medium">
+                <li><a href="index.html" class="flex items-center hover:text-yellow-400 transition duration-200"><i class="fa-solid fa-house mr-1"></i> Accueil</a></li>
+                <li class="group relative">
+                    <a href="recette_depense.html" class="flex items-center text-yellow-400 border-b-2 border-yellow-400 pb-1"><i class="fa-solid fa-chart-line mr-1"></i> Flux Financiers</a>
+                    <div class="absolute hidden group-hover:block bg-blue-800 shadow-xl rounded-b-lg top-full pt-2 -left-2 w-56 transition duration-300">
+                        <a href="#recettes_details" class="block px-4 py-2 hover:bg-blue-700 transition">Sources de Recettes</a>
+                        <a href="#depenses_details" class="block px-4 py-2 hover:bg-blue-700 transition">Postes de Dépenses</a>
+                        <a href="#documents" class="block px-4 py-2 hover:bg-blue-700 transition">Rapports d'Exécution</a>
+                    </div>
+                </li>
+                <li><a href="budget_municipal.html" class="flex items-center hover:text-yellow-400 transition duration-200"><i class="fa-solid fa-chart-pie mr-1"></i> Budget</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<main class="max-w-5xl mx-auto py-12 px-6 space-y-10">
-  <header class="text-center"><h1 class="text-4xl font-extrabold text-blue-900 mb-2"><i class="fa-solid fa-coins mr-2 text-yellow-400"></i>Recettes & Dépenses</h1><p class="text-gray-600">Suivi des flux financiers</p></header>
+    <main class="max-w-6xl mx-auto py-16 px-6 space-y-16">
 
-  <section class="bg-white rounded-xl shadow-lg border-t-4 border-yellow-400 p-6">
-    <h2 class="text-2xl font-bold text-blue-900 mb-4">Suivi</h2>
-    <p class="text-gray-700">Consultation publique des principales lignes de recettes et postes de dépenses.</p>
-  </section>
+        <header class="text-center bg-green-100 p-12 rounded-xl shadow-2xl border-b-4 border-green-600">
+            <h1 class="text-5xl font-extrabold text-blue-900 mb-3">
+                <i class="fa-solid fa-file-invoice-dollar text-green-600 mr-3"></i>
+                Recettes et Dépenses de Kolwezi
+            </h1>
+            <p class="text-gray-700 text-xl italic max-w-4xl mx-auto">
+                Suivi en temps réel de la collecte des fonds et de leur affectation pour garantir une gestion financière ouverte et responsable.
+            </p>
+        </header>
 
-  <section class="bg-white rounded-xl shadow-lg border-t-4 border-blue-900 p-6">
-    <h2 class="text-2xl font-bold text-blue-900 mb-4">Documents</h2>
-    <div id="formulaires" class="space-y-3 text-gray-700"><p class="italic text-gray-500">Chargement...</p></div>
-  </section>
+        <section class="bg-white p-8 rounded-xl shadow-lg border-t-8 border-yellow-600">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center">
+                <i class="fa-solid fa-chart-area mr-3 text-yellow-600"></i>
+                Performance Financière Cumulée
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <div class="p-6 bg-green-50 rounded-xl border border-green-200">
+                    <p class="text-lg font-semibold text-green-700 flex items-center mb-2"><i class="fa-solid fa-arrow-down-to-square mr-2"></i> Total Recettes Collectées (YTD)</p>
+                    <p class="text-4xl font-extrabold text-green-600">XXX,XX M USD</p>
+                    <p class="text-sm text-gray-500 mt-2">Principalement Impôts Fonciers, Taxes Commerciales et Redevances.</p>
+                </div>
+                
+                <div class="p-6 bg-red-50 rounded-xl border border-red-200">
+                    <p class="text-lg font-semibold text-red-700 flex items-center mb-2"><i class="fa-solid fa-arrow-up-right-from-square mr-2"></i> Total Dépenses Engagées (YTD)</p>
+                    <p class="text-4xl font-extrabold text-red-600">YYY,YY M USD</p>
+                    <p class="text-sm text-gray-500 mt-2">Voir les rapports ci-dessous pour le détail des affectations par secteur.</p>
+                </div>
+            </div>
+        </section>
 
-  <section class="bg-white rounded-xl shadow-lg border-t-4 border-green-600 p-6">
-    <h2 class="text-2xl font-bold text-blue-900 mb-4">Demande d'explication / réclamation</h2>
-    <form id="demandeForm" class="space-y-4">
-      <input type="text" id="nom" placeholder="Nom" class="w-full p-3 border rounded" required>
-      <input type="email" id="email" placeholder="Email" class="w-full p-3 border rounded">
-      <textarea id="description" placeholder="Détail de la demande" class="w-full p-3 border rounded h-28" required></textarea>
-      <div class="text-right"><button class="px-6 py-2 bg-blue-900 text-white rounded hover:bg-blue-800">Envoyer</button></div>
-    </form>
-  </section>
-</main>
+        <div class="grid lg:grid-cols-2 gap-10">
+            
+            <section id="recettes_details" class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-yellow-600 space-y-4 hover:shadow-2xl transition duration-300">
+                <i class="fa-solid fa-sack-dollar text-5xl text-yellow-600 mb-3"></i>
+                <h3 class="font-bold text-2xl text-blue-900">Les 3 Principales Sources de Recettes</h3>
+                <ul class="list-disc ml-5 text-md text-gray-700 space-y-2">
+                    <li>**Taxes Commerciales et Patentes :** Revenus générés par les activités économiques de la ville.</li>
+                    <li>**Impôts Fonciers :** Contributions des propriétaires de biens immobiliers.</li>
+                    <li>**Droits de Voirie et Services :** Redevances liées à l'occupation de l'espace public et à l'assainissement.</li>
+                </ul>
+            </section>
 
-<footer class="bg-blue-900 text-white mt-12 pt-10 pb-6 text-center">&copy; <span id="yr">2025</span> Mairie de Kolwezi</footer>
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+            <section id="depenses_details" class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-blue-600 space-y-4 hover:shadow-2xl transition duration-300">
+                <i class="fa-solid fa-chart-bar text-5xl text-blue-600 mb-3"></i>
+                <h3 class="font-bold text-2xl text-blue-900">Les 3 Postes de Dépenses Majeurs</h3>
+                <ul class="list-disc ml-5 text-md text-gray-700 space-y-2">
+                    <li>**Travaux d'Infrastructures :** Construction et entretien des routes, éclairage public et marchés.</li>
+                    <li>**Fonctionnement des Services :** Salaires du personnel municipal et coûts administratifs.</li>
+                    <li>**Services Sociaux/Santé :** Soutien aux dispensaires, campagnes d'hygiène et actions sociales.</li>
+                </ul>
+            </section>
+        </div>
 
-<script>
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
+        <section id="documents" class="bg-gray-100 shadow-xl rounded-xl p-10 border-4 border-green-200">
+            <h2 class="text-3xl font-bold text-blue-900 mb-8 flex items-center">
+                <i class="fa-solid fa-file-pdf mr-3 text-green-600"></i>
+                Rapports d'Exécution et Comptes-Rendus
+            </h2>
+            <p class="text-gray-600 mb-6">Téléchargez les rapports financiers officiels qui détaillent l'évolution des recettes et des dépenses par trimestre.</p>
 
-  db.ref('recette_depense/documents').on('value', s => {
-    const v = s.val() || {};
-    const container = document.getElementById('formulaires');
-    container.innerHTML = '';
-    if (Object.keys(v).length === 0) container.innerHTML = '<p class="text-gray-500 italic">Aucun document.</p>';
-    else Object.values(v).forEach(f => container.innerHTML += `<div class="p-3 border rounded"><h3 class="font-semibold text-blue-800">${f.titre}</h3><p>${f.description||''}</p>${f.lien?`<a href="${f.lien}" class="text-blue-600">Voir</a>`:''}</div>`);
-  });
+            <div id="firebase_documents" class="space-y-4 text-gray-700">
+                <div class="flex justify-center items-center h-16">
+                    <i class="fa-solid fa-spinner fa-spin text-3xl text-gray-400 mr-3"></i>
+                    <p class="italic text-gray-500">Chargement des documents depuis la base de données...</p>
+                </div>
+                </div>
+        </section>
 
-  document.getElementById('demandeForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const data = { nom: document.getElementById('nom').value, email: document.getElementById('email').value, description: document.getElementById('description').value, createdAt: new Date().toISOString() };
-    const ref = db.ref('recette_depense/demandes').push();
-    ref.set(data).then(()=> { alert('Demande envoyée — Réf : ' + ref.key); e.target.reset(); }).catch(()=> alert('Erreur'));
-  });
-</script>
+        <section id="demande" class="bg-white shadow-2xl rounded-xl p-10 border-t-8 border-red-700">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center">
+                <i class="fa-solid fa-circle-question mr-3 text-red-700"></i>
+                Demande d'Explication ou Réclamation
+            </h2>
+            <p class="text-gray-600 mb-6">Utilisez ce formulaire pour signaler une anomalie dans les comptes, ou pour demander des clarifications sur une dépense spécifique ou un écart de recette.</p>
+            <form id="demandeForm" class="space-y-5">
+                <input type="text" id="nom" placeholder="Nom complet ou Organisation" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
+                <input type="email" id="email" placeholder="Email (pour le suivi)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition">
+                <textarea id="description" placeholder="Objet de la demande (Ex: Question sur les dépenses de voirie, Réclamation sur une recette non comptabilisée...)" class="w-full p-4 border border-gray-300 rounded-lg h-36 focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required></textarea>
+                <div class="text-right">
+                    <button type="submit" class="bg-red-700 text-white px-8 py-3 rounded-xl font-semibold text-lg hover:bg-red-600 transition duration-300 shadow-lg flex items-center ml-auto">
+                        <i class="fa-solid fa-envelope-open-text mr-2"></i> Envoyer la Demande
+                    </button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="bg-blue-900 text-white mt-16 pt-10 pb-6">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="mb-2">Direction des Finances — Mairie de Kolwezi | La transparence est le pilier de notre gestion.</p>
+            <p>&copy; <span id="yr">2025</span> Mairie de Kolwezi — Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('yr').textContent = new Date().getFullYear();
+
+        // --- Configuration Firebase (À REMPLACER) ---
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // Charger documents (sous /recette_depense/documents)
+        const formulairesDiv = document.getElementById('firebase_documents');
+        db.ref('recette_depense/documents').on('value', snapshot => {
+            const val = snapshot.val();
+            formulairesDiv.innerHTML = ''; // Nettoie le message de chargement
+            if (!val) {
+                formulairesDiv.innerHTML = '<p class="text-gray-500 italic p-4 border rounded-lg bg-white text-center"><i class="fa-solid fa-info-circle mr-2"></i> Aucun document financier n\'est disponible au téléchargement.</p>';
+                return;
+            }
+            // Affichage des documents
+            Object.keys(val).forEach(k => {
+                const f = val[k];
+                formulairesDiv.innerHTML += `
+                    <div class="p-5 border border-yellow-300 rounded-xl bg-white hover:bg-yellow-50 transition flex justify-between items-center shadow-sm">
+                        <div>
+                            <h3 class="font-bold text-xl text-blue-900">${f.titre || 'Rapport Financier Officiel'}</h3>
+                            <p class="text-sm text-gray-600">${f.description || 'Description non disponible.'}</p>
+                        </div>
+                        ${f.lien ? `<a href="${f.lien}" target="_blank" class="bg-yellow-500 text-blue-900 px-5 py-2 rounded-full font-semibold hover:bg-yellow-400 transition flex items-center shadow-md">
+                            <i class="fa-solid fa-download mr-2"></i> Télécharger / Consulter
+                        </a>` : `<span class="text-red-500 text-sm">Lien non disponible</span>`}
+                    </div>
+                `;
+            });
+        });
+
+        // Soumettre demande d'explication / réclamation (sous /recette_depense/demandes)
+        document.getElementById('demandeForm').addEventListener('submit', e => {
+            e.preventDefault();
+            const data = {
+                nom: document.getElementById('nom').value,
+                email: document.getElementById('email').value,
+                description: document.getElementById('description').value,
+                createdAt: new Date().toISOString()
+            };
+            
+            const ref = db.ref('recette_depense/demandes').push();
+            ref.set(data)
+                .then(()=> { 
+                    alert('✅ Demande envoyée avec succès ! Référence : ' + ref.key); 
+                    e.target.reset(); 
+                })
+                .catch(err => { 
+                    console.error(err); 
+                    alert('❌ Erreur lors de l\'envoi de la demande. Veuillez réessayer.'); 
+                });
+        });
+    </script>
 
 </body>
 </html>
-
