@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>Sécurité & Police — Mairie de Kolwezi</title>
+    <title>Santé Publique & Hygiène — Mairie de Kolwezi</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
@@ -27,66 +27,82 @@
             <ul class="hidden md:flex space-x-6 font-medium">
                 <li><a href="index.html" class="flex items-center hover:text-yellow-400 transition duration-200"><i class="fa-solid fa-house mr-1"></i> Accueil</a></li>
                 <li class="group relative">
-                    <a href="#securite" class="flex items-center text-yellow-400 border-b-2 border-yellow-400 pb-1"><i class="fa-solid fa-shield-halved mr-1"></i> Sécurité</a>
+                    <a href="sante_publique.html" class="flex items-center text-yellow-400 border-b-2 border-yellow-400 pb-1"><i class="fa-solid fa-hospital mr-1"></i> Santé Publique</a>
+                    <div class="absolute hidden group-hover:block bg-blue-800 shadow-xl rounded-b-lg top-full pt-2 -left-2 w-56 transition duration-300">
+                        <a href="#prevention" class="block px-4 py-2 hover:bg-blue-700 transition">Prévention & Vaccination</a>
+                        <a href="#hygiene" class="block px-4 py-2 hover:bg-blue-700 transition">Hygiène & Salubrité</a>
+                        <a href="#centres" class="block px-4 py-2 hover:bg-blue-700 transition">Centres de Soins</a>
+                        <a href="#formulaires" class="block px-4 py-2 hover:bg-blue-700 transition">Règlements & Guides</a>
+                    </div>
                 </li>
-                <li><a href="#contact" class="flex items-center hover:text-yellow-400 transition duration-200"><i class="fa-solid fa-user-police mr-1"></i> Police</a></li>
                 </ul>
         </div>
     </nav>
 
     <main class="max-w-6xl mx-auto py-16 px-6 space-y-16">
 
-        <header class="text-center bg-red-600 p-12 rounded-xl shadow-2xl border-b-4 border-yellow-400 text-white">
-            <h1 class="text-5xl font-extrabold mb-3">
-                <i class="fa-solid fa-siren-on mr-3"></i>
-                Sécurité Publique et Police Municipale
+        <header class="text-center bg-green-50 p-12 rounded-xl shadow-2xl border-b-4 border-green-600">
+            <h1 class="text-5xl font-extrabold text-blue-900 mb-3">
+                <i class="fa-solid fa-heart-circle-bolt text-green-600 mr-3"></i>
+                Direction de la Santé Publique Municipale
             </h1>
-            <p class="text-xl italic max-w-4xl mx-auto">
-                **Urgence, Prévention, Proximité** — Votre service pour un environnement sûr et ordonné à Kolwezi.
+            <p class="text-gray-700 text-xl italic max-w-4xl mx-auto">
+                Coordination, prévention des maladies et promotion de l'hygiène pour le bien-être de tous les habitants de Kolwezi.
             </p>
         </header>
 
-        <section id="urgence" class="text-center p-8 bg-white rounded-xl shadow-2xl border-t-8 border-red-700">
-            <h2 class="text-3xl font-bold text-red-700 mb-4">
-                <i class="fa-solid fa-phone-volume mr-3"></i> EN CAS D'URGENCE
+        <section class="p-6 bg-red-100 border-l-4 border-red-500 rounded-xl shadow-md">
+            <h2 class="text-2xl font-bold text-red-700 flex items-center mb-2">
+                <i class="fa-solid fa-temperature-full mr-3"></i> ALERTE SANITAIRE !
             </h2>
-            <p class="text-gray-700 text-xl mb-4">Pour signaler un crime, un accident grave, ou une situation critique, composez immédiatement :</p>
-            <div class="inline-block bg-red-500 text-white py-4 px-10 rounded-full text-4xl font-extrabold tracking-widest shadow-xl transform hover:scale-105 transition duration-300">
-                112
-            </div>
-            <p class="text-gray-500 mt-4 text-sm">Ce numéro vous mettra en relation avec les services de police et de secours.</p>
+            <p class="text-gray-700">
+                **URGENCE :** En cas de symptômes de maladies contagieuses (choléra, rougeole, etc.), **isolez-vous et contactez immédiatement votre centre de santé le plus proche** pour obtenir des instructions. Ne vous rendez pas directement à la Mairie.
+            </p>
         </section>
 
-        <section id="securite">
-            <h2 class="text-3xl font-bold text-blue-900 mb-8 text-center border-b pb-3">Nos Missions de Sécurité et de Police</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                
-                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-600 hover:shadow-xl transition duration-300">
-                    <i class="fa-solid fa-users-viewfinder text-4xl text-blue-600 mb-3"></i>
-                    <h3 class="text-xl font-bold text-blue-900 mb-2">Police de Proximité</h3>
-                    <p class="text-gray-700 text-sm">Patrouilles régulières pour assurer l'ordre public, la sûreté des personnes et la tranquillité dans les quartiers.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-yellow-600 hover:shadow-xl transition duration-300">
-                    <i class="fa-solid fa-handshake-angle text-4xl text-yellow-600 mb-3"></i>
-                    <h3 class="text-xl font-bold text-blue-900 mb-2">Prévention et Sensibilisation</h3>
-                    <p class="text-gray-700 text-sm">Campagnes de sensibilisation aux risques, application des arrêtés municipaux et gestion des nuisances (bruit, salubrité).</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-gray-600 hover:shadow-xl transition duration-300">
-                    <i class="fa-solid fa-traffic-light text-4xl text-gray-600 mb-3"></i>
-                    <h3 class="text-xl font-bold text-blue-900 mb-2">Sécurité Routière</h3>
-                    <p class="text-gray-700 text-sm">Contrôle du stationnement, gestion de la circulation et sécurisation des abords des écoles et des marchés.</p>
-                </div>
-            </div>
-        </section>
-        
-        <section class="bg-gray-100 shadow-xl rounded-xl p-10 border-4 border-yellow-200">
+        <div class="grid lg:grid-cols-3 gap-10">
+
+            <section id="prevention" class="bg-white p-8 rounded-xl shadow-lg border-t-8 border-yellow-600 space-y-4 hover:shadow-2xl transition duration-300">
+                <i class="fa-solid fa-syringe text-5xl text-yellow-600 mb-3"></i>
+                <h3 class="font-bold text-2xl text-blue-900">Prévention & Vaccination</h3>
+                <p class="text-gray-700">Organisation et communication autour des campagnes de vaccination (polio, rougeole, COVID-19). Information sur les gestes de protection.</p>
+                <ul class="list-disc ml-5 text-sm text-gray-600">
+                    <li>Calendrier vaccinal municipal</li>
+                    <li>Lutte contre le paludisme</li>
+                    <li>Promotion de l'hygiène personnelle</li>
+                </ul>
+            </section>
+
+            <section id="hygiene" class="bg-white p-8 rounded-xl shadow-lg border-t-8 border-blue-600 space-y-4 hover:shadow-2xl transition duration-300">
+                <i class="fa-solid fa-trash-can-arrow-up text-5xl text-blue-600 mb-3"></i>
+                <h3 class="font-bold text-2xl text-blue-900">Hygiène & Salubrité</h3>
+                <p class="text-gray-700">Contrôle de l'hygiène alimentaire dans les marchés et restaurants. Gestion des déchets et assainissement des zones publiques.</p>
+                <ul class="list-disc ml-5 text-sm text-gray-600">
+                    <li>Permis d'hygiène commercial</li>
+                    <li>Dératisation et désinsectisation</li>
+                    <li>Règlement sur l'eau potable</li>
+                </ul>
+            </section>
+
+            <section id="centres" class="bg-white p-8 rounded-xl shadow-lg border-t-8 border-green-600 space-y-4 hover:shadow-2xl transition duration-300">
+                <i class="fa-solid fa-user-doctor text-5xl text-green-600 mb-3"></i>
+                <h3 class="font-bold text-2xl text-blue-900">Centres de Soins Municipaux</h3>
+                <p class="text-gray-700">Liste des centres de santé gérés ou coordonnés par la Mairie. Programmes de santé maternelle et infantile.</p>
+                <ul class="list-disc ml-5 text-sm text-gray-600">
+                    <li>Coordination médicale locale</li>
+                    <li>Soutien aux dispensaires</li>
+                    <li>Recrutement de personnel de santé</li>
+                </ul>
+            </section>
+
+        </div>
+
+        <section id="formulaires" class="bg-gray-100 shadow-xl rounded-xl p-10 border-4 border-yellow-200">
             <h2 class="text-3xl font-bold text-blue-900 mb-8 flex items-center">
-                <i class="fa-solid fa-scroll mr-3 text-yellow-600"></i>
-                Règlements & Guides de Sécurité
+                <i class="fa-solid fa-clipboard-list mr-3 text-yellow-600"></i>
+                Guides, Règlements & Formulaires
             </h2>
-            <p class="text-gray-600 mb-6">Téléchargez les formulaires de demande d'autorisation (manifestations, occupations de voirie) ou les guides de prévention.</p>
+            <p class="text-gray-600 mb-6">Téléchargez les formulaires de demande d'autorisation d'hygiène, les règlements de salubrité ou les guides de santé publique.</p>
 
             <div id="formulaires" class="space-y-4 text-gray-700">
                 <div class="flex justify-center items-center h-16">
@@ -96,20 +112,20 @@
                 </div>
         </section>
 
-        <section id="contact" class="bg-white shadow-2xl rounded-xl p-10 border-t-8 border-green-700">
+        <section id="signaler" class="bg-white shadow-2xl rounded-xl p-10 border-t-8 border-red-700">
             <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center">
-                <i class="fa-solid fa-bullhorn mr-3 text-green-700"></i>
-                Signaler un Incident Non Urgent
+                <i class="fa-solid fa-bug-slash mr-3 text-red-700"></i>
+                Signaler un Risque d'Hygiène ou de Maladie
             </h2>
-            <p class="text-gray-600 mb-6">Utilisez ce formulaire pour signaler un problème de tranquillité publique (voisinage, véhicule abandonné, incivilité). **Pour une urgence, composez le 112.**</p>
+            <p class="text-gray-600 mb-6">Utilisez ce formulaire pour signaler une pollution, un problème de salubrité publique (déchets, eaux usées), ou un risque sanitaire non urgent. **N'utilisez pas ce formulaire pour les urgences individuelles.**</p>
             <form id="demandeForm" class="space-y-5">
-                <input type="text" id="nom" placeholder="Votre nom complet (Obligatoire)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
+                <input type="text" id="nom" placeholder="Votre nom complet" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
                 <input type="tel" id="telephone" placeholder="Téléphone (Obligatoire pour suivi)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
-                <input type="text" id="emplacement" placeholder="Lieu précis de l'incident (Rue, quartier)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
-                <textarea id="description" placeholder="Décrivez l'incident ou le problème..." class="w-full p-4 border border-gray-300 rounded-lg h-36 focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required></textarea>
+                <input type="text" id="emplacement" placeholder="Emplacement précis du problème (Rue, marché, quartier)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
+                <textarea id="description" placeholder="Description détaillée du problème de santé ou d'hygiène..." class="w-full p-4 border border-gray-300 rounded-lg h-36 focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required></textarea>
                 <div class="text-right">
-                    <button type="submit" class="bg-blue-900 text-white px-8 py-3 rounded-xl font-semibold text-lg hover:bg-blue-700 transition duration-300 shadow-lg flex items-center ml-auto">
-                        <i class="fa-solid fa-magnifying-glass-chart mr-2"></i> Soumettre le Signalement
+                    <button type="submit" class="bg-red-700 text-white px-8 py-3 rounded-xl font-semibold text-lg hover:bg-red-600 transition duration-300 shadow-lg flex items-center ml-auto">
+                        <i class="fa-solid fa-exclamation-triangle mr-2"></i> Soumettre le Signalement
                     </button>
                 </div>
             </form>
@@ -119,7 +135,7 @@
 
     <footer class="bg-blue-900 text-white mt-16 pt-10 pb-6">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="mb-2">Police et Sécurité — Mairie de Kolwezi | La tranquillité est notre priorité.</p>
+            <p class="mb-2">Direction de la Santé Publique — Mairie de Kolwezi | La santé au cœur de notre ville.</p>
             <p>&copy; <span id="yr">2025</span> Mairie de Kolwezi — Tous droits réservés.</p>
         </div>
     </footer>
@@ -127,7 +143,8 @@
     <script>
         document.getElementById('yr').textContent = new Date().getFullYear();
 
-        // NOTE : J'utilise ici 'securite' pour les références Firebase pour être thématiquement correct.
+        // --- Configuration Firebase (À REMPLACER) ---
+        // Utilisation de la configuration existante mais ciblant 'sante_publique'
         const firebaseConfig = {
             apiKey: "YOUR_API_KEY",
             authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
@@ -140,22 +157,22 @@
         const app = firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // Charger formulaires (sous /securite/formulaires)
+        // Charger documents (sous /sante_publique/formulaires)
         const formulairesDiv = document.getElementById('formulaires');
-        db.ref('securite/formulaires').on('value', snapshot => {
+        db.ref('sante_publique/formulaires').on('value', snapshot => {
             const val = snapshot.val();
             formulairesDiv.innerHTML = ''; // Nettoie le message de chargement
             if (!val) {
                 formulairesDiv.innerHTML = '<p class="text-gray-500 italic p-4 border rounded-lg bg-white text-center"><i class="fa-solid fa-info-circle mr-2"></i> Aucun document ou guide disponible au téléchargement.</p>';
                 return;
             }
-            // Affichage des formulaires
+            // Affichage des documents
             Object.keys(val).forEach(k => {
                 const f = val[k];
                 formulairesDiv.innerHTML += `
                     <div class="p-5 border border-yellow-300 rounded-xl bg-white hover:bg-yellow-50 transition flex justify-between items-center shadow-sm">
                         <div>
-                            <h3 class="font-bold text-xl text-blue-900">${f.titre || 'Document Officiel'}</h3>
+                            <h3 class="font-bold text-xl text-blue-900">${f.titre || 'Document de Santé'}</h3>
                             <p class="text-sm text-gray-600">${f.description || 'Description non disponible.'}</p>
                         </div>
                         ${f.lien ? `<a href="${f.lien}" target="_blank" class="bg-yellow-500 text-blue-900 px-5 py-2 rounded-full font-semibold hover:bg-yellow-400 transition flex items-center shadow-md">
@@ -166,7 +183,7 @@
             });
         });
 
-        // Soumettre signalement (sous /securite/signaux)
+        // Soumettre signalement (sous /sante_publique/signaux)
         document.getElementById('demandeForm').addEventListener('submit', e => {
             e.preventDefault();
             const data = {
@@ -177,15 +194,15 @@
                 createdAt: new Date().toISOString()
             };
             
-            const ref = db.ref('securite/signaux').push();
+            const ref = db.ref('sante_publique/signaux').push();
             ref.set(data)
                 .then(()=> { 
-                    alert('✅ Signalement non urgent envoyé avec succès ! Référence : ' + ref.key); 
+                    alert('✅ Signalement de santé publique envoyé avec succès ! Nous prendrons les mesures nécessaires. Référence : ' + ref.key); 
                     e.target.reset(); 
                 })
                 .catch(err => { 
                     console.error(err); 
-                    alert('❌ Erreur lors de l\'envoi du signalement. Veuillez réessayer ou appeler le 112 en cas d\'urgence.'); 
+                    alert('❌ Erreur lors de l\'envoi du signalement. Veuillez réessayer.'); 
                 });
         });
     </script>
