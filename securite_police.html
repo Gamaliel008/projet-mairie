@@ -1,1 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Sécurité & Police — Mairie de Kolwezi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="bg-gray-50 text-gray-800 font-[Inter]">
+
+<nav class="bg-blue-900 text-white shadow sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
+    <a href="index.html" class="flex items-center text-2xl font-bold space-x-2"><i class="fa-solid fa-landmark text-yellow-400"></i><span>Mairie de Kolwezi</span></a>
+    <ul class="hidden md:flex space-x-6 font-medium">
+      <li><a href="index.html" class="flex items-center hover:text-yellow-400"><i class="fa-solid fa-house mr-1"></i> Accueil</a></li>
+      <li><a href="securite_police.html" class="flex items-center text-yellow-400"><i class="fa-solid fa-shield-halved mr-1"></i> Sécurité</a></li>
+      <li><a href="environnement.html" class="flex items-center hover:text-yellow-400"><i class="fa-solid fa-recycle mr-1"></i> Environnement</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="max-w-5xl mx-auto py-12 px-6 space-y-10">
+  <header class="text-center">
+    <h1 class="text-4xl font-extrabold text-blue-900 mb-2"><i class="fa-solid fa-shield-halved mr-2 text-yellow-400"></i>Sécurité & Police</h1>
+    <p class="text-gray-600">Polices municipales • Prévention • Alertes</p>
+  </header>
+
+  <section class="bg-white rounded-xl shadow-lg border-t-4 border-yellow-400 p-6">
+    <h2 class="text-2xl font-bold text-blue-900 mb-4">Missions</h2>
+    <ul class="list-disc ml-5 text-gray-700">
+      <li>Maintien de l'ordre public et sécurité urbaine.</li>
+      <li>Coordination des patrouilles et interventions.</li>
+      <li>Gestion des alertes et des plaintes citoyennes.</li>
+    </ul>
+  </section>
+
+  <section class="bg-white rounded-xl shadow-lg border-t-4 border-blue-900 p-6">
+    <h2 class="text-2xl font-bold text-blue-900 mb-4">Documents</h2>
+    <div id="formulaires" class="space-y-3 text-gray-700"><p class="italic text-gray-500">Chargement...</p></div>
+  </section>
+
+  <section class="bg-white rounded-xl shadow-lg border-t-4 border-green-600 p-6">
+    <h2 class="text-2xl font-bold text-blue-900 mb-4">Signaler un incident</h2>
+    <form id="demandeForm" class="space-y-4">
+      <input type="text" id="nom" placeholder="Nom" class="w-full p-3 border rounded" required>
+      <input type="tel" id="telephone" placeholder="Téléphone" class="w-full p-3 border rounded" required>
+      <textarea id="description" placeholder="Description de l'incident, lieu, heure" class="w-full p-3 border rounded h-28" required></textarea>
+      <div class="text-right"><button class="px-6 py-2 bg-blue-900 text-white rounded hover:bg-blue-800">Signaler</button></div>
+    </form>
+  </section>
+</main>
+
+<footer class="bg-blue-900 text-white mt-12 pt-10 pb-6 text-center">&copy; <span id="yr">2025</span> Mairie de Kolwezi</footer>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  const formulairesDiv = document.getElementById('formulaires');
+  db.ref('securite_police/formulaires').on('value', s => {
+    const v = s.val() || {};
+    formulairesDiv.innerHTML = '';
+    if (Object.keys(v).length === 0) formulairesDiv.innerHTML = '<p class="text-gray-500 italic">Aucun document disponible.</p>';
+    else Object.values(v).forEach(f => formulairesDiv.innerHTML += `<div class="p-3 border rounded"><h3 class="font-semibold text-blue-800">${f.titre}</h3><p>${f.description||''}</p>${f.lien?`<a href="${f.lien}" class="text-blue-600">Télécharger</a>`:''}</div>`);
+  });
+
+  document.getElementById('demandeForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const data = { nom: document.getElementById('nom').value, telephone: document.getElementById('telephone').value, description: document.getElementById('description').value, createdAt: new Date().toISOString() };
+    const ref = db.ref('securite_police/incidents').push();
+    ref.set(data).then(()=> { alert('Signalement envoyé — Réf : ' + ref.key); e.target.reset(); }).catch(()=> alert('Erreur'));
+  });
+</script>
+
+</body>
+</html>
 
