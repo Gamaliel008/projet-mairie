@@ -1,110 +1,227 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Urbanisme & Permis — Mairie de Kolwezi</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Urbanisme & Permis — Mairie de Kolwezi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        .font-\[Inter\] {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
+
 <body class="bg-gray-50 text-gray-800 font-[Inter]">
 
-<nav class="bg-blue-900 text-white shadow sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
-    <a href="index.html" class="flex items-center text-2xl font-bold space-x-2">
-      <i class="fa-solid fa-landmark text-yellow-400"></i>
-      <span>Mairie de Kolwezi</span>
-    </a>
-    <ul class="hidden md:flex space-x-6 font-medium">
-      <li><a href="index.html" class="flex items-center hover:text-yellow-400"><i class="fa-solid fa-house mr-1"></i> Accueil</a></li>
-      <li><a href="etat_civil.html" class="flex items-center hover:text-yellow-400"><i class="fa-solid fa-id-card mr-1"></i> État civil</a></li>
-      <li><a href="urbanisme.html" class="flex items-center text-yellow-400"><i class="fa-solid fa-city mr-1"></i> Urbanisme</a></li>
-      <li><a href="sante_publique.html" class="flex items-center hover:text-yellow-400"><i class="fa-solid fa-hospital mr-1"></i> Santé</a></li>
-    </ul>
-  </div>
-</nav>
+    <nav class="bg-blue-900 text-white shadow sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
+            <a href="index.html" class="flex items-center text-2xl font-bold space-x-2">
+                <i class="fa-solid fa-landmark text-yellow-400"></i>
+                <span>Mairie de Kolwezi</span>
+            </a>
+            <ul class="hidden md:flex space-x-6 font-medium">
+                <li><a href="index.html" class="flex items-center hover:text-yellow-400 transition duration-200"><i class="fa-solid fa-house mr-1"></i> Accueil</a></li>
+                <li class="group relative">
+                    <a href="urbanisme.html" class="flex items-center text-yellow-400 border-b-2 border-yellow-400 pb-1"><i class="fa-solid fa-city mr-1"></i> Urbanisme</a>
+                    <div class="absolute hidden group-hover:block bg-blue-800 shadow-xl rounded-b-lg top-full pt-2 -left-2 w-56 transition duration-300">
+                        <a href="#construire" class="block px-4 py-2 hover:bg-blue-700 transition">Permis de Construire</a>
+                        <a href="#lotir" class="block px-4 py-2 hover:bg-blue-700 transition">Permis de Lotir</a>
+                        <a href="#demolir" class="block px-4 py-2 hover:bg-blue-700 transition">Autres Autorisations</a>
+                        <a href="#formulaires" class="block px-4 py-2 hover:bg-blue-700 transition">Formulaires et Plans</a>
+                    </div>
+                </li>
+                <li><a href="#permis" class="flex items-center hover:text-yellow-400 transition duration-200"><i class="fa-solid fa-wrench mr-1"></i> Permis</a></li>
+                </ul>
+        </div>
+    </nav>
 
-<main class="max-w-5xl mx-auto py-12 px-6 space-y-10">
-  <header class="text-center">
-    <h1 class="text-4xl font-extrabold text-blue-900 mb-2"><i class="fa-solid fa-city mr-2 text-yellow-400"></i>Urbanisme & Permis</h1>
-    <p class="text-gray-600">Permis de construire • Certificats d'urbanisme • Réglementations</p>
-  </header>
+    <main class="max-w-6xl mx-auto py-16 px-6 space-y-16">
 
-  <section class="bg-white rounded-xl shadow-lg border-t-4 border-yellow-400 p-6">
-    <h2 class="text-2xl font-bold text-blue-900 mb-4">Ce que nous faisons</h2>
-    <ul class="list-disc ml-5 text-gray-700">
-      <li>Instruction des demandes de permis de construire.</li>
-      <li>Délivrance de certificats d’urbanisme.</li>
-      <li>Contrôles de conformité et plans d’aménagement.</li>
-    </ul>
-  </section>
+        <header class="text-center bg-blue-50 p-12 rounded-xl shadow-2xl border-b-4 border-yellow-600">
+            <h1 class="text-5xl font-extrabold text-blue-900 mb-3">
+                <i class="fa-solid fa-helmet-safety text-yellow-600 mr-3"></i>
+                Service de l'Urbanisme et des Permis
+            </h1>
+            <p class="text-gray-700 text-xl italic max-w-4xl mx-auto">
+                Planification, développement et délivrance des autorisations pour bâtir, modifier et aménager le territoire de Kolwezi.
+            </p>
+        </header>
 
-  <section class="bg-white rounded-xl shadow-lg border-t-4 border-blue-900 p-6">
-    <h2 class="text-2xl font-bold text-blue-900 mb-4">Documents et formulaires</h2>
-    <div id="formulaires" class="space-y-3 text-gray-700">
-      <p class="italic text-gray-500">Chargement...</p>
-    </div>
-  </section>
+        <section class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-blue-600">
+            <h2 class="text-3xl font-bold text-blue-900 mb-4 flex items-center">
+                <i class="fa-solid fa-map-marked-alt mr-3 text-blue-600"></i>
+                Mission du Service
+            </h2>
+            <p class="text-gray-700 leading-relaxed">
+                Notre service veille à l'application des règles d'urbanisme pour garantir un développement harmonieux et durable de la ville. Toute construction, modification ou aménagement du terrain est soumis à une **autorisation préalable**. Nous vous accompagnons dans la constitution de votre dossier technique et administratif.
+            </p>
+        </section>
 
-  <section class="bg-white rounded-xl shadow-lg border-t-4 border-green-600 p-6">
-    <h2 class="text-2xl font-bold text-blue-900 mb-4">Demande de permis</h2>
-    <form id="demandeForm" class="space-y-4">
-      <input type="text" id="nom" placeholder="Nom du demandeur" class="w-full p-3 border rounded" required>
-      <input type="text" id="adresse" placeholder="Adresse du projet" class="w-full p-3 border rounded" required>
-      <textarea id="description" placeholder="Description du projet / plans" class="w-full p-3 border rounded h-28" required></textarea>
-      <div class="text-right">
-        <button class="px-6 py-2 bg-blue-900 text-white rounded hover:bg-blue-800">Soumettre la demande</button>
-      </div>
-    </form>
-  </section>
-</main>
+        <a id="permis"></a>
+        <h2 class="text-4xl font-extrabold text-blue-900 text-center mb-10">Toutes les Autorisations d'Urbanisme</h2>
 
-<footer class="bg-blue-900 text-white mt-12 pt-10 pb-6 text-center">
-  &copy; <span id="yr">2025</span> Mairie de Kolwezi
-</footer>
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+        <div class="grid lg:grid-cols-3 gap-10">
+            
+            <section id="construire" class="bg-white p-8 rounded-xl shadow-2xl border-t-8 border-green-600 space-y-4 hover:shadow-3xl transition duration-300">
+                <i class="fa-solid fa-building text-5xl text-green-600 mb-3"></i>
+                <h3 class="font-bold text-2xl text-blue-900">Permis de Construire (PC)</h3>
+                <p class="text-gray-700">Autorisation indispensable pour toute **nouvelle construction** (résidentielle, commerciale, industrielle) ou pour des **extensions majeures** d'un bâtiment existant.</p>
+                <ul class="list-disc ml-5 text-sm text-gray-600">
+                    <li>Nouveaux bâtiments</li>
+                    <li>Agrandissements (au-delà de la SHON/SHOB)</li>
+                    <li>Changement de destination (avec travaux)</li>
+                </ul>
+                <a href="#formulaires" class="inline-block mt-4 text-green-600 font-semibold hover:underline">Voir les formalités <i class="fa-solid fa-arrow-right ml-1"></i></a>
+            </section>
 
-<script>
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
+            <section id="lotir" class="bg-white p-8 rounded-xl shadow-2xl border-t-8 border-yellow-600 space-y-4 hover:shadow-3xl transition duration-300">
+                <i class="fa-solid fa-border-all text-5xl text-yellow-600 mb-3"></i>
+                <h3 class="font-bold text-2xl text-blue-900">Permis de Lotir (PL)</h3>
+                <p class="text-gray-700">Requis pour la **division d'un terrain** en plusieurs lots constructibles, nécessitant la création de voies d'accès et d'infrastructures communes.</p>
+                <ul class="list-disc ml-5 text-sm text-gray-600">
+                    <li>Création de parcelles</li>
+                    <li>Aménagement de quartiers</li>
+                    <li>Viabilisation de terrains</li>
+                </ul>
+                <a href="#formulaires" class="inline-block mt-4 text-yellow-600 font-semibold hover:underline">Constituer votre dossier <i class="fa-solid fa-arrow-right ml-1"></i></a>
+            </section>
 
-  const formulairesDiv = document.getElementById('formulaires');
-  db.ref('urbanisme/formulaires').on('value', s => {
-    const v = s.val() || {};
-    formulairesDiv.innerHTML = '';
-    if (Object.keys(v).length === 0) {
-      formulairesDiv.innerHTML = '<p class="text-gray-500 italic">Aucun formulaire disponible.</p>';
-    } else {
-      Object.values(v).forEach(f => {
-        formulairesDiv.innerHTML += `<div class="p-3 border rounded"><h3 class="font-semibold text-blue-800">${f.titre}</h3><p>${f.description||''}</p>${f.lien?`<a href="${f.lien}" class="text-blue-600">Télécharger</a>`:''}</div>`;
-      });
-    }
-  });
+            <section id="demolir" class="bg-white p-8 rounded-xl shadow-2xl border-t-8 border-red-600 space-y-4 hover:shadow-3xl transition duration-300">
+                <i class="fa-solid fa-hammer text-5xl text-red-600 mb-3"></i>
+                <h3 class="font-bold text-2xl text-blue-900">Autres Autorisations</h3>
+                <p class="text-gray-700">Inclut les déclarations préalables, les permis de démolir, les certificats d'urbanisme (CU) et les autorisations de clôture.</p>
+                <ul class="list-disc ml-5 text-sm text-gray-600">
+                    <li>Permis de Démolir</li>
+                    <li>Déclaration de Travaux (modifications légères)</li>
+                    <li>Certificat d'Urbanisme (information)</li>
+                </ul>
+                <a href="#contact" class="inline-block mt-4 text-red-600 font-semibold hover:underline">Demander conseil <i class="fa-solid fa-arrow-right ml-1"></i></a>
+            </section>
 
-  document.getElementById('demandeForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const data = {
-      nom: document.getElementById('nom').value,
-      adresse: document.getElementById('adresse').value,
-      description: document.getElementById('description').value,
-      createdAt: new Date().toISOString()
-    };
-    const ref = db.ref('urbanisme/demandes').push();
-    ref.set(data).then(()=> { alert('Demande envoyée — Réf : ' + ref.key); e.target.reset(); }).catch(()=> alert('Erreur'));
-  });
-</script>
+        </div>
+        
+        <section id="formulaires" class="bg-gray-100 shadow-xl rounded-xl p-10 border-4 border-blue-200">
+            <h2 class="text-3xl font-bold text-blue-900 mb-8 flex items-center">
+                <i class="fa-solid fa-file-invoice mr-3 text-blue-600"></i>
+                Formulaires et Documents Techniques
+            </h2>
+            <p class="text-gray-600 mb-6">Téléchargez les formulaires CERFA et les plans types nécessaires au dépôt de votre demande de permis.</p>
+
+            <div id="formulaires" class="space-y-4 text-gray-700">
+                <div class="flex justify-center items-center h-16">
+                    <i class="fa-solid fa-spinner fa-spin text-3xl text-gray-400 mr-3"></i>
+                    <p class="italic text-gray-500">Chargement des documents depuis la base de données...</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="bg-white shadow-2xl rounded-xl p-10 border-t-8 border-green-700">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center">
+                <i class="fa-solid fa-headset mr-3 text-green-700"></i>
+                Contacter le Service Urbanisme
+            </h2>
+            <p class="text-gray-600 mb-6">Utilisez ce formulaire pour toute question technique, demande de rendez-vous avec un instructeur, ou pour vérifier la faisabilité d'un projet.</p>
+            <form id="demandeForm" class="space-y-5">
+                <select id="objet" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
+                    <option value="">Sélectionnez l'objet de votre demande</option>
+                    <option value="Permis de Construire">Informations Permis de Construire</option>
+                    <option value="Permis de Lotir">Informations Permis de Lotir</option>
+                    <option value="Rendez-vous">Demande de Rendez-vous</option>
+                    <option value="Autre">Autre question Urbanisme</option>
+                </select>
+                <input type="text" id="nom" placeholder="Votre nom complet (Obligatoire)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
+                <input type="tel" id="telephone" placeholder="Téléphone (Obligatoire pour le rappel)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
+                <input type="email" id="email" placeholder="Email (Optionnel)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition">
+                <textarea id="message" placeholder="Décrivez votre projet ou votre question en détail..." class="w-full p-4 border border-gray-300 rounded-lg h-36 focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required></textarea>
+                <div class="text-right">
+                    <button type="submit" class="bg-blue-900 text-white px-8 py-3 rounded-xl font-semibold text-lg hover:bg-blue-700 transition duration-300 shadow-lg flex items-center ml-auto">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Envoyer ma Demande
+                    </button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="bg-blue-900 text-white mt-16 pt-10 pb-6">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="mb-2">Service de l'Urbanisme et des Permis — Mairie de Kolwezi | Bâtir l'avenir de la ville.</p>
+            <p>&copy; <span id="yr">2025</span> Mairie de Kolwezi — Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('yr').textContent = new Date().getFullYear();
+
+        // --- Configuration Firebase (À REMPLACER) ---
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        // Initialisation
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // Charger formulaires (sous /urbanisme/formulaires)
+        const formulairesDiv = document.getElementById('formulaires');
+        db.ref('urbanisme/formulaires').on('value', snapshot => {
+            const val = snapshot.val();
+            formulairesDiv.innerHTML = ''; // Nettoie le message de chargement
+            if (!val) {
+                formulairesDiv.innerHTML = '<p class="text-gray-500 italic p-4 border rounded-lg bg-white text-center"><i class="fa-solid fa-info-circle mr-2"></i> Aucun formulaire n\'est actuellement disponible au téléchargement.</p>';
+                return;
+            }
+            // Affichage des formulaires
+            Object.keys(val).forEach(k => {
+                const f = val[k];
+                formulairesDiv.innerHTML += `
+                    <div class="p-5 border border-blue-200 rounded-xl bg-white hover:bg-blue-50 transition flex justify-between items-center shadow-sm">
+                        <div>
+                            <h3 class="font-bold text-xl text-blue-900">${f.titre || 'Document Officiel'}</h3>
+                            <p class="text-sm text-gray-600">${f.description || 'Description non disponible.'}</p>
+                        </div>
+                        ${f.lien ? `<a href="${f.lien}" target="_blank" class="bg-yellow-500 text-blue-900 px-5 py-2 rounded-full font-semibold hover:bg-yellow-400 transition flex items-center shadow-md">
+                            <i class="fa-solid fa-download mr-2"></i> Télécharger
+                        </a>` : `<span class="text-red-500 text-sm">Lien non disponible</span>`}
+                    </div>
+                `;
+            });
+        });
+
+        // Soumettre demande (sous /urbanisme/demandes)
+        document.getElementById('demandeForm').addEventListener('submit', e => {
+            e.preventDefault();
+            const data = {
+                objet: document.getElementById('objet').value,
+                nom: document.getElementById('nom').value,
+                telephone: document.getElementById('telephone').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value,
+                createdAt: new Date().toISOString()
+            };
+            
+            const ref = db.ref('urbanisme/demandes').push();
+            ref.set(data)
+                .then(()=> { 
+                    alert('✅ Votre demande a été envoyée au service urbanisme avec succès ! Référence : ' + ref.key); 
+                    e.target.reset(); 
+                })
+                .catch(err => { 
+                    console.error(err); 
+                    alert('❌ Erreur lors de l\'envoi de la demande. Veuillez réessayer.'); 
+                });
+        });
+    </script>
 
 </body>
 </html>
-
