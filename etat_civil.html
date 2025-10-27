@@ -3,77 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>État Civil - Mon Application</title>
+    <title>Service : État Civil - Mairie de Kolwezi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: #f9f9f9; color: #333; }
+        .navbar { background: #fff; padding: 10px 20px; border-bottom: 1px solid #ddd; }
+        .navbar ul { list-style: none; display: flex; flex-wrap: wrap; }
+        .navbar ul li { position: relative; }
+        .navbar ul li a { display: block; padding: 10px 15px; color: #333; text-decoration: none; }
+        .navbar ul li a:hover { background: #f0f0f0; border-radius: 5px; }
+        .navbar ul li ul { display: none; position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #ddd; min-width: 200px; z-index: 1000; }
+        .navbar ul li ul li a { padding: 10px 20px; }
+        .navbar ul li ul li a:hover { background: #f0f0f0; }
+        .navbar ul li:hover > ul { display: block; }
+        .navbar ul li ul li ul { left: 100%; top: 0; display: none; }
+        .navbar ul li ul li:hover > ul { display: block; }
+        @media(max-width:768px){
+            .navbar ul { flex-direction: column; }
+            .navbar ul li ul { position: static; border: none; }
+            .navbar ul li ul li ul { position: static; }
+        }
+        .content { padding: 20px; }
+        .content h1 { margin-bottom: 15px; }
+        .content a { color: #007bff; text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="etat_civil.html" class="active">État Civil</a></li>
-                <li><a href="documents.html">Documents</a></li>
-                <li><a id="lien-deconnexion" href="#">Se Déconnecter</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li>
+                <a href="#">Services</a>
+                <ul>
+                    <li>
+                        <a href="etat_civil.html">État Civil</a>
+                        <ul>
+                            <li><a href="#">Naissance</a></li>
+                            <li><a href="#">Mariage</a></li>
+                            <li><a href="#">Décès</a></li>
+                            <li><a href="#">Certificat de Résidence</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="urbanisme.html">Urbanisme & Permis</a>
+                    </li>
+                    <li>
+                        <a href="sante_publique.html">Santé publique</a>
+                    </li>
+                    <li>
+                        <a href="securite_police.html">Sécurité & Police</a>
+                    </li>
+                    <li>
+                        <a href="environnement.html">Environnement & Propreté</a>
+                    </li>
+                    <li>
+                        <a href="finances.html">Finances</a>
+                        <ul>
+                            <li><a href="impots_taxes.html">Impôts & Taxes</a></li>
+                            <li><a href="budget_municipal.html">Budget Municipal</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="galerie.html">Galerie</a></li>
+            <li><a href="contact.html">Contact / FAQ</a></li>
+        </ul>
+    </nav>
 
-    <main>
-        <h1>Gestion des Dossiers d'État Civil</h1>
-        <p>Contenu de la page...</p>
+    <!-- CONTENU DE LA PAGE -->
+    <div class="content">
+        <h1>Service : État Civil</h1>
+        <p>Bienvenue dans la section État Civil. Vous pouvez naviguer vers d'autres services en utilisant le menu ci-dessus.</p>
+        <p><a href="index.html">Retour à la page principale</a></p>
+    </div>
 
-        </main>
+    <!-- JS + Firebase -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 
-    <footer>
-        <p>&copy; 2024 Mon Application</p>
-    </footer>
-
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-    <script>
-        // 4. MA CONFIGURATION FIREBASE (À REMPLACER !)
         const firebaseConfig = {
-            apiKey: "AIzaSy...VOTRE_CLE_API_ICI",
-            authDomain: "votre-projet-id.firebaseapp.com",
-            projectId: "votre-projet-id",
-            storageBucket: "votre-projet-id.appspot.com",
-            messagingSenderId: "1234567890",
-            appId: "1:1234567890:web:abcdefghijk"
+            apiKey: "AIzaSyCr3MVt72I5aa_v0IBw7tC142kBjQJTdbU",
+            authDomain: "mairie-web-site.firebaseapp.com",
+            projectId: "mairie-web-site",
+            storageBucket: "mairie-web-site.firebasestorage.app",
+            messagingSenderId: "518997735244",
+            appId: "1:518997735244:web:a4af3a25470a39e20401e9"
         };
 
-        // Initialiser Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
+        const app = initializeApp(firebaseConfig);
 
-        // Exemple : Vérifier l'authentification au chargement de la page
-        auth.onAuthStateChanged(user => {
-            if (!user) {
-                console.log("Utilisateur non connecté. Redirection...");
-                // window.location.href = "login.html"; // Décommenter pour forcer la connexion
-            } else {
-                console.log("Utilisateur connecté :", user.email);
-            }
-        });
-
-        // Fonctionnalité de déconnexion
-        document.getElementById('lien-deconnexion').addEventListener('click', (e) => {
-            e.preventDefault();
-            auth.signOut().then(() => {
-                console.log("Déconnexion réussie");
-                // window.location.href = "login.html";
-            }).catch((error) => {
-                console.error("Erreur de déconnexion", error);
+        // MENU MOBILE
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuItems = document.querySelectorAll('.navbar ul li');
+            menuItems.forEach(item => {
+                const submenu = item.querySelector('ul');
+                if (submenu) {
+                    item.addEventListener('click', function(e) {
+                        if (window.innerWidth <= 768) {
+                            e.preventDefault();
+                            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+                        }
+                    });
+                }
             });
         });
-
     </script>
-
-    <script src="js/etat_civil_logic.js"></script>
 
 </body>
 </html>
