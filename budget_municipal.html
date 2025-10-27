@@ -1,86 +1,218 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Budget Municipal — Mairie de Kolwezi</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Budget Municipal & Transparence — Mairie de Kolwezi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        .font-\[Inter\] {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
+
 <body class="bg-gray-50 text-gray-800 font-[Inter]">
 
-<nav class="bg-blue-900 text-white shadow sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
-    <a href="index.html" class="flex items-center text-2xl font-bold space-x-2"><i class="fa-solid fa-landmark text-yellow-400"></i><span>Mairie de Kolwezi</span></a>
-    <ul class="hidden md:flex space-x-6 font-medium">
-      <li><a href="index.html" class="flex items-center hover:text-yellow-400">Accueil</a></li>
-      <li><a href="budget_municipal.html" class="flex items-center text-yellow-400"><i class="fa-solid fa-chart-line mr-1"></i> Budget</a></li>
-      <li><a href="finances.html" class="flex items-center hover:text-yellow-400">Finances</a></li>
-    </ul>
-  </div>
-</nav>
+    <nav class="bg-blue-900 text-white shadow sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
+            <a href="index.html" class="flex items-center text-2xl font-bold space-x-2">
+                <i class="fa-solid fa-landmark text-yellow-400"></i>
+                <span>Mairie de Kolwezi</span>
+            </a>
+            <ul class="hidden md:flex space-x-6 font-medium">
+                <li><a href="index.html" class="flex items-center hover:text-yellow-400 transition duration-200"><i class="fa-solid fa-house mr-1"></i> Accueil</a></li>
+                <li class="group relative">
+                    <a href="budget_municipal.html" class="flex items-center text-yellow-400 border-b-2 border-yellow-400 pb-1"><i class="fa-solid fa-chart-pie mr-1"></i> Budget Municipal</a>
+                    <div class="absolute hidden group-hover:block bg-blue-800 shadow-xl rounded-b-lg top-full pt-2 -left-2 w-56 transition duration-300">
+                        <a href="#recettes" class="block px-4 py-2 hover:bg-blue-700 transition">Recettes</a>
+                        <a href="#depenses" class="block px-4 py-2 hover:bg-blue-700 transition">Dépenses par Secteur</a>
+                        <a href="#execution" class="block px-4 py-2 hover:bg-blue-700 transition">Exécution Budgétaire</a>
+                        <a href="#documents" class="block px-4 py-2 hover:bg-blue-700 transition">Documents Officiels</a>
+                    </div>
+                </li>
+                <li><a href="finances.html" class="flex items-center hover:text-yellow-400 transition duration-200"><i class="fa-solid fa-wallet mr-1"></i> Finances</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<main class="max-w-5xl mx-auto py-12 px-6 space-y-10">
-  <header class="text-center"><h1 class="text-4xl font-extrabold text-blue-900 mb-2"><i class="fa-solid fa-chart-line mr-2 text-yellow-400"></i>Budget Municipal</h1><p class="text-gray-600">Transparence et planification budgétaire</p></header>
+    <main class="max-w-6xl mx-auto py-16 px-6 space-y-16">
 
-  <section class="bg-white rounded-xl shadow-lg border-t-4 border-yellow-400 p-6">
-    <h2 class="text-2xl font-bold text-blue-900 mb-4">Objectifs</h2>
-    <ul class="list-disc ml-5 text-gray-700">
-      <li>Publication des budgets annuels.</li>
-      <li>Suivi des allocations par secteur.</li>
-      <li>Mesures d'efficience financière.</li>
-    </ul>
-  </section>
+        <header class="text-center bg-blue-100 p-12 rounded-xl shadow-2xl border-b-4 border-yellow-600">
+            <h1 class="text-5xl font-extrabold text-blue-900 mb-3">
+                <i class="fa-solid fa-hand-holding-dollar text-yellow-600 mr-3"></i>
+                Transparence du Budget Municipal
+            </h1>
+            <p class="text-gray-700 text-xl italic max-w-4xl mx-auto">
+                Accédez à l'information complète sur la manière dont les fonds de Kolwezi sont collectés, planifiés et dépensés au service des citoyens.
+            </p>
+        </header>
 
-  <section class="bg-white rounded-xl shadow-lg border-t-4 border-blue-900 p-6">
-    <h2 class="text-2xl font-bold text-blue-900 mb-4">Documents budgétaires</h2>
-    <div id="formulaires" class="space-y-3 text-gray-700"><p class="italic text-gray-500">Chargement...</p></div>
-  </section>
+        <section class="bg-white p-8 rounded-xl shadow-lg border-t-8 border-yellow-600">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center">
+                <i class="fa-solid fa-gauge-simple-high mr-3 text-yellow-600"></i>
+                Synthèse Budgétaire (Année en cours)
+            </h2>
+            <div class="grid md:grid-cols-3 gap-6 text-center">
+                <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <p class="text-lg text-gray-500">Budget Voté</p>
+                    <p class="text-3xl font-extrabold text-blue-900">XXX M USD</p>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <p class="text-lg text-gray-500">Recettes Collectées (YTD)</p>
+                    <p class="text-3xl font-extrabold text-green-600">YY %</p>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <p class="text-lg text-gray-500">Dépenses Engagées (YTD)</p>
+                    <p class="text-3xl font-extrabold text-red-600">ZZ %</p>
+                </div>
+            </div>
+            <p class="text-sm text-center text-gray-500 mt-4">Les chiffres exacts sont disponibles dans les rapports financiers officiels ci-dessous.</p>
+        </section>
 
-  <section class="bg-white rounded-xl shadow-lg border-t-4 border-green-600 p-6">
-    <h2 class="text-2xl font-bold text-blue-900 mb-4">Demande d'informations</h2>
-    <form id="demandeForm" class="space-y-4">
-      <input type="text" id="nom" placeholder="Nom / Organisation" class="w-full p-3 border rounded" required>
-      <input type="email" id="email" placeholder="Email" class="w-full p-3 border rounded" required>
-      <textarea id="objet" placeholder="Objet de la demande" class="w-full p-3 border rounded h-28" required></textarea>
-      <div class="text-right"><button class="px-6 py-2 bg-blue-900 text-white rounded hover:bg-blue-800">Envoyer</button></div>
-    </form>
-  </section>
-</main>
+        <div class="grid lg:grid-cols-2 gap-10">
+            
+            <section id="recettes" class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-green-600 space-y-4 hover:shadow-2xl transition duration-300">
+                <i class="fa-solid fa-sack-dollar text-5xl text-green-600 mb-3"></i>
+                <h3 class="font-bold text-2xl text-blue-900">Sources de Recettes</h3>
+                <p class="text-gray-700">Le financement du budget de Kolwezi repose principalement sur :</p>
+                <ul class="list-disc ml-5 text-md text-gray-700">
+                    <li>**Impôts et Taxes Locales :** Foncier, véhicules, patentes commerciales.</li>
+                    <li>**Redevances et Droits :** Marchés, services, permis d'urbanisme.</li>
+                    <li>**Subventions :** Transferts de l'État central et partenariats.</li>
+                </ul>
+            </section>
 
-<footer class="bg-blue-900 text-white mt-12 pt-10 pb-6 text-center">&copy; <span id="yr">2025</span> Mairie de Kolwezi</footer>
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+            <section id="depenses" class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-red-600 space-y-4 hover:shadow-2xl transition duration-300">
+                <i class="fa-solid fa-chart-bar text-5xl text-red-600 mb-3"></i>
+                <h3 class="font-bold text-2xl text-blue-900">Dépenses et Priorités</h3>
+                <p class="text-gray-700">Nos dépenses sont orientées vers les secteurs prioritaires définis par l'Exécutif et l'Assemblée :</p>
+                <ul class="list-disc ml-5 text-md text-gray-700">
+                    <li>**Infrastructures :** Voirie, éclairage public, assainissement.</li>
+                    <li>**Services Sociaux :** Santé publique, éducation, assistance.</li>
+                    <li>**Administration et Sécurité :** Fonctionnement des services et police.</li>
+                </ul>
+            </section>
+        </div>
 
-<script>
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
+        <section id="documents" class="bg-gray-100 shadow-xl rounded-xl p-10 border-4 border-blue-200">
+            <h2 class="text-3xl font-bold text-blue-900 mb-8 flex items-center">
+                <i class="fa-solid fa-file-invoice-dollar mr-3 text-blue-600"></i>
+                Documents Budgétaires Officiels
+            </h2>
+            <p class="text-gray-600 mb-6">Téléchargez le budget voté, les rapports d'exécution trimestriels et les comptes rendus de gestion.</p>
 
-  db.ref('budget_municipal/documents').on('value', s => {
-    const v = s.val() || {};
-    const container = document.getElementById('formulaires');
-    container.innerHTML = '';
-    if (Object.keys(v).length === 0) container.innerHTML = '<p class="text-gray-500 italic">Aucun document.</p>';
-    else Object.values(v).forEach(f => container.innerHTML += `<div class="p-3 border rounded"><h3 class="font-semibold text-blue-800">${f.titre}</h3><p>${f.description||''}</p>${f.lien?`<a href="${f.lien}" class="text-blue-600">Voir</a>`:''}</div>`);
-  });
+            <div id="firebase_documents" class="space-y-4 text-gray-700">
+                <div class="flex justify-center items-center h-16">
+                    <i class="fa-solid fa-spinner fa-spin text-3xl text-gray-400 mr-3"></i>
+                    <p class="italic text-gray-500">Chargement des documents depuis la base de données...</p>
+                </div>
+                </div>
+        </section>
+        
+        <section id="execution" class="p-6 bg-white rounded-xl shadow-lg border-l-4 border-yellow-600">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4 flex items-center">
+                <i class="fa-solid fa-scale-balanced mr-3 text-yellow-600"></i>
+                Reddition de Comptes et Contrôle
+            </h2>
+            <p class="text-gray-700">L'exécution du budget est soumise à un contrôle rigoureux et à une approbation par l'Assemblée Provinciale. Le **Compte Administratif** est publié annuellement pour rendre compte de la gestion financière.</p>
+        </section>
 
-  document.getElementById('demandeForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const data = { nom: document.getElementById('nom').value, email: document.getElementById('email').value, objet: document.getElementById('objet').value, createdAt: new Date().toISOString() };
-    const ref = db.ref('budget_municipal/demandes').push();
-    ref.set(data).then(()=> { alert('Demande envoyée — Réf : ' + ref.key); e.target.reset(); }).catch(()=> alert('Erreur'));
-  });
-</script>
+        <section id="demande" class="bg-white shadow-2xl rounded-xl p-10 border-t-8 border-green-700">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center">
+                <i class="fa-solid fa-magnifying-glass mr-3 text-green-700"></i>
+                Demande d'Informations Budgétaires
+            </h2>
+            <p class="text-gray-600 mb-6">Vous avez une question spécifique sur une ligne budgétaire ou l'exécution d'un projet ? Contactez directement la Direction des Finances.</p>
+            <form id="demandeForm" class="space-y-5">
+                <input type="text" id="nom" placeholder="Nom / Organisation" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
+                <input type="email" id="email" placeholder="Email" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
+                <textarea id="objet" placeholder="Décrivez précisément l'objet de votre question (Ex: Dépenses 'Projet X', Recettes 2024...)" class="w-full p-4 border border-gray-300 rounded-lg h-36 focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required></textarea>
+                <div class="text-right">
+                    <button type="submit" class="bg-blue-900 text-white px-8 py-3 rounded-xl font-semibold text-lg hover:bg-blue-700 transition duration-300 shadow-lg flex items-center ml-auto">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Envoyer la Demande
+                    </button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="bg-blue-900 text-white mt-16 pt-10 pb-6">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="mb-2">Direction des Finances — Mairie de Kolwezi | Gérer les fonds publics en toute transparence.</p>
+            <p>&copy; <span id="yr">2025</span> Mairie de Kolwezi — Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('yr').textContent = new Date().getFullYear();
+
+        // --- Configuration Firebase (À REMPLACER) ---
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // Charger documents (sous /budget_municipal/documents)
+        const formulairesDiv = document.getElementById('firebase_documents');
+        db.ref('budget_municipal/documents').on('value', snapshot => {
+            const val = snapshot.val();
+            formulairesDiv.innerHTML = ''; // Nettoie le message de chargement
+            if (!val) {
+                formulairesDiv.innerHTML = '<p class="text-gray-500 italic p-4 border rounded-lg bg-white text-center"><i class="fa-solid fa-info-circle mr-2"></i> Aucun document budgétaire n\'est disponible au téléchargement.</p>';
+                return;
+            }
+            // Affichage des documents
+            Object.keys(val).forEach(k => {
+                const f = val[k];
+                formulairesDiv.innerHTML += `
+                    <div class="p-5 border border-yellow-300 rounded-xl bg-white hover:bg-yellow-50 transition flex justify-between items-center shadow-sm">
+                        <div>
+                            <h3 class="font-bold text-xl text-blue-900">${f.titre || 'Document Budgétaire Officiel'}</h3>
+                            <p class="text-sm text-gray-600">${f.description || 'Description non disponible.'}</p>
+                        </div>
+                        ${f.lien ? `<a href="${f.lien}" target="_blank" class="bg-yellow-500 text-blue-900 px-5 py-2 rounded-full font-semibold hover:bg-yellow-400 transition flex items-center shadow-md">
+                            <i class="fa-solid fa-download mr-2"></i> Télécharger / Consulter
+                        </a>` : `<span class="text-red-500 text-sm">Lien non disponible</span>`}
+                    </div>
+                `;
+            });
+        });
+
+        // Soumettre demande d'information (sous /budget_municipal/demandes)
+        document.getElementById('demandeForm').addEventListener('submit', e => {
+            e.preventDefault();
+            const data = {
+                nom: document.getElementById('nom').value,
+                email: document.getElementById('email').value,
+                objet: document.getElementById('objet').value,
+                createdAt: new Date().toISOString()
+            };
+            
+            const ref = db.ref('budget_municipal/demandes').push();
+            ref.set(data)
+                .then(()=> { 
+                    alert('✅ Demande d\'information budgétaire envoyée avec succès ! Référence : ' + ref.key); 
+                    e.target.reset(); 
+                })
+                .catch(err => { 
+                    console.error(err); 
+                    alert('❌ Erreur lors de l\'envoi de la demande. Veuillez réessayer.'); 
+                });
+        });
+    </script>
 
 </body>
 </html>
-
