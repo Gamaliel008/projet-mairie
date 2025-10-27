@@ -11,15 +11,21 @@
             font-family: 'Inter', sans-serif;
             background-color: #f4f7f9;
         }
+        /* Styles personnalisés pour améliorer l'aspect des liens */
         .dropdown-item-hover:hover {
-            background-color: #e5e7eb;
-            color: #1f2937;
+            background-color: #e5e7eb; /* gray-100 */
+            color: #1f2937; /* gray-800 */
         }
         /* Styles pour masquer les éléments non actifs du carrousel textuel */
         .text-carousel-item {
             display: none;
             transition: opacity 0.5s ease-in-out;
             opacity: 0;
+            position: absolute; /* Pour que les items ne prennent pas d'espace lorsqu'ils sont cachés */
+            width: 90%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         .text-carousel-item.active {
             display: block;
@@ -28,6 +34,7 @@
     </style>
     <script src="https://unpkg.com/flowbite@2.5.2/dist/flowbite.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/">
 </head>
 <body class="bg-gray-50 text-gray-800">
 
@@ -57,18 +64,18 @@
                     <i class="fa-solid fa-camera text-yellow-500 mr-3"></i> Le Maire en Images
                 </h2>
                 <div id="carousel-maire" class="relative w-full" data-carousel="slide">
-                    <div class="relative h-80 overflow-hidden rounded-lg">
+                    <div class="relative h-80 overflow-hidden rounded-lg shadow-lg">
                         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="klz2" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Photo du Maire lors d'un événement" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1E3A8A/FFFFFF?text=Photo+Maire+1'">
+                            <img src="https://placehold.co/600x400/1E3A8A/FFFFFF?text=Photo+Maire+1" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Photo du Maire lors d'un événement">
                         </div>
                         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="./jcq1.jpeg" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Maire en discussion avec des citoyens" onerror="this.onerror=null; this.src='https://placehold.co/600x400/3B82F6/FFFFFF?text=Photo+Maire+2'">
+                            <img src="https://placehold.co/600x400/3B82F6/FFFFFF?text=Photo+Maire+2" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Maire en discussion avec des citoyens">
                         </div>
                         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="./jcq2.jpeg" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Maire inaugurant un projet" onerror="this.onerror=null; this.src='https://placehold.co/600x400/93C5FD/0A3D62?text=Photo+Maire+3'">
+                            <img src="https://placehold.co/600x400/93C5FD/0A3D62?text=Photo+Maire+3" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Maire inaugurant un projet">
                         </div>
                         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="./jcq3.jpeg" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Maire lors d'une allocution" onerror="this.onerror=null; this.src='https://placehold.co/600x400/9C27B0/FFFFFF?text=Photo+Maire+4'">
+                            <img src="https://placehold.co/600x400/9C27B0/FFFFFF?text=Photo+Maire+4" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Maire lors d'une allocution">
                         </div>
                     </div>
                     <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
@@ -114,7 +121,7 @@
                 <div id="carousel-ville-images" class="relative w-full" data-carousel="slide" data-carousel-sync="#carousel-ville-text">
                     <div class="relative h-96 overflow-hidden rounded-lg shadow-lg">
                         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="./Capture d'écran 2025-10-26 212719.png" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Vue panoramique de Kolwezi" onerror="this.onerror=null; this.src='https://placehold.co/800x600/1E3A8A/FFFFFF?text=Ville+Kolwezi+1'">
+                            <img src="https://placehold.co/800x600/1E3A8A/FFFFFF?text=Ville+Kolwezi+1" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Vue panoramique de Kolwezi">
                         </div>
                         <div class="hidden duration-700 ease-in-out" data-carousel-item>
                             <img src="https://placehold.co/800x600/38a169/ffffff?text=Centre+Ville+Actif" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Animation du centre-ville">
@@ -169,7 +176,7 @@
         </section>
 
         <hr class="border-gray-300 my-10">
-        
+
         <section id="actualites-lualaba" class="bg-white p-6 md:p-10 rounded-xl shadow-2xl border-t-4 border-red-500">
             <h2 class="text-3xl font-extrabold text-blue-900 text-center mb-8 border-b-2 border-red-500 pb-2 flex items-center justify-center">
                 <i class="fa-solid fa-bullhorn text-red-600 mr-3"></i> Les Dernières Actualités du Lualaba
@@ -290,16 +297,42 @@
 
     <footer class="bg-blue-900 text-white mt-12">
         <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div><h3 class="text-xl font-semibold mb-3 text-yellow-400">Mairie de Kolwezi</h3><p class="mb-1"><i class="fa-solid fa-location-dot mr-2"></i> Avenue Lumumba, Kolwezi</p><p class="mb-1"><i class="fa-solid fa-phone mr-2"></i> +243 999 000 111</p><p class="mb-1"><i class="fa-solid fa-envelope mr-2"></i> contact@mairiekolwezi.cd</p></div>
-            <div><h3 class="text-xl font-semibold mb-3 text-yellow-400">Liens rapides</h3><ul class="space-y-2"><li><a href="#" class="hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-house mr-2"></i> Accueil</a></li><li><a href="#" class="hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-gear mr-2"></i> Services</a></li><li><a href="#" class="hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-building mr-2"></i> Projets</a></li><li><a href="#" class="hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-newspaper mr-2"></i> Actualités</a></li></ul></div>
-            <div><h3 class="text-xl font-semibold mb-3 text-yellow-400">Suivez-nous</h3><div class="flex space-x-4 text-3xl"><a href="#" class="hover:text-yellow-400 transition duration-150"><i class="fab fa-facebook-square"></i></a><a href="#" class="hover:text-yellow-400 transition duration-150"><i class="fab fa-twitter-square"></i></a><a href="#" class="hover:text-yellow-400 transition duration-150"><i class="fab fa-instagram-square"></i></a><a href="#" class="hover:text-yellow-400 transition duration-150"><i class="fab fa-youtube-square"></i></a></div></div>
+            
+            <div>
+                <h3 class="text-xl font-semibold mb-3 text-yellow-400">Mairie de Kolwezi</h3>
+                <p class="mb-1"><i class="fa-solid fa-location-dot mr-2"></i> Avenue Lumumba, Kolwezi</p>
+                <p class="mb-1"><i class="fa-solid fa-phone mr-2"></i> +243 999 000 111</p>
+                <p class="mb-1"><i class="fa-solid fa-envelope mr-2"></i> contact@mairiekolwezi.cd</p>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-semibold mb-3 text-yellow-400">Liens rapides</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-house mr-2"></i> Accueil</a></li>
+                    <li><a href="#" class="hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-gear mr-2"></i> Services</a></li>
+                    <li><a href="#" class="hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-building mr-2"></i> Projets</a></li>
+                    <li><a href="#" class="hover:text-yellow-400 transition duration-150"><i class="fa-solid fa-newspaper mr-2"></i> Actualités</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-semibold mb-3 text-yellow-400">Suivez-nous</h3>
+                <div class="flex space-x-4 text-3xl">
+                    <a href="#" class="hover:text-yellow-400 transition duration-150"><i class="fab fa-facebook-square"></i></a>
+                    <a href="#" class="hover:text-yellow-400 transition duration-150"><i class="fab fa-twitter-square"></i></a>
+                    <a href="#" class="hover:text-yellow-400 transition duration-150"><i class="fab fa-instagram-square"></i></a>
+                    <a href="#" class="hover:text-yellow-400 transition duration-150"><i class="fab fa-youtube-square"></i></a>
+                </div>
+            </div>
         </div>
+
         <div class="bg-blue-950 text-center py-4 text-sm">
             © 2025 Mairie de Kolwezi - Tous droits réservés
         </div>
     </footer>
 
     <script type="module">
+        // Importation des fonctions nécessaires du SDK Firebase
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
@@ -341,7 +374,7 @@
             console.warn("Firebase configuration not found. Running in standalone mode.");
         }
 
-        // Script pour la synchronisation des carrousels de texte (conservé et amélioré)
+        // Script pour la synchronisation des carrousels de texte de la ville
         document.addEventListener('DOMContentLoaded', () => {
             const imageCarousel = document.getElementById('carousel-ville-images');
             const textCarousel = document.getElementById('carousel-ville-text');
@@ -361,7 +394,7 @@
                             } else {
                                 item.classList.remove('active');
                             }
-                        }, 500); // Délai correspondant à la transition CSS
+                        }, 300); // Délai pour une transition douce
                     });
                 };
                 
@@ -381,8 +414,31 @@
                     });
                 });
 
-                const carouselButtons = imageCarousel.querySelectorAll('[data-carousel-slide-to]');
-                carouselButtons.forEach(button => observer.observe(button, { attributes: true }));
+                // Cible : les indicateurs générés par Flowbite, qui reçoivent l'attribut aria-current
+                const carouselControls = imageCarousel.querySelector('[data-carousel-indicators]');
+                if (carouselControls) {
+                     const carouselButtons = carouselControls.querySelectorAll('button');
+                     carouselButtons.forEach(button => observer.observe(button, { attributes: true }));
+                }
+                
+                // Pour les boutons Prev/Next
+                const prevButton = imageCarousel.querySelector('[data-carousel-prev]');
+                const nextButton = imageCarousel.querySelector('[data-carousel-next]');
+
+                [prevButton, nextButton].forEach(button => {
+                    if(button) {
+                        button.addEventListener('click', () => {
+                             // Flowbite a déjà mis à jour l'état, nous devons attendre le prochain cycle pour lire le nouvel index
+                             setTimeout(() => {
+                                const currentButton = imageCarousel.querySelector('[data-carousel-slide-to][aria-current="true"]');
+                                if (currentButton) {
+                                    const currentIndex = parseInt(currentButton.getAttribute('data-carousel-slide-to'));
+                                    updateTextCarousel(currentIndex);
+                                }
+                            }, 500); // 500ms pour s'assurer que Flowbite a terminé son action
+                        });
+                    }
+                });
             }
         });
     </script>
