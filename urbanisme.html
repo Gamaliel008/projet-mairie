@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>Urbanisme & Permis — Mairie de Kolwezi</title>
+    <title>Urbanisme & Permis — Autorisations de Construire, Lotir et Démolir — Mairie de Kolwezi</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
@@ -29,14 +29,13 @@
                 <li class="group relative">
                     <a href="urbanisme.html" class="flex items-center text-yellow-400 border-b-2 border-yellow-400 pb-1"><i class="fa-solid fa-city mr-1"></i> Urbanisme</a>
                     <div class="absolute hidden group-hover:block bg-blue-800 shadow-xl rounded-b-lg top-full pt-2 -left-2 w-56 transition duration-300">
-                        <a href="#construire" class="block px-4 py-2 hover:bg-blue-700 transition">Permis de Construire</a>
-                        <a href="#lotir" class="block px-4 py-2 hover:bg-blue-700 transition">Permis de Lotir</a>
-                        <a href="#demolir" class="block px-4 py-2 hover:bg-blue-700 transition">Autres Autorisations</a>
-                        <a href="#formulaires" class="block px-4 py-2 hover:bg-blue-700 transition">Formulaires et Plans</a>
+                        <a href="#construire_detail" class="block px-4 py-2 hover:bg-blue-700 transition">Permis de Construire</a>
+                        <a href="#lotir_detail" class="block px-4 py-2 hover:bg-blue-700 transition">Permis de Lotir</a>
+                        <a href="#formulaires" class="block px-4 py-2 hover:bg-blue-700 transition">Formulaires et Pièces</a>
                     </div>
                 </li>
-                <li><a href="#permis" class="flex items-center hover:text-yellow-400 transition duration-200"><i class="fa-solid fa-wrench mr-1"></i> Permis</a></li>
-                </ul>
+                <li><a href="services.html" class="flex items-center hover:text-yellow-400 transition duration-200"><i class="fa-solid fa-circle-info mr-1"></i> Autres Services</a></li>
+            </ul>
         </div>
     </nav>
 
@@ -48,74 +47,118 @@
                 Service de l'Urbanisme et des Permis
             </h1>
             <p class="text-gray-700 text-xl italic max-w-4xl mx-auto">
-                Planification, développement et délivrance des autorisations pour bâtir, modifier et aménager le territoire de Kolwezi.
+                **Planification, développement et délivrance des autorisations** pour bâtir, modifier et aménager le territoire de Kolwezi.
             </p>
         </header>
 
-        <section class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-blue-600">
-            <h2 class="text-3xl font-bold text-blue-900 mb-4 flex items-center">
-                <i class="fa-solid fa-map-marked-alt mr-3 text-blue-600"></i>
-                Mission du Service
+        <section class="p-6 bg-yellow-100 rounded-xl shadow-lg border-l-4 border-yellow-600">
+            <h2 class="text-2xl font-bold text-yellow-800 flex items-center mb-3">
+                <i class="fa-solid fa-triangle-exclamation mr-3"></i> Règle d'Or : Autorisation Préalable
             </h2>
-            <p class="text-gray-700 leading-relaxed">
-                Notre service veille à l'application des règles d'urbanisme pour garantir un développement harmonieux et durable de la ville. Toute construction, modification ou aménagement du terrain est soumis à une **autorisation préalable**. Nous vous accompagnons dans la constitution de votre dossier technique et administratif.
+            <p class="text-gray-800">
+                Toute construction, extension, démolition ou modification du terrain sur le territoire de Kolwezi nécessite une **autorisation municipale formelle** avant le début des travaux. Agir sans permis expose à des sanctions et à l'obligation de démolition.
             </p>
         </section>
 
         <a id="permis"></a>
-        <h2 class="text-4xl font-extrabold text-blue-900 text-center mb-10">Toutes les Autorisations d'Urbanisme</h2>
+        <h2 class="text-4xl font-extrabold text-blue-900 text-center mb-10">Les Principaux Permis et Procédures</h2>
 
-        <div class="grid lg:grid-cols-3 gap-10">
-            
-            <section id="construire" class="bg-white p-8 rounded-xl shadow-2xl border-t-8 border-green-600 space-y-4 hover:shadow-3xl transition duration-300">
-                <i class="fa-solid fa-building text-5xl text-green-600 mb-3"></i>
-                <h3 class="font-bold text-2xl text-blue-900">Permis de Construire (PC)</h3>
-                <p class="text-gray-700">Autorisation indispensable pour toute **nouvelle construction** (résidentielle, commerciale, industrielle) ou pour des **extensions majeures** d'un bâtiment existant.</p>
-                <ul class="list-disc ml-5 text-sm text-gray-600">
-                    <li>Nouveaux bâtiments</li>
-                    <li>Agrandissements (au-delà de la SHON/SHOB)</li>
-                    <li>Changement de destination (avec travaux)</li>
-                </ul>
-                <a href="#formulaires" class="inline-block mt-4 text-green-600 font-semibold hover:underline">Voir les formalités <i class="fa-solid fa-arrow-right ml-1"></i></a>
-            </section>
+        <section id="construire_detail" class="bg-white p-10 rounded-xl shadow-2xl border-t-8 border-green-600 space-y-6">
+            <h3 class="font-bold text-3xl text-blue-900 flex items-center mb-4">
+                <i class="fa-solid fa-building-columns mr-4 text-green-600 text-4xl"></i> Permis de Construire (PC)
+            </h3>
+            <p class="text-lg text-gray-700">Le Permis de Construire concerne les projets de grande ampleur ou toute création de nouvelle surface au sol.</p>
 
-            <section id="lotir" class="bg-white p-8 rounded-xl shadow-2xl border-t-8 border-yellow-600 space-y-4 hover:shadow-3xl transition duration-300">
-                <i class="fa-solid fa-border-all text-5xl text-yellow-600 mb-3"></i>
-                <h3 class="font-bold text-2xl text-blue-900">Permis de Lotir (PL)</h3>
-                <p class="text-gray-700">Requis pour la **division d'un terrain** en plusieurs lots constructibles, nécessitant la création de voies d'accès et d'infrastructures communes.</p>
-                <ul class="list-disc ml-5 text-sm text-gray-600">
-                    <li>Création de parcelles</li>
-                    <li>Aménagement de quartiers</li>
-                    <li>Viabilisation de terrains</li>
-                </ul>
-                <a href="#formulaires" class="inline-block mt-4 text-yellow-600 font-semibold hover:underline">Constituer votre dossier <i class="fa-solid fa-arrow-right ml-1"></i></a>
-            </section>
+            <div class="grid md:grid-cols-3 gap-6 pt-4 border-t border-gray-100">
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-xl text-green-700">1. Qui doit le demander ?</h4>
+                    <p class="text-gray-700">Toute personne (physique ou morale) souhaitant réaliser une **nouvelle construction** ou une **extension significative**.</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-xl text-green-700">2. Pièces Clés du Dossier</h4>
+                    <ul class="list-disc ml-5 text-gray-700 text-sm">
+                        <li>**Formulaire de demande PC** (à télécharger ci-dessous).</li>
+                        <li>**Titre de propriété** ou bail.</li>
+                        <li>**Plans** : Masse, Coupe, Façades, Situation (signés par un architecte agréé).</li>
+                        <li>Justificatifs de paiement des frais d'étude.</li>
+                    </ul>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-xl text-green-700">3. Délai de Traitement</h4>
+                    <p class="text-gray-700">Le délai d'instruction est généralement de **90 jours** à compter de la réception du dossier complet. Le début des travaux n'est autorisé qu'après notification d'accord.</p>
+                </div>
+            </div>
+            <a href="#formulaires" class="inline-block mt-4 text-blue-600 font-semibold hover:underline"><i class="fa-solid fa-download mr-1"></i> Accéder au formulaire de Permis de Construire</a>
+        </section>
 
-            <section id="demolir" class="bg-white p-8 rounded-xl shadow-2xl border-t-8 border-red-600 space-y-4 hover:shadow-3xl transition duration-300">
-                <i class="fa-solid fa-hammer text-5xl text-red-600 mb-3"></i>
-                <h3 class="font-bold text-2xl text-blue-900">Autres Autorisations</h3>
-                <p class="text-gray-700">Inclut les déclarations préalables, les permis de démolir, les certificats d'urbanisme (CU) et les autorisations de clôture.</p>
-                <ul class="list-disc ml-5 text-sm text-gray-600">
-                    <li>Permis de Démolir</li>
-                    <li>Déclaration de Travaux (modifications légères)</li>
-                    <li>Certificat d'Urbanisme (information)</li>
-                </ul>
-                <a href="#contact" class="inline-block mt-4 text-red-600 font-semibold hover:underline">Demander conseil <i class="fa-solid fa-arrow-right ml-1"></i></a>
-            </section>
+        <section id="lotir_detail" class="bg-white p-10 rounded-xl shadow-2xl border-t-8 border-yellow-600 space-y-6">
+            <h3 class="font-bold text-3xl text-blue-900 flex items-center mb-4">
+                <i class="fa-solid fa-trowel-bricks mr-4 text-yellow-600 text-4xl"></i> Permis de Lotir (PL)
+            </h3>
+            <p class="text-lg text-gray-700">Le Permis de Lotir est nécessaire pour diviser une grande propriété en plusieurs parcelles destinées à la construction.</p>
 
-        </div>
+            <div class="grid md:grid-cols-3 gap-6 pt-4 border-t border-gray-100">
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-xl text-yellow-700">1. Domaine d'application</h4>
+                    <p class="text-gray-700">Division d'un terrain en plus de deux lots. Il inclut l'obligation de **viabilisation** (création de voiries, raccordement eau/électricité).</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-xl text-yellow-700">2. Contenu du Dossier</h4>
+                    <ul class="list-disc ml-5 text-gray-700 text-sm">
+                        <li>**Formulaire de demande PL.**</li>
+                        <li>**Plan de lotissement** par un géomètre agréé.</li>
+                        <li>Étude de faisabilité technique des infrastructures (viabilisation).</li>
+                        <li>Note d'impact environnemental (selon le cas).</li>
+                    </ul>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-xl text-yellow-700">3. Suivi</h4>
+                    <p class="text-gray-700">L'instruction du PL est souvent plus longue et implique plusieurs services (travaux publics). L'approbation est suivie par la **réception des travaux de viabilisation**.</p>
+                </div>
+            </div>
+            <a href="#contact" class="inline-block mt-4 text-blue-600 font-semibold hover:underline"><i class="fa-solid fa-calendar-alt mr-1"></i> Demander un rendez-vous pour un projet de lotissement</a>
+        </section>
+
+        <section id="demolir_detail" class="bg-white p-10 rounded-xl shadow-2xl border-t-8 border-blue-600 space-y-6">
+            <h3 class="font-bold text-3xl text-blue-900 flex items-center mb-4">
+                <i class="fa-solid fa-wrench mr-4 text-blue-600 text-4xl"></i> Autres Autorisations
+            </h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="font-semibold text-xl text-blue-700 mb-2">Permis de Démolir (PD)</h4>
+                    <p class="text-gray-700">Obligatoire avant toute démolition totale ou partielle d'une construction. Permet de s'assurer du respect des règles de sécurité et de l'environnement (gestion des déchets).</p>
+                    <p class="mt-2 text-sm text-red-600 font-medium">Pièces : Fiche de renseignements, Plan de situation, Photos de la construction.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-xl text-blue-700 mb-2">Certificat d'Urbanisme (CU)</h4>
+                    <p class="text-gray-700">Document d'information précieux. Il vous renseigne sur les **règles applicables** à un terrain donné (droit de construire, limitations, taxes) avant même l'achat ou le lancement du projet.</p>
+                    <p class="mt-2 text-sm text-gray-600 font-medium">Délai : Généralement 30 jours pour l'information.</p>
+                </div>
+            </div>
+        </section>
+
+        ---
         
-        <section id="formulaires" class="bg-gray-100 shadow-xl rounded-xl p-10 border-4 border-blue-200">
+        <section id="formulaires" class="bg-gray-100 shadow-xl rounded-xl p-10 border-4 border-yellow-200">
             <h2 class="text-3xl font-bold text-blue-900 mb-8 flex items-center">
-                <i class="fa-solid fa-file-invoice mr-3 text-blue-600"></i>
-                Formulaires et Documents Techniques
+                <i class="fa-solid fa-file-invoice mr-3 text-yellow-600"></i>
+                Formulaires et Documents Techniques à Télécharger
             </h2>
-            <p class="text-gray-600 mb-6">Téléchargez les formulaires CERFA et les plans types nécessaires au dépôt de votre demande de permis.</p>
+            <p class="text-gray-600 mb-6">Téléchargez les formulaires officiels (CERFA locaux) et les listes de pièces pour vous aider à préparer un dossier complet et conforme.</p>
 
-            <div id="formulaires" class="space-y-4 text-gray-700">
-                <div class="flex justify-center items-center h-16">
+            <div id="formulaires_list" class="space-y-4 text-gray-700">
+                <div class="p-5 border border-green-600 rounded-xl bg-green-100 hover:bg-green-50 transition flex justify-between items-center shadow-lg">
+                    <div>
+                        <h3 class="font-bold text-xl text-green-800 flex items-center"><i class="fa-solid fa-file-alt mr-2"></i> Formulaire CERFA : Demande de Permis de Construire</h3>
+                        <p class="text-sm text-gray-700">À remplir pour toute nouvelle construction ou extension.</p>
+                    </div>
+                    <a href="lien_vers_PC_CERFA.pdf" target="_blank" class="bg-green-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-green-700 transition flex items-center shadow-md">
+                        <i class="fa-solid fa-download mr-2"></i> Télécharger
+                    </a>
+                </div>
+                <div id="firebase_formulaires" class="flex justify-center items-center h-16">
                     <i class="fa-solid fa-spinner fa-spin text-3xl text-gray-400 mr-3"></i>
-                    <p class="italic text-gray-500">Chargement des documents depuis la base de données...</p>
+                    <p class="italic text-gray-500">Chargement des autres documents (PL, PD, CU) depuis la base de données...</p>
                 </div>
             </div>
         </section>
@@ -131,6 +174,7 @@
                     <option value="">Sélectionnez l'objet de votre demande</option>
                     <option value="Permis de Construire">Informations Permis de Construire</option>
                     <option value="Permis de Lotir">Informations Permis de Lotir</option>
+                    <option value="Certificat Urbanisme">Demande de CU ou Information sur Zone</option>
                     <option value="Rendez-vous">Demande de Rendez-vous</option>
                     <option value="Autre">Autre question Urbanisme</option>
                 </select>
@@ -173,28 +217,36 @@
         const db = firebase.database();
 
         // Charger formulaires (sous /urbanisme/formulaires)
-        const formulairesDiv = document.getElementById('formulaires');
+        const formulairesContainerDiv = document.getElementById('formulaires_list');
+        const loadingElementDiv = document.getElementById('firebase_formulaires');
+        
         db.ref('urbanisme/formulaires').on('value', snapshot => {
             const val = snapshot.val();
-            formulairesDiv.innerHTML = ''; // Nettoie le message de chargement
+            
+            if (loadingElementDiv) loadingElementDiv.innerHTML = ''; // Nettoie le message de chargement
+
             if (!val) {
-                formulairesDiv.innerHTML = '<p class="text-gray-500 italic p-4 border rounded-lg bg-white text-center"><i class="fa-solid fa-info-circle mr-2"></i> Aucun formulaire n\'est actuellement disponible au téléchargement.</p>';
+                if (loadingElementDiv) loadingElementDiv.innerHTML = '<p class="text-gray-500 italic p-4 border rounded-lg bg-white text-center"><i class="fa-solid fa-info-circle mr-2"></i> Aucun autre formulaire n\'est actuellement disponible au téléchargement.</p>';
                 return;
             }
+            
             // Affichage des formulaires
             Object.keys(val).forEach(k => {
                 const f = val[k];
-                formulairesDiv.innerHTML += `
-                    <div class="p-5 border border-blue-200 rounded-xl bg-white hover:bg-blue-50 transition flex justify-between items-center shadow-sm">
-                        <div>
-                            <h3 class="font-bold text-xl text-blue-900">${f.titre || 'Document Officiel'}</h3>
-                            <p class="text-sm text-gray-600">${f.description || 'Description non disponible.'}</p>
+                // Évite d'afficher deux fois le même formulaire si le titre correspond au modèle statique
+                if (f.titre !== "Formulaire CERFA : Demande de Permis de Construire") {
+                    formulairesContainerDiv.innerHTML += `
+                        <div class="p-5 border border-blue-200 rounded-xl bg-white hover:bg-blue-50 transition flex justify-between items-center shadow-sm">
+                            <div>
+                                <h3 class="font-bold text-xl text-blue-900">${f.titre || 'Document Officiel'}</h3>
+                                <p class="text-sm text-gray-600">${f.description || 'Description non disponible.'}</p>
+                            </div>
+                            ${f.lien ? `<a href="${f.lien}" target="_blank" class="bg-yellow-500 text-blue-900 px-5 py-2 rounded-full font-semibold hover:bg-yellow-400 transition flex items-center shadow-md">
+                                <i class="fa-solid fa-download mr-2"></i> Télécharger
+                            </a>` : `<span class="text-red-500 text-sm">Lien non disponible</span>`}
                         </div>
-                        ${f.lien ? `<a href="${f.lien}" target="_blank" class="bg-yellow-500 text-blue-900 px-5 py-2 rounded-full font-semibold hover:bg-yellow-400 transition flex items-center shadow-md">
-                            <i class="fa-solid fa-download mr-2"></i> Télécharger
-                        </a>` : `<span class="text-red-500 text-sm">Lien non disponible</span>`}
-                    </div>
-                `;
+                    `;
+                }
             });
         });
 
@@ -213,7 +265,7 @@
             const ref = db.ref('urbanisme/demandes').push();
             ref.set(data)
                 .then(()=> { 
-                    alert('✅ Votre demande a été envoyée au service urbanisme avec succès ! Référence : ' + ref.key); 
+                    alert('✅ Votre demande a été envoyée au service urbanisme avec succès ! Un agent vous recontactera. Référence : ' + ref.key); 
                     e.target.reset(); 
                 })
                 .catch(err => { 
