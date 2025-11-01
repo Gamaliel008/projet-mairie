@@ -96,7 +96,7 @@
                     <div class="relative h-96 overflow-hidden rounded-lg shadow-lg">
                         
                         <!-- DÉBUT DES 10 PHOTOS DU MAIRE -->
-                        <!-- NOTE: Remplacez les chemins d'accès aux images par les vôtres (jcq1.jpeg, etc.) -->
+                        <!-- NOTE: Remplacez les chemins d'accès aux images par les vôtres (maire_01.jpeg, etc.) -->
                         <div class="duration-700 ease-in-out" data-carousel-item>
                             <img src="maire_01.jpeg" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Photo du Maire lors d'un événement (1/10)">
                         </div>
@@ -307,6 +307,7 @@
                     <i class="fa-solid fa-city text-blue-600 mr-3"></i> Kolwezi : Notre Ville en Images
                 </h2>
                 <!-- data-carousel-interval="7000" pour le défilement automatique -->
+                <!-- data-carousel-sync="#carousel-ville-text" pour la synchronisation du carrousel de texte ci-contre -->
                 <div id="carousel-ville-images" class="relative w-full" data-carousel="slide" data-carousel-sync="#carousel-ville-text" data-carousel-interval="7000">
                     <div class="relative h-96 overflow-hidden rounded-lg shadow-lg">
                         
@@ -345,16 +346,15 @@
                         <!-- FIN DES 10 PHOTOS DE LA VILLE -->
 
                     </div>
-                    <!-- Boutons Précédent/Suivant (inchangés) -->
+                    <!-- Boutons Précédent/Suivant (complétés) -->
                     <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
                         <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-900/30 group-hover:bg-blue-900/50 transition duration-150"><svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/></svg><span class="sr-only">Previous</span></span>
                     </button>
                     <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
                         <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-900/30 group-hover:bg-blue-900/50 transition duration-150"><svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/></svg><span class="sr-only">Next</span></span>
                     </button>
-                    <!-- Indicateurs (mis à jour pour 10 slides) -->
+                    <!-- Indicateurs (complétés pour 10 slides) -->
                     <div class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2" data-carousel-indicators>
-                        <!-- Les 10 indicateurs pour chaque slide -->
                         <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-blue-500" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
                         <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-blue-500" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
                         <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-blue-500" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
@@ -369,219 +369,142 @@
                 </div>
             </div>
 
-            <!-- SECTION 2: DÉCOUVREZ KOLWEZI (10 MESSAGES SYNCHRONISÉS) -->
+            <!-- SECTION 2: TEXTE SYNCHRONISÉ (10 MESSAGES SUR LA VILLE) - NOUVEL AJOUT -->
             <div>
                 <h2 class="text-3xl font-extrabold text-blue-900 mb-4 border-b pb-2 flex items-center">
-                    <i class="fa-solid fa-info-circle text-yellow-500 mr-3"></i> Découvrez Kolwezi
+                    <i class="fa-solid fa-map-location-dot text-blue-400 mr-3"></i> Zoom sur Kolwezi
                 </h2>
-                <div id="carousel-ville-text" class="relative w-full text-carousel-container bg-gray-50 rounded-lg p-6 shadow-inner flex items-center justify-center overflow-hidden">
+                <!-- data-carousel-sync="#carousel-ville-images" assure la liaison avec le carrousel d'images -->
+                <div id="carousel-ville-text" class="relative w-full text-carousel-container bg-gray-50 rounded-lg p-6 shadow-inner flex items-center justify-center overflow-hidden" data-carousel-sync="#carousel-ville-images">
                     
-                    <!-- DÉBUT DES 10 MESSAGES DE LA VILLE -->
+                    <!-- DÉBUT DES 10 MESSAGES SUR LA VILLE -->
                     <div class="text-carousel-item active p-4">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Kolwezi, Capitale du Lualaba</h3>
-                        <p class="text-lg text-gray-700 leading-relaxed mb-2">
-                            Vue imprenable de Kolwezi, la ville minière au cœur du Lualaba. Son dynamisme urbain en fait une métropole en pleine croissance. (Description 1/10)
-                        </p>
-                        <p class="text-gray-600 italic text-sm">
-                            Le développement des infrastructures est notre priorité pour une ville plus connectée et moderne.
+                        <p class="text-xl font-bold text-blue-900 mb-2">1. La Cité du Cobalt et du Cuivre</p>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            Kolwezi est le cœur battant de l'industrie minière de la RDC. Nos richesses souterraines en **cobalt et en cuivre** sont reconnues mondialement, jouant un rôle crucial dans la transition énergétique mondiale.
                         </p>
                     </div>
 
                     <div class="text-carousel-item p-4">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Le Cœur Battant de la Ville</h3>
-                        <p class="text-lg text-gray-700 leading-relaxed mb-2">
-                            Nos rues animées témoignent de l'effervescence et de la vitalité. Un mélange harmonieux de modernité et de tradition qui invite à l'exploration. (Description 2/10)
-                        </p>
-                        <p class="text-gray-600 italic text-sm">
-                            Le commerce local est soutenu par la Mairie pour créer plus d'emplois et de richesse.
+                        <p class="text-xl font-bold text-blue-900 mb-2">2. Le Dynamisme Commercial</p>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            Les rues de Kolwezi sont synonymes de **commerce et d'échanges**. De nouvelles entreprises et des marchés locaux florissants témoignent de l'énergie entrepreneuriale de nos habitants. La ville est en constante effervescence économique.
                         </p>
                     </div>
 
                     <div class="text-carousel-item p-4">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Marchés et Communautés</h3>
-                        <p class="text-lg text-gray-700 leading-relaxed mb-2">
-                            Plongez au cœur de nos marchés vibrants, véritables lieux de rencontre et d'échange, où la culture et l'hospitalité s'expriment. (Description 3/10)
-                        </p>
-                        <p class="text-gray-600 italic text-sm">
-                            Des efforts sont faits pour la salubrité et la sécurité de tous les espaces publics.
+                        <p class="text-xl font-bold text-blue-900 mb-2">3. L'Authenticité du Grand Marché</p>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            Le **Grand Marché** est le point de rencontre de la communauté. C'est ici que l'on trouve les produits frais, l'artisanat local et que se manifeste la richesse culturelle et la convivialité de Kolwezi.
                         </p>
                     </div>
 
                     <div class="text-carousel-item p-4">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Vers un Avenir Meilleur</h3>
-                        <p class="text-lg text-gray-700 leading-relaxed mb-2">
-                            Admirez nos nouvelles infrastructures, symboles de l'engagement de la Mairie pour un développement durable. (Description 4/10)
-                        </p>
-                        <p class="text-gray-600 italic text-sm">
-                            Chaque projet est un pas de plus vers une meilleure qualité de vie pour tous les Kolweziens.
+                        <p class="text-xl font-bold text-blue-900 mb-2">4. Des Projets d'Infrastructures Modernes</p>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            Des édifices flambants neufs et des routes réhabilitées transforment le visage de Kolwezi. Ces **investissements en infrastructures** sont cruciaux pour améliorer la qualité de vie et l'efficacité des services.
                         </p>
                     </div>
 
                     <div class="text-carousel-item p-4">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Vie de Quartier Sereine</h3>
-                        <p class="text-lg text-gray-700 leading-relaxed mb-2">
-                            Découvrez la tranquillité de nos quartiers résidentiels, où la communauté et le bien-être sont au premier plan. (Description 5/10)
-                        </p>
-                        <p class="text-gray-600 italic text-sm">
-                            La Mairie s'investit pour garantir un environnement agréable et sûr pour toutes les familles.
-                        </p>
-                    </div>
-                    
-                    <!-- Nouveaux messages 6 à 10 -->
-                    <div class="text-carousel-item p-4">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Le Patrimoine Minier</h3>
-                        <p class="text-lg text-gray-700 leading-relaxed mb-2">
-                            Plongez dans l'histoire de nos gisements de cuivre et de cobalt, fondement de notre économie. Kolwezi est au cœur des richesses de la RDC. (Description 6/10)
-                        </p>
-                        <p class="text-gray-600 italic text-sm">
-                            Nous veillons à ce que l'exploitation minière bénéficie directement à la population locale.
+                        <p class="text-xl font-bold text-blue-900 mb-2">5. La Vie de Quartier au Quotidien</p>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            Bien au-delà de l'agitation du centre, nos **quartiers résidentiels** offrent des espaces de vie calmes et structurés. La municipalité travaille à renforcer l'éclairage public et la sécurité pour tous.
                         </p>
                     </div>
 
                     <div class="text-carousel-item p-4">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Nos Espaces Verts</h3>
-                        <p class="text-lg text-gray-700 leading-relaxed mb-2">
-                            Nous travaillons activement à l'amélioration de nos parcs et jardins pour offrir des lieux de détente et de loisirs à tous les citoyens. (Description 7/10)
-                        </p>
-                        <p class="text-gray-600 italic text-sm">
-                            La nature en ville est essentielle pour le bien-être.
+                        <p class="text-xl font-bold text-blue-900 mb-2">6. L'Héritage Minier et Industriel</p>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            L'histoire de Kolwezi est intimement liée à son **passé minier**. Les sites historiques et industriels témoignent d'une expertise reconnue et d'une longue tradition d'extraction de minerais stratégiques.
                         </p>
                     </div>
 
                     <div class="text-carousel-item p-4">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">L'Éducation en Marche</h3>
-                        <p class="text-lg text-gray-700 leading-relaxed mb-2">
-                            Nos écoles et universités forment la future élite de la RDC. Nous investissons constamment dans des infrastructures éducatives de qualité. (Description 8/10)
-                        </p>
-                        <p class="text-gray-600 italic text-sm">
-                            L'éducation est la clé de la prospérité future de Kolwezi.
+                        <p class="text-xl font-bold text-blue-900 mb-2">7. Le Poumon Vert de la Ville</p>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            Les **espaces verts et les parcs municipaux** sont essentiels pour l'environnement et le loisir. Nous investissons dans la rénovation et la création de lieux de détente pour les familles.
                         </p>
                     </div>
 
                     <div class="text-carousel-item p-4">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">La Modernisation des Routes</h3>
-                        <p class="text-lg text-gray-700 leading-relaxed mb-2">
-                            Nos grands axes routiers sont en pleine transformation pour fluidifier la circulation et faciliter le transport des biens et des personnes. (Description 9/10)
-                        </p>
-                        <p class="text-gray-600 italic text-sm">
-                            Des routes modernes pour une économie plus compétitive.
+                        <p class="text-xl font-bold text-blue-900 mb-2">8. L'Éducation, Pilier de l'Avenir</p>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            L'éducation est notre priorité. Kolwezi abrite de **nombreux établissements scolaires et universitaires** de qualité, formant la prochaine génération de leaders et de professionnels.
                         </p>
                     </div>
 
                     <div class="text-carousel-item p-4">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">L'Artisanat Local</h3>
-                        <p class="text-lg text-gray-700 leading-relaxed mb-2">
-                            Découverte des talents locaux et promotion de l'artisanat du Lualaba sur les marchés nationaux et internationaux. Un patrimoine à valoriser. (Description 10/10)
-                        </p>
-                        <p class="text-gray-600 italic text-sm">
-                            Soutien aux petits créateurs et aux traditions culturelles.
+                        <p class="text-xl font-bold text-blue-900 mb-2">9. Le Réseau Routier en Expansion</p>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            La ville s'engage dans un vaste programme de **construction et de réhabilitation routière** pour fluidifier la circulation, améliorer l'accès aux quartiers périphériques et soutenir l'activité économique.
                         </p>
                     </div>
-                    <!-- FIN DES 10 MESSAGES DE LA VILLE -->
+
+                    <div class="text-carousel-item p-4">
+                        <p class="text-xl font-bold text-blue-900 mb-2">10. La Richesse Culturelle et Artisanale</p>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            Kolwezi célèbre sa **diversité culturelle**. L'artisanat local, les festivals et les événements communautaires sont le reflet de l'identité forte et accueillante de notre ville.
+                        </p>
+                    </div>
+                    <!-- FIN DES 10 MESSAGES SUR LA VILLE -->
                 </div>
-            </div>
-        </section>
-
-        <hr class="border-gray-300 my-16">
-
-        <section id="actualites-lualaba" class="bg-white p-6 md:p-10 rounded-xl shadow-2xl border-t-4 border-red-500">
-            <h2 class="text-3xl font-extrabold text-blue-900 text-center mb-8 border-b-2 border-red-500 pb-2 flex items-center justify-center">
-                <i class="fa-solid fa-bullhorn text-red-600 mr-3"></i> Les Dernières Actualités du Lualaba
-            </h2>
-            <p class="text-center text-gray-600 mb-10">Informations importantes, décrets provinciaux et événements majeurs dans la province du Lualaba.</p>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-6 rounded-xl shadow-lg border-t-4 border-yellow-700 hover:shadow-xl transition duration-300">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center"><i class="fa-solid fa-handshake mr-2 text-yellow-600"></i> Nouvelle loi sur l'investissement</h3>
-                    <p class="text-gray-600 mb-4 text-sm">Le Gouvernorat a promulgué une nouvelle législation visant à faciliter l'établissement et la protection des investissements étrangers dans le secteur minier et agricole.</p>
-                    <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm transition">
-                        Lire le décret
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </a>
-                </div>
-
-                <div class="bg-gray-50 p-6 rounded-xl shadow-lg border-t-4 border-blue-700 hover:shadow-xl transition duration-300">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center"><i class="fa-solid fa-road mr-2 text-blue-600"></i> Réhabilitation de l'axe Kolwezi-Dilolo</h3>
-                    <p class="text-gray-600 mb-4 text-sm">Les travaux de grande envergure pour la réhabilitation de l'axe routier stratégique reliant Kolwezi à la frontière angolaise progressent conformément au calendrier établi.</p>
-                    <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm transition">
-                        Voir le rapport d'étape
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </a>
-                </div>
-
-                <div class="bg-gray-50 p-6 rounded-xl shadow-lg border-t-4 border-green-700 hover:shadow-xl transition duration-300">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center"><i class="fa-solid fa-hospital mr-2 text-green-600"></i> Inauguration d'un Hôpital Général</h3>
-                    <p class="text-gray-600 mb-4 text-sm">Cérémonie d'inauguration du nouvel Hôpital Général de Référence, financé par la province, renforçant l'accès aux soins de qualité pour la population.</p>
-                    <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm transition">
-                        Galerie de l'événement
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </a>
-                </div>
-
-            </div>
-            <div class="text-center mt-8">
-                <a href="#" class="inline-block px-6 py-3 bg-red-600 text-white font-semibold rounded-lg shadow-lg hover:bg-red-700 transition duration-300">Toutes les Actualités du Lualaba &rarr;</a>
-            </div>
-        </section>
-
-        <hr class="border-gray-300 my-16">
-
-        <section id="projets-phares" class="bg-white p-6 md:p-10 rounded-xl shadow-2xl border-t-4 border-red-500">
-            <h2 class="text-3xl font-extrabold text-blue-900 text-center mb-8 border-b-2 border-red-500 pb-2 flex items-center justify-center">
-                <i class="fa-solid fa-hammer text-red-600 mr-3"></i> Nos Projets d'Avenir de Kolwezi
-            </h2>
-            <p class="text-center text-gray-600 mb-10">Découvrez les initiatives clés qui façonnent l'avenir de notre ville.</p>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-6 rounded-xl shadow-lg border-t-4 border-blue-700 hover:shadow-xl transition duration-300">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center"><i class="fa-solid fa-lightbulb mr-2 text-blue-600"></i> Programme d'électrification rurale</h3>
-                    <p class="text-gray-600 mb-4 text-sm">Un vaste programme est déployé pour apporter l'électricité aux villages périphériques, utilisant des solutions solaires et des micro-réseaux pour un accès durable à l'énergie.</p>
-                    <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm transition">
-                        Détails du projet
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </a>
-                </div>
-                <!-- Vous pouvez continuer à ajouter les autres projets ici -->
             </div>
         </section>
 
     </main>
 
-    <footer class="bg-blue-900 text-white mt-12 py-8 px-6">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8">
-            <div>
-                <h3 class="text-lg font-bold mb-4 border-b border-yellow-400 pb-1">Mairie de Kolwezi</h3>
-                <p class="text-sm text-gray-300">Au service des citoyens pour une ville transparente, moderne et prospère.</p>
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white mt-16">
+        <div class="max-w-7xl mx-auto py-12 px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-400">Mairie de Kolwezi</h3>
+                    <p class="text-sm">
+                        Portail officiel de la Ville de Kolwezi, Province du Lualaba, RDC.
+                    </p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-300 hover:text-yellow-400 transition"><i class="fab fa-facebook-f text-xl"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-yellow-400 transition"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-yellow-400 transition"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-yellow-400 transition"><i class="fab fa-linkedin-in text-xl"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-400">Services Clés</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="etat_civil.html" class="hover:text-yellow-400 transition"><i class="fa-solid fa-angle-right mr-2 text-yellow-500"></i> État civil</a></li>
+                        <li><a href="urbanisme.html" class="hover:text-yellow-400 transition"><i class="fa-solid fa-angle-right mr-2 text-yellow-500"></i> Urbanisme & Permis</a></li>
+                        <li><a href="impots_taxes.html" class="hover:text-yellow-400 transition"><i class="fa-solid fa-angle-right mr-2 text-yellow-500"></i> Impôts & Taxes locales</a></li>
+                        <li><a href="sante_publique.html" class="hover:text-yellow-400 transition"><i class="fa-solid fa-angle-right mr-2 text-yellow-500"></i> Santé publique</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-400">Liens Rapides</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-yellow-400 transition"><i class="fa-solid fa-angle-right mr-2 text-yellow-500"></i> Dernières Actualités</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition"><i class="fa-solid fa-angle-right mr-2 text-yellow-500"></i> Projets en cours</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition"><i class="fa-solid fa-angle-right mr-2 text-yellow-500"></i> Organisation municipale</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition"><i class="fa-solid fa-angle-right mr-2 text-yellow-500"></i> Contactez-nous</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-400">Nous Contacter</h3>
+                    <address class="text-sm not-italic space-y-2">
+                        <p><i class="fa-solid fa-location-dot mr-2 text-yellow-500"></i> Avenue Principale, Kolwezi, RDC</p>
+                        <p><i class="fa-solid fa-phone mr-2 text-yellow-500"></i> +243 970 000 000</p>
+                        <p><i class="fa-solid fa-envelope mr-2 text-yellow-500"></i> contact@mairiekolwezi.cd</p>
+                        <p><i class="fa-solid fa-clock mr-2 text-yellow-500"></i> Lun - Ven: 8h00 - 16h00</p>
+                    </address>
+                </div>
             </div>
-            <div>
-                <h3 class="text-lg font-bold mb-4 border-b border-yellow-400 pb-1">Liens Rapides</h3>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-yellow-400 transition">Contact</a></li>
-                    <li><a href="#" class="hover:text-yellow-400 transition">Actualités</a></li>
-                    <li><a href="#" class="hover:text-yellow-400 transition">Demande de permis</a></li>
-                    <li><a href="#" class="hover:text-yellow-400 transition">Impôts & Taxes</a></li>
-                </ul>
+            
+            <div class="mt-8 pt-8 border-t border-blue-800 text-center text-sm text-gray-400">
+                &copy; 2024 Mairie de Kolwezi. Tous droits réservés.
             </div>
-            <div>
-                <h3 class="text-lg font-bold mb-4 border-b border-yellow-400 pb-1">Nous Suivre</h3>
-                <ul class="flex space-x-4">
-                    <li><a href="#" class="text-xl hover:text-yellow-400 transition"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="#" class="text-xl hover:text-yellow-400 transition"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#" class="text-xl hover:text-yellow-400 transition"><i class="fab fa-linkedin-in"></i></a></li>
-                    <li><a href="#" class="text-xl hover:text-yellow-400 transition"><i class="fab fa-youtube"></i></a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-lg font-bold mb-4 border-b border-yellow-400 pb-1">Coordonnées</h3>
-                <p class="text-sm text-gray-300">
-                    <i class="fa-solid fa-map-marker-alt mr-2 text-yellow-400"></i> Avenue Principale, Quartier Administatif, Kolwezi<br>
-                    <i class="fa-solid fa-phone mr-2 text-yellow-400 mt-2"></i> +243 999 000 000<br>
-                    <i class="fa-solid fa-envelope mr-2 text-yellow-400 mt-2"></i> contact@mairie-kolwezi.cd
-                </p>
-            </div>
-        </div>
-        <div class="text-center text-sm text-gray-400 mt-8 pt-4 border-t border-gray-700">
-            &copy; 2024 Mairie de Kolwezi. Tous droits réservés.
         </div>
     </footer>
 
