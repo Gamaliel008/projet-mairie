@@ -3,16 +3,385 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="description" content="Service d'État Civil de la Mairie de Kolwezi - Déclarations de naissance, mariages et décès en RDC">
+    <meta name="keywords" content="état civil, Kolwezi, naissance, mariage, décès, RDC, acte de naissance">
+    <meta name="author" content="Mairie de Kolwezi">
     <title>État Civil — Déclarations de Naissance RDC — Mairie de Kolwezi</title>
+    
+    <!-- Préchargement des ressources critiques -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    
+    <!-- Styles et scripts -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
     <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #f59e0b;
+            --success-color: #059669;
+            --warning-color: #d97706;
+            --danger-color: #dc2626;
+        }
+        
         /* Utilisation de la police Inter */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         .font-\[Inter\] {
             font-family: 'Inter', sans-serif;
         }
+        
+        /* Améliorations pour l'accessibilité */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Animation pour les images de chargement */
+        .loading-spinner {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Améliorations pour les transitions */
+        .smooth-transition {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* Styles pour les messages d'alerte */
+        .alert-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            max-width: 90%;
+            width: 400px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        /* Améliorations pour le menu mobile */
+        @media (max-width: 768px) {
+            .mobile-menu-transition {
+                transition: max-height 0.3s ease-out;
+                overflow: hidden;
+            }
+        }
+        
+        /* Focus visibles pour l'accessibilité */
+        .focus-visible {
+            outline: 2px solid #f59e0b;
+            outline-offset: 2px;
+        }
     </style>
-    <!-- Imports Firebase pour Firestore et Auth -->
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-[Inter]">
+
+    <!-- Barre de Navigation simplifiée (Accueil et État Civil) -->
+    <nav class="bg-blue-900 text-white shadow sticky top-0 z-50" role="navigation" aria-label="Navigation principale">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
+            <a href="index.html" class="flex items-center text-2xl font-bold space-x-2 focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded">
+                <i class="fa-solid fa-landmark text-yellow-400" aria-hidden="true"></i>
+                <span>Mairie de Kolwezi</span>
+            </a>
+            
+            <!-- Navigation desktop -->
+            <ul class="hidden md:flex space-x-8 font-medium" role="menubar">
+                <li role="none">
+                    <a href="index.html" class="flex items-center hover:text-yellow-400 transition duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded p-1" role="menuitem">
+                        <i class="fa-solid fa-house mr-1" aria-hidden="true"></i> Accueil
+                    </a>
+                </li>
+                <li class="group relative" role="none">
+                    <a href="etat_civil.html" class="flex items-center text-yellow-400 border-b-2 border-yellow-400 pb-1 focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded p-1" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa-solid fa-id-card mr-1" aria-hidden="true"></i> État Civil
+                    </a>
+                    <div class="absolute hidden group-hover:block bg-blue-800 shadow-xl rounded-b-lg top-full pt-2 -left-2 w-56 transition duration-300" role="menu">
+                        <!-- Sous-menus -->
+                        <a href="#naissances" class="block px-4 py-2 hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded" role="menuitem">Naissances (Procédure)</a>
+                        <a href="#mariages" class="block px-4 py-2 hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded" role="menuitem">Mariages (Dossier)</a>
+                        <a href="#deces" class="block px-4 py-2 hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded" role="menuitem">Décès (Urgence)</a>
+                        <a href="#formulaires" class="block px-4 py-2 hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded" role="menuitem">Formulaires & Modèles</a>
+                    </div>
+                </li>
+            </ul>
+            
+            <!-- Bouton menu mobile -->
+            <button 
+                class="md:hidden inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-yellow-400 rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-yellow-400" 
+                aria-expanded="false" 
+                aria-controls="mobile-menu"
+                aria-label="Ouvrir le menu principal"
+            >
+                <span class="sr-only">Ouvrir le menu principal</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Menu mobile -->
+        <div class="hidden md:hidden mobile-menu-transition max-h-0" id="mobile-menu" role="menu">
+            <ul class="flex flex-col space-y-2 p-4 text-sm font-medium">
+                <li role="none">
+                    <a href="index.html" class="block py-2 px-3 rounded hover:bg-blue-800 transition focus:outline-none focus:ring-2 focus:ring-yellow-400" role="menuitem">
+                        <i class="fa-solid fa-house mr-2" aria-hidden="true"></i> Accueil
+                    </a>
+                </li>
+                <li role="none">
+                    <a href="etat_civil.html" class="block py-2 px-3 rounded hover:bg-blue-800 transition font-bold focus:outline-none focus:ring-2 focus:ring-yellow-400" role="menuitem">
+                        <i class="fa-solid fa-id-card mr-2" aria-hidden="true"></i> État Civil
+                    </a>
+                    <ul class="ml-4 border-l border-blue-700 py-1 space-y-1" role="menu">
+                        <li role="none">
+                            <a href="#naissances" class="block py-2 px-3 rounded hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-yellow-400" role="menuitem">Naissances</a>
+                        </li>
+                        <li role="none">
+                            <a href="#mariages" class="block py-2 px-3 rounded hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-yellow-400" role="menuitem">Mariages</a>
+                        </li>
+                        <li role="none">
+                            <a href="#deces" class="block py-2 px-3 rounded hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-yellow-400" role="menuitem">Décès</a>
+                        </li>
+                        <li role="none">
+                            <a href="#formulaires" class="block py-2 px-3 rounded hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-yellow-400" role="menuitem">Formulaires</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto py-16 px-6 space-y-16">
+
+        <header class="text-center bg-blue-50 p-12 rounded-xl shadow-inner border-b-4 border-blue-600">
+            <h1 class="text-5xl font-extrabold text-blue-900 mb-3">
+                <i class="fa-solid fa-certificate text-yellow-600 mr-3" aria-hidden="true"></i>
+                Service de l'État Civil et des Archives
+            </h1>
+            <p class="text-gray-700 text-xl italic max-w-4xl mx-auto">
+                Votre guichet unique pour les démarches de vie en RDC : <span class="font-bold">Actes de Naissance, Mariage et Décès</span>. Authenticité et rapidité garanties.
+            </p>
+        </header>
+
+        <section class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-yellow-500">
+                <h3 class="text-2xl font-bold text-blue-900 mb-3 flex items-center">
+                    <i class="fa-solid fa-clock mr-3 text-yellow-600" aria-hidden="true"></i> Horaires et Contact
+                </h3>
+                <p class="text-gray-700">
+                    <span class="font-semibold">Adresse :</span> Mairie Centrale de Kolwezi, Rez-de-Chaussée.<br>
+                    <span class="font-semibold">Ouverture :</span> Lun. au Ven. de <span class="font-bold">08h00 à 15h30</span>.
+                </p>
+                <p class="mt-3 text-lg font-semibold text-red-600">
+                    <i class="fa-solid fa-phone-volume mr-1" aria-hidden="true"></i> Urgence Décès : [Numéro de Téléphone Urgent]
+                </p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500">
+                <h3 class="text-2xl font-bold text-blue-900 mb-3 flex items-center">
+                    <i class="fa-solid fa-file-shield mr-3 text-red-600" aria-hidden="true"></i> Authenticité des Actes
+                </h3>
+                <p class="text-gray-700">
+                    <strong>Attention :</strong> Pour des raisons légales, les actes originaux (extraits, copies intégrales) doivent être <span class="font-semibold">retirés en personne</span> au guichet avec une pièce d'identité valide. <span class="font-semibold">Aucun envoi par email.</span>
+                </p>
+            </div>
+        </section>
+        
+        <section id="naissances" class="bg-white p-10 rounded-xl shadow-2xl border-t-8 border-green-600 space-y-8">
+            <h2 class="text-3xl font-bold text-blue-900 flex items-center mb-8">
+                <i class="fa-solid fa-baby-carriage mr-4 text-green-600 text-4xl" aria-hidden="true"></i> Acte de Naissance : Déclaration et Procédures (RDC)
+            </h2>
+            
+            <!-- AVERTISSEMENT LÉGAL RDC -->
+            <div class="bg-red-50 border-l-4 border-red-600 p-4 rounded-lg shadow-inner">
+                <h4 class="font-extrabold text-red-700 text-xl mb-2 flex items-center">
+                    <i class="fa-solid fa-triangle-exclamation mr-3" aria-hidden="true"></i> DÉLAI LÉGAL IMPÉRATIF !
+                </h4>
+                <p class="text-gray-700">
+                    Conformément à la loi congolaise, la déclaration de naissance doit être faite auprès de l'Officier de l'État Civil du lieu de l'accouchement dans un délai strict de <span class="text-red-800 font-extrabold">15 jours francs</span> après la naissance. Le non-respect de ce délai entraîne la procédure lourde du Jugement Supplétif.
+                </p>
+            </div>
+            
+            <!-- Nouvelle structure en 2 colonnes logiques (1/3 et 2/3) -->
+            <div class="grid lg:grid-cols-3 gap-8">
+
+                <!-- PRIMARY PATH (Déclaration dans les 15 Jours + Documents) - Prend 2 colonnes sur 3 sur grand écran -->
+                <div class="lg:col-span-2 space-y-8 border-r lg:border-gray-200 lg:pr-8">
+                    
+                    <!-- 1. Déclaration dans les délais (15 jours) -->
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-2xl text-green-700 mb-3 flex items-center">
+                            <i class="fa-solid fa-check-circle mr-3" aria-hidden="true"></i> 1. Déclaration dans les 15 Jours
+                        </h4>
+                        <p class="italic text-gray-600">Procédure simple, rapide et recommandée par l'administration.</p>
+                        <ol class="list-decimal ml-5 text-gray-700 space-y-3 pl-4">
+                            <li><span class="font-semibold">Déclarant :</span> Le père, la mère, ou toute personne majeure ayant assisté à l'accouchement se présente à la Mairie.</li>
+                            <li><span class="font-semibold">Lieu :</span> Mairie ou Bureau d'État Civil du Quartier/Commune de l'accouchement.</li>
+                            <li><span class="font-semibold">Enregistrement :</span> L'Officier dresse immédiatement l'acte dans le registre, sur base du certificat médical.</li>
+                            <li><span class="font-semibold">Délivrance :</span> L'Extrait d'Acte de Naissance est délivré immédiatement, gratuitement, et est légalement valide.</li>
+                        </ol>
+                    </div>
+                    
+                    <!-- 2. Pièces Requises -->
+                    <div class="space-y-4 pt-4 border-t border-gray-100">
+                        <h4 class="font-bold text-2xl text-green-700 mb-3 flex items-center">
+                            <i class="fa-solid fa-file-lines mr-3" aria-hidden="true"></i> 2. Documents et Informations Essentiels
+                        </h4>
+                        <ul class="list-disc ml-5 text-gray-700 space-y-2 pl-4">
+                            <li class="font-extrabold text-blue-800">Certificat médical d'accouchement (OBLIGATOIRE).</li>
+                            <li>Pièces d'identité valides (Carte d'Électeur ou Passeport) du ou des parents et du déclarant.</li>
+                            <li>Livret de famille ou Acte de Mariage des parents (si mariés).</li>
+                            <li>Information requise : Le(s) prénom(s) et nom de famille choisi(s) pour l'enfant.</li>
+                        </ul>
+                        <a href="#formulaires" class="mt-4 inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium hover:bg-blue-200 transition text-sm flex items-center w-fit focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <i class="fa-solid fa-file-pdf mr-2" aria-hidden="true"></i> Télécharger le Modèle de Déclaration
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- WARNING PATH (Déclaration Tardive) - Prend 1 colonne sur 3 sur grand écran -->
+                <div class="lg:col-span-1 space-y-4 bg-red-50 p-6 rounded-xl border-2 border-red-400 h-fit shadow-md">
+                    <h4 class="font-bold text-2xl text-red-700 mb-3 flex items-center">
+                        <i class="fa-solid fa-gavel mr-3" aria-hidden="true"></i> 3. Déclaration Tardive (Après 15 Jours)
+                    </h4>
+                    <p class="font-extrabold text-red-800 text-lg border-b pb-2">Si le délai est dépassé, l'acte ne peut plus être établi en Mairie !</p>
+                    <ol class="list-decimal ml-5 text-gray-700 space-y-3 pl-4">
+                        <li><span class="font-semibold">Saisine du Tribunal :</span> Il faut obligatoirement s'adresser au Tribunal de Paix pour obtenir un Jugement Supplétif d'Acte de Naissance.</li>
+                        <li><span class="font-semibold">Dossier Juridique :</span> Le dossier inclut une requête, une attestation de non-déclaration de la Mairie et d'autres preuves.</li>
+                        <li><span class="font-semibold">Transcription :</span> Le Jugement Supplétif doit être transcrit dans le registre de la Mairie pour produire l'Acte de Naissance.</li>
+                        <li><span class="font-extrabold text-red-900">À ÉVITER :</span> Cette procédure est longue, coûteuse et complexe.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <!-- CLARIFICATION TYPES D'ACTES (inchangé) -->
+            <div class="pt-6 border-t border-gray-200">
+                <h4 class="font-bold text-2xl text-blue-900 mb-3 flex items-center">
+                    <i class="fa-solid fa-scroll mr-2 text-blue-500" aria-hidden="true"></i> Extrait vs. Copie Intégrale
+                </h4>
+                <div class="grid md:grid-cols-2 gap-6 text-gray-700">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <p class="font-semibold text-lg">L'Extrait de l'Acte de Naissance</p>
+                        <p class="text-sm">Version abrégée et simplifiée, utilisée pour la plupart des démarches administratives courantes (ex: école, passeport, carte d'identité). Contient les informations essentielles (Nom, Prénom, Date, Lieu, Parents).</p>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <p class="font-semibold text-lg">La Copie Intégrale de l'Acte de Naissance</p>
+                        <p class="text-sm">Reproduction complète et conforme à l'acte original dans le registre. Elle est souvent demandée pour les procédures judiciaires ou les dossiers de mariage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mariages" class="bg-white p-10 rounded-xl shadow-2xl border-t-8 border-yellow-600 space-y-6">
+            <h2 class="text-3xl font-bold text-blue-900 flex items-center mb-6">
+                <i class="fa-solid fa-ring mr-4 text-yellow-600 text-4xl" aria-hidden="true"></i> Mariage Civil
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="font-semibold text-xl text-yellow-700 mb-2">Procédure et Délais</h4>
+                    <ul class="list-disc ml-5 text-gray-700 space-y-2">
+                        <li>Dépôt du dossier de mariage complet <span class="font-semibold">au moins 30 jours</span> avant la date envisagée.</li>
+                        <li><span class="font-semibold">Publication des bans</span> : Affichage obligatoire par l'Officier d'État Civil.</li>
+                        <li>Date de la cérémonie fixée après validation du dossier.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-xl text-yellow-700 mb-2">Dossier à Constituer (Liste non exhaustive)</h4>
+                    <p class="text-gray-700">Actes de naissance récents (datant de moins de 3 mois), certificats de célibat/divorce, fiches de renseignements (à télécharger), pièces d'identité des témoins et des futurs époux.</p>
+                    <a href="#contact" class="mt-3 inline-block text-blue-600 hover:underline font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">
+                        <i class="fa-solid fa-calendar-alt mr-1" aria-hidden="true"></i> Prendre RDV pour dépôt de dossier
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="deces" class="bg-white p-10 rounded-xl shadow-2xl border-t-8 border-red-600 space-y-6">
+            <h2 class="text-3xl font-bold text-blue-900 flex items-center mb-6">
+                <i class="fa-solid fa-cross mr-4 text-red-600 text-4xl" aria-hidden="true"></i> Déclaration de Décès
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="font-semibold text-xl text-red-700 mb-2">Délais et Déclarant</h4>
+                    <p class="text-gray-700">La déclaration doit être faite dans les <span class="font-semibold">7 jours</span> (délai légal, à vérifier) suivant le décès. Elle est faite par un membre de la famille ou une entreprise de pompes funèbres mandatée.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-xl text-red-700 mb-2">Pièces Indispensables pour l'Acte</h4>
+                    <p class="text-gray-700"><span class="font-semibold">Certificat de décès établi par le médecin</span> (obligatoire pour le permis d'inhumer), pièce d'identité du défunt (si disponible) et du déclarant. L'acte de décès est délivré immédiatement.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="formulaires" class="bg-gray-100 shadow-xl rounded-xl p-10 border-4 border-blue-200">
+            <h2 class="text-3xl font-bold text-blue-900 mb-8 flex items-center">
+                <i class="fa-solid fa-cloud-arrow-down mr-3 text-blue-600" aria-hidden="true"></i>
+                Formulaires et Documents Officiels
+            </h2>
+            <p class="text-gray-600 mb-6">Cliquez sur <span class="font-semibold">Télécharger</span> pour obtenir le document requis. Remplissez-le <span class="font-semibold">avant</span> de vous présenter au guichet pour gagner du temps.</p>
+
+            <div id="firebase_documents_list" class="space-y-4 text-gray-700">
+                <!-- Modèle de naissance statique (toujours affiché) -->
+                <div class="p-5 border border-green-700 rounded-xl bg-green-100 hover:bg-green-50 transition flex justify-between items-center shadow-lg">
+                    <div>
+                        <h3 class="font-bold text-xl text-green-800 flex items-center">
+                            <i class="fa-solid fa-file-alt mr-2" aria-hidden="true"></i> Formulaire de Déclaration de Naissance (Modèle)
+                        </h3>
+                        <p class="text-sm text-gray-700">Document essentiel à pré-remplir avant votre passage au guichet.</p>
+                    </div>
+                    <a href="lien_vers_modele_naissance.pdf" target="_blank" class="bg-green-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-green-700 transition flex items-center shadow-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <i class="fa-solid fa-download mr-2" aria-hidden="true"></i> Télécharger
+                    </a>
+                </div>
+                <!-- Point d'ancrage pour les documents chargés par Firestore -->
+                <div id="loading_formulaires" class="flex justify-center items-center h-16">
+                    <i class="fa-solid fa-spinner loading-spinner text-3xl text-gray-400 mr-3" aria-hidden="true"></i>
+                    <p class="italic text-gray-500">Chargement des formulaires supplémentaires depuis la base de données...</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="bg-white shadow-2xl rounded-xl p-10 border-t-8 border-green-700">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center">
+                <i class="fa-solid fa-envelope-open-text mr-3 text-green-700" aria-hidden="true"></i>
+                Soumettre une Question ou une Demande
+            </h2>
+            <p class="text-gray-600 mb-6">Utilisez ce formulaire pour les demandes de renseignements, de copies d'actes (non urgent), ou de rectification. <span class="font-semibold">Veuillez NE PAS utiliser pour la déclaration urgente d'un décès.</span></p>
+            <form id="demandeForm" class="space-y-5">
+                <input type="text" id="nom" placeholder="Votre nom complet (Obligatoire)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required aria-required="true">
+                <input type="tel" id="telephone" placeholder="Téléphone (Obligatoire pour le rappel)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required aria-required="true">
+                <input type="email" id="email" placeholder="Email (Optionnel)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition">
+                <textarea id="message" placeholder="Décrivez votre demande (Ex: Copie intégrale de l'acte de mariage de X et Y en 2005)..." class="w-full p-4 border border-gray-300 rounded-lg h-36 focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required aria-required="true"></textarea>
+                <div class="text-right">
+                    <button type="submit" class="bg-blue-900 text-white px-8 py-3 rounded-xl font-semibold text-lg hover:bg-blue-700 transition duration-300 shadow-lg flex items-center ml-auto focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                        <i class="fa-solid fa-paper-plane mr-2" aria-hidden="true"></i> Envoyer ma Demande
+                    </button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="bg-blue-900 text-white mt-16 pt-10 pb-6" role="contentinfo">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="mb-2">Service d'État Civil — Mairie de Kolwezi | La mémoire de la cité.</p>
+            <p>&copy; <span id="yr">2025</span> Mairie de Kolwezi — Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts optimisés -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -67,10 +436,11 @@
         // Fonction utilitaire pour afficher les messages (remplace alert())
         function showCustomMessage(type, message, refKey = '') {
             const messageBox = document.createElement('div');
-            const icon = type === 'success' ? '<i class="fa-solid fa-circle-check mr-2"></i>' : '<i class="fa-solid fa-circle-xmark mr-2"></i>';
+            const icon = type === 'success' ? '<i class="fa-solid fa-circle-check mr-2" aria-hidden="true"></i>' : '<i class="fa-solid fa-circle-xmark mr-2" aria-hidden="true"></i>';
             const bgColor = type === 'success' ? 'bg-green-100 border-green-500 text-green-700' : 'bg-red-100 border-red-500 text-red-700';
             
-            messageBox.className = `fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 rounded-xl shadow-2xl border-l-8 font-bold z-[1000] max-w-sm w-11/12 text-center ${bgColor}`;
+            messageBox.className = `alert-box p-6 rounded-xl border-l-8 font-bold ${bgColor}`;
+            messageBox.setAttribute('role', 'alert');
             messageBox.innerHTML = `${icon} ${message} ${refKey ? `<br><span class="text-sm font-normal block mt-2">Réf: ${refKey}</span>` : ''}`;
             
             document.body.appendChild(messageBox);
@@ -81,7 +451,11 @@
 
         // 3. Chargement des formulaires (Public)
         function loadFormulaires() {
-            if (!db) return;
+            if (!db) {
+                const loadingElement = document.getElementById('loading_formulaires');
+                if (loadingElement) loadingElement.innerHTML = '<p class="text-gray-500 italic p-4 border rounded-lg bg-white text-center"><i class="fa-solid fa-info-circle mr-2" aria-hidden="true"></i> Base de données non disponible</p>';
+                return;
+            }
             
             // Chemin de collection public: /artifacts/{appId}/public/data/formulaires
             const formulairesRef = collection(db, 'artifacts', appId, 'public', 'data', 'formulaires');
@@ -98,7 +472,7 @@
                 if (loadingElement) loadingElement.innerHTML = ''; // Nettoie le message de chargement
 
                 if (snapshot.empty) {
-                    if (loadingElement) loadingElement.innerHTML = '<p class="text-gray-500 italic p-4 border rounded-lg bg-white text-center"><i class="fa-solid fa-info-circle mr-2"></i> Aucun formulaire supplémentaire n\'est disponible au téléchargement.</p>';
+                    if (loadingElement) loadingElement.innerHTML = '<p class="text-gray-500 italic p-4 border rounded-lg bg-white text-center"><i class="fa-solid fa-info-circle mr-2" aria-hidden="true"></i> Aucun formulaire supplémentaire n\'est disponible au téléchargement.</p>';
                     return;
                 }
                 
@@ -111,8 +485,8 @@
                                 <h3 class="font-bold text-xl text-blue-900">${f.titre || 'Formulaire Sans Titre'}</h3>
                                 <p class="text-sm text-gray-600">${f.description || 'Description non disponible.'}</p>
                             </div>
-                            ${f.lien ? `<a href="${f.lien}" target="_blank" class="bg-yellow-500 text-blue-900 px-5 py-2 rounded-full font-semibold hover:bg-yellow-400 transition flex items-center shadow-md">
-                                <i class="fa-solid fa-file-pdf mr-2"></i> Télécharger
+                            ${f.lien ? `<a href="${f.lien}" target="_blank" class="bg-yellow-500 text-blue-900 px-5 py-2 rounded-full font-semibold hover:bg-yellow-400 transition flex items-center shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <i class="fa-solid fa-file-pdf mr-2" aria-hidden="true"></i> Télécharger
                             </a>` : `<span class="text-red-500 text-sm">Lien non disponible</span>`}
                         </div>
                     `;
@@ -121,13 +495,16 @@
             }, (error) => {
                 console.error("Firestore formulaires loading error:", error);
                 const loadingElement = document.getElementById('loading_formulaires');
-                if (loadingElement) loadingElement.innerHTML = '<p class="text-red-500 italic p-4 border rounded-lg bg-white text-center"><i class="fa-solid fa-times-circle mr-2"></i> Erreur de chargement des formulaires.</p>';
+                if (loadingElement) loadingElement.innerHTML = '<p class="text-red-500 italic p-4 border rounded-lg bg-white text-center"><i class="fa-solid fa-times-circle mr-2" aria-hidden="true"></i> Erreur de chargement des formulaires.</p>';
             });
         }
 
         // 4. Soumission du formulaire de demande (Private, user-specific)
         function setupFormSubmission() {
-            document.getElementById('demandeForm').addEventListener('submit', async (e) => {
+            const form = document.getElementById('demandeForm');
+            if (!form) return;
+            
+            form.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 
                 if (!db || !isAuthReady) {
@@ -152,241 +529,72 @@
                 try {
                     const docRef = await addDoc(demandesCollectionRef, data);
                     showCustomMessage('success', 'Demande envoyée avec succès ! Un agent vous recontactera.', docRef.id);
-                    e.target.reset();
+                    form.reset();
                 } catch (err) {
                     console.error("Firestore Demande submission error:", err);
                     showCustomMessage('error', 'Erreur lors de l\'envoi de la demande. Veuillez réessayer ou appeler directement.');
                 }
             });
         }
-        
+    </script>
+    
+    <script>
+        // Gestion du menu mobile et initialisation
         document.addEventListener('DOMContentLoaded', () => {
-             document.getElementById('yr').textContent = new Date().getFullYear();
+            // Mise à jour de l'année dans le footer
+            document.getElementById('yr').textContent = new Date().getFullYear();
+            
+            // Gestion du menu mobile
+            const mobileMenuButton = document.querySelector('button[aria-controls="mobile-menu"]');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+                    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                    
+                    if (mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.remove('hidden');
+                        mobileMenu.classList.remove('max-h-0');
+                        mobileMenu.classList.add('max-h-screen');
+                    } else {
+                        mobileMenu.classList.add('max-h-0');
+                        mobileMenu.classList.remove('max-h-screen');
+                        // Attendre la fin de l'animation avant de cacher complètement
+                        setTimeout(() => {
+                            mobileMenu.classList.add('hidden');
+                        }, 300);
+                    }
+                });
+            }
+            
+            // Gestion des ancres pour navigation fluide
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Gestion du focus pour l'accessibilité
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    document.body.classList.add('focus-visible');
+                }
+            });
+            
+            document.addEventListener('mousedown', function() {
+                document.body.classList.remove('focus-visible');
+            });
         });
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-</head>
-
-<body class="bg-gray-50 text-gray-800 font-[Inter]">
-
-    <!-- Barre de Navigation simplifiée (Accueil et État Civil) -->
-    <nav class="bg-blue-900 text-white shadow sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
-            <a href="index.html" class="flex items-center text-2xl font-bold space-x-2">
-                <i class="fa-solid fa-landmark text-yellow-400"></i>
-                <span>Mairie de Kolwezi</span>
-            </a>
-            <ul class="hidden md:flex space-x-8 font-medium">
-                <li><a href="index.html" class="flex items-center hover:text-yellow-400 transition duration-200"><i class="fa-solid fa-house mr-1"></i> Accueil</a></li>
-                <li class="group relative">
-                    <a href="etat_civil.html" class="flex items-center text-yellow-400 border-b-2 border-yellow-400 pb-1"><i class="fa-solid fa-id-card mr-1"></i> État Civil</a>
-                    <div class="absolute hidden group-hover:block bg-blue-800 shadow-xl rounded-b-lg top-full pt-2 -left-2 w-56 transition duration-300">
-                        <!-- Sous-menus -->
-                        <a href="#naissances" class="block px-4 py-2 hover:bg-blue-700 transition">Naissances (Procédure)</a>
-                        <a href="#mariages" class="block px-4 py-2 hover:bg-blue-700 transition">Mariages (Dossier)</a>
-                        <a href="#deces" class="block px-4 py-2 hover:bg-blue-700 transition">Décès (Urgence)</a>
-                        <a href="#formulaires" class="block px-4 py-2 hover:bg-blue-700 transition">Formulaires & Modèles</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <main class="max-w-6xl mx-auto py-16 px-6 space-y-16">
-
-        <header class="text-center bg-blue-50 p-12 rounded-xl shadow-inner border-b-4 border-blue-600">
-            <h1 class="text-5xl font-extrabold text-blue-900 mb-3">
-                <i class="fa-solid fa-certificate text-yellow-600 mr-3"></i>
-                Service de l'État Civil et des Archives
-            </h1>
-            <p class="text-gray-700 text-xl italic max-w-4xl mx-auto">
-                Votre guichet unique pour les démarches de vie en RDC : <span class="font-bold">Actes de Naissance, Mariage et Décès</span>. Authenticité et rapidité garanties.
-            </p>
-        </header>
-
-        <section class="grid md:grid-cols-2 gap-8">
-            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-yellow-500">
-                <h3 class="text-2xl font-bold text-blue-900 mb-3 flex items-center"><i class="fa-solid fa-clock mr-3 text-yellow-600"></i> Horaires et Contact</h3>
-                <p class="text-gray-700">
-                    <span class="font-semibold">Adresse :</span> Mairie Centrale de Kolwezi, Rez-de-Chaussée.<br>
-                    <span class="font-semibold">Ouverture :</span> Lun. au Ven. de <span class="font-bold">08h00 à 15h30</span>.
-                </p>
-                <p class="mt-3 text-lg font-semibold text-red-600"><i class="fa-solid fa-phone-volume mr-1"></i> Urgence Décès : [Numéro de Téléphone Urgent]</p>
-            </div>
-            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500">
-                <h3 class="text-2xl font-bold text-blue-900 mb-3 flex items-center"><i class="fa-solid fa-file-shield mr-3 text-red-600"></i> Authenticité des Actes</h3>
-                <p class="text-gray-700">
-                    <strong>Attention :</strong> Pour des raisons légales, les actes originaux (extraits, copies intégrales) doivent être <span class="font-semibold">retirés en personne</span> au guichet avec une pièce d'identité valide. <span class="font-semibold">Aucun envoi par email.</span>
-                </p>
-            </div>
-        </section>
-        
-        <section id="naissances" class="bg-white p-10 rounded-xl shadow-2xl border-t-8 border-green-600 space-y-8">
-            <h2 class="text-3xl font-bold text-blue-900 flex items-center mb-8">
-                <i class="fa-solid fa-baby-carriage mr-4 text-green-600 text-4xl"></i> Acte de Naissance : Déclaration et Procédures (RDC)
-            </h2>
-            
-            <!-- AVERTISSEMENT LÉGAL RDC -->
-            <div class="bg-red-50 border-l-4 border-red-600 p-4 rounded-lg shadow-inner">
-                <h4 class="font-extrabold text-red-700 text-xl mb-2 flex items-center"><i class="fa-solid fa-triangle-exclamation mr-3"></i> DÉLAI LÉGAL IMPÉRATIF !</h4>
-                <p class="text-gray-700">
-                    Conformément à la loi congolaise, la déclaration de naissance doit être faite auprès de l'Officier de l'État Civil du lieu de l'accouchement dans un délai strict de <span class="text-red-800 font-extrabold">15 jours francs</span> après la naissance. Le non-respect de ce délai entraîne la procédure lourde du Jugement Supplétif.
-                </p>
-            </div>
-            
-            <!-- Nouvelle structure en 2 colonnes logiques (1/3 et 2/3) -->
-            <div class="grid lg:grid-cols-3 gap-8">
-
-                <!-- PRIMARY PATH (Déclaration dans les 15 Jours + Documents) - Prend 2 colonnes sur 3 sur grand écran -->
-                <div class="lg:col-span-2 space-y-8 border-r lg:border-gray-200 lg:pr-8">
-                    
-                    <!-- 1. Déclaration dans les délais (15 jours) -->
-                    <div class="space-y-4">
-                        <h4 class="font-bold text-2xl text-green-700 mb-3 flex items-center"><i class="fa-solid fa-check-circle mr-3"></i> 1. Déclaration dans les 15 Jours</h4>
-                        <p class="italic text-gray-600">Procédure simple, rapide et recommandée par l'administration.</p>
-                        <ol class="list-decimal ml-5 text-gray-700 space-y-3 pl-4">
-                            <li><span class="font-semibold">Déclarant :</span> Le père, la mère, ou toute personne majeure ayant assisté à l'accouchement se présente à la Mairie.</li>
-                            <li><span class="font-semibold">Lieu :</span> Mairie ou Bureau d'État Civil du Quartier/Commune de l'accouchement.</li>
-                            <li><span class="font-semibold">Enregistrement :</span> L'Officier dresse immédiatement l'acte dans le registre, sur base du certificat médical.</li>
-                            <li><span class="font-semibold">Délivrance :</span> L'Extrait d'Acte de Naissance est délivré immédiatement, gratuitement, et est légalement valide.</li>
-                        </ol>
-                    </div>
-                    
-                    <!-- 2. Pièces Requises -->
-                    <div class="space-y-4 pt-4 border-t border-gray-100">
-                        <h4 class="font-bold text-2xl text-green-700 mb-3 flex items-center"><i class="fa-solid fa-file-lines mr-3"></i> 2. Documents et Informations Essentiels</h4>
-                        <ul class="list-disc ml-5 text-gray-700 space-y-2 pl-4">
-                            <li class="font-extrabold text-blue-800">Certificat médical d'accouchement (OBLIGATOIRE).</li>
-                            <li>Pièces d'identité valides (Carte d'Électeur ou Passeport) du ou des parents et du déclarant.</li>
-                            <li>Livret de famille ou Acte de Mariage des parents (si mariés).</li>
-                            <li>Information requise : Le(s) prénom(s) et nom de famille choisi(s) pour l'enfant.</li>
-                        </ul>
-                        <a href="#formulaires" class="mt-4 inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium hover:bg-blue-200 transition text-sm flex items-center w-fit">
-                            <i class="fa-solid fa-file-pdf mr-2"></i> Télécharger le Modèle de Déclaration
-                        </a>
-                    </div>
-
-                </div>
-
-                <!-- WARNING PATH (Déclaration Tardive) - Prend 1 colonne sur 3 sur grand écran -->
-                <div class="lg:col-span-1 space-y-4 bg-red-50 p-6 rounded-xl border-2 border-red-400 h-fit shadow-md">
-                    <h4 class="font-bold text-2xl text-red-700 mb-3 flex items-center"><i class="fa-solid fa-gavel mr-3"></i> 3. Déclaration Tardive (Après 15 Jours)</h4>
-                    <p class="font-extrabold text-red-800 text-lg border-b pb-2">Si le délai est dépassé, l'acte ne peut plus être établi en Mairie !</p>
-                    <ol class="list-decimal ml-5 text-gray-700 space-y-3 pl-4">
-                        <li><span class="font-semibold">Saisine du Tribunal :</span> Il faut obligatoirement s'adresser au Tribunal de Paix pour obtenir un Jugement Supplétif d'Acte de Naissance.</li>
-                        <li><span class="font-semibold">Dossier Juridique :</span> Le dossier inclut une requête, une attestation de non-déclaration de la Mairie et d'autres preuves.</li>
-                        <li><span class="font-semibold">Transcription :</span> Le Jugement Supplétif doit être transcrit dans le registre de la Mairie pour produire l'Acte de Naissance.</li>
-                        <li><span class="font-extrabold text-red-900">À ÉVITER :</span> Cette procédure est longue, coûteuse et complexe.</li>
-                    </ol>
-                </div>
-            </div>
-            
-            <!-- CLARIFICATION TYPES D'ACTES (inchangé) -->
-            <div class="pt-6 border-t border-gray-200">
-                <h4 class="font-bold text-2xl text-blue-900 mb-3 flex items-center"><i class="fa-solid fa-scroll mr-2 text-blue-500"></i> Extrait vs. Copie Intégrale</h4>
-                <div class="grid md:grid-cols-2 gap-6 text-gray-700">
-                    <div class="bg-blue-50 p-4 rounded-lg">
-                        <p class="font-semibold text-lg">L'Extrait de l'Acte de Naissance</p>
-                        <p class="text-sm">Version abrégée et simplifiée, utilisée pour la plupart des démarches administratives courantes (ex: école, passeport, carte d'identité). Contient les informations essentielles (Nom, Prénom, Date, Lieu, Parents).</p>
-                    </div>
-                    <div class="bg-blue-50 p-4 rounded-lg">
-                        <p class="font-semibold text-lg">La Copie Intégrale de l'Acte de Naissance</p>
-                        <p class="text-sm">Reproduction complète et conforme à l'acte original dans le registre. Elle est souvent demandée pour les procédures judiciaires ou les dossiers de mariage.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="mariages" class="bg-white p-10 rounded-xl shadow-2xl border-t-8 border-yellow-600 space-y-6">
-            <h2 class="text-3xl font-bold text-blue-900 flex items-center mb-6">
-                <i class="fa-solid fa-ring mr-4 text-yellow-600 text-4xl"></i> Mariage Civil
-            </h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                    <h4 class="font-semibold text-xl text-yellow-700 mb-2">Procédure et Délais</h4>
-                    <ul class="list-disc ml-5 text-gray-700 space-y-2">
-                        <li>Dépôt du dossier de mariage complet <span class="font-semibold">au moins 30 jours</span> avant la date envisagée.</li>
-                        <li><span class="font-semibold">Publication des bans</span> : Affichage obligatoire par l'Officier d'État Civil.</li>
-                        <li>Date de la cérémonie fixée après validation du dossier.</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-xl text-yellow-700 mb-2">Dossier à Constituer (Liste non exhaustive)</h4>
-                    <p class="text-gray-700">Actes de naissance récents (datant de moins de 3 mois), certificats de célibat/divorce, fiches de renseignements (à télécharger), pièces d'identité des témoins et des futurs époux.</p>
-                    <a href="#contact" class="mt-3 inline-block text-blue-600 hover:underline font-medium"><i class="fa-solid fa-calendar-alt mr-1"></i> Prendre RDV pour dépôt de dossier</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="deces" class="bg-white p-10 rounded-xl shadow-2xl border-t-8 border-red-600 space-y-6">
-            <h2 class="text-3xl font-bold text-blue-900 flex items-center mb-6">
-                <i class="fa-solid fa-cross mr-4 text-red-600 text-4xl"></i> Déclaration de Décès
-            </h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                    <h4 class="font-semibold text-xl text-red-700 mb-2">Délais et Déclarant</h4>
-                    <p class="text-gray-700">La déclaration doit être faite dans les <span class="font-semibold">7 jours</span> (délai légal, à vérifier) suivant le décès. Elle est faite par un membre de la famille ou une entreprise de pompes funèbres mandatée.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-xl text-red-700 mb-2">Pièces Indispensables pour l'Acte</h4>
-                    <p class="text-gray-700"><span class="font-semibold">Certificat de décès établi par le médecin</span> (obligatoire pour le permis d'inhumer), pièce d'identité du défunt (si disponible) et du déclarant. L'acte de décès est délivré immédiatement.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="formulaires" class="bg-gray-100 shadow-xl rounded-xl p-10 border-4 border-blue-200">
-            <h2 class="text-3xl font-bold text-blue-900 mb-8 flex items-center">
-                <i class="fa-solid fa-cloud-arrow-down mr-3 text-blue-600"></i>
-                Formulaires et Documents Officiels
-            </h2>
-            <p class="text-gray-600 mb-6">Cliquez sur <span class="font-semibold">Télécharger</span> pour obtenir le document requis. Remplissez-le <span class="font-semibold">avant</span> de vous présenter au guichet pour gagner du temps.</p>
-
-            <div id="firebase_documents_list" class="space-y-4 text-gray-700">
-                <!-- Modèle de naissance statique (toujours affiché) -->
-                <div class="p-5 border border-green-700 rounded-xl bg-green-100 hover:bg-green-50 transition flex justify-between items-center shadow-lg">
-                    <div>
-                        <h3 class="font-bold text-xl text-green-800 flex items-center"><i class="fa-solid fa-file-alt mr-2"></i> Formulaire de Déclaration de Naissance (Modèle)</h3>
-                        <p class="text-sm text-gray-700">Document essentiel à pré-remplir avant votre passage au guichet.</p>
-                    </div>
-                    <a href="lien_vers_modele_naissance.pdf" target="_blank" class="bg-green-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-green-700 transition flex items-center shadow-md">
-                        <i class="fa-solid fa-download mr-2"></i> Télécharger
-                    </a>
-                </div>
-                <!-- Point d'ancrage pour les documents chargés par Firestore -->
-                <div id="loading_formulaires" class="flex justify-center items-center h-16">
-                    <i class="fa-solid fa-spinner fa-spin text-3xl text-gray-400 mr-3"></i>
-                    <p class="italic text-gray-500">Chargement des formulaires supplémentaires depuis la base de données...</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="bg-white shadow-2xl rounded-xl p-10 border-t-8 border-green-700">
-            <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center">
-                <i class="fa-solid fa-envelope-open-text mr-3 text-green-700"></i>
-                Soumettre une Question ou une Demande
-            </h2>
-            <p class="text-gray-600 mb-6">Utilisez ce formulaire pour les demandes de renseignements, de copies d'actes (non urgent), ou de rectification. <span class="font-semibold">Veuillez NE PAS utiliser pour la déclaration urgente d'un décès.</span></p>
-            <form id="demandeForm" class="space-y-5">
-                <input type="text" id="nom" placeholder="Votre nom complet (Obligatoire)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
-                <input type="tel" id="telephone" placeholder="Téléphone (Obligatoire pour le rappel)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required>
-                <input type="email" id="email" placeholder="Email (Optionnel)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition">
-                <textarea id="message" placeholder="Décrivez votre demande (Ex: Copie intégrale de l'acte de mariage de X et Y en 2005)..." class="w-full p-4 border border-gray-300 rounded-lg h-36 focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition" required></textarea>
-                <div class="text-right">
-                    <button type="submit" class="bg-blue-900 text-white px-8 py-3 rounded-xl font-semibold text-lg hover:bg-blue-700 transition duration-300 shadow-lg flex items-center ml-auto">
-                        <i class="fa-solid fa-paper-plane mr-2"></i> Envoyer ma Demande
-                    </button>
-                </div>
-            </form>
-        </section>
-
-    </main>
-
-    <footer class="bg-blue-900 text-white mt-16 pt-10 pb-6">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="mb-2">Service d'État Civil — Mairie de Kolwezi | La mémoire de la cité.</p>
-            <p>&copy; <span id="yr">2025</span> Mairie de Kolwezi — Tous droits réservés.</p>
-        </div>
-    </footer>
-
 </body>
 </html>
